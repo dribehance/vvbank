@@ -1,0 +1,36 @@
+.group {
+	.group-header {
+		background-color: @lightGrey;
+		color: @grey;
+	}
+	.group-item {
+		position: relative;
+		margin-bottom: 10px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	.row {
+		line-height: 24px;
+  		height: 24px;
+	}
+	.item-state {
+		display: block;
+		position: absolute;
+		right: 40px;
+		top: 40px;
+	}
+	sub {
+		position: relative;
+		display: inline-block;
+		width: 43px;
+		text-align: center;
+		i {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: -40px;
+			margin: auto auto;
+		}
+	}
+}

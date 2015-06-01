@@ -1,0 +1,38 @@
+<div ui-content-for="backAction">
+    <span class="btn" ui-if="!signIn"></span>
+    <a ng-click="back()" class="btn" ui-if="signIn">返回</a>
+</div>
+<div ui-content-for="title" ui-if="signIn">
+    <span>登录</span>
+</div>
+<div ui-content-for="navbarAction"></div>
+<div ui-if="!signIn">
+    <div class="section bg-grey text-center text-white" style="padding:30px 20px;">
+        <h2><b>您还没有登录</b></h2>
+        <p>
+            2015年2月1日起，新用户注册即送20元现金红包和500积分，绑定银行卡再送1500积分，购买任意理财产品更有惊喜。积分可兑换话费、支付宝余额、京东E卡等超级好礼。
+        </p>
+    </div>
+    <div class="section">
+        <div class="section"></div>
+        <a class="btn btn-lg btn-primary block full-width" ui-turn-on="signIn">立即登录</a>
+    </div>
+</div>
+<div class="section" ui-state="signIn" ui-default="0" ui-if="signIn">
+    <div class="text-center">
+        <img src="images/logo-big.png" alt="">
+    </div>
+    <div class="input-group input-group-lg">
+        <span class="input-group-addon"><i class="vv vv-20 vv-user"></i></span>
+        <input type="text" class="form-control collapse-left" placeholder="请输入用户名">
+    </div>
+    <div class="input-group input-group-lg">
+        <span class="input-group-addon"><i class="vv vv-20 vv-password"></i></span>
+        <input type="text" class="form-control collapse-left" placeholder="请输入登录密码">
+    </div>
+    <p class="text-right"><a ng-href="#/forget" class="btn">忘记密码</a></p>
+    <div class="section-wide">
+        <a class="btn btn-lg btn-primary block full-width">立即登录</a>
+    </div>
+    <p class="text-center"><span class="text-grey">还没有账号？</span><a ng-href="#/signUp" class="btn">免费注册</a></p>
+</div>

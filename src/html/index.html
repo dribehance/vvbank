@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>VVBank</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+    <link rel="stylesheet" href="css/app.min.css" />
+    <!-- <link rel="stylesheet" href="css/responsive.min.css" /> -->
+    <!-- inject:js -->
+    <script src="js/app.min.js"></script>
+  </head>
+  <body ng-app="VVBank">
+
+
+    <div class="app">
+
+      <!-- Navbars -->
+
+      <div class="navbar navbar-app navbar-absolute-top">
+        <div class="navbar-brand navbar-brand-center text-black" ui-yield-to="title">
+          <img src="images/logo.png" class="nav-logo" alt="">
+        </div>
+        <div class="btn-group pull-left" ui-yield-to="backAction">
+          <a ng-href="#/signIn" class="btn">登录</a>
+        </div>
+        <div class="btn-group pull-right" ui-yield-to="navbarAction">
+          <a class="btn" tel="18689221152">
+            <span class="vv-tel"></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="navbar navbar-app navbar-absolute-bottom">
+        <div class="btn-group justified">
+          <a ng-href="#/index" class="btn btn-navbar"><i class="vv vv-40 vv-index"></i><span class="block">首页</span></a>
+          <a ng-href="#/licai" class="btn btn-navbar"><i class="vv vv-40 vv-licai"></i> <span class="block">理财产品</span></a>
+          <a ng-href="#/me" class="btn btn-navbar"><i class="vv vv-40 vv-me"></i><span class="block">理财产品</span></a>
+        </div>
+      </div>
+      <div class="error-msg section section-warning text-center" ui-state="ERRORMSG" ui-if="ERRORMSG" ui-default="ERRORMSG = 0"></div>
+      <!-- App Body -->
+      <div class="app-body">
+        <div class="app-content">
+          <ng-view></ng-view>  
+        </div>
+      </div>
+
+    </div><!-- ~ .app -->
+
+    <div ui-yield-to="modals"></div>
+  </body>
+</html>
