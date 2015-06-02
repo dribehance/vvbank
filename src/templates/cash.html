@@ -1,0 +1,42 @@
+<div ui-content-for="title">
+    <span>提现</span>
+</div>
+<div ui-content-for="backAction">
+    <a ng-click="back()" class="btn">返回</a>
+</div>
+<div ui-content-for="navbarAction">
+    <span></span>
+</div>
+<div class="section">
+    <div class="semi-auto semi-left-98">
+        <span class="semi-fixed-left semi-width-98 text-grey">选择银行</span>
+        <select class="sex block full-width" ng-model="bank" ng-options="b for b in banks"></select>
+    </div>
+</div>
+<div class="vv-divide"></div>
+<div class="section">
+    <div class="semi-auto semi-left-98">
+        <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">提现金额</span>
+        <input type="text" class="form-control block full-width" placeholder="请输入金额，最低10元">
+    </div>
+</div>
+<div class="vv-divide"></div>
+<div class="section">
+    <div class="semi-auto semi-left-98">
+        <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">交易密码</span>
+        <input type="text" class="form-control block full-width" placeholder="请输入交易密码">
+    </div>
+</div>
+<div class="vv-divide"></div>
+<div class="section">
+    <div class="semi-auto semi-left-98 semi-right-98">
+        <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">短信验证码</span>
+        <input type="text" class="form-control block full-width" placeholder="短信验证码">
+        <span class="semi-fixed-right semi-width-98 btn text-center btn-primary rectangle">发送</span>
+    </div>
+</div>
+<div class="vv-divide vv-5"></div>
+<div class="vv-divide vv-5"></div>
+<div class="section">
+	<a href="" class="btn btn-lg rectangle btn-warning block full-width">马上提现</a>
+</div>

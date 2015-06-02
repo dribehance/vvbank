@@ -1,0 +1,3 @@
+var indexController = function($scope) {
+
+}

@@ -4,7 +4,7 @@ module.exports = function(config) {
   config.dest = 'www';
   
   // Inject cordova script into html
-  config.cordova = true;
+  config.cordova = false;
   
   // Images minification
   config.minify_images = true;
@@ -27,6 +27,7 @@ module.exports = function(config) {
     
   // 3rd party components
   config.vendor.js.push('./bower_components/jquery/dist/jquery.min.js');
+  config.vendor.js.push('./bower_components/ng-flow/dist/ng-flow-standalone.min.js');
   // config.vendor.js.push('./src/plugins/angular.carsousel.js');
   // config.vendor.js.push('.bower_components/lib/dist/lib.js');
   // config.vendor.fonts.push('.bower_components/font/dist/*');

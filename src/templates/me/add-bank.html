@@ -1,0 +1,54 @@
+<div ui-content-for="title">
+    <span>增加银行卡</span>
+</div>
+<div ui-content-for="backAction">
+    <a ng-click="back()" class="btn">返回</a>
+</div>
+<div ui-content-for="navbarAction">
+    
+</div>
+<div class="section">
+    <div class="semi-auto semi-left-98">
+        <span class="semi-fixed-left semi-width-98">持卡人</span>
+        <div class="text-grey">李四</div>
+    </div>
+</div>
+<div class="vv-divide"></div>
+<div class="section">
+    <div class="semi-auto semi-left-98">
+        <span class="semi-fixed-left semi-width-98">选择银行</span>
+        <select class="sex block full-width" ng-model="bank" ng-options="b for b in banks"></select>
+    </div>
+</div>
+<div class="vv-divide"></div>
+<div class="section">
+    <div class="semi-auto semi-left-98">
+        <span class="semi-fixed-left semi-width-98">所在地</span>
+        <div class="btn-group justified">
+            <span class="btn section-wide">
+                <select class="block full-width" ng-model="province" ng-options="p for p in provinces"></select>
+            </span>
+            <span class="btn section-wide">
+                <select class="block full-width" ng-model="city" ng-options="c for c in cities[province]"></select>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="vv-divide"></div>
+<div class="section">
+    <div class="semi-auto semi-left-98">
+        <span class="semi-fixed-left semi-width-98">开户支行</span>
+        <input type="text" class="form-control" placeholder="请输入开户支行">
+    </div>
+</div>
+<div class="vv-divide vv-5"></div>
+<div class="section">
+    <div class="btn-group justified text-center">
+        <span class="btn">
+            <a href="" class="btn btn-lg bg-primary full-width rectangle">确认</a>
+        </span>
+        <span class="btn">
+            <a href="" class="btn btn-lg btn-default full-width rectangle">取消</a>
+        </span>
+    </div>
+</div>

@@ -20,6 +20,9 @@
 .text-orange {
 	color: @orange;
 }
+.text-success {
+	color: @green;
+}
 // text size
 .text-very-large {
 	font-size: 60px;
@@ -41,6 +44,9 @@
 .text-center {
 	text-align: center;
 }
+.text-left {
+	text-align: left;
+}
 .text-ellipsis {
 	white-space: nowrap;
 	overflow: hidden;
@@ -51,11 +57,20 @@
 .semi-auto {
 	display: block;
 	position: relative;
+	&.semi-left-40 {
+		padding-left: 40px;
+	}
 	&.semi-right-50 {
 		padding-right: 50px;
 	}
 	&.semi-left-50 {
 		padding-left: 50px;
+	}
+	&.semi-left-60 {
+		padding-left: 60px;
+	}
+	&.semi-right-60 {
+		padding-right: 60px;
 	}
 	&.semi-left-75 {
 		padding-left: 75px;
@@ -68,6 +83,9 @@
 	}
 	&.semi-right-150 {
 		padding-right: 150px;
+	}
+	&.semi-left-150 {
+		padding-left: 150px;
 	}
 	.semi-fixed-left {
 		display: block;	
@@ -84,8 +102,14 @@
 	.semi-width-50 {
 		width: 50px;
 	}
+	.semi-width-60 {
+		width: 60px;
+	}
 	.semi-width-75 {
 		width: 75px;
+	}
+	.semi-width-98 {
+		width:98px;
 	}
 	.semi-width-150 {
 		width: 135px;
@@ -101,9 +125,6 @@
 .rectangle {
 	-webkit-border-radius: 0 !important;
 	border-radius: 0 !important;
-}
-.bg-grey {
-	background-color: @darkGrey;
 }
 .border-radius-large {
 	-webkit-border-radius: 4px !important;
@@ -124,11 +145,23 @@
 .bg-light-blue {
 	background-color: @lightBlue;
 }
+.bg-grey {
+	background-color: @darkGrey;
+}
 .bg-dark-blue {
 	background-color: @darkBlue;
 }
 .bg-white {
 	background-color: @white;
+}
+.bg-orange {
+	background-color: @orange;
+}
+.bg-green {
+	background-color: @green;
+}
+.bg-light-green {
+	background-color: @lightGreen;
 }
 .vv-divide {
 	display: block;
@@ -136,4 +169,11 @@
 	&.vv-5 {
 		height: 5px;
 	}
+}
+.flow-btn {
+	margin:auto auto;
+	width: 100%;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	max-height: 179px;
 }
