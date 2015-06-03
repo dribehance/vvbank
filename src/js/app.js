@@ -123,6 +123,21 @@ var vvbank = angular.module("VVBank", [
             templateUrl: "home.html",
             reloadOnSearch: false,
             controller: indexController
+        })
+        .when("/products/:productID", {
+            templateUrl: "product.html",
+            reloadOnSearch: false,
+            controller: productController
+        })
+        .when("/products-content/:productID", {
+            templateUrl: "product-content.html",
+            reloadOnSearch: false,
+            controller: productContentController
+        })
+        .when("/products-files/:productID", {
+            templateUrl: "product-files.html",
+            reloadOnSearch: false,
+            controller: productFilesController
         });
     }).run(function($rootScope, $window, $sce, _EventHandler) {
         // $rootScope.slide = 'fadeIn';
