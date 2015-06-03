@@ -4,7 +4,7 @@
     </a> -->
 </div>
 <div ui-content-for="title">
-    <span ui-turn-on="filterDropdown">理财产品<i class="vv vv-23 vv-dropdown"></i></span>
+    <span ui-turn-on="filterDropdown">{{ stock.name ==""?"理财产品":stock.name }}<i class="vv vv-23 vv-dropdown"></i></span>
 </div>
 <div class="filter-dropdown-hood">
   <ul 
@@ -16,246 +16,48 @@
     ui-state="filterDropdown"
     ui-turn-off="filterDropdown">
 
-    
-    <li><a class="text-ellipsis">深圳前海金融资产交易所</a></li>
-    <li><a class="text-ellipsis">重庆金融资产交易所</a></li>
-    <li><a class="text-ellipsis">辽宁金融资产交易中心</a></li>
-    <li><a class="text-ellipsis">天津产权交易中心</a></li>
+    <li ng-repeat="st in stocks" class="section">
+        <label class="text-ellipsis"><input type="radio" name="stock-name" class="hide" ng-model="stock.name" value="{{st == '理财产品'?'':st}}">{{st}}</label>
+    </li>
   </ul>
 </div>
 <div ui-content-for="navbarAction">
     <a class="btn">刷新</a>
 </div>
 <div class="scrollable">
-    <div class="scrollable-content">
-        <div class="group hot-product">
+    <div class="scrollable-content" ui-scroll-bottom="loadMore()">
+        <div class="group" ng-repeat="group in groups | filter:stock.name">
             <div class="section group-header">
                 <div class="semi-auto semi-right-50">
-                    <span class="text-ellipsis">深圳前海金融资产交易所</span>
-                    <a class="semi-fixed-right semi-width-50 text-right text-grey">更多</a>
+                    <span class="text-ellipsis">{{group.name}}</span>
+                    <label class="semi-fixed-right semi-width-50 text-right text-grey"><input type="radio" name="stock-name" class="hide" ng-model="stock.name" value="{{group.name}}">更多</label>
                 </div>
             </div>
             <div class="group-items">
-                <a ng-href="#/products/1" class="block section group-item">
+                <a ng-href="#/products/1" class="block section group-item tag-{{product.tag}}" ng-repeat="product in group.products">
                     <div class="semi-auto semi-right-50">
-                        <h3 class="text-ellipsis text-black">资产权益项目SZQH110203</h3>
+                        <h3 class="text-ellipsis text-black">{{product.title}}</h3>
                         <span class="semi-fixed-right semi-width-50">
-                            <i class="vv vv-hot vv-46"></i>
+                            <i class="vv vv-tag vv-46"></i>
                         </span>
                     </div>
-                    <p class="text-grey text-right">到期还本付息</p>
+                    <p class="text-grey text-right">{{product.feature}}</p>
                     <div class="section-wide text-grey row">
                         <div class="col-xs-8 nowrap">
-                            <span class="text-orange text-very-big"><b>5.00%</b></span>
-                            <sub class="text-orange text-large">
-                                <b>1%</b>
-                                <i class="vv vv-43 vv-discount-orange"></i>
+                            <span class="tag-state text-very-big"><b>{{product.percentage}}</b></span>
+                            <sub class="tag-state text-large">
+                                <b>{{product.addition}}</b>
+                                <i class="vv vv-43 vv-state"></i>
                             </sub>
                         </div>
                         <div class="col-xs-4 text-right text-ellipsis">
-                            <span class="text-orange">15</span>天<span class="text-orange">1000</span>元起投
+                            <span class="tag-state">{{product.duration}}</span>天<span class="tag-state">{{product.limit}}</span>元起投
                         </div>
                     </div>
-                </a>
-                <a ng-href="#/products/1" class="block section group-item">
-                    <div class="semi-auto semi-right-50">
-                        <h3 class="text-ellipsis text-black">资产权益项目SZQH110203</h3>
-                        <span class="semi-fixed-right semi-width-50">
-                            <i class="vv vv-hot vv-46"></i>
-                        </span>
-                    </div>
-                    <p class="text-grey text-right">到期还本付息</p>
-                    <div class="section-wide text-grey row">
-                        <div class="col-xs-8 nowrap">
-                            <span class="text-orange text-very-big"><b>5.00%</b></span>
-                            <sub class="text-orange text-large">
-                                <b>1%</b>
-                                <i class="vv vv-43 vv-discount-orange"></i>
-                            </sub>
-                        </div>
-                        <div class="col-xs-4 text-right text-ellipsis">
-                            <span class="text-orange">15</span>天<span class="text-orange">1000</span>元起投
-                        </div>
-                    </div>
-                </a>
-                <a ng-href="#/products/1" class="block section group-item">
-                    <div class="semi-auto semi-right-50">
-                        <h3 class="text-ellipsis text-black">资产权益项目SZQH110203</h3>
-                        <span class="semi-fixed-right semi-width-50">
-                            <i class="vv vv-hot vv-46"></i>
-                        </span>
-                    </div>
-                    <p class="text-grey text-right">到期还本付息</p>
-                    <div class="section-wide text-grey row">
-                        <div class="col-xs-8 nowrap">
-                            <span class="text-orange text-very-big"><b>5.00%</b></span>
-                            <sub class="text-orange text-large">
-                                <b>1%</b>
-                                <i class="vv vv-43 vv-discount-orange"></i>
-                            </sub>
-                        </div>
-                        <div class="col-xs-4 text-right text-ellipsis">
-                            <span class="text-orange">15</span>天<span class="text-orange">1000</span>元起投
-                        </div>
-                    </div>
-                </a>
-                <a ng-href="#/products/1" class="block section group-item">
-                    <div class="semi-auto semi-right-50">
-                        <h3 class="text-ellipsis text-black">资产权益项目SZQH110203</h3>
-                        <span class="semi-fixed-right semi-width-50">
-                            <i class="vv vv-hot vv-46"></i>
-                        </span>
-                    </div>
-                    <p class="text-grey text-right">到期还本付息</p>
-                    <div class="section-wide text-grey row">
-                        <div class="col-xs-8 nowrap">
-                            <span class="text-orange text-very-big"><b>5.00%</b></span>
-                            <sub class="text-orange text-large">
-                                <b>1%</b>
-                                <i class="vv vv-43 vv-discount-orange"></i>
-                            </sub>
-                        </div>
-                        <div class="col-xs-4 text-right text-ellipsis">
-                            <span class="text-orange">15</span>天<span class="text-orange">1000</span>元起投
-                        </div>
-                    </div>
+                    <span class="item-state"><i class="vv vv-stamp vv-87"></i></span>
                 </a>
             </div>
         </div>
-        <div class="group finish-product">
-            <div class="section group-header">
-                <div class="semi-auto semi-right-50">
-                    <span class="text-ellipsis">重庆金融资产交易所</span>
-                    <a class="semi-fixed-right semi-width-50 text-right text-grey">更多</a>
-                </div>
-            </div>
-            <div class="group-items">
-                <a ng-href="#/products/1" class="block section group-item">
-                    <div class="semi-auto semi-right-50">
-                        <h3 class="text-ellipsis text-black">资产权益项目SZQH110203</h3>
-                        <span class="semi-fixed-right semi-width-50">
-                            <i class="vv vv-all vv-46"></i>
-                        </span>
-                    </div>
-                    <p class="text-grey text-right">到期还本付息</p>
-                    <div class="section-wide text-grey row">
-                        <div class="col-xs-8 nowrap">
-                            <span class="text-primary text-very-big"><b>5.00%</b></span>
-                            <sub class="text-primary text-large">
-                                <b>1%</b>
-                                <i class="vv vv-43 vv-discount-blue"></i>
-                            </sub>
-                        </div>
-                        <div class="col-xs-4 text-right text-ellipsis">
-                            <span class="text-primary">15</span>天<span class="text-primary">1000</span>元起投
-                        </div>
-                    </div>
-                    <span class="item-state"><i class="vv vv-has-all vv-87"></i></span>
-                </a>
-                <a ng-href="#/products/1" class="block section group-item">
-                    <div class="semi-auto semi-right-50">
-                        <h3 class="text-ellipsis text-black">资产权益项目SZQH110203</h3>
-                        <span class="semi-fixed-right semi-width-50">
-                            <i class="vv vv-all vv-46"></i>
-                        </span>
-                    </div>
-                    <p class="text-grey text-right">到期还本付息</p>
-                    <div class="section-wide text-grey row">
-                        <div class="col-xs-8 nowrap">
-                            <span class="text-primary text-very-big"><b>5.00%</b></span>
-                            <sub class="text-primary text-large">
-                                <b>1%</b>
-                                <i class="vv vv-43 vv-discount-blue"></i>
-                            </sub>
-                        </div>
-                        <div class="col-xs-4 text-right text-ellipsis">
-                            <span class="text-primary">15</span>天<span class="text-primary">1000</span>元起投
-                        </div>
-                    </div>
-                    <span class="item-state"><i class="vv vv-has-all vv-87"></i></span>
-                </a>
-                <a ng-href="#/products/1" class="block section group-item">
-                    <div class="semi-auto semi-right-50">
-                        <h3 class="text-ellipsis text-black">资产权益项目SZQH110203</h3>
-                        <span class="semi-fixed-right semi-width-50">
-                            <i class="vv vv-all vv-46"></i>
-                        </span>
-                    </div>
-                    <p class="text-grey text-right">到期还本付息</p>
-                    <div class="section-wide text-grey row">
-                        <div class="col-xs-8 nowrap">
-                            <span class="text-primary text-very-big"><b>5.00%</b></span>
-                            <sub class="text-primary text-large">
-                                <b>1%</b>
-                                <i class="vv vv-43 vv-discount-blue"></i>
-                            </sub>
-                        </div>
-                        <div class="col-xs-4 text-right text-ellipsis">
-                            <span class="text-primary">15</span>天<span class="text-primary">1000</span>元起投
-                        </div>
-                    </div>
-                    <span class="item-state"><i class="vv vv-has-all vv-87"></i></span>
-                </a>
-                <a ng-href="#/products/1" class="block section group-item">
-                    <div class="semi-auto semi-right-50">
-                        <h3 class="text-ellipsis text-black">资产权益项目SZQH110203</h3>
-                        <span class="semi-fixed-right semi-width-50">
-                            <i class="vv vv-all vv-46"></i>
-                        </span>
-                    </div>
-                    <p class="text-grey text-right">到期还本付息</p>
-                    <div class="section-wide text-grey row">
-                        <div class="col-xs-8 nowrap">
-                            <span class="text-primary text-very-big"><b>5.00%</b></span>
-                            <sub class="text-primary text-large">
-                                <b>1%</b>
-                                <i class="vv vv-43 vv-discount-blue"></i>
-                            </sub>
-                        </div>
-                        <div class="col-xs-4 text-right text-ellipsis">
-                            <span class="text-primary">15</span>天<span class="text-primary">1000</span>元起投
-                        </div>
-                    </div>
-                    <span class="item-state"><i class="vv vv-has-all vv-87"></i></span>
-                </a>
-                <a ng-href="#/products/1" class="block section group-item">
-                    <div class="semi-auto semi-right-50">
-                        <h3 class="text-ellipsis text-grey">资产权益项目SZQH110203</h3>
-                        <span class="semi-fixed-right semi-width-50">
-                            <i class="vv vv-finish vv-46"></i>
-                        </span>
-                    </div>
-                    <p class="text-grey text-right">到期还本付息</p>
-                    <div class="section-wide text-grey row">
-                        <div class="col-xs-8 nowrap">
-                            <span class="text-grey text-very-big"><b>5.00%</b></span>
-                            <sub class="text-grey text-large">
-                                <b>1%</b>
-                                <i class="vv vv-43 vv-discount-grey"></i>
-                            </sub>
-                        </div>
-                        <div class="col-xs-4 text-right text-ellipsis">
-                            <span class="text-grey">15</span>天<span class="text-grey">1000</span>元起投
-                        </div>
-                    </div>
-                    <span class="item-state"><i class="vv vv-has-finish vv-87"></i></span>
-                </a>
-            </div>
-        </div>
+        <div class="vv-divide vv-15"></div>
     </div>
 </div>
-<!-- <div ui-content-for="modals">
-    <div class="modal modal-overlay" ui-if="search" ui-state='search'>
-        <div class="section section-wide">
-            <div class="semi-auto semi-left-50 semi-right-50">
-                <span class="semi-fixed-left">
-                <a ui-turn-off="search" class="btn">返回</a>
-            </span>
-                <input type="text" class="form-control" placeholeder="请输入关键字搜索">
-                <a ui-turn-off="search" class="semi-fixed-right semi-width-50 text-center">
-                    <i class="vv vv-search vv-27"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</div> -->
