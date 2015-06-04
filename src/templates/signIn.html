@@ -17,21 +17,26 @@
         <a class="btn btn-lg btn-primary block full-width" ui-turn-on="signIn">立即登录</a>
     </div>
 </div>
-<form name="signinForm" class="section" ui-state="signIn" ui-default="0" ui-if="signIn" novalidate>
+<form name="signinForm" ng-submit="ajaxSubmit(user,this)" class="section" ui-state="signIn" ui-default="0" ui-if="signIn" novalidate>
     <div class="text-center">
         <img src="images/logo-big.png" alt="">
     </div>
-    <div class="input-group input-group-lg">
-        <span class="input-group-addon"><i class="vv vv-20 vv-user"></i></span>
-        <input type="text" class="form-control collapse-left" placeholder="请输入用户名">
+    <div class="vv-input-group input-group-lg">
+        <span class="vv-input-group-addon"><i class="vv vv-20 vv-user"></i></span>
+        <input type="text" class="form-control" name="username" ng-model="user.name" placeholder="请输入用户名" required>
+        <span class="vv-input-tip" ng-show="signinForm.username.$error.required">用户名为必填</span>
     </div>
-    <div class="input-group input-group-lg">
-        <span class="input-group-addon"><i class="vv vv-20 vv-password"></i></span>
-        <input type="text" class="form-control collapse-left" placeholder="请输入登录密码">
+    <div class="vv-input-group input-group-lg">
+        <span class="vv-input-group-addon"><i class="vv vv-20 vv-password"></i></span>
+        <input type="password" class="form-control" name="password" ng-model="user.passowrd" placeholder="请输入登录密码" required ng-minlength=8>
+        <span class="vv-input-tip" ng-show="signinForm.password.$error.required || signinForm.password.$error.minlength">密码必填并且密码位数不少于8位</span>
     </div>
     <p class="text-right"><a ng-href="#/forget" class="btn">忘记密码</a></p>
     <div class="section-wide">
-        <button class="btn btn-lg btn-primary block full-width">立即登录</button>
+        <button type="submit" class="btn btn-lg btn-primary block full-width" ng-disabled="signinForm.$invalid">立即登录</button>
     </div>
     <p class="text-center"><span class="text-grey">还没有账号？</span><a ng-href="#/signUp" class="btn">免费注册</a></p>
 </form>
+<div ui-content-for="ERRORMSG">
+    <div class="text-center section section-warning" ng-show="errormsg">{{ errormsg }}</div>
+</div>

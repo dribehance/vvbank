@@ -26,11 +26,13 @@ angular.module("VVBank", [
         })
         .when("/signIn", {
             templateUrl: "signIn.html",
-            reloadOnSearch: false
+            reloadOnSearch: false,
+            controller: signinController
         })
         .when("/signUp", {
             templateUrl: "signUp.html",
-            reloadOnSearch: false
+            reloadOnSearch: false,
+            controller: signupController
         })
         .when("/forget", {
             templateUrl: "forget.html",
