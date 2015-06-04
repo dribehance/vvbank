@@ -17,7 +17,7 @@
         <a class="btn btn-lg btn-primary block full-width" ui-turn-on="signIn">立即登录</a>
     </div>
 </div>
-<div class="section" ui-state="signIn" ui-default="0" ui-if="signIn">
+<form name="signinForm" class="section" ui-state="signIn" ui-default="0" ui-if="signIn" novalidate>
     <div class="text-center">
         <img src="images/logo-big.png" alt="">
     </div>
@@ -31,7 +31,7 @@
     </div>
     <p class="text-right"><a ng-href="#/forget" class="btn">忘记密码</a></p>
     <div class="section-wide">
-        <a class="btn btn-lg btn-primary block full-width">立即登录</a>
+        <button class="btn btn-lg btn-primary block full-width">立即登录</button>
     </div>
     <p class="text-center"><span class="text-grey">还没有账号？</span><a ng-href="#/signUp" class="btn">免费注册</a></p>
-</div>
+</form>
