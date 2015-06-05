@@ -6,6 +6,7 @@ angular.module("VVBank", [
     "mobile-angular-ui.core.sharedState",
     "wrapOwlcarousel",
     "flow",
+    "timer",
 ])
 .config(function($routeProvider) {
     $routeProvider
