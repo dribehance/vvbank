@@ -17,12 +17,12 @@
     ui-turn-off="filterDropdown">
 
     <li ng-repeat="st in stocks" class="section">
-        <label class="text-ellipsis"><input type="radio" name="stock-name" class="hide" ng-model="stock.name" value="{{st == '理财产品'?'':st}}">{{st}}</label>
+        <label class="text-ellipsis block text-grey" style="font-weight:100"><input type="radio" name="stock-name" class="hide" ng-model="stock.name" value="{{st == '理财产品'?'':st}}">{{st}}</label>
     </li>
   </ul>
 </div>
 <div ui-content-for="navbarAction">
-    <a class="btn">刷新</a>
+    <a ng-href="#/licai" class="btn">刷新</a>
 </div>
 <div class="scrollable">
     <div class="scrollable-content" ui-scroll-bottom="loadMore()">

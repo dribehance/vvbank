@@ -7,24 +7,28 @@
 <div ui-content-for="navbarAction">
     <span></span>
 </div>
-<div class="section">
-    <div class="semi-auto semi-left-98">
-        <span class="semi-fixed-left semi-width-98">支付银行</span>
-        <select class="sex block full-width" ng-model="bank" ng-options="b for b in banks"></select>
+<form name="chargeForm" ng-submit="ajaxForm(this)">
+    <div class="section">
+        <div class="semi-auto semi-left-98">
+            <span class="semi-fixed-left semi-width-98">支付银行</span>
+            <select class="sex block full-width" ng-model="input.bank" ng-options="b for b in banks" required></select>
+        </div>
     </div>
-</div>
-<div class="vv-divide"></div>
-<div class="section">
-    <div class="semi-auto semi-left-98">
-        <span class="semi-fixed-left semi-width-98">充值金额</span>
-        <input type="text" class="form-control block full-width" placeholder="请输入金额，最低10元">
+    <div class="vv-divide"></div>
+    <div class="section">
+        <div class="semi-auto semi-left-98">
+            <span class="semi-fixed-left semi-width-98 btn section-wide text-left">充值金额</span>
+            <input type="text" class="form-control block full-width" name="money" ng-model="input.money" ng-pattern="/^[0-9]+$/" required placeholder="请输入金额，最低10元">
+        </div>
     </div>
-</div>
-<div class="vv-divide vv-5"></div>
-<div class="vv-divide vv-5"></div>
-<div class="section">
-	<label for="agreement"><input type="checkbox" id="agreement" name="agreement" ng-model="agreement">我已经阅读并同意<a class="text-primary">《用户服务协议》</a></label>
-</div>
-<div class="section">
-	<a ng-click="" class="btn btn-lg rectangle block full-width" ng-class="{'btn-warning':agreement,'btn-default':!agreement}">马上充值</a>
-</div>
+    <div class="vv-divide vv-5"></div>
+    <div class="vv-divide vv-5"></div>
+    <div class="section">
+        <label for="agreement" class="block text-grey" style="font-weight:100">
+            <input type="checkbox" id="agreement" name="agreement" ng-model="input.agreement" required>我已经阅读并同意<a class="text-primary">《用户服务协议》</a>
+        </label>
+    </div>
+    <div class="section">
+        <button type="submit" class="btn btn-lg btn-primary block full-width" ng-disabled="!chargeForm.$valid">马上充值</button>
+    </div>
+</form>

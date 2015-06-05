@@ -1,0 +1,44 @@
+<div ui-content-for="title">
+    <span>产品购买</span>
+</div>
+<div ui-content-for="backAction">
+    <a ng-click="back()" class="btn">返回</a>
+</div>
+<div ui-content-for="navbarAction">
+    <span></span>
+</div>
+<form name="buyForm" ng-submit="ajaxForm(this)">
+    <div class="section">
+        <div class="semi-auto semi-left-75">
+            <span class="semi-fixed-left semi-width-75 btn section-wide text-left">投资金额：</span>
+            <input type="text" class="form-control block full-width" name="cost" ng-model="input.cost" required ng-pattern="/^[0-9]+$/" placeholder="请输入投资金额">
+        </div>
+    </div>
+    <div class="section bg-light-grey">
+        <div class="row">
+            <div class="col-xs-6">
+                <span class="btn">剩余份额：<span class="text-orange">85,000</span>元</span>
+            </div>
+            <div class="col-xs-6">
+                <span class="btn">账户余额：<span class="text-orange">8,000</span>元</span>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="semi-auto semi-left-75">
+            <span class="semi-fixed-left semi-width-75 btn section-wide text-left">交易密码：</span>
+            <input type="password" class="form-control block full-width" name="password" ng-model="input.password" ng-minlength=8 required placeholder="请输入交易密码">
+        </div>
+    </div>
+    <div class="vv-divide"></div>
+    <div class="section">
+        <div class="section">
+            <label for="agreement" class="block text-grey" style="font-weight:100">
+                <input type="checkbox" id="agreement" name="agreement" ng-model="input.agreement" required>我已经阅读并同意<a class="text-primary">《用户服务协议》</a>
+            </label>
+        </div>
+    </div>
+    <div class="section">
+        <button type="submit" href="" class="btn btn-lg btn-warning block full-width" ng-disabled="!buyForm.$valid">立即购买</button>
+    </div>
+</form>

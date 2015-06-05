@@ -1,5 +1,5 @@
 <div ui-content-for="title">
-    <span>资金明细</span>
+    <span>账户设置</span>
 </div>
 <div ui-content-for="backAction">
     <a ng-click="back()" class="btn">返回</a>
@@ -9,91 +9,93 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
-        <div class="section">
-            <div class="semi-auto semi-left-150">
-                <span class="semi-fixed-left semi-width-150">昵称</span>
-                <div>juncun</div>
+        <form name="accountForm" ng-submit="ajaxForm(this)">
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-150">昵称：</span>
+                    <div class="text-grey">juncun</div>
+                </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="semi-auto semi-left-150 semi-right-150">
-                <span class="semi-fixed-left semi-width-150">真实姓名</span>
-                <div>juncun</div>
-                <span class="semi-fixed-right semi-width-150 text-success text-right"><i class="vv vv-text-success vv-22"></i>已认证</span>
+            <div class="section">
+                <div class="semi-auto semi-left-75 semi-right-150">
+                    <span class="semi-fixed-left semi-width-150">真实姓名：</span>
+                    <div class="text-grey">juncun</div>
+                    <span class="semi-fixed-right semi-width-150 text-success text-right"><i class="vv vv-text-success vv-22"></i>已认证</span>
+                </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="semi-auto semi-left-150 semi-right-150">
-                <span class="semi-fixed-left semi-width-150">身份证号</span>
-                <div>450***************</div>
-                <span class="semi-fixed-right semi-width-150 text-success text-right"><i class="vv vv-text-success vv-22"></i>已认证</span>
+            <div class="section">
+                <div class="semi-auto semi-left-75 semi-right-150">
+                    <span class="semi-fixed-left semi-width-150">身份证号：</span>
+                    <div class="text-grey">450***************</div>
+                    <span class="semi-fixed-right semi-width-150 text-success text-right"><i class="vv vv-text-success vv-22"></i>已认证</span>
+                </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="semi-auto semi-left-150 semi-right-150">
-                <span class="semi-fixed-left semi-width-150">手机号</span>
-                <div>153*****209</div>
-                <span class="semi-fixed-right semi-width-150 text-success text-right"><i class="vv vv-text-success vv-22"></i>已认证</span>
+            <div class="section">
+                <div class="semi-auto semi-left-75 semi-right-150">
+                    <span class="semi-fixed-left semi-width-150">手机号：</span>
+                    <div class="text-grey">153*****209</div>
+                    <span class="semi-fixed-right semi-width-150 text-success text-right"><i class="vv vv-text-success vv-22"></i>已认证</span>
+                </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="semi-auto semi-left-150 semi-right-150">
-                <span class="semi-fixed-left semi-width-150">邮箱地址</span>
-                <div>262664094@qq.com</div>
-                <span class="semi-fixed-right semi-width-150 text-success text-right"><i class="vv vv-text-success vv-22"></i>已认证</span>
+            <div class="section">
+                <div class="semi-auto semi-left-75 semi-right-150">
+                    <span class="semi-fixed-left semi-width-150">邮箱地址：</span>
+                    <div class="text-grey">262664094@qq.com</div>
+                    <span class="semi-fixed-right semi-width-150 text-success text-right"><i class="vv vv-text-success vv-22"></i>已认证</span>
+                </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="semi-auto semi-left-150">
-                <span class="semi-fixed-left semi-width-150">性别</span>
-                <select class="block full-width">
-                <option selected>男</option>
-                <option>女</option>
-              </select>
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-150">性别：</span>
+                    <select class="block full-width" name="sex" ng-model="input.sex" value="{{input.sex}}" required>
+                        <option selected>男</option>
+                        <option>女</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="semi-auto semi-left-150">
-                <span class="semi-fixed-left semi-width-150">出生日期</span>
-                <input type="date" value="2015-06-02" class="block full-width">
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-150">出生日期：</span>
+                    <input type="date" value="{{input.birthday}}" name="birthday" ng-model="input.birthday" class="block full-width" required>
+                </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="semi-auto semi-left-150">
-                <span class="semi-fixed-left semi-width-150">最高学历</span>
-                <select class="block full-width" ng-model="degree" ng-options="d for d in degrees"></select>
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-150">最高学历：</span>
+                    <select class="block full-width" name="degree" ng-model="input.degree" ng-options="d for d in degrees" required></select>
+                </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="semi-auto semi-left-150">
-                <span class="semi-fixed-left semi-width-150  btn section-wide text-left">居住地址</span>
-                <input type="text" class="form-control block full-width" placeholder="请输入居住地址">
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-150  btn section-wide text-left">居住地址：</span>
+                    <input type="text" class="form-control block full-width" name="address" ng-model="input.address" required placeholder="请输入居住地址">
+                </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="semi-auto semi-left-150">
-                <span class="semi-fixed-left semi-width-150 btn section-wide text-left">公司行业</span>
-                <input type="text" class="form-control block full-width" placeholder="请输入公司所在行业">
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-150 btn section-wide text-left">公司行业：</span>
+                    <input type="text" class="form-control block full-width" name="industry" ng-model="input.industry" required placeholder="请输入公司所在行业">
+                </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="semi-auto semi-left-150">
-                <span class="semi-fixed-left semi-width-150">公司规模</span>
-                <select class="block full-width" ng-model="scale" ng-options="s for s in scales"></select>
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-150">公司规模：</span>
+                    <select class="block full-width" name="scale" ng-model="input.scale" ng-options="s for s in scales" required></select>
+                </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="semi-auto semi-left-150">
-                <span class="semi-fixed-left semi-width-150">职位</span>
-                <select class="block full-width" ng-model="job" ng-options="d for d in jobs"></select>
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-150">职位：</span>
+                    <select class="block full-width" name="job" ng-model="input.job" ng-options="d for d in jobs" required></select>
+                </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="semi-auto semi-left-150">
-                <span class="semi-fixed-left semi-width-150">月收入</span>
-                <select class="block full-width" ng-model="income" ng-options="i for i in incomes"></select>
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-150">月收入：</span>
+                    <select class="block full-width" name="income" ng-model="input.income" ng-options="i for i in incomes" required></select>
+                </div>
             </div>
-        </div>
-        <a href="" class="btn btn-lg bg-green block full-width text-white rectangle">保存</a>
+            <button type="submit" class="btn btn-lg bg-green block full-width text-white rectangle" ng-disabled="!accountForm.$valid">保存</button>
+        </form>
     </div>
 </div>

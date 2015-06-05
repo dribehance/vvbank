@@ -141,6 +141,11 @@ angular.module("VVBank", [
             templateUrl: "product-files.html",
             reloadOnSearch: false,
             controller: productFilesController
+        })
+        .when("/buy/:productID", {
+            templateUrl: "buy.html",
+            reloadOnSearch: false,
+            controller: buyController
         });
 }).run(function($rootScope, $window, $sce, _EventHandler) {
     // $rootScope.slide = 'fadeIn';

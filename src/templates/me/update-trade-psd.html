@@ -7,27 +7,27 @@
 <div ui-content-for="navbarAction">
     <span></span>
 </div>
-<div ng-show="oldPassword">
+<form name="updateForm" ng-submit="ajaxForm(this)">
     <div class="section">
-        <div class="semi-auto semi-left-150">
-            <span class="semi-fixed-left semi-width-150  btn section-wide text-left">旧密码</span>
-            <input type="text" class="form-control block full-width" placeholder="请输入交易密码">
+        <div class="section"></div>
+        <div class="section-wide">
+            <div class="vv-input-group input-group-lg full-width">
+                <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
+                <input type="password" class="form-control border-radius-large" name="password" ng-model="input.password" required ng-minlength=8 placeholder="新密码 请输入新密码">
+                <span class="vv-input-tip" ng-show="!updateForm.password.$valid">新密码,将作为您登录系统用的密码,并确保密码位数不少于8位</span>
+            </div>
+        </div>
+        <div class="section-wide">
+            <div class="vv-input-group input-group-lg full-width">
+                <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
+                <input type="password" class="form-control border-radius-large" name="password_1" ng-model="input.password_1" required ng-minlength=8 placeholder="新密码 请输入新密码">
+                <span class="vv-input-tip" ng-show="input.password != input.password_1">再次输入密码,请确保两次输入的密码一致</span>
+            </div>
         </div>
     </div>
-</div>
-<div class="section">
-    <div class="semi-auto semi-left-150">
-        <span class="semi-fixed-left semi-width-150  btn section-wide text-left">交易密码</span>
-        <input type="text" class="form-control block full-width" placeholder="请输入交易密码">
     </div>
-</div>
-<div class="vv-divide"></div>
-<div class="section">
-    <div class="semi-auto semi-left-150">
-        <span class="semi-fixed-left semi-width-150  btn section-wide text-left">确认密码</span>
-        <input type="text" class="form-control block full-width" placeholder="请再次输入交易密码">
+    <div class="vv-divide"></div>
+    <div class="section">
+        <button type="submit" class="btn btn-lg btn-primary block full-width rectangle" ng-disabled="!(updateForm.password.$valid && updateForm.password_1.$valid && input.password == input.password_1)">完成设置</button>
     </div>
-</div>
-<div class="section">
-    <a href="" class="btn btn-lg btn-primary block full-width rectangle">完成设置</a>
-</div>
+</form>

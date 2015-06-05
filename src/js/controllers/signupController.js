@@ -1,5 +1,5 @@
 var signupController = function($scope){
-	$scope.user = {
+	$scope.input = {
 		telephone:"",
 		password:"",
 		vertifyCode:"",
@@ -25,7 +25,7 @@ var signupController = function($scope){
 	// error handler
 	$scope.errormsg = "";
 	// submit handler
-	$scope.ajaxForm = function(user,form) {
+	$scope.ajaxForm = function(form) {
 		console.log("submit")
 	}
 }

@@ -7,27 +7,40 @@
 <div ui-content-for="navbarAction">
     <span></span>
 </div>
-<div class="section">
-    <div class="semi-auto semi-left-98 semi-right-98">
-        <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">验证码</span>
-        <input type="text" class="form-control block full-width" placeholder="短信验证码">
-        <span class="semi-fixed-right semi-width-98 btn text-center btn-primary rectangle">发送</span>
+<form name="updateForm" ng-submit="ajaxForm(this)">
+    <div class="section">
+        <div class="section"></div>
+        <div class="semi-auto semi-right-150">
+            <div class="vv-input-group input-group-lg full-width">
+                <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
+                <input type="text" class="form-control border-radius-large" ng-model="input.vertifyCode" name="vertifyCode" ng-pattern="/^[0-9]+$/" ng-minlength=4 ng-maxlength=4 required placeholder="短信验证码">
+                <span class="vv-input-tip" ng-show="!updateForm.vertifyCode.$valid">验证码为发送到您手机的四位数</span>
+            </div>
+            <div class="semi-fixed-right semi-width-150 input-group input-group-lg text-center">
+                <button type="button" class="btn btn-primary btn-lg" ng-click="getVertifyCode()" ng-disabled="callbackTimer.counting">
+                    <timer id="vvcountdown" interval="1000" countdown="5" auto-start='false' ng-show="callbackTimer.counting" finish-callback="callbackTimer.finish()">{{countdown + 1}}</timer>
+                    获取验证码
+                </button>
+            </div>
+        </div>
+        <div class="section-wide">
+            <div class="vv-input-group input-group-lg full-width">
+                <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
+                <input type="password" class="form-control border-radius-large" name="password" ng-model="input.password" required ng-minlength=8 placeholder="新密码 请输入新密码">
+                <span class="vv-input-tip" ng-show="!updateForm.password.$valid">新密码,将作为您登录系统用的密码,并确保密码位数不少于8位</span>
+            </div>
+        </div>
+        <div class="section-wide">
+            <div class="vv-input-group input-group-lg full-width">
+                <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
+                <input type="password" class="form-control border-radius-large" name="password_1" ng-model="input.password_1" required ng-minlength=8 placeholder="新密码 请输入新密码">
+                <span class="vv-input-tip" ng-show="input.password != input.password_1">再次输入密码,请确保两次输入的密码一致</span>
+            </div>
+        </div>
     </div>
-</div>
-<div class="vv-divide"></div>
-<div class="section">
-    <div class="semi-auto semi-left-150">
-        <span class="semi-fixed-left semi-width-150  btn section-wide text-left">新密码</span>
-        <input type="text" class="form-control block full-width" placeholder="请输入交易密码">
     </div>
-</div>
-<div class="vv-divide"></div>
-<div class="section">
-    <div class="semi-auto semi-left-150">
-        <span class="semi-fixed-left semi-width-150  btn section-wide text-left">确认密码</span>
-        <input type="text" class="form-control block full-width" placeholder="请再次输入交易密码">
+    <div class="vv-divide"></div>
+    <div class="section">
+        <button type="submit" class="btn btn-lg btn-primary block full-width rectangle" ng-disabled="!(updateForm.vertifyCode.$valid && updateForm.password.$valid && updateForm.password_1.$valid && input.password == input.password_1)">完成设置</button>
     </div>
-</div>
-<div class="section">
-	<a href="" class="btn btn-lg btn-primary block full-width rectangle">完成设置</a>
-</div>
+</form>
