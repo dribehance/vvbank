@@ -87,7 +87,7 @@ var _parser = function(data) {
 			product.feature = products[j].feature;
 			product.limit = products[j].limit;
 			product.percentage = products[j].percentage;
-			product.addition = products.addition;
+			product.addition = products[j].addition;
 
 			group.products.push(product);
 		}
