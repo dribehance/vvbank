@@ -7,36 +7,42 @@
 <div ui-content-for="navbarAction">
     <span></span>
 </div>
-<div class="section">
-    <div class="semi-auto semi-left-98">
-        <span class="semi-fixed-left semi-width-98 text-grey">选择银行</span>
-        <select class="sex block full-width" ng-model="bank" ng-options="b for b in banks"></select>
+<form name="cashForm" ng-submit="ajaxForm">
+    <div class="section">
+        <div class="semi-auto semi-left-98">
+            <span class="semi-fixed-left semi-width-98 text-grey">选择银行</span>
+            <select class="sex block full-width" name="bank" ng-model="input.bank" ng-options="b for b in banks" required></select>
+        </div>
     </div>
-</div>
-<div class="vv-divide"></div>
-<div class="section">
-    <div class="semi-auto semi-left-98">
-        <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">提现金额</span>
-        <input type="text" class="form-control block full-width" placeholder="请输入金额，最低10元">
+    <div class="vv-divide"></div>
+    <div class="section">
+        <div class="semi-auto semi-left-98">
+            <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">提现金额</span>
+            <input type="text" class="form-control block full-width" name="money" ng-model="input.money" ng-pattern="/^[0-9]+$/" ng-min="10" required placeholder="请输入金额，最低10元">
+        </div>
     </div>
-</div>
-<div class="vv-divide"></div>
-<div class="section">
-    <div class="semi-auto semi-left-98">
-        <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">交易密码</span>
-        <input type="text" class="form-control block full-width" placeholder="请输入交易密码">
+    <div class="vv-divide"></div>
+    <div class="section">
+        <div class="semi-auto semi-left-98">
+            <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">交易密码</span>
+            <input type="password" class="form-control block full-width" name="password" ng-model="input.password" ng-minlength="8" required placeholder="请输入交易密码">
+        </div>
     </div>
-</div>
-<div class="vv-divide"></div>
-<div class="section">
-    <div class="semi-auto semi-left-98 semi-right-98">
-        <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">短信验证码</span>
-        <input type="text" class="form-control block full-width" placeholder="短信验证码">
-        <span class="semi-fixed-right semi-width-98 btn text-center btn-primary rectangle">发送</span>
+    <div class="vv-divide"></div>
+    <div class="section">
+        <div class="semi-auto semi-left-98 semi-right-98">
+            <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">短信验证码</span>
+            <input type="text" class="form-control block full-width" name="vertifyCode" ng-model="input.vertifyCode" ng-pattern="/^[0-9]+$/" ng-minlength="4" required placeholder="短信验证码">
+            <button type="button" class="semi-fixed-right semi-width-98 btn text-center btn-warning rectangle" ng-click="getVertifyCode()">
+                发送
+                <timer id="vvcountdown" interval="1000" countdown="5" auto-start='false' ng-show="callbackTimer.counting" finish-callback="callbackTimer.finish()">{{countdown + 1}}</timer>
+            </button>
+        </div>
     </div>
-</div>
-<div class="vv-divide vv-5"></div>
-<div class="vv-divide vv-5"></div>
-<div class="section">
-	<a href="" class="btn btn-lg rectangle btn-warning block full-width">马上提现</a>
-</div>
+    <div class="vv-divide vv-5"></div>
+    <div class="vv-divide vv-5"></div>
+    <div class="section">
+        <button type="submit" class="btn btn-lg rectangle btn-warning block full-width" ng-disabled="cashForm.$valid">马上提现</button>
+    </div>
+
+</form>

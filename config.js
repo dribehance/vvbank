@@ -23,11 +23,14 @@ module.exports = function(config) {
   config.weinre.boundHost = 'localhost';
 
   // Set to false to disable it:
-  // config.weinre = false;
+  config.weinre = false;
     
   // 3rd party components
   // config.vendor.js.push('./bower_components/jquery/dist/jquery.min.js');
-  config.vendor.js.push('./bower_components/ng-flow/dist/ng-flow-standalone.min.js');
+  config.vendor.js.push('./bower_components/flow.js/dist/flow.js');
+  config.vendor.js.push('./bower_components/fusty-flow.js/src/fusty-flow.js');
+  config.vendor.js.push('./bower_components/fusty-flow.js/src/fusty-flow-factory.js');
+  config.vendor.js.push('./bower_components/ng-flow/dist/ng-flow.js');
   config.vendor.js.push('./bower_components/angular-timer/dist/angular-timer.min.js');
   config.vendor.js.push('./bower_components/humanize-duration/humanize-duration.js');
   config.vendor.js.push('./bower_components/momentjs/moment.js');

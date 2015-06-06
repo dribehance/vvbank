@@ -15,14 +15,14 @@
         </div>
         <div class="section text-center">
             <div flow-init="{singleFile:true,target: '/upload'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
-                <span flow-btn class="block full-width flow-btn text-center" flow-attrs="{accept:'image/*'}">
+                <span needsclick flow-btn class="block full-width flow-btn text-center" flow-attrs="{accept:'image/*'}">
                 	<img src="/images/upload_1.png" ng-show="!$flow.files.length" alt="">
                 	<img flow-img="$flow.files[0]" ng-show="$flow.files.length" alt="">
                 </span>
             </div>
         </div>
         <div class="section text-center">
-            <div flow-init="{singleFile:true,target: '/upload'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
+            <div needsclick flow-init="{singleFile:true,target: '/upload'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
                 <span flow-btn class="block full-width flow-btn text-center" flow-attrs="{accept:'image/*'}">
                		<img src="/images/upload_2.png" ng-show="!$flow.files.length" alt="">
                 	<img flow-img="$flow.files[0]" alt="">
@@ -37,5 +37,5 @@
         <div class="section text-grey text-center text-small">
             我们将在1-2个工作日内完成信息审核
         </div>
-    </div>v
+    </div>
 </div>
