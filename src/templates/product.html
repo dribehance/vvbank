@@ -11,12 +11,12 @@
     <div class="scrollable-content product-detail">
         <div class="section text-black text-center">
             <div class="section"></div>
-            <span class="h3">红本抵押借款XD12100005</span>
+            <span class="h3">{{product.title}}</span>
         </div>
         <div class="section">
             <div class="col-xs-6 col-condensed nowrap">
                 <div class="h4">预期年化收益</div>
-                <span class="text-orange text-very-big"><b>5.00%</b></span>
+                <span class="text-orange text-very-big"><b>{{ product.percentage}}</b></span>
                 <sub class="text-orange text-large">
                     <b>1%</b>
                     <i class="vv vv-43 vv-discount-orange"></i>
@@ -25,14 +25,14 @@
             <div class="col-xs-6">
                 <div class="semi-auto semi-left-75 text-ellipsis" style="margin-top: 24px;line-height: 45px;">
                     <span class="semi-fixed-left semi-width-75 text-grey">项目期限：</span>
-                    <div class="text-black text-right">60 <span class="text-grey"></span>
+                    <div class="text-black text-right">{{ product.duration }} <span class="text-grey"></span>
                     </div>
                 </div>
                 <div class="semi-auto semi-left-75 text-ellipsis">
                     <span class="semi-fixed-left semi-width-75 text-grey">投资进度：</span>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                            <span class="sr-only">60% Complete</span>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ product.progress}};">
+                            <span class="sr-only">{{ product.progress }}Complete</span>
                         </div>
                     </div>
                 </div>
@@ -49,23 +49,23 @@
         <div class="vv-divide"></div>
         <div class="btn-group justified bg-white">
             <div class="btn section text-center">
-                <span class="text-grey">总资产（元）</span>
-                <div class="text-orange text-large text-ellipsis">164,000.48</div>
+                <span class="text-grey">项目金额（元）</span>
+                <div class="text-orange text-large text-ellipsis">{{ product.total }}</div>
 
             </div>
             <div class="btn section text-center">
-                <span class="text-grey">冻结金额（元）</span>
-                <div class="text-orange text-large text-ellipsis">4000.60</div>
+                <span class="text-grey">剩余金额（元）</span>
+                <div class="text-orange text-large text-ellipsis">{{ product.remain }}</div>
             </div>
         </div>
         <div class="vv-divide"></div>
-        <div class="text-grey section"><i class="vv vv-18 vv-faqiren" style="margin-right:5px"></i>发起人：深圳白海龙股份有限公司</div>
-        <div class="text-grey section"><i class="vv vv-18 vv-dealer" style="margin-right:5px"></i>承销商：中国平安保险股份有限公司</div>
-        <div class="text-grey section"><i class="vv vv-18 vv-house" style="margin-right:5px"></i>交易所：深圳白海龙股份有限公司</div>
-        <div class="text-grey section"><i class="vv vv-18 vv-agency" style="margin-right:5px"></i>担保机构：中国平安保险股份有限公司v</div>
+        <div class="text-grey section"><i class="vv vv-18 vv-faqiren" style="margin-right:5px"></i>发起人：{{ product.faqiren }}</div>
+        <div class="text-grey section"><i class="vv vv-18 vv-dealer" style="margin-right:5px"></i>承销商：{{ product.dealer }}</div>
+        <div class="text-grey section"><i class="vv vv-18 vv-house" style="margin-right:5px"></i>交易所：{{ product.exchange }}</div>
+        <div class="text-grey section"><i class="vv vv-18 vv-agency" style="margin-right:5px"></i>担保机构：{{ product.agency }}</div>
         <div class="vv-divide"></div>
         <div class="section section-wide">
-            <a ng-href="#/products-content/1" class="block text-grey semi-auto semi-right-50">
+            <a ng-href="#/products-content/{{ product.id }}" class="block text-grey semi-auto semi-right-50">
                 <span class="btn">项目详情</span>
                 <span class="semi-fixed-right semi-width-50 text-center">
                 <i class="vv vv-arrow-right vv-35"></i>
@@ -74,7 +74,7 @@
         </div>
         <div class="vv-divide"></div>
         <div class="section section-wide">
-            <a ng-href="#/products-files/1" class="block text-grey semi-auto semi-right-50">
+            <a ng-href="#/products-files/{{ product.id }}" class="block text-grey semi-auto semi-right-50">
                 <span class="btn">相关文件</span>
                 <span class="semi-fixed-right semi-width-50 text-center">
                 <i class="vv vv-arrow-right vv-35"></i>
@@ -86,6 +86,6 @@
         <p class="text-grey text-center"><i class="vv vv-18 vv-bank" style="margin-right:5px"></i>VVBank所有资金均由财付通交易</p>
     </div>
     <div class="scrollable-footer">
-        <a href="#/buy/1" class="block btn btn-lg full-width btn-warning rectangle">购买</a>
+        <a href="#/buy/{{ product.id }}" class="block btn btn-lg full-width btn-warning rectangle">购买</a>
     </div>
 </div>

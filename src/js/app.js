@@ -8,7 +8,7 @@ angular.module("VVBank", [
     "flow",
     "timer",
 ])
-.config(function($routeProvider) {
+.config(function($routeProvider,$httpProvider) {
     $routeProvider
         .when("/index", {
             templateUrl: "home.html",
@@ -147,6 +147,8 @@ angular.module("VVBank", [
             reloadOnSearch: false,
             controller: buyController
         });
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
 }).run(function($rootScope, $window, $sce, _EventHandler) {
     // $rootScope.slide = 'fadeIn';
     // $rootScope.host = "http://218.85.137.242:8080/";

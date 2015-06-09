@@ -3,19 +3,9 @@
         <div class="banner">
             <wrap-owlcarousel class="owl-carousel" data-options="{autoPlay: 5000, stopOnHover: true,  
         slideSpeed : 300, paginationSpeed : 400, singleItem : true}">
-                <div>
+                <div ng-repeat="banner in banners">
                     <a class="block">
-                        <img class="block full-width" ng-src="images/banner.png" />
-                    </a>
-                </div>
-                <div>
-                    <a class="block">
-                        <img class="block full-width" ng-src="images/banner.png" />
-                    </a>
-                </div>
-                <div>
-                    <a class="block">
-                        <img class="block full-width" ng-src="images/banner.png" />
+                        <img class="block full-width" ng-src="{{ banner }}" />
                     </a>
                 </div>
             </wrap-owlcarousel>
@@ -23,10 +13,10 @@
         <div class="cards-carousel">
             <wrap-owlcarousel class="owl-carousel" data-options="{autoPlay: false, stopOnHover: true,  
         slideSpeed : 300, paginationSpeed : 400, singleItem : true}">
-                <div>
-                    <a ng-href="#/products/1" class="block text-grey">
+                <div ng-repeat="product in products">
+                    <a ng-href="#/products/{{ product.id }}" class="block text-grey">
                         <div class="section text-grey text-center">
-                            <h3>红本抵押借款XD1210005</h3>
+                            <h3>{{ product.title }}</h3>
                             <div class="btn-group justified">
                                 <span>
                                 <i class="vv vv-18 vv-guard"></i>
@@ -49,139 +39,34 @@
                         <div class="section text-center">
                             <div><strong>预期年化收益</strong>
                             </div>
-                            <p class="text-very-large text-orange">14.5%</p>
+                            <p class="text-very-large text-orange">{{ product.percentage }}</p>
                         </div>
                         <div class="section text-grey">
                             <div class="semi-auto semi-left-75 semi-right-75">
                                 <span class="semi-fixed-left semi-width-75">当前进度：</span>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                        <span class="sr-only">60% Complete</span>
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ product.progress }};">
+                                        <span class="sr-only">{{ product.progress }}Complete</span>
                                     </div>
                                 </div>
-                                <span class="semi-fixed-right semi-width-75 text-center">60%</span>
+                                <span class="semi-fixed-right semi-width-75 text-center">{{ product.progress }}</span>
                             </div>
                         </div>
                         <div class="section text-grey row">
                             <div class="col-xs-6 col-condensed">
-                                项目金额：2000
+                                项目金额：{{product.total}}
                             </div>
                             <div class="col-xs-6 col-condensed text-right">
-                                项目期限：60
+                                项目期限：{{ product.duration}}
                             </div>
                         </div>
                         <div class="section text-grey">
-                            还款方式：到期一次性兑付本息
+                            还款方式：{{product.feature}}
                         </div>
                     </a>
-                    <a ng-href="#/buy/1" class="block full-width btn btn-lg btn-warning text-center rectangle">我要购买</a>
+                    <a ng-href="#/buy/{{product.id}}" class="block full-width btn btn-lg btn-warning text-center rectangle">我要购买</a>
                 </div>
-                <div>
-                    <a ng-href="#/products/1" class="block text-grey">
-                        <div class="section text-grey text-center">
-                            <h3>红本抵押借款XD1210005</h3>
-                            <div class="btn-group justified">
-                                <span>
-                                <i class="vv vv-18 vv-guard"></i>
-                                担保
-                            </span>
-                                <span>
-                                <i class="vv vv-18 vv-clock"></i>
-                                周期短
-                            </span>
-                                <span>
-                                <i class="vv vv-18 vv-money"></i>
-                                收益稳定
-                            </span>
-                                <span>
-                                <i class="vv vv-18 vv-safety"></i>
-                                安全性高
-                            </span>
-                            </div>
-                        </div>
-                        <div class="section text-center">
-                            <div><strong>预期年化收益</strong>
-                            </div>
-                            <p class="text-very-large text-orange">14.5%</p>
-                        </div>
-                        <div class="section text-grey">
-                            <div class="semi-auto semi-left-75 semi-right-75">
-                                <span class="semi-fixed-left semi-width-75">当前进度：</span>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                        <span class="sr-only">60% Complete</span>
-                                    </div>
-                                </div>
-                                <span class="semi-fixed-right semi-width-75 text-center">60%</span>
-                            </div>
-                        </div>
-                        <div class="section text-grey row">
-                            <div class="col-xs-6 col-condensed">
-                                项目金额：2000
-                            </div>
-                            <div class="col-xs-6 col-condensed text-right">
-                                项目期限：60
-                            </div>
-                        </div>
-                        <div class="section text-grey">
-                            还款方式：到期一次性兑付本息
-                        </div>
-                    </a>
-                    <a ng-href="#/buy/1" class="block full-width btn btn-lg btn-warning text-center rectangle">我要购买</a>
-                </div>
-                <div>
-                    <a ng-href="#/products/1" class="block text-grey">
-                        <div class="section text-grey text-center">
-                            <h3>红本抵押借款XD1210005</h3>
-                            <div class="btn-group justified">
-                                <span>
-                                <i class="vv vv-18 vv-guard"></i>
-                                担保
-                            </span>
-                                <span>
-                                <i class="vv vv-18 vv-clock"></i>
-                                周期短
-                            </span>
-                                <span>
-                                <i class="vv vv-18 vv-money"></i>
-                                收益稳定
-                            </span>
-                                <span>
-                                <i class="vv vv-18 vv-safety"></i>
-                                安全性高
-                            </span>
-                            </div>
-                        </div>
-                        <div class="section text-center">
-                            <div><strong>预期年化收益</strong>
-                            </div>
-                            <p class="text-very-large text-orange">14.5%</p>
-                        </div>
-                        <div class="section text-grey">
-                            <div class="semi-auto semi-left-75 semi-right-75">
-                                <span class="semi-fixed-left semi-width-75">当前进度：</span>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                        <span class="sr-only">60% Complete</span>
-                                    </div>
-                                </div>
-                                <span class="semi-fixed-right semi-width-75 text-center">60%</span>
-                            </div>
-                        </div>
-                        <div class="section text-grey row">
-                            <div class="col-xs-6 col-condensed">
-                                项目金额：2000
-                            </div>
-                            <div class="col-xs-6 col-condensed text-right">
-                                项目期限：60
-                            </div>
-                        </div>
-                        <div class="section text-grey">
-                            还款方式：到期一次性兑付本息
-                        </div>
-                    </a>
-                    <a ng-href="#/buy/1" class="block full-width btn btn-lg btn-warning text-center rectangle">我要购买</a>
-                </div>
+            
             </wrap-owlcarousel>
         </div>
 
