@@ -1,11 +1,50 @@
-angular.module("VVBank").factory("userServices",function($http){
-	var get = function() {
-		var promise = $http.get("http://jsonplaceholder.typicode.com/posts/1");
-		return promise.then(user_parser);
-	}
+angular.module("VVBank").factory("userServices",function($http,config){
 	return {
-		get:get
-	};
+		get: function(){
+			var promise = $http.get("http://jsonplaceholder.typicode.com/posts/1");
+			return promise.then(user_parser);
+		},
+		register: function(telephone,password){
+			return $http({
+				url: config.apiURL+"/user",
+				method:"POST",
+				data:{
+					"telephone":telephone,
+					"password":password
+				}
+			}).then(function(data){
+				return data.data;
+			});
+		},
+		login: function(telephone,password) {
+			return $http({
+				url: config.apiURL+"/auth",
+				method:"POST",
+				data:{
+					"telephone":telephone,
+					"password":password
+				}
+			}).then(function(data){
+				return data.data;
+			});
+		},
+		logout: function() {
+			return $http({
+				url: config.apiURL+"/auth",
+				method:"DELETE"
+			}).then(function(data){
+				return data.data;
+			});
+		},
+		checkAuth: function() {
+			return $http({
+				url: config.apiURL+"/auth",
+				method:"POST"
+			}).then(function(data){
+				return data.data;
+			});
+		}
+	}
 });
 var user_parser = function(data) {
 	var user = new _m_user;
