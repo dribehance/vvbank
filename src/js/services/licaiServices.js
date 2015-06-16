@@ -1,6 +1,6 @@
 angular.module("VVBank").factory("licaiServices",function($rootScope, $http, $q, $route, _EventHandler) {
 	var query = function() {
-		var promise = $http.get("http://jsonplaceholder.typicode.com/posts/1");
+		var promise = $http.get("http://jsonplaceholder.typicode.com/posts/1",{cache:true});
 		return promise.then(licai_parser);
 	}
 	var loadMore = function () {
@@ -8,7 +8,7 @@ angular.module("VVBank").factory("licaiServices",function($rootScope, $http, $q,
 		return promise.then(licai_parser);
 	}
 	var recommand = function () {
-		var promise = $http.get("http://jsonplaceholder.typicode.com/posts/1");
+		var promise = $http.get("http://jsonplaceholder.typicode.com/posts/1",{cache:true});
 		return promise.then(recommand_parser);
 	}
 	return {
@@ -35,6 +35,14 @@ var licai_parser = function(data) {
 			product.percentage = products[j].percentage;
 			product.addition = products[j].addition;
 
+			product.progress = data.progress;
+			product.total = data.total;
+			product.remain = data.remain;
+			product.faqiren = data.faqiren;
+			product.dealer = data.dealer;
+			product.exchange = data.exchange;
+			product.agency = data.agency;
+
 			group.products.push(product);
 		}
 		response.push(group);
@@ -57,7 +65,14 @@ var Data = [
 				feature : "到期还本付息",
 				limit : "1000",
 				percentage : "5.00%",
-				addition : "1.00%"
+				addition : "1.00%",
+				progress:"60%",
+				total:"500,000",
+				remain:"4,000",
+				faqiren:"深圳白海龙股份有限公司",
+				dealer:"中国平安保险股份有限公司",
+				exchange:"深圳白海龙股份有限公司",
+				agency:"中国平安保险股份有限公司"
 			},
 			{
 				id:"15135",
@@ -66,7 +81,14 @@ var Data = [
 				feature : "到期还本付息",
 				limit : "1000",
 				percentage : "5.00%",
-				addition : "1.00%"
+				addition : "1.00%",
+				progress:"60%",
+				total:"500,000",
+				remain:"4,000",
+				faqiren:"深圳白海龙股份有限公司",
+				dealer:"中国平安保险股份有限公司",
+				exchange:"深圳白海龙股份有限公司",
+				agency:"中国平安保险股份有限公司"
 			},
 			{
 				id:"15135",
@@ -75,7 +97,14 @@ var Data = [
 				feature : "到期还本付息",
 				limit : "1000",
 				percentage : "5.00%",
-				addition : "1.00%"
+				addition : "1.00%",
+				progress:"60%",
+				total:"500,000",
+				remain:"4,000",
+				faqiren:"深圳白海龙股份有限公司",
+				dealer:"中国平安保险股份有限公司",
+				exchange:"深圳白海龙股份有限公司",
+				agency:"中国平安保险股份有限公司"
 			}
 		]
 	},
@@ -89,7 +118,14 @@ var Data = [
 				feature : "到期还本付息",
 				limit : "1000",
 				percentage : "5.00%",
-				addition : "1.00%"
+				addition : "1.00%",
+				progress:"60%",
+				total:"500,000",
+				remain:"4,000",
+				faqiren:"深圳白海龙股份有限公司",
+				dealer:"中国平安保险股份有限公司",
+				exchange:"深圳白海龙股份有限公司",
+				agency:"中国平安保险股份有限公司"
 			}
 		]
 	},
@@ -103,7 +139,14 @@ var Data = [
 				feature : "到期还本付息",
 				limit : "1000",
 				percentage : "5.00%",
-				addition : "1.00%"
+				addition : "1.00%",
+				progress:"60%",
+				total:"500,000",
+				remain:"4,000",
+				faqiren:"深圳白海龙股份有限公司",
+				dealer:"中国平安保险股份有限公司",
+				exchange:"深圳白海龙股份有限公司",
+				agency:"中国平安保险股份有限公司"
 			}
 		]
 	}

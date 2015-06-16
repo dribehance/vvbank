@@ -1,6 +1,6 @@
 angular.module("VVBank").factory("bannerServices",function($http){
 	var get = function () {
-		var promise = $http.get("http://jsonplaceholder.typicode.com/posts/1");
+		var promise = $http.get("http://jsonplaceholder.typicode.com/posts/1",{cache:true});
 		return promise.then(banner_parser);
 	}
 	return {
@@ -8,6 +8,6 @@ angular.module("VVBank").factory("bannerServices",function($http){
 	}
 });
 var banner_parser = function(data) {
-	var banners = ["images/banner.png"]
+	var banners = ["images/banner.png","images/banner1.png"]
 	return banners;
 }

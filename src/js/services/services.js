@@ -62,7 +62,6 @@ angular.module("VVBank").factory("_EventHandler", function($rootScope, $location
         }
     }
     var loading = function(e, currentRoute, prevRoute) {
-        console.log("route change start")
         if (currentRoute.$$route && currentRoute.$$route.resolve) {
             $rootScope.cancelLoading = false;
         }
@@ -75,7 +74,6 @@ angular.module("VVBank").factory("_EventHandler", function($rootScope, $location
         
     }
     var loaded = function(e, currentRoute, prevRoute) {
-        console.log("route change success")
         $rootScope.cancelLoading = true;
     }
     return {

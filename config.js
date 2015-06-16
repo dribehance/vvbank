@@ -33,9 +33,9 @@ module.exports = function(config) {
   config.vendor.js.push('./bower_components/ng-flow/dist/ng-flow.js');
   config.vendor.js.push('./bower_components/angular-timer/dist/angular-timer.min.js');
   config.vendor.js.push('./bower_components/humanize-duration/humanize-duration.js');
-  config.vendor.js.push('./bower_components/momentjs/moment.js');
-  config.vendor.js.push('./bower_components/OwlCarousel/owl-carousel/owl.carousel.min.js');
-  config.vendor.js.push('./bower_components/mockjs/dist/mock-min.js');
+  // config.vendor.js.push('./bower_components/momentjs/moment.js');
+  // config.vendor.js.push('./bower_components/OwlCarousel/owl-carousel/owl.carousel.min.js');
+  // config.vendor.js.push('./bower_components/mockjs/dist/mock-min.js');
   // config.vendor.js.push('./src/plugins/angular.carsousel.js');
   // config.vendor.js.push('.bower_components/lib/dist/lib.js');
   // config.vendor.fonts.push('.bower_components/font/dist/*');

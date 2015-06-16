@@ -4,9 +4,9 @@ angular.module("VVBank", [
     "mobile-angular-ui.core.capture",
     "mobile-angular-ui.core.activeLinks",
     "mobile-angular-ui.core.sharedState",
-    "wrapOwlcarousel",
     "flow",
     "timer",
+    "mobile-angular-ui.gestures",
 ])
 .config(function($routeProvider,$httpProvider) {
     $routeProvider

@@ -1,36 +1,31 @@
 <div class="scrollable">
     <div class="scrollable-content">
-        <div class="banner">
-            <wrap-owlcarousel class="owl-carousel" data-options="{autoPlay: 5000, stopOnHover: true,  
-        slideSpeed : 300, paginationSpeed : 400, singleItem : true}">
-                <div ng-repeat="banner in banners">
-                    <a class="block">
-                        <img class="block full-width" ng-src="{{ banner }}" />
-                    </a>
+        <div class="carousel banner">
+            <div class="carousel-inner">
+                <div class="carousel-item" style='background-image: url({{ banner }});' ng-repeat="banner in banners">
                 </div>
-            </wrap-owlcarousel>
+            </div>
         </div>
-        <div class="cards-carousel">
-            <wrap-owlcarousel class="owl-carousel" data-options="{autoPlay: false, stopOnHover: true,  
-        slideSpeed : 300, paginationSpeed : 400, singleItem : true}">
-                <div ng-repeat="product in products">
+        <div class="cards-carousel carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item" ng-repeat="product in products">
                     <a ng-href="#/products/{{ product.id }}" class="block text-grey">
                         <div class="section text-grey text-center">
-                            <h3>{{ product.title }}</h3>
+                            <h3 class="text-ellipsis">{{ product.title }}</h3>
                             <div class="btn-group justified">
-                                <span>
+                                <span class="text-ellipsis">
                                 <i class="vv vv-18 vv-guard"></i>
                                 担保
                             </span>
-                                <span>
+                                <span class="text-ellipsis">
                                 <i class="vv vv-18 vv-clock"></i>
                                 周期短
                             </span>
-                                <span>
+                                <span class="text-ellipsis">
                                 <i class="vv vv-18 vv-money"></i>
                                 收益稳定
                             </span>
-                                <span>
+                                <span class="text-ellipsis">
                                 <i class="vv vv-18 vv-safety"></i>
                                 安全性高
                             </span>
@@ -53,21 +48,20 @@
                             </div>
                         </div>
                         <div class="section text-grey row">
-                            <div class="col-xs-6 col-condensed">
+                            <div class="col-xs-6 col-condensed text-left text-ellipsis">
                                 项目金额：{{product.total}}
                             </div>
-                            <div class="col-xs-6 col-condensed text-right">
+                            <div class="col-xs-6 col-condensed text-right text-ellipsis">
                                 项目期限：{{ product.duration}}
                             </div>
                         </div>
-                        <div class="section text-grey">
+                        <div class="section text-grey text-ellipsis">
                             还款方式：{{product.feature}}
                         </div>
                     </a>
                     <a ng-href="#/buy/{{product.id}}" class="block full-width btn btn-lg btn-warning text-center rectangle">我要购买</a>
                 </div>
-            
-            </wrap-owlcarousel>
+            </div>
         </div>
 
     </div>
