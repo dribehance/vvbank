@@ -27,14 +27,11 @@ module.exports = function(config) {
     
   // 3rd party components
   // config.vendor.js.push('./bower_components/jquery/dist/jquery.min.js');
-  config.vendor.js.push('./bower_components/flow.js/dist/flow.js');
-  config.vendor.js.push('./bower_components/fusty-flow.js/src/fusty-flow.js');
-  config.vendor.js.push('./bower_components/fusty-flow.js/src/fusty-flow-factory.js');
-  config.vendor.js.push('./bower_components/ng-flow/dist/ng-flow.js');
+  config.vendor.js.push('./bower_components/ng-flow/dist/ng-flow-standalone.js');
   config.vendor.js.push('./bower_components/angular-timer/dist/angular-timer.min.js');
   config.vendor.js.push('./bower_components/humanize-duration/humanize-duration.js');
-  // config.vendor.js.push('./bower_components/momentjs/moment.js');
-  // config.vendor.js.push('./bower_components/OwlCarousel/owl-carousel/owl.carousel.min.js');
+  config.vendor.js.push('./bower_components/momentjs/moment.js');
+  config.vendor.js.push('./bower_components/OwlCarousel/owl-carousel/owl.carousel.min.js');
   // config.vendor.js.push('./bower_components/mockjs/dist/mock-min.js');
   // config.vendor.js.push('./src/plugins/angular.carsousel.js');
   // config.vendor.js.push('.bower_components/lib/dist/lib.js');

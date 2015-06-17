@@ -5,8 +5,7 @@ angular.module("VVBank", [
     "mobile-angular-ui.core.activeLinks",
     "mobile-angular-ui.core.sharedState",
     "flow",
-    "timer",
-    "mobile-angular-ui.gestures",
+    "timer"
 ])
 .config(function($routeProvider,$httpProvider) {
     $routeProvider
@@ -148,15 +147,10 @@ angular.module("VVBank", [
             controller: buyController
         });
         $httpProvider.defaults.useXDomain = true;
-        delete $httpProvider.defaults.headers.common['X-Requested-With'];
-}).run(function($rootScope, $window, $sce, _EventHandler) {
-    // $rootScope.slide = 'fadeIn';
-    // $rootScope.host = "http://218.85.137.242:8080/";
-    // $rootScope.bannerHost = "http://218.85.137.242:8080/upload/";
-    // $rootScope.IMG_PATH=$rootScope.host+"upload/picture/";
-    // $rootScope.PERSON_IMG_PATH=$rootScope.host+"upload/person/";
-    _EventHandler.enableProgress();
-    $rootScope.back = function() {
-        $window.history.back();
-    }
+        $httpProvider.defaults.withCredentials = true;
+        delete $httpProvider.defaults.headers.common["X-Requested-With"];
+
+}).run(function($rootScope, $window,appServices) {
+    // init event such as routechangestart...
+    appServices.init();
 });

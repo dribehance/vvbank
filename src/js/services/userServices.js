@@ -1,4 +1,4 @@
-angular.module("VVBank").factory("userServices",function($http,config){
+angular.module("VVBank").factory("userServices",function($http,config,$rootScope){
 	return {
 		get: function(){
 			var promise = $http.get("http://jsonplaceholder.typicode.com/posts/1");
@@ -6,7 +6,7 @@ angular.module("VVBank").factory("userServices",function($http,config){
 		},
 		register: function(telephone,password){
 			return $http({
-				url: config.apiURL+"/user",
+				url: config.url+"/user",
 				method:"POST",
 				data:{
 					"telephone":telephone,
@@ -18,7 +18,7 @@ angular.module("VVBank").factory("userServices",function($http,config){
 		},
 		login: function(telephone,password) {
 			return $http({
-				url: config.apiURL+"/auth",
+				url: config.url+"/auth",
 				method:"POST",
 				data:{
 					"telephone":telephone,
@@ -30,7 +30,7 @@ angular.module("VVBank").factory("userServices",function($http,config){
 		},
 		logout: function() {
 			return $http({
-				url: config.apiURL+"/auth",
+				url: config.url+"/auth",
 				method:"DELETE"
 			}).then(function(data){
 				return data.data;
@@ -38,11 +38,35 @@ angular.module("VVBank").factory("userServices",function($http,config){
 		},
 		checkAuth: function() {
 			return $http({
-				url: config.apiURL+"/auth",
+				url: config.url+"/auth",
 				method:"POST"
 			}).then(function(data){
 				return data.data;
 			});
+		},
+		exist : function(telephone,username) {
+			return $http({
+				url:config.url + "/v1/service/account",
+				method:"JSONP",
+				params : config.common_params
+			}).then(function(data){
+				return data.data[0];
+			},function(e){
+				console.log(e)
+			})
+		},
+		verifycode : function(telephone,smstype){
+			return $http({
+				url:config.url + "/v1/service/smscode",
+				method:"JSONP",
+				params: angular.extend(config.common_params,{
+					"telephone":telephone,
+					"signcode":$rootScope.signcode,
+					"smstype":smstype
+				})
+			}).then(function(data){
+				return data.data[0];
+			})
 		}
 	}
 });

@@ -8,6 +8,6 @@ angular.module("VVBank").factory("bannerServices",function($http){
 	}
 });
 var banner_parser = function(data) {
-	var banners = ["images/banner.png","images/banner1.png"]
+	var banners = ["images/banner.png"];
 	return banners;
 }

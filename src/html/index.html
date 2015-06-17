@@ -41,7 +41,12 @@
           <a ng-href="#/me" class="btn btn-navbar"><i class="vv vv-40 vv-me"></i><span class="block">理财产品</span></a>
         </div>
       </div>
-      <div class="error-msg text-center" ui-yield-to="ERRORMSG"></div>
+      <!-- error tip -->
+      <div class="error-msg text-center" ui-state="error_state" ui-if="error_state">{{ errormsg }}</div>
+      <!-- toast tip -->
+      <div class="toast" ui-state="toast_state" ui-if="toast_state">
+          <span class="loader"></span>
+      </div>
       <!-- App Body -->
       <div class="app-body">
         <div class="app-content">
