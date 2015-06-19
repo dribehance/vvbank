@@ -1,4 +1,4 @@
-angular.module("VVBank").factory("licaiServices",function($rootScope, $http, $q, $route, _EventHandler) {
+angular.module("VVBank").factory("licaiServices",function($rootScope, $http, $q, $route) {
 	var query = function() {
 		var promise = $http.get("http://jsonplaceholder.typicode.com/posts/1",{cache:true});
 		return promise.then(licai_parser);

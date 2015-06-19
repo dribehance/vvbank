@@ -1,11 +1,11 @@
 angular.module("VVBank").factory("toastServices",function(SharedState){
 	return {
-		showLoader:function(){
+		show:function(){
 			if (!SharedState.isActive("toast_state")) {
 				SharedState.turnOn("toast_state");
 			}
 		},
-		hideLoader:function() {
+		hide:function() {
 			if (SharedState.isActive("toast_state")) {
 				SharedState.turnOff("toast_state");
 			}

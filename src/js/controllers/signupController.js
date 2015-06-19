@@ -1,9 +1,15 @@
-var signupController = function($scope,userServices,SharedState,config,toastServices){
+var signupController = function($rootScope,$scope,userServices,SharedState,config,toastServices,signatureServices){
 	$scope.input = {
 		telephone:"",
 		password:"",
-		vertifyCode:"",
+		smscode:"",
+		username:"",
+		referee:""
 	}
+	// bind telephone and password
+	$scope.$watch("input.telephone",function(n,o){
+		$scope.input.username = n;
+	});
 	// counting
 	$scope.callbackTimer = {};
 	$scope.callbackTimer.counting = 0;
@@ -18,20 +24,19 @@ var signupController = function($scope,userServices,SharedState,config,toastServ
 		angular.element("#vvcountdown")[0].start();
 	}
 	$scope.nextStep = function () {
-		toastServices.show("加载中");
-		userServices.exist($scope.input.telephone,"").then(function(data){
-			console.log(data)
-			toastServices.hideLoader();
-			if ( !data.result.status ) {
+		toastServices.show();
+		userServices.exist($scope.input.telephone,$scope.input.username).then(function(data){
+			toastServices.hide();
+			if ( data.result.status == config.result.SUCCESS ) {
 				SharedState.set("signUpStep",2)
 			}
 			else {
-				$scope.errormsg = "该手机号已经注册";
+				$rootScope.errormsg = "该手机号已经注册";
 			}
 		})
 	}
-	$scope.getVerifycode = function(){
-		userServices.verifycode($scope.input.telephone,config.smstype.SIGNUP).then(function(data){
+	$scope.getSmscode = function(){
+		userServices.getSmscode($scope.input.telephone,config.smstype.SIGNUP).then(function(data){
 			console.log(data)
 		})
 		$scope.callbackTimer.counting = 1;
@@ -41,6 +46,9 @@ var signupController = function($scope,userServices,SharedState,config,toastServ
 	$scope.errormsg = "";
 	// submit handler
 	$scope.ajaxForm = function(form) {
-		console.log("submit")
+		console.log("register")
+		userServices.register($scope.input.telephone,$scope.input.password,$scope.input.username,$scope.input.referee,$scope.input.smscode).then(function(data){
+			console.log("submit form success");
+		});
 	}
 }

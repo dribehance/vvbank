@@ -1,31 +1,37 @@
 angular.module("VVBank").factory("userServices",function($http,config,$rootScope){
 	return {
 		get: function(){
-			var promise = $http.get("http://jsonplaceholder.typicode.com/posts/1");
+			var promise = $http.get("http://localhost:8000/proxy/jsonplaceholder.typicode.com/posts/1");
 			return promise.then(user_parser);
 		},
-		register: function(telephone,password){
+		register: function(telephone,password,username,referee,smscode){
+			console.log(smscode+"smscode")
 			return $http({
-				url: config.url+"/user",
-				method:"POST",
-				data:{
-					"telephone":telephone,
-					"password":password
-				}
+				url: config.url+"/v1/service/account",
+				method:"JSONP",
+				params:angular.extend({},config.common_params,{
+					"mobile":telephone,
+					"username":username,
+					"password":password,
+					"referee":referee,
+					"smscode":smscode,
+					"signcode":$rootScope.signcode
+
+				})
 			}).then(function(data){
-				return data.data;
+				return data.data[0];
 			});
 		},
-		login: function(telephone,password) {
+		login: function(username,password) {
 			return $http({
 				url: config.url+"/auth",
-				method:"POST",
-				data:{
-					"telephone":telephone,
+				method:"JSONP",
+				params: angular.extend({},config.common_params,{
+					"username":username,
 					"password":password
-				}
+				})
 			}).then(function(data){
-				return data.data;
+				return data.data[0];
 			});
 		},
 		logout: function() {
@@ -47,19 +53,22 @@ angular.module("VVBank").factory("userServices",function($http,config,$rootScope
 		exist : function(telephone,username) {
 			return $http({
 				url:config.url + "/v1/service/account",
-				method:"JSONP",
-				params : config.common_params
+				method:"GET",
+				params : angular.extend({},config.common_params,{
+					"telephone":telephone,
+					"username":username
+				})
 			}).then(function(data){
-				return data.data[0];
+				return data.data;
 			},function(e){
 				console.log(e)
 			})
 		},
-		verifycode : function(telephone,smstype){
+		getSmscode : function(telephone,smstype){
 			return $http({
 				url:config.url + "/v1/service/smscode",
-				method:"JSONP",
-				params: angular.extend(config.common_params,{
+				method:"GET",
+				params: angular.extend({},config.common_params,{
 					"telephone":telephone,
 					"signcode":$rootScope.signcode,
 					"smstype":smstype

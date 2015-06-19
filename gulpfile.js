@@ -56,6 +56,7 @@ if (require('fs').existsSync('./config.js')) {
 var gulp           = require('gulp'),
     seq            = require('run-sequence'),
     connect        = require('gulp-connect'),
+    proxy          = require('gulp-connect-proxy'),
     less           = require('gulp-less'),
     uglify         = require('gulp-uglify'),
     sourcemaps     = require('gulp-sourcemaps'),
@@ -111,7 +112,12 @@ gulp.task('connect', function() {
       root: config.dest,
       host: config.server.host,
       port: config.server.port,
-      livereload: true
+      livereload: true,
+      middleware: function (connect, opt) {
+          opt.route = '/proxy';
+          var _proxy = new proxy(opt);
+          return [_proxy];
+      }
     });
   } else {
     throw new Error('Connect is not configured');

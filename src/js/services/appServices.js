@@ -1,5 +1,5 @@
 // EventHandle
-angular.module("VVBank").factory("appServices", function($rootScope,$location,SharedState,signatureServices,errorServices,toastServices,config) { 
+angular.module("VVBank").factory("appServices", function($rootScope,$location,$window,SharedState,signatureServices,errorServices,toastServices,config) { 
     var routeChangeStart = function() {
         toastServices.hide();
     }
@@ -34,6 +34,7 @@ angular.module("VVBank").factory("appServices", function($rootScope,$location,Sh
     }
     return {
         init:function() {
+            // handle android backkeydown
             document.addEventListener("backbutton", onBackKeyDown, false);
             // rootScope binding
             $rootScope.$on("$routeChangeStart", routeChangeStart);

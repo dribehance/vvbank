@@ -121,11 +121,6 @@ angular.module("VVBank", [
             templateUrl: "setting.html",
             reloadOnSearch: false,
         })
-        .when("/", {
-            templateUrl: "home.html",
-            reloadOnSearch: false,
-            controller: indexController
-        })
         .when("/products/:productID", {
             templateUrl: "product.html",
             reloadOnSearch: false,
@@ -145,6 +140,11 @@ angular.module("VVBank", [
             templateUrl: "buy.html",
             reloadOnSearch: false,
             controller: buyController
+        })
+        .otherwise("/index", {
+            templateUrl: "home.html",
+            reloadOnSearch: false,
+            controller: indexController
         });
         $httpProvider.defaults.useXDomain = true;
         $httpProvider.defaults.withCredentials = true;

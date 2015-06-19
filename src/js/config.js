@@ -1,5 +1,5 @@
 angular.module("VVBank").constant("config",{
-	url:"http://58.60.240.82:9090",
+	url:"http://localhost:8000/proxy/58.60.243.46:9090",
 	appid:"android_vv",
 	version:"1.0",
 	smstype : {
@@ -13,8 +13,10 @@ angular.module("VVBank").constant("config",{
 	request:{
 		"SUCCESS":"0000"
 	},
+	result: {
+		"SUCCESS":"0"
+	},
 	common_params : {
-		callback: "JSON_CALLBACK",
 		appid: "android_vv",
 		version: "1.0"
 	}
