@@ -1,15 +1,10 @@
 angular.module("VVBank").factory("userServices",function($http,config,$rootScope){
 	return {
-		get: function(){
-			var promise = $http.get("http://localhost:8000/proxy/jsonplaceholder.typicode.com/posts/1");
-			return promise.then(user_parser);
-		},
 		register: function(telephone,password,username,referee,smscode){
-			console.log(smscode+"smscode")
 			return $http({
 				url: config.url+"/v1/service/account",
-				method:"JSONP",
-				params:angular.extend({},config.common_params,{
+				method:"POST",
+				data:angular.extend({},config.common_params,{
 					"mobile":telephone,
 					"username":username,
 					"password":password,
@@ -19,13 +14,13 @@ angular.module("VVBank").factory("userServices",function($http,config,$rootScope
 
 				})
 			}).then(function(data){
-				return data.data[0];
+				return data.data;
 			});
 		},
 		login: function(username,password) {
 			return $http({
 				url: config.url+"/auth",
-				method:"JSONP",
+				method:"GET",
 				params: angular.extend({},config.common_params,{
 					"username":username,
 					"password":password
