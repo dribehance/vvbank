@@ -1,7 +1,7 @@
 # vvbank
 VVBank
 ## step
-vvbank is ```bower``` dependence and use ```gulp``` /```yo``` as auto building tool ,after ```git pull```,follw the step below; 
+vvbank is ```bower``` dependence and use ```gulp``` / ```yo``` as auto building tool ,after ```git pull```,follw the step below; 
 PS: I suppose you already had node evironment
 ### step1
 ```
