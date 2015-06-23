@@ -15,6 +15,14 @@ bower install
 ```
 npm install
 ```
+### step4
+```
+cd bower_components
+```
+follow the command
+```
+git clone https://github.com/OwlFonk/OwlCarousel.git
+```
 that all the step;
 you can use gulp the run the server
 ```
