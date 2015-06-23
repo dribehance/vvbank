@@ -2,7 +2,7 @@
 VVBank
 ## step
 vvbank is ```bower``` dependence and use ```gulp``` / ```yo``` as auto building tool ,after ```git pull```,follw the step below; 
-PS: I suppose you already had node evironment
+PS: I suppose you already had node evironment install!
 ### step1
 ```
 npm install -g bower yo gulp generator-mobileangularui
