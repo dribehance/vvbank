@@ -1,4 +1,4 @@
-var signupController = function($rootScope,$scope,userServices,SharedState,config,toastServices,signatureServices){
+var signupController = function($rootScope,$scope,$location,userServices,SharedState,config,toastServices,signatureServices){
 	$scope.input = {
 		telephone:"",
 		password:"",
@@ -49,6 +49,7 @@ var signupController = function($rootScope,$scope,userServices,SharedState,confi
 		console.log("register")
 		userServices.register($scope.input.telephone,$scope.input.password,$scope.input.username,$scope.input.referee,$scope.input.smscode).then(function(data){
 			console.log("submit form success");
+			$location.path("/index").replace();
 		});
 	}
 }
