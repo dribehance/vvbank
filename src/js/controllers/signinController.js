@@ -1,11 +1,18 @@
-var signinController = function($scope) {
+var signinController = function($scope,userServices,errorServices,localStorageService,config) {
 	$scope.input = {
 		name:"",
 		password:""
 	}
-	$scope.errormsg = "用户名密码不正确";
 	$scope.ajaxSubmit = function(form){
-
+		userServices.login($scope.input.name,$scope.input.password).then(function(data){
+			if ( data.respcode == config.request.SUCCESS ){
+				localStorageService.cookie.set("token",data.result.token);
+				$location.path("/index").replace();
+			}
+			else {
+				errorServices.autoHide(data.message);
+			}
+		});
 	}
 
 }

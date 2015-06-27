@@ -1,4 +1,4 @@
-var signupController = function($rootScope,$scope,$location,userServices,SharedState,config,toastServices,signatureServices){
+var signupController = function($rootScope,$scope,$location,userServices,errorServices,SharedState,config,toastServices,signatureServices){
 	$scope.input = {
 		telephone:"",
 		password:"",
@@ -31,7 +31,7 @@ var signupController = function($rootScope,$scope,$location,userServices,SharedS
 				SharedState.set("signUpStep",2)
 			}
 			else {
-				$rootScope.errormsg = "该手机号已经注册";
+				errorServices.autoHide("该手机号已经注册");
 			}
 		})
 	}
@@ -46,10 +46,14 @@ var signupController = function($rootScope,$scope,$location,userServices,SharedS
 	$scope.errormsg = "";
 	// submit handler
 	$scope.ajaxForm = function(form) {
-		console.log("register")
 		userServices.register($scope.input.telephone,$scope.input.password,$scope.input.username,$scope.input.referee,$scope.input.smscode).then(function(data){
-			console.log("submit form success");
-			$location.path("/index").replace();
+			if (data.respcode == config.request.SUCCESS) {
+				localStorageService.cookie.set("token",data.result.token);
+				$location.path("/index").replace();
+			}
+			else {
+				errorServices.autoHide(data.result.message);
+			}
 		});
 	}
 }

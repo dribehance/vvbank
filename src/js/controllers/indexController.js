@@ -1,4 +1,4 @@
-var indexController = function($scope,licaiServices,bannerServices,$timeout) {
+var indexController = function($scope,$timeout,licaiServices,bannerServices) {
 	licaiServices.recommand().then(function(data) {
 		$scope.products = data;
 		$timeout(function(){

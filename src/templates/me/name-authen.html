@@ -9,33 +9,64 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
-        <div class="section"></div>
-        <div class="section">
-            <h4 class="text-center">完成实名认证，您将安全获得更多收益</h4>
-        </div>
-        <div class="section text-center">
-            <div flow-init="{singleFile:true,target: '/upload'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
-                <span needsclick flow-btn class="block full-width flow-btn text-center" flow-attrs="{accept:'image/*'}">
-                	<img src="/images/upload_1.png" ng-show="!$flow.files.length" alt="">
-                	<img flow-img="$flow.files[0]" ng-show="$flow.files.length" alt="">
-                </span>
+        <form ng-submit="ajaxForm(this)" name="authForm">
+            <div ui-state="authStep" ui-default="1" ui-if="authStep ==1">
+
+                <div class="section">
+                    <div class="section"></div>
+                    <div class="section-wide">
+                        <div class="vv-input-group input-group-lg full-width">
+                            <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
+                            <input type="text" class="form-control border-radius-large" name="realname" ng-model="input.realname" required placeholder="真实姓名 请输入真实姓名">
+                            <span class="vv-input-tip" ng-show="!authForm.realname.$valid">请确保填入您的真实姓名，真实姓名填写后不可以再修改！</span>
+                        </div>
+                    </div>
+                    <div class="section-wide">
+                        <div class="vv-input-group input-group-lg full-width">
+                            <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
+                            <input type="text" class="form-control border-radius-large" name="identifyID" ng-model="input.identifyID" required indentification placeholder="身份证号码 请输入身份证号码">
+                            <span class="vv-input-tip" ng-show="!authForm.identifyID.$valid">请确保输入的身份证号码上的名字与真实姓名一致</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="vv-divide"></div>
+                <div class="section">
+                    <button type="button" ui-set="{'authStep':2} " class="btn btn-lg btn-primary block full-width rectangle" ng-disabled="!(authForm.realname.$valid && authForm.identifyID.$valid)">下一步</button>
+                </div>
+
             </div>
-        </div>
-        <div class="section text-center">
-            <div needsclick flow-init="{singleFile:true,target: '/upload'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
-                <span flow-btn class="block full-width flow-btn text-center" flow-attrs="{accept:'image/*'}">
-               		<img src="/images/upload_2.png" ng-show="!$flow.files.length" alt="">
-                	<img flow-img="$flow.files[0]" alt="">
+            <div ui-if="authStep == 2">
+                <div class="section"></div>
+                <div class="section">
+                    <h4 class="text-center">完成实名认证，您将安全获得更多收益</h4>
+                </div>
+                <div class="section text-center">
+                    <div flow-init="{singleFile:true,target: '/upload'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
+                        <span needsclick flow-btn class="block full-width flow-btn text-center" flow-attrs="{accept:'image/*'}">
+                    <img src="/images/upload_1.png" ng-show="!$flow.files.length" alt="">
+                    <img flow-img="$flow.files[0]" ng-show="$flow.files.length" alt="">
                 </span>
+                    </div>
+                </div>
+                <div class="section text-center">
+                    <div needsclick flow-init="{singleFile:true,target: '/upload'}" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
+                        <span flow-btn class="block full-width flow-btn text-center" flow-attrs="{accept:'image/*'}">
+                    <img src="/images/upload_2.png" ng-show="!$flow.files.length" alt="">
+                    <img flow-img="$flow.files[0]" alt="">
+                </span>
+                    </div>
+                </div>
+                <div class="section">
+                    <a href="" class="btn btn-lg btn-primary block full-width rectangle">
+                        提交审核
+                    </a>
+                </div>
+                <div class="section text-grey text-center text-small">
+                    我们将在1-2个工作日内完成信息审核
+                </div>
+
+
             </div>
-        </div>
-        <div class="section">
-            <a href="" class="btn btn-lg btn-primary block full-width rectangle">
-				提交审核
-			</a>
-        </div>
-        <div class="section text-grey text-center text-small">
-            我们将在1-2个工作日内完成信息审核
-        </div>
+        </form>
     </div>
 </div>

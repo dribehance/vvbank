@@ -1,7 +1,10 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="owl-carousel" id="banner">
-            <img ng-src="{{banner}}" alt="" ng-repeat="banner in banners" class="block full-width">
+            <a href="#/{{ banner.url }}">
+                <img ng-src="{{ banner.img }}" alt="" ng-repeat="banner in banners" class="block full-width">
+            </a>
+
         </div>
         <div class="owl-carousel cards-carousel " id="product-carousel">
             <div ng-repeat="product in products">

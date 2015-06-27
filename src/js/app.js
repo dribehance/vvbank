@@ -5,7 +5,8 @@ angular.module("VVBank", [
     "mobile-angular-ui.core.activeLinks",
     "mobile-angular-ui.core.sharedState",
     "flow",
-    "timer"
+    "timer",
+    "LocalStorageModule"
 ])
 .config(function($routeProvider,$httpProvider) {
     $routeProvider
@@ -17,7 +18,12 @@ angular.module("VVBank", [
         .when("/licai", {
             templateUrl: "licai.html",
             reloadOnSearch: false,
-            controller: licaiController
+            controller: licaiController,
+            resolve: {
+                factory: function(userServices) {
+                    return userServices.checkAuth();
+                }
+            }
         })
         .when("/me", {
             templateUrl: "me.html",
@@ -141,10 +147,13 @@ angular.module("VVBank", [
             reloadOnSearch: false,
             controller: buyController
         })
-        .otherwise("/index", {
-            templateUrl: "home.html",
+        .when("/agreement", {
+            templateUrl: "agreement.html",
             reloadOnSearch: false,
-            controller: indexController
+            controller: agreementController
+        })
+        .otherwise({
+            redirectTo: "/index"
         });
         $httpProvider.defaults.useXDomain = true;
         $httpProvider.defaults.withCredentials = true;

@@ -1,20 +1,37 @@
-angular.module("VVBank").factory("licaiServices",function($rootScope, $http, $q, $route) {
-	var query = function() {
-		var promise = $http.get("http://jsonplaceholder.typicode.com/posts/1",{cache:true});
-		return promise.then(licai_parser);
-	}
-	var loadMore = function () {
-		var promise = $http.get("http://jsonplaceholder.typicode.com/posts/1");
-		return promise.then(licai_parser);
-	}
-	var recommand = function () {
-		var promise = $http.get("http://jsonplaceholder.typicode.com/posts/1",{cache:true});
-		return promise.then(recommand_parser);
-	}
+angular.module("VVBank").factory("licaiServices",function($rootScope, $http, $q, $route,config) {
 	return {
-		query: query,
-		loadMore: loadMore,
-		recommand: recommand
+		query:function(){
+
+			return $http({
+				url:config.url + "",
+				method:"GET",
+				params:angular.extend({},config.common_params)
+			}).then(function(data){
+
+			})
+		},
+		loadMore:function(){
+			return $http({
+				url:config.url + "",
+				method:"GET",
+				params:angular.extend({},config.common_params)
+			}).then(function(data) {
+
+			})
+		},
+		recommand:function(){
+			return $http({
+				url:config.url + "/v1/service/homepage/products",
+				method:"GET",
+				params:angular.extend({},config.common_params),
+				cache:true
+			}).then(function(data) {
+				if (data.data[0].respcode == config.request.SUCCESS) {
+					return recommand_parser(data.data[0]);
+				}
+				return;
+			})
+		}
 	}
 });
 var licai_parser = function(data) {
@@ -50,7 +67,37 @@ var licai_parser = function(data) {
 	return response;
 }
 var recommand_parser = function(data) {
-	data = Data[0].products;
+	var products = [];
+	for (var i=0,r = data.result;i<r.length;i++) {
+		var product = new _m_product();
+		product.id = r[i].productId;
+		product.title = r[i].productName + r[i].productCode;
+		product.tag = "1";
+		product.feature = feature_parser(r[i].repaymentType);
+		product.duration = r[i].investPeriod;
+		product.limit = r[i].minInvestAmount + "元";
+		product.percentage = r[i].annualRate + "%";
+		product.addition =  "1.00%";
+		product.progress =  r[i].totalInvestAmount/r[i].amount * 100 +"%";
+		product.safety = safety_parser(r[i].safety);
+		product.total = r[i].amount;
+		product.remain = "";
+		product.faqiren = "";
+		product.dealer = "";
+		product.exchange = "";
+		product.agency = "";
+	}
+	var feature_parser = function(feature) {
+		return config.feature[feature];
+	}
+	var safety_parser = function(safety) {
+		return safety.split(",").map(function(s){
+			var o = {};
+			o[s] = config.safety[s];
+			return o;
+		})
+
+	}
 	return data;
 }
 // emulator data

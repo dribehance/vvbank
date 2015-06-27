@@ -1,4 +1,4 @@
-angular.module("VVBank").factory("userServices",function($http,config,$rootScope){
+angular.module("VVBank").factory("userServices",function($http,$rootScope,$q,$location,localStorageService,config){
 	return {
 		register: function(telephone,password,username,referee,smscode){
 			return $http({
@@ -14,12 +14,12 @@ angular.module("VVBank").factory("userServices",function($http,config,$rootScope
 
 				})
 			}).then(function(data){
-				return data.data;
+				return data.data[0];
 			});
 		},
 		login: function(username,password) {
 			return $http({
-				url: config.url+"/auth",
+				url: config.url+"/v1/service/account/in",
 				method:"GET",
 				params: angular.extend({},config.common_params,{
 					"username":username,
@@ -38,12 +38,12 @@ angular.module("VVBank").factory("userServices",function($http,config,$rootScope
 			});
 		},
 		checkAuth: function() {
-			return $http({
-				url: config.url+"/auth",
-				method:"POST"
-			}).then(function(data){
-				return data.data;
-			});
+			if (localStorageService.get("token")) {
+				return true;
+			}
+			
+			$location.path("/signIn").replace();
+			return false;
 		},
 		exist : function(telephone,username) {
 			return $http({
@@ -54,10 +54,8 @@ angular.module("VVBank").factory("userServices",function($http,config,$rootScope
 					"username":username
 				})
 			}).then(function(data){
-				return data.data;
-			},function(e){
-				console.log(e)
-			})
+				return data.data[0];
+			});
 		},
 		getSmscode : function(telephone,smstype){
 			return $http({
