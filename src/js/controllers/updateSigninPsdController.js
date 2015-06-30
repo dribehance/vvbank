@@ -1,4 +1,4 @@
-var updateSigninPsdController = function($scope){
+var updateSigninPsdController = function($scope,errorServices,userServices,config){
 	$scope.input = {
 		vertifyCode:"",
 		password:"",
@@ -22,7 +22,6 @@ var updateSigninPsdController = function($scope){
 		$scope.callbackTimer.counting = 1;
 		$scope.callbackTimer.addSeconds(5);
 	}
-	// post
 	$scope.ajaxForm = function(form) {
 
 	}

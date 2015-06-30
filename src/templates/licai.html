@@ -4,7 +4,7 @@
     </a> -->
 </div>
 <div ui-content-for="title">
-    <span ui-turn-on="filterDropdown">{{ stock.name ==""?"理财产品":stock.name }}<i class="vv vv-23 vv-dropdown"></i></span>
+    <span ui-turn-on="filterDropdown">{{ exchange.name ==""?"理财产品":exchange.name }}<i class="vv vv-23 vv-dropdown"></i></span>
 </div>
 <div class="filter-dropdown-hood">
   <ul 
@@ -16,8 +16,8 @@
     ui-state="filterDropdown"
     ui-turn-off="filterDropdown">
 
-    <li ng-repeat="st in stocks" class="section">
-        <label class="text-ellipsis block text-grey" style="font-weight:100"><input type="radio" name="stock-name" class="hide" ng-model="stock.name" value="{{st == '理财产品'?'':st}}">{{st}}</label>
+    <li ng-repeat="(name,exchange) in exchanges track by name" class="section">
+        <div ng-click="query(exchange)" class="section">{{exchange.name}}</div>
     </li>
   </ul>
 </div>
@@ -26,13 +26,39 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content" ui-scroll-bottom="loadMore()">
-        <div class="group" ng-repeat="group in groups | filter:stock.name">
+        <div class="group" ng-repeat="group in groups" ng-show="groups">
             <div class="section group-header">
                 <div class="semi-auto semi-right-50">
                     <span class="text-ellipsis">{{group.name}}</span>
-                    <label class="semi-fixed-right semi-width-50 text-right text-grey"><input type="radio" name="stock-name" class="hide" ng-model="stock.name" value="{{group.name}}">更多</label>
+                    <div class="semi-fixed-right semi-width-50 text-right text-grey" ng-click="query({'name':group.name,'code':gruop.code})">更多</div>
                 </div>
             </div>
+            <div class="group-items">
+                <a ng-href="#/products/{{product.id}}" class="block section group-item tag-{{product.tag}}" ng-repeat="product in group.products">
+                    <div class="semi-auto semi-right-50">
+                        <h3 class="text-ellipsis text-black">{{product.title}}</h3>
+                        <span class="semi-fixed-right semi-width-50">
+                            <i class="vv vv-tag vv-46"></i>
+                        </span>
+                    </div>
+                    <p class="text-grey text-right">{{product.feature}}</p>
+                    <div class="section-wide text-grey row">
+                        <div class="col-xs-8 nowrap">
+                            <span class="tag-state text-very-big"><b>{{product.percentage}}</b></span>
+                            <sub class="tag-state text-large">
+                                <b>{{product.addition}}</b>
+                                <i class="vv vv-43 vv-state"></i>
+                            </sub>
+                        </div>
+                        <div class="col-xs-4 text-right text-ellipsis">
+                            <span class="tag-state">{{product.duration}}</span>天<span class="tag-state">{{product.limit}}</span>元起投
+                        </div>
+                    </div>
+                    <span class="item-state"><i class="vv vv-stamp vv-87"></i></span>
+                </a>
+            </div>
+        </div>
+        <div class="group" ng-show="products">
             <div class="group-items">
                 <a ng-href="#/products/1" class="block section group-item tag-{{product.tag}}" ng-repeat="product in group.products">
                     <div class="semi-auto semi-right-50">

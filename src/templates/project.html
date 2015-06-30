@@ -1,0 +1,18 @@
+<div ui-content-for="title">
+    <span>项目详情</span>
+</div>
+<div ui-content-for="backAction">
+    <a ng-click="back()" class="btn">返回</a>
+</div>
+<div ui-content-for="navbarAction">
+    <span></span>
+</div>
+<div class="scrollable">
+	<div class="scrollable-content">
+		<div class="section text-center" ng-repeat="project in projects">
+			<p class="text-center">{{project.title}}</p>
+			<img ng-src="{{project.path}}" alt="">
+			<p class="text-left">{{project.description}}</p>
+		</div>
+	</div>
+</div>

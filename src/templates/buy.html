@@ -11,16 +11,16 @@
     <div class="section">
         <div class="semi-auto semi-left-75">
             <span class="semi-fixed-left semi-width-75 btn section-wide text-left">投资金额：</span>
-            <input type="text" class="form-control block full-width" name="cost" ng-model="input.cost" required ng-pattern="/^[0-9]+$/" placeholder="请输入投资金额">
+            <input type="text" class="form-control block full-width" name="amount" ng-model="input.amount" required ng-pattern="/^[0-9]+$/" placeholder="请输入投资金额">
         </div>
     </div>
     <div class="section bg-light-grey">
         <div class="row">
             <div class="col-xs-6">
-                <span class="btn">剩余份额：<span class="text-orange">85,000</span>元</span>
+                <span class="btn">剩余份额：<span class="text-orange">{{input.remain}}</span>元</span>
             </div>
             <div class="col-xs-6">
-                <span class="btn">账户余额：<span class="text-orange">8,000</span>元</span>
+                <span class="btn">账户余额：<span class="text-orange">{{input.balance}}</span>元</span>
             </div>
         </div>
     </div>

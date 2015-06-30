@@ -1,4 +1,4 @@
-var signupController = function($rootScope,$scope,$location,userServices,errorServices,SharedState,config,toastServices,signatureServices){
+var signupController = function($rootScope,$scope,$location,userServices,errorServices,SharedState,config,toastServices,localStorageService,signatureServices){
 	$scope.input = {
 		telephone:"",
 		password:"",
@@ -26,8 +26,10 @@ var signupController = function($rootScope,$scope,$location,userServices,errorSe
 	$scope.nextStep = function () {
 		toastServices.show();
 		userServices.exist($scope.input.telephone,$scope.input.username).then(function(data){
+			console.log("nextStep verify register")
+			console.log(data)
 			toastServices.hide();
-			if ( data.result.status == config.result.SUCCESS ) {
+			if ( data.result.status == config.request.UNEXIST ) {
 				SharedState.set("signUpStep",2)
 			}
 			else {
@@ -37,7 +39,9 @@ var signupController = function($rootScope,$scope,$location,userServices,errorSe
 	}
 	$scope.getSmscode = function(){
 		userServices.getSmscode($scope.input.telephone,config.smstype.SIGNUP).then(function(data){
-			console.log(data)
+			if (!(data.result.status == 1 && data.respcode == config.request.SUCCESS)) {
+				errorServices.autoHide();
+			}
 		})
 		$scope.callbackTimer.counting = 1;
 		$scope.callbackTimer.addSeconds(5);
@@ -48,11 +52,14 @@ var signupController = function($rootScope,$scope,$location,userServices,errorSe
 	$scope.ajaxForm = function(form) {
 		userServices.register($scope.input.telephone,$scope.input.password,$scope.input.username,$scope.input.referee,$scope.input.smscode).then(function(data){
 			if (data.respcode == config.request.SUCCESS) {
+				console.log("SUCCESS register")
 				localStorageService.cookie.set("token",data.result.token);
 				$location.path("/index").replace();
 			}
 			else {
-				errorServices.autoHide(data.result.message);
+				console.log(data)
+				console.log("error")
+				errorServices.autoHide(data.message);
 			}
 		});
 	}

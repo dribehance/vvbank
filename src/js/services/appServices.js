@@ -1,10 +1,11 @@
 // EventHandle
 angular.module("VVBank").factory("appServices", function($rootScope,$location,$window,SharedState,signatureServices,errorServices,userServices,toastServices,config) { 
     var routeChangeStart = function(e) {
-        toastServices.hide();
         // userServices.checkAuth();
     }
     var routeChangeSuccess = function (e,currentRoute,prevRoute) {
+        toastServices.hide();
+        errorServices.hide();
         navBarHandler(e,currentRoute,prevRoute);
     }
     var navBarHandler = function (e,currentRoute,prevRoute) {

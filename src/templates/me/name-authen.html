@@ -31,11 +31,11 @@
                 </div>
                 <div class="vv-divide"></div>
                 <div class="section">
-                    <button type="button" ui-set="{'authStep':2} " class="btn btn-lg btn-primary block full-width rectangle" ng-disabled="!(authForm.realname.$valid && authForm.identifyID.$valid)">下一步</button>
+                    <button type="submit"  class="btn btn-lg btn-primary block full-width rectangle" ng-disabled="!(authForm.realname.$valid && authForm.identifyID.$valid)">提交</button>
                 </div>
 
             </div>
-            <div ui-if="authStep == 2">
+            <!-- <div ui-if="authStep == 2">
                 <div class="section"></div>
                 <div class="section">
                     <h4 class="text-center">完成实名认证，您将安全获得更多收益</h4>
@@ -57,16 +57,16 @@
                     </div>
                 </div>
                 <div class="section">
-                    <a href="" class="btn btn-lg btn-primary block full-width rectangle">
+                    <button type="submit" class="btn btn-lg btn-primary block full-width rectangle">
                         提交审核
-                    </a>
+                    </button>
                 </div>
                 <div class="section text-grey text-center text-small">
                     我们将在1-2个工作日内完成信息审核
                 </div>
 
 
-            </div>
+            </div> -->
         </form>
     </div>
 </div>

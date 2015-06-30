@@ -1,10 +1,10 @@
 angular.module("VVBank").factory("errorServices",function($rootScope,$timeout,SharedState){
 	return {
-		showError:function(error){
+		show:function(error){
 			SharedState.turnOn("error_state");
 			$rootScope.errormsg = error;
 		},
-		hideError:function() {
+		hide:function() {
 			SharedState.turnOff("error_state");
 		},
 		autoHide:function(error) {

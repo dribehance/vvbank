@@ -20,15 +20,16 @@ angular.module("VVBank", [
             reloadOnSearch: false,
             controller: licaiController,
             resolve: {
-                factory: function(userServices) {
-                    return userServices.checkAuth();
-                }
+                factory:loginInterceptor
             }
         })
         .when("/me", {
             templateUrl: "me.html",
             reloadOnSearch: false,
-            controller: meController
+            controller: meController,
+            resolve: {
+                factory:loginInterceptor
+            }
         })
         .when("/signIn", {
             templateUrl: "signIn.html",
@@ -42,7 +43,8 @@ angular.module("VVBank", [
         })
         .when("/forget", {
             templateUrl: "forget.html",
-            reloadOnSearch: false
+            reloadOnSearch: false,
+            controller:forgetController
         })
         .when("/investment", {
             templateUrl: "me/investment.html",
@@ -102,6 +104,7 @@ angular.module("VVBank", [
         .when("/name-authen", {
             templateUrl: "me/name-authen.html",
             reloadOnSearch: false,
+            controller: nameAuthenController
         })
         .when("/charge", {
             templateUrl: "charge.html",
@@ -132,20 +135,23 @@ angular.module("VVBank", [
             reloadOnSearch: false,
             controller: productController
         })
-        .when("/products-content/:productID", {
-            templateUrl: "product-content.html",
+        .when("/project/:productID", {
+            templateUrl: "project.html",
             reloadOnSearch: false,
-            controller: productContentController
+            controller: projectController
         })
         .when("/products-files/:productID", {
             templateUrl: "product-files.html",
             reloadOnSearch: false,
             controller: productFilesController
         })
-        .when("/buy/:productID", {
+        .when("/buy/:productID/:remain", {
             templateUrl: "buy.html",
             reloadOnSearch: false,
-            controller: buyController
+            controller: buyController,
+            resolve: {
+                factory:loginInterceptor
+            }
         })
         .when("/agreement", {
             templateUrl: "agreement.html",

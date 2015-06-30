@@ -1,4 +1,4 @@
-var signinController = function($scope,userServices,errorServices,localStorageService,config) {
+var signinController = function($scope,$location,userServices,errorServices,localStorageService,config) {
 	$scope.input = {
 		name:"",
 		password:""

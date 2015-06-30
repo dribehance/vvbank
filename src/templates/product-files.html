@@ -9,6 +9,11 @@
 </div>
 <div class="scrollable">
 	<div class="scrollable-content">
-		<p class="text-center">暂无相关文件</p>
+		<p class="text-center" ng-show="!files.length>0">暂无相关文件</p>
+		<div class="section text-center" ng-repeat="file in files">
+			<p class="text-center">{{file.title}}</p>
+			<img ng-src="{{file.path}}" alt="">
+			<p class="text-left">{{file.content}}</p>
+		</div>
 	</div>
 </div>

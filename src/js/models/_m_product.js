@@ -28,11 +28,12 @@ var _m_product = function() {
 		progress: "60%",
 		safety:[],
 		total:"",
-		remain:"",
+		remain:0,
 		faqiren:"",
 		dealer:"",
 		exchange:"",
-		agency:""
+		agency:"",
+		code:""
 	}
 	return product;
 }
@@ -40,6 +41,7 @@ var _m_group = function () {
 	// name: 深圳前海金融资产交易所
 	var _m_group = {
 		name:"",
+		code:"",
 		products: []
 	};
 	return _m_group;

@@ -1,8 +1,8 @@
 <div class="scrollable">
     <div class="scrollable-content">
-        <div class="owl-carousel" id="banner">
+        <div class="owl-carousel banner" id="banner">
             <a href="#/{{ banner.url }}">
-                <img ng-src="{{ banner.img }}" alt="" ng-repeat="banner in banners" class="block full-width">
+                <img ng-src="{{ banner.path }}" alt="" ng-repeat="banner in banners" class="block full-width">
             </a>
 
         </div>
@@ -58,7 +58,7 @@
                         还款方式：{{product.feature}}
                     </div>
                 </a>
-                <a ng-href="#/buy/{{product.id}}" class="block full-width btn btn-lg btn-warning text-center rectangle">我要购买</a>
+                <a ng-href="#/buy/{{product.id}}/{{product.remain}}" class="block full-width btn btn-lg btn-warning text-center rectangle">我要购买</a>
             </div>
         </div>
     </div>

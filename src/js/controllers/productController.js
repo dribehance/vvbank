@@ -1,9 +1,10 @@
-var productController = function($scope,productServices,userServices){
-	productServices.get().then(function(data){
-		$scope.product = data;
-	});
-	userServices.get().then(function(data){
-		console.log(data)
-		$scope.user = data;
+var productController = function($scope,$routeParams,productServices,parserServices,errorServices,config){
+	productServices.queryById($routeParams.productID).then(function(data){
+		if (data.respcode == config.request.SUCCESS) {
+			$scope.product = parserServices.parseProduct(data.result);
+		}
+		else {
+			errorServices.autoHide(data.message)
+		}
 	});
 }

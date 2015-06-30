@@ -1,9 +1,10 @@
-var agreementController = function($scope,agrrementServices,errorServices,config){
+var agreementController = function($scope,agreementServices,errorServices,config){
 	$scope.agreement = {
 		title:"",
 		content:""
 	}
-	agrrementServices.get(config.agreement.USAGE).then(function(data){
+	agreementServices.get(config.agreement.USAGE).then(function(data){
+		console.log(data)
 		if (data.respcode == data.request.SUCCESS) {
 			$scope.agreement.title = data.title;
 			$scope.agreement.content = data.content
