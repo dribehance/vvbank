@@ -9,45 +9,17 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
-        <div class="message-item">
+        <div class="message-item" ng-repeat="message in messages">
 
             <div class="section">
                 <div class="btn-group justified">
-                    <span><img src="/images/message_1.png" alt="" style="width:42;height:42px;margin-right:5px">系统消息</span>
-                    <span class="text-right">2015-03-14</span>
+                    <span><img src="/images/message_1.png" alt="" style="width:42;height:42px;margin-right:5px">{{ message.title }}</span>
+                    <span class="text-right">{{ message.date }}</span>
 
                 </div>
             </div>
             <div class="section text-grey">
-                VVBank用户您好，我们将在本周六举行一次活动，会有优厚的奖励哦，请记得通过首页活动图参加。
-            </div>
-            <div class="vv-divide vv-5"></div>
-        </div>
-		<div class="message-item">
-
-            <div class="section">
-                <div class="btn-group justified">
-                    <span><img src="/images/message_2.png" alt="" style="width:42;height:42px;margin-right:5px">项目达成</span>
-                    <span class="text-right">2015-03-14</span>
-
-                </div>
-            </div>
-            <div class="section text-grey">
-                VVBank用户您好，我们将在本周六举行一次活动，会有优厚的奖励哦，请记得通过首页活动图参加。
-            </div>
-            <div class="vv-divide vv-5"></div>
-        </div>
-        <div class="message-item">
-
-            <div class="section">
-                <div class="btn-group justified">
-                    <span><img src="/images/message_3.png" alt="" style="width:42;height:42px;margin-right:5px">项目未达成</span>
-                    <span class="text-right">2015-03-14</span>
-
-                </div>
-            </div>
-            <div class="section text-grey">
-                VVBank用户您好，我们将在本周六举行一次活动，会有优厚的奖励哦，请记得通过首页活动图参加。
+                {{ message.content }}
             </div>
             <div class="vv-divide vv-5"></div>
         </div>

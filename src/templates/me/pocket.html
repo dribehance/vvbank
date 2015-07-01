@@ -12,7 +12,7 @@
 		<div class="section bg-light-blue text-white">
 			当前e圆（个）
 		</div>
-		<div class="section bg-light-blue text-very-large text-center text-white"><b>35</b></div>
+		<div class="section bg-light-blue text-very-large text-center text-white"><b>{{ pocket_group.remain}}</b></div>
 		<div class="section bg-light-blue text-right text-white">e圆常见问题</div>
 		<div class="section">
             <div class="vv-table">
@@ -25,11 +25,11 @@
                     </div>
                 </div>
                 <div class="vv-table-content">
-                	<div class="btn-group justified text-center text-grey">
-                        <span class="text-ellipsis">04-13 </span>
-                        <span class="text-ellipsis">活动奖励</span>
-                        <span class="text-ellipsis">100</span>
-                        <span class="text-ellipsis">可用</span>
+                	<div class="btn-group justified text-center text-grey" ng-repeat="pocket in pocket_group.pockets">
+                        <span class="text-ellipsis">{{ pocket.date }}</span>
+                        <span class="text-ellipsis">{{ pocket.type }}</span>
+                        <span class="text-ellipsis">{{ pocket.money }}</span>
+                        <span class="text-ellipsis">{{ pocket.status }}</span>
                     </div>
                 </div>
             </div>

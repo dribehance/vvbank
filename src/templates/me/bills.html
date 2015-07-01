@@ -16,16 +16,14 @@
                     <div class="btn-group justified text-center">
                         <span class="text-ellipsis">时间 </span>
                         <span class="text-ellipsis">类别</span>
-                        <span class="text-ellipsis">收入（元） </span>
-                        <span class="text-ellipsis">支出（元） </span>
+                        <span class="text-ellipsis">金额（元） </span>
                     </div>
                 </div>
                 <div class="vv-table-content">
-                	<div class="btn-group justified text-center text-grey">
-                        <span class="text-ellipsis">04-13 </span>
-                        <span class="text-ellipsis">利息</span>
-                        <span class="text-ellipsis">+14,000.00</span>
-                        <span class="text-ellipsis">/</span>
+                	<div class="btn-group justified text-center text-grey" ng-repeat="bill in bills">
+                        <span class="text-ellipsis">{{ bill.date }}</span>
+                        <span class="text-ellipsis">{{ bill.type }}</span>
+                        <span class="text-ellipsis">{{ bill.money}}</span>
                     </div>
                 </div>
             </div>

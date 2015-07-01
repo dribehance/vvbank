@@ -49,26 +49,32 @@ angular.module("VVBank", [
         .when("/investment", {
             templateUrl: "me/investment.html",
             reloadOnSearch: false,
+            controller:investmentController
         })
         .when("/bills", {
             templateUrl: "me/bills.html",
             reloadOnSearch: false,
+            controller:billsController
         })
         .when("/activities", {
             templateUrl: "me/activities.html",
             reloadOnSearch: false,
+            controller:activitiesController
         })
         .when("/eyuan", {
             templateUrl: "me/eyuan.html",
             reloadOnSearch: false,
+            controller:eyuanController
         })
         .when("/pocket", {
             templateUrl: "me/pocket.html",
             reloadOnSearch: false,
+            controller:pocketController
         })
         .when("/message", {
             templateUrl: "me/message.html",
             reloadOnSearch: false,
+            controller:messageController
         })
         .when("/account-setting", {
             templateUrl: "me/account-setting.html",
@@ -78,6 +84,7 @@ angular.module("VVBank", [
         .when("/safety-setting", {
             templateUrl: "me/safety-setting.html",
             reloadOnSearch: false,
+            controller:safetySettingController
         })
         .when("/bank-cards", {
             templateUrl: "me/bank-cards.html",
@@ -92,14 +99,17 @@ angular.module("VVBank", [
         .when("/invite", {
             templateUrl: "me/invite.html",
             reloadOnSearch: false,
+            controller:inviteController
         })
-        .when("/question", {
+        .when("/questions", {
             templateUrl: "me/question.html",
             reloadOnSearch: false,
+            controller:questionsController
         })
         .when("/about", {
             templateUrl: "me/about.html",
             reloadOnSearch: false,
+            controller:aboutController
         })
         .when("/name-authen", {
             templateUrl: "me/name-authen.html",
@@ -128,7 +138,7 @@ angular.module("VVBank", [
         })
         .when("/setting", {
             templateUrl: "setting.html",
-            reloadOnSearch: false,
+            reloadOnSearch: false
         })
         .when("/products/:productID", {
             templateUrl: "product.html",

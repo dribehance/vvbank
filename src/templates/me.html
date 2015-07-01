@@ -15,9 +15,9 @@
 					<img src="/images/default-avatar.png" alt="">
 				</span>
                 <div class="section bg-primary">
-                    <p class="text-large"><b>陈生</b>
+                    <p class="text-large"><b>{{ user.username }}</b>
                     </p>
-                    <p>您的总收益：28000.00</p>
+                    <p class="text-ellipsis">您的总收益：{{ user.earning }}</p>
                 </div>
             </div>
         </div>
@@ -28,12 +28,12 @@
         <div class="btn-group justified bg-white">
             <div class="btn section text-center">
                 <span class="text-grey">总资产（元）</span>
-                <div class="text-orange text-large text-ellipsis">164,000.48</div>
+                <div class="text-orange text-large text-ellipsis">{{user.total}}</div>
 
             </div>
             <div class="btn section text-center">
                 <span class="text-grey">冻结金额（元）</span>
-                <div class="text-orange text-large text-ellipsis">4000.60</div>
+                <div class="text-orange text-large text-ellipsis">{{ user.frozen}}</div>
             </div>
         </div>
         <div class="vv-divide"></div>

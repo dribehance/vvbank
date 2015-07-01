@@ -3,8 +3,10 @@ var nameAuthenController = function($scope,$rootScope,userServices,errorServices
 		"realname":"",
 		"identifyID":""
 	}
-	// $scope.ajaxForm = function(form){
+	$scope.ajaxForm = function(form){
+		console.log("dd")
 		userServices.authen($scope.input.realname,$scope.input.identifyID).then(function(data){
+			console.log(data)
 			if (data.respcode == config.request.SUCCESS) {
 				$rootScope.back();
 			}
@@ -12,5 +14,5 @@ var nameAuthenController = function($scope,$rootScope,userServices,errorServices
 				errorServices.autoHide("认证失败")
 			}
 		});
-	// }
+	}
 }

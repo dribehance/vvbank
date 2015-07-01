@@ -112,35 +112,82 @@ angular.module("VVBank").factory("parserServices", function(config) {
         // user
         parseUser:function(data) {
             var user = new _m_user();
-            user.id = data.id || "",
-            user.username = data.username || "",
-            user.nickname = data.nickName || "",
-            user.realname = data.realName || "",
-            user.avatar = data.userImg || "",
+            user.id = data.id || "";
+            user.username = data.username || "";
+            user.nickname = data.nickName || "";
+            user.realname = data.realName || "";
+            user.avatar = data.userImg || "";
 
-            user.total = data.netAsset || "0",
-            user.earning = data.incomeAmount || "0",
-            user.frozen = data.frozenAmount || "0",
+            user.total = data.netAsset || "0";
+            user.earning = data.incomeAmount || "0";
+            user.frozen = data.frozenAmount || "0";
 
-            user.identify = "",
-            user.telephone = "",
-            user.email = "",
+            user.identify = data.idNo || "";
+            user.telephone = data.cellphone || "";
+            user.email = data.email || "";
 
-            user.sex = this.parseSex(data.sex),
-            user.birthday = "1990-01-01",
-            user.degree = "小学毕业",
-            user.address = "",
-            user.industry = "",
-            user.scale = "",
-            user.job = "",
-            user.income = ""
+            user.sex = config.sex[data.gender] || "男";
+            user.is_marry = config.is_marry[data.maritalStatus];
+            user.school = data.college || "";
+            user.birthday = data.birthday || new Date("1990-01-01");
+            user.degree = data.maxEducation || "";
+            user.address = data.homeAddress || "";
+            user.industry = data.industry || "";
+            user.scale = config.scales[data.corporateSize] || "1-100人";
+            user.job = data.position || "工程师";
+            user.income = data.salary || "5000以内";
+            return user;
         },
-        parseSex:function(sex){
-            var sex = {
-                "1":"男",
-                "2":"女"
+        // eyuan
+        parseEyuan:function (data) {
+            var eyuan_group = new _m_eyuan_group(),
+                eyuans = [];
+            eyuan_group.remain = data.eyuanUsable || "0";
+
+            for (var i=0,r=data.info;i<r.length;i++) {
+                var eyuan = new _m_eyuan();
+                eyuan.date = r[i].time.split(" ");
+                eyuan.type = r[i].eyuanType;
+                eyuan.amount = r[i].amount;
+                eyuan.remain = r[i].surplusAmount;
+                eyuans.push(eyuan);
             }
-            return sex[sex]
+
+            eyuan_group.eyuans = eyuans;
+            return eyuan_group;
+
+        },
+        // bills
+        parseBills:function (data) {
+            var bills = [];
+            for (var i=0,r=data;i<r.length;i++) {
+                var bill = new _m_bill();
+                bill.date = r[i].time;
+                bill.type = r[i].fundType;
+                bill.money = r[i].amount;
+            }
+
+        },
+        // safety info 
+        parseSafetyInfo:function(data) {
+            var safety_info = new _m_safety_info();
+            safety_info.telephone = {
+                "status": data.phoneStatus,
+                "message": config.safety_info.telephone[data.phoneStatus]
+            },
+            safety_info.realname = {
+                "status": data.realStatus,
+                "message": config.safety_info.realname[data.realStatus]
+            },
+            safety_info.trade_password = {
+                "status": data.tradeStatus,
+                "message": config.safety_info.trade_password[data.tradeStatus]
+            },
+            safety_info.signin_password = {
+                "status": data.loginStatus,
+                "message": config.safety_info.signin_password[data.loginStatus]
+            }
+            return safety_info;
         }
     }
 })

@@ -47,6 +47,5 @@ var licaiController = function($scope, licaiServices, toastServices, parserServi
         // });
     }
     // fetch data
-    console.log("licai")
     $scope.queryAll();
 }

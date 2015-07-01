@@ -45,15 +45,15 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
         },
         authen: function(realname, identifyID) {
             return $http({
-                url: config.url + "/v1/service/authentication",
-                method: "PUT",
+                url: config.url + "/v1/service/realname",
+                method: "POST",
                 data: angular.extend({}, config.common_params, {
                     "realname": realname,
                     "idcode": identifyID,
                     "token": localStorageService.cookie.get("token")
                 })
             }).then(function(data) {
-                return data.data[0];
+                return data.data;
             })
         },
         exist: function(telephone, username) {
@@ -109,37 +109,70 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
         info: {
             basic: function() {
                 return $http({
+                    url: config.url + "/v1/service/user/userinfo",
+                    method: "GET",
+                    params: angular.extend({}, config.common_params, {
+                        "token": localStorageService.cookie.get("token")
+                    })
+                }).then(function(data) {
+                    return data.data;
+                })
+            },
+            safety: function() {
+                return $http({
+                    url: config.url + "/v1/service/safeinfo",
+                    method: "GET",
+                    params: angular.extend({}, config.common_params, {
+                        "token": localStorageService.cookie.get("token")
+                    })
+                }).then(function(data) {
+                    return data.data;
+                })
+            },
+            account: function() {
+                return $http({
                     url: config.url + "/v1/service/user/account",
                     method: "GET",
                     params: angular.extend({}, config.common_params, {
                         "token": localStorageService.cookie.get("token")
                     })
-                }).then(function(data){
-                	return data.data;
+                }).then(function(data) {
+                    return data.data;
                 })
             },
-            safety:function() {
-            	return $http({
-            		url:config.url + "/v1/service/safeinfo",
-            		method:"GET",
-            		params:angular.extend({},config.common_params,{
-            			"token":localStorageService.cookie.get("token")
-            		})
-            	}).then(function(data){
-            		return data.data;
-            	})
-            },
-            account:function() {
-            	return $http({
-            		url:config.url + "/v1/service/user/account",
-            		method:"GET",
-            		params:angular.extend({},config.common_params,{
-            			"token":localStorageService.cookie.get("token")
-            		})
-            	}).then(function(data){
-            		return data.data;
-            	})
+            authen: function() {
+                return $http({
+                    url: config.url + "/v1/service/user/account",
+                    method: "GET",
+                    params: angular.extend({}, config.common_params, {
+                        "token": localStorageService.cookie.get("token")
+                    })
+                }).then(function(data) {
+                    return data.data;
+                })
             }
+        },
+        charge: function() {
+
+        },
+        cash: function() {
+
+        },
+        updateSignPassword: function() {
+
+        },
+        updateTradePassword: function(password) {
+            return $http({
+                url: config.url + "/v1/service/tradepwd",
+                method: "POST",
+                data: angular.extend({}, config.common_params, {
+                    "token": localStorageService.cookie.get("token"),
+                    "tradingPwd":password.n,
+                    "oldpassword":password.o
+                })
+            }).then(function(data) {
+                return data.data;
+            })
         }
     }
 });

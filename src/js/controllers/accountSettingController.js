@@ -1,20 +1,36 @@
-var accountSettingController = function($scope) {
+var accountSettingController = function($scope,errorServices,parserServices,userServices,settingServices,config) {
+	// bind _m_user to scope.user
 	// remote data
-	$scope.degrees = ["小学毕业","中心毕业","高中毕业","本科生","研究生","博士","博士后"];
-	$scope.scales = ["10人以内","20人以内","30人以内"];
-	$scope.jobs = ["工程师","设计师"];
-	$scope.incomes = ["5000元","8000元"];
+	$scope.degrees = config.degrees;
+	$scope.scales = config.scales;
+	$scope.incomes = config.incomes;
+	// safety
+	userServices.info.safety().then(function(data){
+		if (data.respcode == config.request.SUCCESS) {
+			console.log(data)
+			$scope.safety_info = parserServices.parseSafetyInfo(data.result);
+		}
+	})
 	// user input
-	$scope.input = {
-		degree : "小学毕业",
-		scale : "10人以内",
-		job : "工程师",
-		income : "5000元",
-		birthday: new Date("1990-01-01"),
-		sex:"男"
-	}
-	// user post
+	userServices.info.basic().then(function(data){
+		console.log("basie")
+		console.log(data)
+		if (data.respcode == config.request.SUCCESS) {
+			$scope.user = parserServices.parseUser(data.result);
+		}
+		else {
+			errorServices.autoHide(data.message);
+		}
+	})
 	$scope.ajaxForm = function(form) {
-
+		// $scope.user =
+		settingServices.update($scope.user).then(function(data){
+			if (data.respcode == config.request.SUCCESS) {
+				$location.path("/setting").replace();
+			}
+			else {
+				errorServices.autoHide(data.message)
+			}
+		})
 	}
 }
