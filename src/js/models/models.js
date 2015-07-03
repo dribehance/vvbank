@@ -103,7 +103,7 @@ var _m_banner = function() {
         }
     }
     // bills ------------------
-var _m_bills = function() {
+var _m_bill = function() {
         return {
             "date": "",
             "type": "",
