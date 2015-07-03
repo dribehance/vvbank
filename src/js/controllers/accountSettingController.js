@@ -1,4 +1,4 @@
-var accountSettingController = function($scope,errorServices,parserServices,userServices,settingServices,config) {
+var accountSettingController = function($scope,$location,errorServices,parserServices,userServices,settingServices,config) {
 	// bind _m_user to scope.user
 	// remote data
 	$scope.degrees = config.degrees;
@@ -7,14 +7,11 @@ var accountSettingController = function($scope,errorServices,parserServices,user
 	// safety
 	userServices.info.safety().then(function(data){
 		if (data.respcode == config.request.SUCCESS) {
-			console.log(data)
 			$scope.safety_info = parserServices.parseSafetyInfo(data.result);
 		}
 	})
 	// user input
 	userServices.info.basic().then(function(data){
-		console.log("basie")
-		console.log(data)
 		if (data.respcode == config.request.SUCCESS) {
 			$scope.user = parserServices.parseUser(data.result);
 		}
@@ -24,7 +21,7 @@ var accountSettingController = function($scope,errorServices,parserServices,user
 	})
 	$scope.ajaxForm = function(form) {
 		// $scope.user =
-		settingServices.update($scope.user).then(function(data){
+		settingServices.updateAccount($scope.user).then(function(data){
 			if (data.respcode == config.request.SUCCESS) {
 				$location.path("/setting").replace();
 			}

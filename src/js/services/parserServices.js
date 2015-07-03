@@ -15,13 +15,18 @@ angular.module("VVBank").factory("parserServices", function(config) {
             return o;
         })
     }
+    var parseTag = function (tag) {
+        if (tag) {
+            return 1;
+        }
+        return 2;
+    }
     return {
         // product parser
         parseProduct: function(data) {
             var product = new _m_product();
             product.id = data.productId;
             product.title = data.productName + data.productCode;
-            product.tag = "1";
             product.feature = feature_parser(data.repaymentType);
             product.duration = data.investPeriod || "";
             product.limit = data.minInvestAmount + "元";
@@ -31,6 +36,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
             product.safety = safety_parser(data.safety);
             product.total = data.amount || "";
             product.remain = parseInt(data.amount) - parseInt(data.totalInvestAmount);
+            product.tag = parseTag(product.remain);
             product.faqiren = data.initiator || "";
             product.dealer = data.underwriter || "";
             product.exchange = data.financialExchange || "";
@@ -100,7 +106,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
         parseProject: function(data) {
             var projects = [];
             for (var i = 0; i < data.length; i++) {
-                var project = new _m_product();
+                var project = new _m_project();
                 project.title = data[i].title;
                 project.order = data[i].order;
                 project.path = data[i].path;
@@ -127,10 +133,10 @@ angular.module("VVBank").factory("parserServices", function(config) {
             user.email = data.email || "";
 
             user.sex = config.sex[data.gender] || "男";
-            user.is_marry = config.is_marry[data.maritalStatus];
+            user.is_marry = config.is_marry[data.maritalStatus] || "未婚";
             user.school = data.college || "";
             user.birthday = data.birthday || new Date("1990-01-01");
-            user.degree = data.maxEducation || "";
+            user.degree = data.maxEducation || "本科生";
             user.address = data.homeAddress || "";
             user.industry = data.industry || "";
             user.scale = config.scales[data.corporateSize] || "1-100人";
@@ -155,6 +161,25 @@ angular.module("VVBank").factory("parserServices", function(config) {
 
             eyuan_group.eyuans = eyuans;
             return eyuan_group;
+
+        },
+        parsePocket:function (data) {
+            var pocket_group = new _m_pocket_group(),
+                pockets = [];
+            pocket_group.remain = data.bonus || "0";
+
+            for (var i=0,r=data.info;i<r.length;i++) {
+                var pocket = new _m_pocket();
+                pocket.date = r[i].createTime.split(" ");
+                pocket.expires = r[i].expiryTime.split(" ");
+                pocket.type = r[i].type || "";
+                pocket.money = r[i].amount || "";
+                pocket.status = pocket.expires;
+                pockets.push(pocket);
+            }
+
+            pocket_group.pockets = pockets;
+            return pocket_group;
 
         },
         // bills
@@ -188,6 +213,48 @@ angular.module("VVBank").factory("parserServices", function(config) {
                 "message": config.safety_info.signin_password[data.loginStatus]
             }
             return safety_info;
-        }
+        },
+        parseBank:function(data) {
+            var bank = new _m_bank();
+            bank.id = data.cardId || "";
+            bank.name = data.bank || "";
+            bank.code = data.bankCode || "";
+            bank.branch = data.bankBranch || "",
+            bank.card_number = data.cardNo || "";
+            bank.user = data.user || "";
+            bank.province = data.province;
+            bank.city = data.city;
+            return bank;
+        },
+        parseInvestment:function(data){
+            var investment = new _m_investment();
+            investment.name = data.productName;
+            investment.money = data.investAmount;
+            investment.rate = data.annualRate;
+            return investment;
+        },
+        parseInvestments:function(data) {
+            var investments = [];
+            for(var i=0;i<data.length;i++) {
+                var investment = this.parseInvestment(data[i]);
+                investments.push(investment);
+            }
+            return investments;
+        },
+        // project parser
+        parseActivity: function(data) {
+                var activity = new _m_activity();
+                activity.title = data.title;
+                activity.path = data.path;
+            return activity;
+        },
+        parseActivities: function(data) {
+            var activities = [];
+            for (var i = 0; i < data.length; i++) {
+                var activity = this.parseActivity(data[i]);
+                Activities.push(activity);
+            }
+            return activities;
+        },
     }
 })

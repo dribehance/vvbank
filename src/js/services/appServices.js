@@ -1,30 +1,28 @@
 // EventHandle
-angular.module("VVBank").factory("appServices", function($rootScope,$location,$window,SharedState,signatureServices,errorServices,userServices,toastServices,config) { 
+angular.module("VVBank").factory("appServices", function($rootScope, $location, $interval, $window, SharedState,localStorageService, signatureServices, errorServices, userServices,parserServices, toastServices, config) {
     var routeChangeStart = function(e) {
         // userServices.checkAuth();
     }
-    var routeChangeSuccess = function (e,currentRoute,prevRoute) {
+    var routeChangeSuccess = function(e, currentRoute, prevRoute) {
         toastServices.hide();
         errorServices.hide();
-        navBarHandler(e,currentRoute,prevRoute);
+        navBarHandler(e, currentRoute, prevRoute);
     }
-    var navBarHandler = function (e,currentRoute,prevRoute) {
+    var navBarHandler = function(e, currentRoute, prevRoute) {
         // navbar top
         if ($location.path() == "/me") {
             // SharedState.turnOff("navbarTop");
             $rootScope.hasNavbarTop = false;
-        }
-        else {
+        } else {
             // SharedState.turnOn("navbarTop");
             $rootScope.hasNavbarTop = true;
         }
         // navbar bottom
-        var _navbars_b = ["/index","/licai","/me","/"];
+        var _navbars_b = ["/index", "/licai", "/me", "/"];
         if (!_navbars_b.contains($location.path())) {
             // SharedState.turnOff("navbarBottom");
             $rootScope.hasNavbarBottom = false;
-        }
-        else {
+        } else {
             // SharedState.turnOn("navbarBottom");
             $rootScope.hasNavbarBottom = true;
         }
@@ -35,7 +33,7 @@ angular.module("VVBank").factory("appServices", function($rootScope,$location,$w
         });
     }
     return {
-        init:function() {
+        init: function() {
             // handle android backkeydown
             document.addEventListener("backbutton", onBackKeyDown, false);
             // rootScope binding
@@ -44,12 +42,29 @@ angular.module("VVBank").factory("appServices", function($rootScope,$location,$w
             $rootScope.back = function() {
                 $window.history.back();
             }
+            $interval(function() {
+                userServices.token();
+            }, 1000 * 60 * 25);
             // each time startup the app get signature from server
-            signatureServices.getSigncode().then(function(data){
-                if ( data.respcode == config.request.SUCCESS ) {
+            signatureServices.getSigncode().then(function(data) {
+                if (data.respcode == config.request.SUCCESS) {
                     $rootScope.signcode = data.result.signcode;
                 }
             });
+            // each time startup the app fetch the user info
+            $rootScope.user = {};
+            if (localStorageService.cookie.get("token")) {
+                userServices.info.basic().then(function(data) {
+                    if (data.respcode == config.request.SUCCESS) {
+                        $rootScope.user = parserServices.parseUser(data.result);
+                    } else {
+                        errorServices.autoHide()
+                    }
+                    if (data.respcode == config.request.TOKEN_INVALID) {
+                        localStorageService.cookie.remove("token");
+                    }
+                })
+            }
         }
     }
 });

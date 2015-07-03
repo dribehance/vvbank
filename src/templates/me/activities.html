@@ -8,32 +8,25 @@
     <span></span>
 </div>
 <div class="scrollable">
-	<div class="scrollable-content">
-		<div class="section">
-			<div class="section section-condensed text-center">
-				<img src="/images/example_activity.png" alt="" class="block full-width">
-				<div class="section" style="padding-bottom:0">
-					VVBank庆上线，好礼送不停
-				</div>
-			</div>
-		</div>
-		<div class="vv-divide"></div>
-		<div class="section">
-			<div class="section section-condensed text-center">
-				<img src="/images/example_activity.png" alt="" class="block full-width">
-				<div class="section" style="padding-bottom:0">
-					VVBank庆上线，好礼送不停
-				</div>
-			</div>
-		</div>
-		<div class="vv-divide"></div>
-		<div class="section">
-			<div class="section section-condensed text-center">
-				<img src="/images/example_activity.png" alt="" class="block full-width">
-				<div class="section" style="padding-bottom:0">
-					VVBank庆上线，好礼送不停
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="scrollable-content">
+        <div class="section">
+            <div class="section section-condensed text-center">
+                <img src="/images/example_activity.png" alt="" class="block full-width">
+                <div class="section" style="padding-bottom:0">
+                    VVBank庆上线，好礼送不停
+                </div>
+            </div>
+        </div>
+        <div ng-repeat="activity in activities">
+            <div class="vv-divide"></div>
+            <div class="section">
+                <div class="section section-condensed text-center">
+                    <img ng-src="{{activity.path}}" alt="" class="block full-width">
+                    <div class="section" style="padding-bottom:0">
+                        {{activity.title}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

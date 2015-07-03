@@ -10,14 +10,14 @@
     <div class="section">
         <div class="semi-auto semi-left-75">
             <span class="semi-fixed-left semi-width-75">持卡人</span>
-            <div class="text-grey">李四</div>
+            <div class="text-grey">{{ user.realname || "请先实名认证" }}</div>
         </div>
     </div>
     <div class="vv-divide"></div>
     <div class="section">
         <div class="semi-auto semi-left-75">
             <span class="semi-fixed-left semi-width-75">选择银行</span>
-            <select class="sex block full-width" name="bank" ng-model="input.bank" ng-options="b for b in banks" required></select>
+            <select class="sex block full-width" name="bank.code" ng-model="bank.code" ng-options="code as name for (code,name) in banks" required></select>
         </div>
     </div>
     <div class="vv-divide"></div>
@@ -26,10 +26,10 @@
             <span class="semi-fixed-left semi-width-75 btn text-left text-grey section-wide">所在地</span>
             <div class="btn-group justified">
                 <span class="btn section-wide">
-                <select class="block full-width" name="province" ng-model="input.province" ng-options="p for p in provinces" required></select>
+                <select class="block full-width" name="province" ng-model="bank.province" ng-options="p for p in provinces" required></select>
             </span>
                 <span class="btn section-wide">
-                <select class="block full-width" name="city" ng-model="input.city" ng-options="c for c in cities[input.province]" required></select>
+                <select class="block full-width" name="city" ng-model="bank.city" ng-options="c for c in cities[bank.province]" required></select>
             </span>
             </div>
         </div>
@@ -37,8 +37,15 @@
     <div class="vv-divide"></div>
     <div class="section">
         <div class="semi-auto semi-left-75">
+            <span class="semi-fixed-left semi-width-75 btn text-left text-grey section-wide">银行卡号</span>
+            <input type="text" class="form-control" name="branch" ng-model="bank.card_number" required placeholder="请输入银行卡号">
+        </div>
+    </div>
+    <div class="vv-divide"></div>
+    <div class="section">
+        <div class="semi-auto semi-left-75">
             <span class="semi-fixed-left semi-width-75 btn text-left text-grey section-wide">开户支行</span>
-            <input type="text" class="form-control" name="branch" ng-model="input.branch" required placeholder="请输入开户支行">
+            <input type="text" class="form-control" name="branch" ng-model="bank.branch" required placeholder="请输入开户支行">
         </div>
     </div>
     <div class="vv-divide vv-5"></div>

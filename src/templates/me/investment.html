@@ -20,10 +20,10 @@
                     </div>
                 </div>
                 <div class="vv-table-content">
-                	<div class="btn-group justified text-center text-grey">
-                        <span class="text-ellipsis">红本XD10006 </span>
-                        <span class="text-ellipsis">1,000</span>
-                        <span class="text-ellipsis">18% </span>
+                	<div class="btn-group justified text-center text-grey" ng-repeat="investment in investments">
+                        <span class="text-ellipsis">{{investment.name}} </span>
+                        <span class="text-ellipsis">{{investment.money}}</span>
+                        <span class="text-ellipsis">{{investment.rate + "%"}}</span>
                     </div>
                 </div>
             </div>

@@ -5,38 +5,28 @@
     <a ng-click="back()" class="btn">返回</a>
 </div>
 <div ui-content-for="navbarAction">
-    <a ng-href="#/add-bank" class="btn">添加</a>
+    <a ng-href="#/add-bank" class="btn" ng-show="!bank">添加</a>
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
-        <div class="section">
-            已添加银行
-        </div>
-        <div class="bank-item blue-stip">
+        <div ng-show="bank">
             <div class="section">
-                <div class="section bg-light-blue" style>
-                    <span class="btn bg-light-blue text-white">中国工商银行</span>
-                    <span class="text-white">尾号6628</span>
-                    <div class="section section-wide bg-light-blue text-white">开户人姓名：俊村</div>
-                </div>
-                <div class="btn-group justified">
-                    <span class="section text-center">修改</span>
-                    <span class="section text-center">删除</span>
+                已添加银行
+            </div>
+            <div class="bank-item blue-stip">
+                <div class="section">
+                    <div class="section bg-light-blue" style>
+                        <span class="btn bg-light-blue text-white">{{ bank.name }}</span>
+                        <span class="text-white">尾号{{ bank.card_number}}</span>
+                        <div class="section section-wide bg-light-blue text-white">开户人姓名：{{ user.realname }}</div>
+                    </div>
+                    <div class="btn-group justified">
+                        <span class="section text-center">修改</span>
+                        <span class="section text-center">删除</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="bank-item green-stip">
-            <div class="section">
-                <div class="section bg-light-green" style>
-                    <span class="btn bg-light-green text-white">中国工商银行</span>
-                    <span class="text-white">尾号6628</span>
-                    <div class="section section-wide bg-light-green text-white">开户人姓名：俊村</div>
-                </div>
-                <div class="btn-group justified">
-                    <span class="section text-center">修改</span>
-                    <span class="section text-center">删除</span>
-                </div>
-            </div>
-        </div>
+        <div class="text-center section" ng-show="!bank">暂无银行卡</div>
     </div>
 </div>

@@ -84,12 +84,12 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
         token: function() {
             return $http({
                 url: config.url + "/v1/service/token",
-                method: "PUT",
+                method: "POST",
                 data: angular.extend({}, config.common_params, {
                     "token": localStorageService.cookie.get("token")
                 })
             }).then(function(data) {
-                return data.data[0];
+                localStorageService.cookie.set("token",data.result.token);
             })
         },
         forgetPassword: function(telephone, smscode, password) {
@@ -124,7 +124,8 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                     method: "GET",
                     params: angular.extend({}, config.common_params, {
                         "token": localStorageService.cookie.get("token")
-                    })
+                    }),
+                    cache:true,
                 }).then(function(data) {
                     return data.data;
                 })
@@ -133,6 +134,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 return $http({
                     url: config.url + "/v1/service/user/account",
                     method: "GET",
+                    cache:true,
                     params: angular.extend({}, config.common_params, {
                         "token": localStorageService.cookie.get("token")
                     })
@@ -155,8 +157,21 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
         charge: function() {
 
         },
-        cash: function() {
-
+        cash: function(cash) {
+            return $http({
+                url: config.url + "/v1/service/encashment",
+                method: "POST",
+                data: angular.extend({}, config.common_params, {
+                    "amount":cash.money,
+                    "dealpwd":cash.password,
+                    "signcode":$rootScope.signcode,
+                    "smscode":cash.smscode,
+                    "cardId":cash.id,
+                    "token": localStorageService.cookie.get("token"),
+                })
+            }).then(function(data) {
+                return data.data;
+            })
         },
         updateSignPassword: function() {
 
@@ -176,49 +191,3 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
         }
     }
 });
-var user_parser = function(data) {
-    var user = new _m_user;
-
-    data = _test_user;
-
-    user.id = data.id,
-        user.nickname = data.nickname,
-        user.realname = data.realname,
-        user.total = data.total,
-        user.earning = data.earning,
-        user.frozen = data.frozen,
-
-        user.identify = data.identify,
-        user.telephone = data.telephone,
-        user.email = data.email,
-
-        user.sex = data.sex,
-        user.birthday = data.birthday,
-        user.degree = data.degree,
-        user.address = data.address,
-        user.industry = data.industry,
-        user.scale = data.scale,
-        user.job = data.job,
-        user.income = data.income
-    return user;
-}
-var _test_user = {
-    id: 111,
-    nickname: "juncun",
-    realname: "陈生",
-    total: "14,000",
-    earning: "45,000",
-    frozen: "4,000",
-
-    identify: "450881**********11111",
-    telephone: "137****2373",
-    email: "2818921054@qq.com",
-
-    sex: "男",
-    degree: "小学毕业",
-    address: "深圳宝安财富港",
-    industry: "",
-    scale: "10人以内",
-    job: "工程师",
-    income: "5000元"
-}

@@ -1,5 +1,5 @@
 angular.module("VVBank").constant("config", {
-    url: "http://localhost:8000/proxy/vv.kksdapp.com:9090",
+    url: "http://localhost:8000/proxy/58.60.243.51:9090",
     appid: "android_vv",
     version: "1.0",
     smstype: {
@@ -13,7 +13,8 @@ angular.module("VVBank").constant("config", {
     request: {
         "SUCCESS": "0000",
         "EXIST": "1",
-        "UNEXIST": 0
+        "UNEXIST": 0,
+        "TOKEN_INVALID":"0403"
     },
     common_params: {
         appid: "android_vv",
@@ -83,4 +84,26 @@ angular.module("VVBank").constant("config", {
         "4": "1000-5000人",
         "5": "5000+人"
     },
+    banks: {
+        "ccb": "建设银行",
+        "icbc": "工商银行",
+        "abc": "农业银行",
+        "cmb": "招商银行",
+        "boc": "中国银行",
+        "bocom": "交通银行",
+        "psbc": "邮政银行",
+        "ceb": "光大银行",
+        "cmbc": "民生银行",
+        "cib": "兴业银行",
+        "citic": "中信银行",
+        "spdb": "浦发银行",
+        "pab": "平安银行",
+        "gdb": "广发银行",
+        "hxbc": "华夏银行",
+        "bos": "上海银行",
+        "njcb": "南京银行",
+        "bobj": "北京银行",
+        "nbcb": "宁波银行",
+        "tccb": "天津银行"
+    }
 });

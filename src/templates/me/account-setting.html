@@ -12,70 +12,71 @@
         <form name="accountForm" ng-submit="ajaxForm(this)">
             <div class="section">
                 <div class="semi-auto semi-left-75">
-                    <span class="semi-fixed-left semi-width-150">昵称</span>
+                    <span class="semi-fixed-left semi-width-750">昵称</span>
                     <div class="text-grey">{{ user.nickname || "未填写"}}</div>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75 semi-right-150">
-                    <span class="semi-fixed-left semi-width-150">真实姓名</span>
+                    <span class="semi-fixed-left semi-width-750">真实姓名</span>
                     <div class="text-grey">{{ user.realname || "未填写"}}</div>
-                    <span class="semi-fixed-right semi-width-150 text-success text-right" ng-show="safety_info.realname.status ==1"><i class="vv vv-text-success vv-22"></i>已认证</span>
-                    <span class="semi-fixed-right semi-width-150 text-grey text-right" ng-show="safety_info.realname.status !=1"><i class="vv vv-22"></i>未认证</span>
+                    <span class="semi-fixed-right semi-width-750 text-success text-right" ng-show="safety_info.realname.status ==1"><i class="vv vv-text-success vv-22"></i>已认证</span>
+                    <span class="semi-fixed-right semi-width-750 text-grey text-right" ng-show="safety_info.realname.status !=1"><i class="vv vv-22"></i>未认证</span>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75 semi-right-150">
-                    <span class="semi-fixed-left semi-width-150">身份证号</span>
+                    <span class="semi-fixed-left semi-width-750">身份证号</span>
                     <div class="text-grey">{{ user.identify || "未填写"}}</div>
-                    <span class="semi-fixed-right semi-width-150 text-success text-right" ng-show="safety_info.identify.status ==1"><i class="vv vv-text-success vv-22"></i>已认证</span>
-                    <span class="semi-fixed-right semi-width-150 text-grey text-right" ng-show="safety_info.identify.status !=1"><i class="vv vv-22"></i>未认证</span>
+                    <span class="semi-fixed-right semi-width-750 text-success text-right" ng-show="safety_info.realname.status ==1"><i class="vv vv-text-success vv-22"></i>已认证</span>
+                    <span class="semi-fixed-right semi-width-750 text-grey text-right" ng-show="safety_info.realname.status !=1"><i class="vv vv-22"></i>未认证</span>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75 semi-right-150">
-                    <span class="semi-fixed-left semi-width-150">手机号</span>
+                    <span class="semi-fixed-left semi-width-750">手机号</span>
                     <div class="text-grey">{{ user.telephone || "未填写"}}</div>
-                    <span class="semi-fixed-right semi-width-150 text-success text-right" ng-show="safety_info.telephone.status ==2"><i class="vv vv-text-success vv-22"></i>已认证</span>
-                    <span class="semi-fixed-right semi-width-150 text-grey text-right" ng-show="safety_info.telephone.status !=2"><i class="vv vv-22"></i>未认证</span>
+                    <span class="semi-fixed-right semi-width-750 text-success text-right" ng-show="safety_info.telephone.status ==2"><i class="vv vv-text-success vv-22"></i>已认证</span>
+                    <span class="semi-fixed-right semi-width-750 text-grey text-right" ng-show="safety_info.telephone.status !=2"><i class="vv vv-22"></i>未认证</span>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
-                    <span class="semi-fixed-left semi-width-150">性别</span>
+                    <span class="semi-fixed-left semi-width-750">性别</span>
                     <select class="block full-width" name="sex" ng-model="user.sex" value="{{user.sex}}" required>
                         <option selected>男</option>
                         <option>女</option>
+                        <option>其他</option>
                     </select>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
-                    <span class="semi-fixed-left semi-width-150">出生日期</span>
+                    <span class="semi-fixed-left semi-width-750">出生日期</span>
                     <input type="date" value="{{user.birthday}}" name="birthday" ng-model="user.birthday" class="block full-width" required>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
-                    <span class="semi-fixed-left semi-width-150">最高学历</span>
+                    <span class="semi-fixed-left semi-width-750">最高学历</span>
                     <select class="block full-width" name="degree" ng-model="user.degree" ng-options="d for d in degrees" required></select>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
-                    <span class="semi-fixed-left semi-width-150  btn section-wide text-left">毕业院校</span>
+                    <span class="semi-fixed-left semi-width-750  btn section-wide text-left">毕业院校</span>
                     <input type="text" class="form-control block full-width" name="school" ng-model="user.school" required placeholder="请输入毕业院校">
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
-                    <span class="semi-fixed-left semi-width-150  btn section-wide text-left">居住地址</span>
+                    <span class="semi-fixed-left semi-width-750  btn section-wide text-left">居住地址</span>
                     <input type="text" class="form-control block full-width" name="address" ng-model="user.address" required placeholder="请输入居住地址">
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
-                    <span class="semi-fixed-left semi-width-150">婚否</span>
+                    <span class="semi-fixed-left semi-width-750">婚否</span>
                     <select class="block full-width" name="is_marry" ng-model="user.is_marry" value="{{user.is_marry}}" required>
                         <option selected>已婚</option>
                         <option>未婚</option>
@@ -84,25 +85,25 @@
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
-                    <span class="semi-fixed-left semi-width-150 btn section-wide text-left">公司行业</span>
+                    <span class="semi-fixed-left semi-width-750 btn section-wide text-left">公司行业</span>
                     <input type="text" class="form-control block full-width" name="industry" ng-model="user.industry" required placeholder="请输入公司所在行业">
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
-                    <span class="semi-fixed-left semi-width-150">公司规模</span>
+                    <span class="semi-fixed-left semi-width-750">公司规模</span>
                     <select class="block full-width" name="scale" ng-model="user.scale" ng-options="s for s in scales" required></select>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
-                    <span class="semi-fixed-left semi-width-150  btn section-wide text-left">职位</span>
+                    <span class="semi-fixed-left semi-width-750  btn section-wide text-left">职位</span>
                     <input type="text" class="form-control block full-width" name="job" ng-model="user.job" required placeholder="请输入居住地址">
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
-                    <span class="semi-fixed-left semi-width-150">月收入</span>
+                    <span class="semi-fixed-left semi-width-750">月收入</span>
                     <select class="block full-width" name="income" ng-model="user.income" ng-options="i for i in incomes" required></select>
                 </div>
             </div>

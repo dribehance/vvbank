@@ -22,7 +22,7 @@ var licaiController = function($scope, licaiServices, toastServices, parserServi
                 $scope.groups = result.groups;
                 $scope.exchanges = result.exchanges
             } else {
-                console.log("query licaiproduct error")
+                errorServices.autoHide(data.message)
             }
             // $scope.groups = data;
         });

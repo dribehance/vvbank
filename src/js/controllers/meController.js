@@ -1,10 +1,13 @@
-var meController = function($scope,errorServices,parserServices,userServices,config){
-	userServices.info.account().then(function(data){
-		if (data.respcode == config.request.SUCCESS) {
-			$scope.user = parserServices.parseUser(data.result)
-		}
-		else {
-			errorServices.autoHide(data.message)
-		}
-	})	
+var meController = function($scope, $rootScope, errorServices, parserServices, userServices, config) {
+    userServices.info.account().then(function(data) {
+        if (data.respcode == config.request.SUCCESS) {
+            var user = parserServices.parseUser(data.result);
+            $rootScope.user.username = user.username;
+            $rootScope.user.total = user.total;
+            $rootScope.user.frozen = user.frozen;
+            $rootScope.user.earning = user.earning;
+        } else {
+            errorServices.autoHide(data.message)
+        }
+    })
 }

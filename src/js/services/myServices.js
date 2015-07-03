@@ -48,11 +48,29 @@ angular.module("VVBank").factory("myServices",function($http,localStorageService
 				return data.data;
 			})
 		},
-		pocket:function(){
-
+		pocket:function(page){
+			return $http({
+				url:config.url + "/v1/service/bonus",
+				method:"GET",
+				params:angular.extend({},config.common_params,{
+					"token":localStorageService.cookie.get("token"),
+					"current":page
+				})
+			}).then(function(data){
+				return data.data;
+			})
 		},
-		message:function(){
-			
+		message:function(page){
+			return $http({
+				url:config.url + "/v1/service/eyuan",
+				method:"GET",
+				params:angular.extend({},config.common_params,{
+					"token":localStorageService.cookie.get("token"),
+					"current":page
+				})
+			}).then(function(data){
+				return data.data;
+			})
 		}
 	}
 })

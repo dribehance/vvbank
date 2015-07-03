@@ -14,7 +14,8 @@ angular.module("VVBank").factory("productServices", function($rootScope, $http,l
             return $http({
                 url:config.url + "/v1/service/attachment/"+productID,
                 method:"GET",
-                params:angular.extend({},config.common_params)
+                params:angular.extend({},config.common_params),
+                cache:true
             }).then(function(data){
                 return data.data;
             })

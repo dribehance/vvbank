@@ -26,7 +26,7 @@
         </div>
         <div class="btn-group pull-left" ui-yield-to="backAction"></div>
         <div class="btn-group pull-right" ui-yield-to="navbarAction">
-          <a class="btn" tel="18689221152">
+          <a class="btn">
             <span class="vv-tel"></span>
           </a>
         </div>
@@ -40,7 +40,7 @@
         </div>
       </div>
       <!-- error tip -->
-      <div class="error-msg text-center" ui-state="error_state" ui-if="error_state">{{ errormsg }}</div>
+      <div class="error-msg section section-warning text-center" ui-state="error_state" ui-if="error_state">{{ errormsg }}</div>
       <!-- toast tip -->
       <div class="toast" ui-state="toast_state" ui-if="toast_state">
           <span class="loader"></span>
