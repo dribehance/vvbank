@@ -34,7 +34,7 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
             return $http({
                 url: config.url + "/v1/service/bankinfo",
                 method: "GET",
-                cache:true,
+                cache: true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.cookie.get("token")
                 })
@@ -79,6 +79,12 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
                 },
                 data: angular.extend({}, config.common_params, {
                     "token": localStorageService.cookie.get("token"),

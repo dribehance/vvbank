@@ -12,7 +12,7 @@
         <div class="text-right"><a ng-href="#/setting" class="vv vv-setting vv-38"></a></div>
             <div class="semi-auto semi-left-98">
                 <span class="semi-fixed-left semi-width-98">
-					<img src="/images/default-avatar.png" alt="">
+					<img ng-src="{{ user.avatar || staticImageUrl +'images/default-avatar.png'}}" alt="">
 				</span>
                 <div class="section bg-primary">
                     <p class="text-large"><b>{{ user.username || "..." }}</b>

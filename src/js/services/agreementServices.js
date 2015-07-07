@@ -8,7 +8,6 @@ angular.module("VVBank").factory("agreementServices", function($http, config) {
                     "type": type
                 })
             }).then(function(data) {
-            	console.log(data)
                 return data.data;
             })
         }

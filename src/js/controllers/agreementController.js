@@ -4,7 +4,6 @@ var agreementController = function($scope,agreementServices,errorServices,config
 		content:""
 	}
 	agreementServices.get(config.agreement.USAGE).then(function(data){
-		console.log(data)
 		if (data.respcode == data.request.SUCCESS) {
 			$scope.agreement.title = data.title;
 			$scope.agreement.content = data.content

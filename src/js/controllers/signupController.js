@@ -14,7 +14,6 @@ var signupController = function($rootScope,$scope,$location,userServices,errorSe
 	$scope.callbackTimer = {};
 	$scope.callbackTimer.counting = 0;
 	$scope.callbackTimer.finish = function() {
-		console.log("callbackTimer");
 		$scope.callbackTimer.counting = 0;
 		$scope.$apply();
 	}
@@ -26,8 +25,7 @@ var signupController = function($rootScope,$scope,$location,userServices,errorSe
 	$scope.nextStep = function () {
 		toastServices.show();
 		userServices.exist($scope.input.telephone,$scope.input.username).then(function(data){
-			console.log("nextStep verify register")
-			console.log(data)
+			
 			toastServices.hide();
 			if ( data.result.status == config.request.UNEXIST ) {
 				SharedState.set("signUpStep",2)

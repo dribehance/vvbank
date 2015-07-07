@@ -53,6 +53,14 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
             });
             // each time startup the app fetch the user info
             $rootScope.user = {};
+            console.log($location.$$host)
+            if ($location.$$host == "localhost") {
+                $rootScope.staticImageUrl = "/";
+            }
+            else {
+                $rootScope.staticImageUrl = "/app/";
+            }
+            // $rootScope.imageUrl = $location
             if (localStorageService.cookie.get("token")) {
                 userServices.info.basic().then(function(data) {
                     if (data.respcode == config.request.SUCCESS) {

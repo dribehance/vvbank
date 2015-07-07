@@ -9,23 +9,38 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
-        <div class="vv-divide vv-5"></div>
-        <div class="section">
-            <div class="vv-table">
+        <div class="section section-condensed">
+            <div class="vv-table text-center">
                 <div class="vv-table-header">
-                    <div class="btn-group justified text-center">
-                        <span class="text-ellipsis">时间 </span>
-                        <span class="text-ellipsis">类别</span>
-                        <span class="text-ellipsis">金额（元） </span>
-                        <span class="text-ellipsis">状态 </span>
+                    <div class="row" style="line-height:43px">
+                        <div class="col-xs-3">
+                            <span class="text-ellipsis">时间 </span>
+                        </div>
+                        <div class="col-xs-3">
+                            <span class="text-ellipsis">类别 </span>
+                        </div>
+                        <div class="col-xs-3">
+                            <span class="text-ellipsis">金额（元） </span>
+                        </div>
+                        <div class="col-xs-3">
+                            <span class="text-ellipsis">状态 </span>
+                        </div>
                     </div>
                 </div>
                 <div class="vv-table-content">
-                	<div class="btn-group justified text-center text-grey" ng-repeat="bill in bills">
-                        <span class="text-ellipsis">{{ bill.date }}</span>
-                        <span class="text-ellipsis">{{ bill.type }}</span>
-                        <span class="text-ellipsis">{{ bill.money}}</span>
-                        <span class="text-ellipsis">{{ bill.status}}</span>
+                    <div class="row" style="line-height:43px" ng-repeat="bill in bills">
+                        <div class="col-xs-3">
+                            <span class="text-ellipsis">{{ bill.date }}</span>
+                        </div>
+                        <div class="col-xs-3">
+                            <span class="text-ellipsis">{{ bill.type }}</span>
+                        </div>
+                        <div class="col-xs-3">
+                            <span class="text-ellipsis">{{ bill.money}} </span>
+                        </div>
+                        <div class="col-xs-3">
+                            <span class="text-ellipsis">{{ bill.status}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
