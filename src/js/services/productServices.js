@@ -27,6 +27,12 @@ angular.module("VVBank").factory("productServices", function($rootScope, $http, 
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
                 data: angular.extend({}, config.common_params, {
                     "token": localStorageService.cookie.get("token"),
                     "password": entity.password,
