@@ -1,5 +1,5 @@
 angular.module("VVBank").constant("config", {
-    url: "http://localhost:8000/proxy/58.60.243.51:9090",
+    url: "http://localhost:8000/proxy/58.60.223.171:9090",
     appid: "android_vv",
     version: "1.0",
     smstype: {
@@ -105,5 +105,9 @@ angular.module("VVBank").constant("config", {
         "bobj": "北京银行",
         "nbcb": "宁波银行",
         "tccb": "天津银行"
+    },
+    bill_status:{
+        "-1":"支出",
+        "1":"收入"
     }
 });

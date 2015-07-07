@@ -4,6 +4,9 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
             return $http({
                 url: config.url + "/v1/service/user/userinfo",
                 method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
                 data: angular.extend({}, config.common_params, {
                     "token": localStorageService.cookie.get("token"),
                     "position": user.job,
@@ -25,6 +28,7 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
             return $http({
                 url: config.url + "/v1/service/bankinfo",
                 method: "GET",
+                cache:true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.cookie.get("token")
                 })
@@ -39,6 +43,9 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
             return $http({
                 url: config.url + "/v1/service/bankinfo",
                 method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
                 data: angular.extend({}, config.common_params, {
                     "token": localStorageService.cookie.get("token"),
                     "cardno": bank.card_number,
@@ -58,6 +65,9 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
             return $http({
                 url: config.url + "/v1/service/bankinfo",
                 method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
                 data: angular.extend({}, config.common_params, {
                     "token": localStorageService.cookie.get("token"),
                     "cardno": bank.card_number,

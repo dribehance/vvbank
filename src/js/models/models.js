@@ -107,7 +107,8 @@ var _m_bill = function() {
         return {
             "date": "",
             "type": "",
-            "money": ""
+            "money": "",
+            "status":""
         }
     }
     // eyuan ------------------

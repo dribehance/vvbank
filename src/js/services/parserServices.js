@@ -187,11 +187,13 @@ angular.module("VVBank").factory("parserServices", function(config) {
             var bills = [];
             for (var i=0,r=data;i<r.length;i++) {
                 var bill = new _m_bill();
-                bill.date = r[i].time;
+                bill.date = r[i].time.split(" ")[0];
                 bill.type = r[i].fundType;
+                bill.status = config.bill_status[r[i].fundStatus];
                 bill.money = r[i].amount;
+                bills.push(bill);
             }
-
+            return bills;
         },
         // safety info 
         parseSafetyInfo:function(data) {
@@ -252,7 +254,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
             var activities = [];
             for (var i = 0; i < data.length; i++) {
                 var activity = this.parseActivity(data[i]);
-                Activities.push(activity);
+                activities.push(activity);
             }
             return activities;
         },
