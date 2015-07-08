@@ -34,7 +34,7 @@ angular.module("VVBank").factory("productServices", function($rootScope, $http, 
                     return str.join("&");
                 },
                 data: angular.extend({}, config.common_params, {
-                    "token": localStorageService.cookie.get("token"),
+                    "token": localStorageService.get("token"),
                     "password": entity.password,
                     "investAmount": entity.amount,
                     "productId": entity.productId

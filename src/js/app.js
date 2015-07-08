@@ -231,7 +231,8 @@ angular.module("VVBank", [
         $httpProvider.defaults.useXDomain = true;
         $httpProvider.defaults.withCredentials = true;
         delete $httpProvider.defaults.headers.common["X-Requested-With"];
-        localStorageServiceProvider.setStorageCookie(1/50)
+        localStorageServiceProvider.setStorageCookie(1/50);
+        $httpProvider.interceptors.push('tokenInterceptor');
 
 }).run(function($rootScope, $window,appServices) {
     // init event such as routechangestart...

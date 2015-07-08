@@ -47,7 +47,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
             });
         },
         checkAuth: function() {
-            if (localStorageService.cookie.get("token")) {
+            if (localStorageService.get("token")) {
                 return true;
             }
             return false;
@@ -68,7 +68,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 data: angular.extend({}, config.common_params, {
                     "realname": realname,
                     "idcode": identifyID,
-                    "token": localStorageService.cookie.get("token")
+                    "token": localStorageService.get("token")
                 })
             }).then(function(data) {
                 return data.data;
@@ -113,10 +113,10 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                     return str.join("&");
                 },
                 data: angular.extend({}, config.common_params, {
-                    "token": localStorageService.cookie.get("token")
+                    "token": localStorageService.get("token")
                 })
             }).then(function(data) {
-                localStorageService.cookie.set("token", data.result.token);
+                localStorageService.set("token", data.result.token);
             })
         },
         forgetPassword: function(telephone, smscode, password) {
@@ -139,7 +139,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                     url: config.url + "/v1/service/user/userinfo",
                     method: "GET",
                     params: angular.extend({}, config.common_params, {
-                        "token": localStorageService.cookie.get("token")
+                        "token": localStorageService.get("token")
                     })
                 }).then(function(data) {
                     return data.data;
@@ -150,7 +150,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                     url: config.url + "/v1/service/safeinfo",
                     method: "GET",
                     params: angular.extend({}, config.common_params, {
-                        "token": localStorageService.cookie.get("token")
+                        "token": localStorageService.get("token")
                     }),
                     cache: true,
                 }).then(function(data) {
@@ -163,7 +163,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                     method: "GET",
                     cache: true,
                     params: angular.extend({}, config.common_params, {
-                        "token": localStorageService.cookie.get("token")
+                        "token": localStorageService.get("token")
                     })
                 }).then(function(data) {
                     return data.data;
@@ -174,7 +174,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                     url: config.url + "/v1/service/user/account",
                     method: "GET",
                     params: angular.extend({}, config.common_params, {
-                        "token": localStorageService.cookie.get("token")
+                        "token": localStorageService.get("token")
                     })
                 }).then(function(data) {
                     return data.data;
@@ -203,7 +203,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                     "signcode": $rootScope.signcode,
                     "smscode": cash.smscode,
                     "cardId": cash.id,
-                    "token": localStorageService.cookie.get("token"),
+                    "token": localStorageService.get("token"),
                 })
             }).then(function(data) {
                 return data.data;
@@ -226,7 +226,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                     return str.join("&");
                 },
                 data: angular.extend({}, config.common_params, {
-                    "token": localStorageService.cookie.get("token"),
+                    "token": localStorageService.get("token"),
                     "tradingPwd": password.n,
                     "oldpassword": password.o
                 })

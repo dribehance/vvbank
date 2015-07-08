@@ -50,13 +50,10 @@ var signupController = function($rootScope,$scope,$location,userServices,errorSe
 	$scope.ajaxForm = function(form) {
 		userServices.register($scope.input.telephone,$scope.input.password,$scope.input.username,$scope.input.referee,$scope.input.smscode).then(function(data){
 			if (data.respcode == config.request.SUCCESS) {
-				console.log("SUCCESS register")
-				localStorageService.cookie.set("token",data.result.token);
+				localStorageService.set("token",data.result.token);
 				$location.path("/index").replace();
 			}
 			else {
-				console.log(data)
-				console.log("error")
 				errorServices.autoHide(data.message);
 			}
 		});

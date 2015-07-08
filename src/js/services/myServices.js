@@ -5,7 +5,7 @@ angular.module("VVBank").factory("myServices",function($http,localStorageService
 				url:config.url + "/v1/service/invests",
 				method:"GET",
 				params:angular.extend({},config.common_params,{
-					"token":localStorageService.cookie.get("token"),
+					"token":localStorageService.get("token"),
 					"current":page
 				}),
 				cache:true,
@@ -18,7 +18,7 @@ angular.module("VVBank").factory("myServices",function($http,localStorageService
 				url:config.url + "/v1/service/fundsdetail",
 				method:"GET",
 				params:angular.extend({},config.common_params,{
-					"token":localStorageService.cookie.get("token"),
+					"token":localStorageService.get("token"),
 					"current":page
 				}),
 				cache:true,
@@ -31,7 +31,7 @@ angular.module("VVBank").factory("myServices",function($http,localStorageService
 				url:config.url + "/v1/service/fundsdetail",
 				method:"GET",
 				params:angular.extend({},config.common_params,{
-					"token":localStorageService.cookie.get("token"),
+					"token":localStorageService.get("token"),
 					"current":page
 				})
 			}).then(function(data){
@@ -43,7 +43,7 @@ angular.module("VVBank").factory("myServices",function($http,localStorageService
 				url:config.url + "/v1/service/eyuan",
 				method:"GET",
 				params:angular.extend({},config.common_params,{
-					"token":localStorageService.cookie.get("token"),
+					"token":localStorageService.get("token"),
 					"current":page
 				})
 			}).then(function(data){
@@ -55,7 +55,7 @@ angular.module("VVBank").factory("myServices",function($http,localStorageService
 				url:config.url + "/v1/service/bonus",
 				method:"GET",
 				params:angular.extend({},config.common_params,{
-					"token":localStorageService.cookie.get("token"),
+					"token":localStorageService.get("token"),
 					"current":page
 				})
 			}).then(function(data){
@@ -67,7 +67,7 @@ angular.module("VVBank").factory("myServices",function($http,localStorageService
 				url:config.url + "/v1/service/eyuan",
 				method:"GET",
 				params:angular.extend({},config.common_params,{
-					"token":localStorageService.cookie.get("token"),
+					"token":localStorageService.get("token"),
 					"current":page
 				})
 			}).then(function(data){

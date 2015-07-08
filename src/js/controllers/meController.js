@@ -6,7 +6,6 @@ var meController = function($scope, $rootScope, errorServices, parserServices, u
             $rootScope.user.total = user.total;
             $rootScope.user.frozen = user.frozen;
             $rootScope.user.earning = user.earning;
-            console.log($scope.user)
         } else {
             errorServices.autoHide(data.message)
         }

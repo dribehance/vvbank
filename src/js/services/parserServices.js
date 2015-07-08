@@ -26,7 +26,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
         parseProduct: function(data) {
             var product = new _m_product();
             product.id = data.productId;
-            product.title = data.productName + data.productCode;
+            product.title = data.productName;
             product.feature = feature_parser(data.repaymentType);
             product.duration = data.investPeriod || "";
             product.limit = data.minInvestAmount + "元";
