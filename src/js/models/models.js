@@ -34,7 +34,7 @@ var _m_user = function() {
             sex: "男",
             is_marry: "",
             school: "",
-            birthday: "1990-01-01",
+            birthday: new Date("1990,01,01"),
             degree: "小学毕业",
             address: "未填写",
             industry: "未填写",

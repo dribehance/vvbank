@@ -19,6 +19,9 @@ angular.module("VVBank").factory("errorServices", function($rootScope, $timeout,
         	toastServices.hide();
         	// tip error
             switch (status) {
+                case 0:
+                    this.autoHide("连接超时");
+                    break;
                 case 500:
                 case 501:
                 case 502:
@@ -31,7 +34,7 @@ angular.module("VVBank").factory("errorServices", function($rootScope, $timeout,
                 case 510:
                     this.autoHide("服务器连接出错");
                     break;
-                default:;
+                default :;
             }
             console.log("onRequestError output status, data, headers, config")
             console.log(status);

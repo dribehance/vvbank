@@ -33,25 +33,25 @@
                     <div class="section text-center">
                         <div><strong>预期年化收益</strong>
                         </div>
-                        <p class="text-very-large text-orange">{{ product.percentage }}</p>
+                        <p class="text-very-large text-orange">{{ product.percentage | currency:"" }}%</p>
                     </div>
                     <div class="section text-grey">
                         <div class="semi-auto semi-left-75 semi-right-75">
                             <span class="semi-fixed-left semi-width-75">当前进度：</span>
-                            <div class="progress">
+                            <div class="progress rectangle">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ product.progress }};">
-                                    <span class="sr-only">{{ product.progress }}Complete</span>
+                                    <span class="sr-only">{{ product.progress |currency:"" }}Complete</span>
                                 </div>
                             </div>
-                            <span class="semi-fixed-right semi-width-75 text-center">{{ product.progress }}</span>
+                            <span class="semi-fixed-right semi-width-75 text-center">{{ product.progress | currency:"" }}%</span>
                         </div>
                     </div>
                     <div class="section text-grey row">
                         <div class="col-xs-6 col-condensed text-left text-ellipsis">
-                            项目金额：{{product.total}}
+                            项目金额：{{product.total | currency:""}}元
                         </div>
                         <div class="col-xs-6 col-condensed text-right text-ellipsis">
-                            项目期限：{{ product.duration}}
+                            项目期限：{{ product.duration}}天
                         </div>
                     </div>
                     <div class="section text-grey text-ellipsis">

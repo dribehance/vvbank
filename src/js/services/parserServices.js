@@ -30,12 +30,12 @@ angular.module("VVBank").factory("parserServices", function(config) {
             product.feature = feature_parser(data.repaymentType);
             product.duration = data.investPeriod || "";
             product.limit = data.minInvestAmount + "元";
-            product.percentage = data.annualRate + "%";
+            product.percentage = data.annualRate || "0";
             product.addition = data.addRate || "0";
-            product.progress = data.totalInvestAmount / data.amount * 100 + "%";
+            product.progress = (parseInt(data.totalInvestAmount) || "0") / data.amount * 100;
             product.safety = safety_parser(data.safety);
             product.total = data.amount || "";
-            product.remain = parseInt(data.amount) - parseInt(data.totalInvestAmount);
+            product.remain = parseInt(data.amount) - (parseInt(data.totalInvestAmount) || "0");
             product.tag = parseTag(product.remain);
             product.faqiren = data.initiator || "";
             product.dealer = data.underwriter || "";
@@ -135,7 +135,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
             user.sex = config.sex[data.gender] || "男";
             user.is_marry = config.is_marry[data.maritalStatus] || "未婚";
             user.school = data.college || "";
-            user.birthday = data.birthday || new Date("1990-01-01");
+            user.birthday = new Date(data.birthday || "1990,01,01");
             user.degree = data.maxEducation || "本科生";
             user.address = data.homeAddress || "";
             user.industry = data.industry || "";

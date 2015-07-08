@@ -30,10 +30,10 @@
                             <span class="text-ellipsis">{{investment.name}} </span>
                         </div>
                         <div class="col-xs-4">
-                            <span class="text-ellipsis">{{investment.money}} </span>
+                            <span class="text-ellipsis">{{investment.money | currency:"￥"}} </span>
                         </div>
                         <div class="col-xs-4">
-                            <span class="text-ellipsis">{{investment.rate + "%"}} </span>
+                            <span class="text-ellipsis">{{investment.rate | currency:""}}% </span>
                         </div>
                     </div>
                 </div>
