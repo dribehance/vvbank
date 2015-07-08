@@ -31,8 +31,7 @@ angular.module("VVBank").factory("errorServices", function($rootScope, $timeout,
                 case 510:
                     this.autoHide("服务器连接出错");
                     break;
-                default:
-                    ;
+                default:;
             }
             console.log("onRequestError output status, data, headers, config")
             console.log(status);

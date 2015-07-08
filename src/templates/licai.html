@@ -41,17 +41,21 @@
                             <i class="vv vv-tag vv-46"></i>
                         </span>
                     </div>
-                    <p class="text-grey text-right">{{product.feature}}</p>
                     <div class="section-wide text-grey row">
                         <div class="col-xs-8 nowrap">
                             <span class="tag-state text-very-big"><b>{{product.percentage}}</b></span>
-                            <sub class="tag-state text-large">
-                                <b>{{product.addition}}</b>
+                            <sub class="tag-state text-small">
+                                <b>{{"+"+product.addition +"%"}}</b>
                                 <i class="vv vv-43 vv-state"></i>
                             </sub>
                         </div>
                         <div class="col-xs-4 text-right text-ellipsis">
+                            <div class="section section-wide">
+                                
+                            <div class="text-grey text-right">{{product.feature}}</div>
                             <span class="tag-state">{{product.duration}}</span>天<span class="tag-state">{{product.limit}}</span>元起投
+                        
+                            </div>
                         </div>
                     </div>
                     <span class="item-state"><i class="vv vv-stamp vv-87"></i></span>
