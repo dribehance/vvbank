@@ -11,6 +11,7 @@ var indexController = function($scope, $timeout, toastServices, licaiServices, b
         }, 0);
     });
     bannerServices.get().then(function(data) {
+        console.log(data)
         $scope.banners = parserServices.parseBanner(data.result);
         $timeout(function() {
             $("#banner").owlCarousel({

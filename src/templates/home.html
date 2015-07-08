@@ -1,8 +1,8 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="owl-carousel banner" id="banner">
-            <a href="#/{{ banner.url }}">
-                <img ng-src="{{ banner.path }}" alt="" ng-repeat="banner in banners" class="block full-width">
+            <a href="{{ banner.path }}" ng-repeat="banner in banners">
+                <img ng-src="{{ banner.path }}" alt="" class="block full-width">
             </a>
 
         </div>

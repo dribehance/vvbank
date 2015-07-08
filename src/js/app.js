@@ -123,6 +123,14 @@ angular.module("VVBank", [
                 factory:loginInterceptor
             }
         })
+        .when("/update-bank", {
+            templateUrl: "me/update-bank.html",
+            reloadOnSearch: false,
+            controller: updateBankController,
+            resolve: {
+                factory:loginInterceptor
+            }
+        })
         .when("/invite", {
             templateUrl: "me/invite.html",
             reloadOnSearch: false,

@@ -34,16 +34,12 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
             return $http({
                 url: config.url + "/v1/service/bankinfo",
                 method: "GET",
-                cache: true,
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token")
                 })
             }).then(function(data) {
                 return data.data;
             })
-        },
-        queryBankById: function(id) {
-
         },
         updateBank: function(bank) {
             return $http({
@@ -60,18 +56,38 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                 },
                 data: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
+                    "cardId": bank.id,
                     "cardno": bank.card_number,
                     "bank": bank.name,
                     "province": bank.province,
                     "city": bank.city,
-                    "bankBranch": bank.branch
+                    "bankBranch": bank.branch,
+                    "bankCode": bank.code
                 })
             }).then(function(data) {
                 return data.data;
             })
         },
         deleteBank: function(bank) {
-
+            return $http({
+                url: config.url + "/v1/service/bankinfo",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "cardId": bank.id,
+                })
+            }).then(function(data) {
+                return data.data;
+            })
         },
         createBank: function(bank) {
             return $http({
