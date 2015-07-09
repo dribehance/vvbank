@@ -9,11 +9,10 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content product-detail">
-        <div class="section text-black text-center">
-            <div class="section"></div>
+        <div class="section text-black text-center" style="padding-bottom:0">
             <span class="h3 normal text-black">{{ product.title || "..."}}</span>
         </div>
-        <div class="section">
+        <div class="section section-sm">
             <div class="col-xs-6 col-condensed nowrap">
                 <div class="h4">预期年化收益</div>
                 <span class="text-orange text-very-big"><b>{{ product.percentage | currency:"" }}%</b></span>
@@ -23,7 +22,7 @@
                 </sub>
             </div>
             <div class="col-xs-6">
-                <div class="semi-auto semi-left-75 text-ellipsis" style="margin-top: 24px;line-height: 45px;">
+                <div class="semi-auto semi-left-75 text-ellipsis" style="margin-top: 14px;line-height: 45px;">
                     <span class="semi-fixed-left semi-width-75 text-grey">项目期限：</span>
                     <div class="text-black text-right">{{ product.duration }}天 <span class="text-grey"></span>
                     </div>
@@ -38,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="section">
+        <div class="section section-condensed">
             <div class="btn-group justified">
                 <span><i class="vv vv-18 vv-bank" style="margin-right:5px"></i>担保</span>
                 <span><i class="vv vv-18 vv-worried" style="margin-right:5px"></i>周期短</span>
@@ -46,6 +45,7 @@
                 <span><i class="vv vv-18 vv-authen" style="margin-right:5px"></i>安全性高</span>
             </div>
         </div>
+        <div class="section section-sm"></div>
         <div class="vv-divide"></div>
         <div class="row bg-white section section-wide">
             <div class="col-xs-6 section-wide text-center">
@@ -59,12 +59,12 @@
             </div>
         </div>
         <div class="vv-divide"></div>
-        <div class="text-grey section"><i class="vv vv-18 vv-faqiren" style="margin-right:5px"></i>发起人：{{ product.faqiren }}</div>
-        <div class="text-grey section"><i class="vv vv-18 vv-dealer" style="margin-right:5px"></i>承销商：{{ product.dealer }}</div>
-        <div class="text-grey section"><i class="vv vv-18 vv-house" style="margin-right:5px"></i>交易所：{{ product.exchange }}</div>
-        <div class="text-grey section"><i class="vv vv-18 vv-agency" style="margin-right:5px"></i>担保机构：{{ product.agency }}</div>
+        <div class="text-grey section section-sm"><i class="vv vv-18 vv-faqiren" style="margin-right:5px"></i>发起人：{{ product.faqiren }}</div>
+        <div class="text-grey section section-sm"><i class="vv vv-18 vv-dealer" style="margin-right:5px"></i>承销商：{{ product.dealer }}</div>
+        <div class="text-grey section section-sm"><i class="vv vv-18 vv-house" style="margin-right:5px"></i>交易所：{{ product.exchange }}</div>
+        <div class="text-grey section section-sm"><i class="vv vv-18 vv-agency" style="margin-right:5px"></i>担保机构：{{ product.agency }}</div>
         <div class="vv-divide"></div>
-        <div class="section section-wide">
+        <div class="section section-sm section-wide">
             <a ng-href="#/project/{{ product.id }}" class="block text-grey semi-auto semi-right-50">
                 <span class="btn">项目详情</span>
                 <span class="semi-fixed-right semi-width-50 text-center">
@@ -73,7 +73,7 @@
             </a>
         </div>
         <div class="vv-divide"></div>
-        <div class="section section-wide">
+        <div class="section section-sm section-wide">
             <a ng-href="#/products-files/{{ product.id }}" class="block text-grey semi-auto semi-right-50">
                 <span class="btn">相关文件</span>
                 <span class="semi-fixed-right semi-width-50 text-center">

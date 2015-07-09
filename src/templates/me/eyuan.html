@@ -12,7 +12,7 @@
 		<div class="section bg-orange text-white">
 			当前e圆（个）
 		</div>
-		<div class="section bg-orange text-very-large text-center text-white"><b>{{eyuan_group.remain}}</b></div>
+		<div class="section bg-orange text-very-large text-center text-white"><b>{{eyuan_group.remain || "0"}}</b></div>
 		<div class="section bg-orange text-right text-white hide">e圆常见问题</div>
 		<div class="section">
             <div class="vv-table">
@@ -24,12 +24,17 @@
                         <span class="text-ellipsis">结余 </span>
                     </div>
                 </div>
-                <div class="vv-table-content">
+                <div class="vv-table-content" ng-show="eyuan_group.eyuans.length>0">
                 	<div class="btn-group justified text-center text-grey" style="margin-bottom:5px" ng-repeat="eyuan in eyuan_group.eyans">
                         <span class="text-ellipsis">{{ eyuan.date }} </span>
                         <span class="text-ellipsis">{{ eyuan.type }}</span>
                         <span class="text-ellipsis">+{{ eyuan.amount }}</span>
                         <span class="text-ellipsis">{{ eyuan.remain }}</span>
+                    </div>
+                </div>
+                <div class="vv-table-content" ng-show="!eyuan_group.eyuans.length>0">
+                    <div class="section text-center">
+                        我就静静的瞅着，没有更多了...
                     </div>
                 </div>
             </div>

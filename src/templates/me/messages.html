@@ -9,7 +9,7 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content" ui-scroll-bottom="loadMore()">
-        <div class="message-item" ng-repeat="message in messages">
+        <div class="message-item" ng-repeat="message in messages" ng-show="messages.length>0">
 
             <div class="section">
                 <div class="btn-group justified">
@@ -22,6 +22,9 @@
                 {{ message.content }}
             </div>
             <div class="vv-divide vv-5"></div>
+        </div>
+        <div class="message-item text-center" ng-show="!messages.length>0">
+            我就静静的瞅着，没有更多了...
         </div>
     </div>
 </div>

@@ -29,16 +29,16 @@
                 </div>
                 <div class="vv-table-content">
                     <div class="row" style="line-height:43px" ng-repeat="bill in bills">
-                        <div class="col-xs-3">
+                        <div class="col-xs-3 text-ellipsis">
                             <span class="text-ellipsis">{{ bill.date }}</span>
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-xs-3 text-ellipsis">
                             <span class="text-ellipsis">{{ bill.type }}</span>
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-xs-3 text-ellipsis">
                             <span class="text-ellipsis">{{ bill.money | currency:"￥"}} </span>
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-xs-3 text-ellipsis">
                             <span class="text-ellipsis">{{ bill.status}}</span>
                         </div>
                     </div>
