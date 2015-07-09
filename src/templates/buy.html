@@ -11,23 +11,26 @@
     <div class="section">
         <div class="semi-auto semi-left-75">
             <span class="semi-fixed-left semi-width-75 btn section-wide text-left">投资金额：</span>
-            <input type="text" class="form-control block full-width" name="amount" ng-model="input.amount" required ng-pattern="/^[0-9]+$/" placeholder="请输入投资金额">
+            <input type="text" class="form-control block full-width rectangle" name="amount" ng-model="input.amount" required ng-pattern="/^[0-9]+$/" placeholder="请输入投资金额">
         </div>
     </div>
-    <div class="section bg-light-grey">
-        <div class="row">
-            <div class="col-xs-6">
-                <span class="btn">剩余份额：<span class="text-orange">{{input.remain}}</span>元</span>
+    <div class="row section section-wide bg-light-grey">
+        <div class="col-xs-6 section-wide text-center">
+            <span class="text-grey"><strong>剩余份额</strong></span>
+            <div class="text-orange text-large text-ellipsis"><strong>{{input.remain | currency:"￥"}}</strong>
             </div>
-            <div class="col-xs-6">
-                <span class="btn">账户余额：<span class="text-orange">{{input.balance}}</span>元</span>
+
+        </div>
+        <div class="col-xs-6 section-wide text-center">
+            <span class="text-grey"><strong>账户余额</strong></span>
+            <div class="text-orange text-large text-ellipsis"><strong>{{ input.balance | currency:"￥"}}</strong>
             </div>
         </div>
     </div>
     <div class="section">
         <div class="semi-auto semi-left-75">
             <span class="semi-fixed-left semi-width-75 btn section-wide text-left">交易密码：</span>
-            <input type="password" class="form-control block full-width" name="password" ng-model="input.password" ng-minlength=8 required placeholder="请输入交易密码">
+            <input type="password" class="form-control block full-width rectangle" name="password" ng-model="input.password" ng-minlength=8 required placeholder="请输入交易密码">
         </div>
     </div>
     <div class="vv-divide"></div>

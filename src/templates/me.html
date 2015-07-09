@@ -10,8 +10,8 @@
     <div class="scrollable-content">
         <div class="section me-info">
         <div class="text-right"><a ng-href="#/setting" class="vv vv-setting vv-38"></a></div>
-            <div class="semi-auto semi-left-98">
-                <span class="semi-fixed-left semi-width-98">
+            <div class="semi-auto semi-left-75">
+                <span class="semi-fixed-left semi-width-75">
 					<img ng-src="{{ user.avatar || staticImageUrl +'images/default-avatar.png'}}" alt="">
 				</span>
                 <div class="section bg-primary">
@@ -22,24 +22,24 @@
             </div>
         </div>
         <div class="btn-group justified bg-dark-blue">
-            <a ng-href="#/charge" class="btn btn-lg text-white">充值</a>
-            <a ng-href="#/cash" class="btn btn-lg text-white">提现</a>
+            <a ng-href="#/charge" class="btn text-white">充值</a>
+            <a ng-href="#/cash" class="btn text-white">提现</a>
         </div>
-        <div class="btn-group justified bg-white">
-            <div class="btn section text-center">
-                <span class="text-grey">总资产（元）</span>
-                <div class="text-orange text-large text-ellipsis">{{user.total | currency:"￥"}}</div>
+        <div class="row bg-white section section-wide">
+            <div class="col-xs-6 section-wide text-center">
+                <span class="text-grey"><strong>总资产（元）</strong></span>
+                <div class="text-orange text-large text-ellipsis"><strong>{{user.total | currency:"￥"}}</strong></div>
 
             </div>
-            <div class="btn section text-center">
-                <span class="text-grey">冻结金额（元）</span>
-                <div class="text-orange text-large text-ellipsis">{{ user.frozen | currency:"￥"}}</div>
+            <div class="col-xs-6 section-wide text-center">
+                <span class="text-grey"><strong>冻结金额（元）</strong></span>
+                <div class="text-orange text-large text-ellipsis"><strong>{{ user.frozen | currency:"￥"}}</strong></div>
             </div>
         </div>
         <div class="vv-divide"></div>
         <div class="section section-wide">
-            <a ng-href="#/investment" class="block text-grey semi-auto semi-left-40 semi-right-50">
-                <span class="semi-fixed-left semi-width-60 text-center">
+            <a ng-href="#/investment" class="block text-grey semi-auto semi-left-30 semi-right-50">
+                <span class="semi-fixed-left semi-width-40 text-center">
         		<i class="vv vv-35 vv-investment"></i>
         	</span>
                 <span class="btn">我的投资</span>
@@ -50,8 +50,8 @@
         </div>
         <div class="vv-divide"></div>
         <div class="section section-wide">
-            <a ng-href="#/bills" class="block text-grey semi-auto semi-left-40 semi-right-50">
-                <span class="semi-fixed-left semi-width-60 text-center">
+            <a ng-href="#/bills" class="block text-grey semi-auto semi-left-30 semi-right-50">
+                <span class="semi-fixed-left semi-width-40 text-center">
         		<i class="vv vv-35 vv-bill"></i>
         	</span>
                 <span class="btn">资金明细</span>
@@ -62,8 +62,8 @@
         </div>
         <div class="vv-divide vv-5"></div>
         <div class="section section-wide">
-            <a ng-href="#/activities" class="block text-grey semi-auto semi-left-40 semi-right-50">
-                <span class="semi-fixed-left semi-width-60 text-center">
+            <a ng-href="#/activities" class="block text-grey semi-auto semi-left-30 semi-right-50">
+                <span class="semi-fixed-left semi-width-40 text-center">
         		<i class="vv vv-35 vv-activity"></i>
         	</span>
                 <span class="btn">活动中心</span>
@@ -74,8 +74,8 @@
         </div>
         <div class="vv-divide"></div>
         <div class="section section-wide">
-            <a ng-href="#/eyuan" class="block text-grey semi-auto semi-left-40 semi-right-50">
-                <span class="semi-fixed-left semi-width-60 text-center">
+            <a ng-href="#/eyuan" class="block text-grey semi-auto semi-left-30 semi-right-50">
+                <span class="semi-fixed-left semi-width-40 text-center">
         		<i class="vv vv-35 vv-e"></i>
         	</span>
                 <span class="btn">我的E圆</span>
@@ -86,8 +86,8 @@
         </div>
         <div class="vv-divide"></div>
         <div class="section section-wide">
-            <a ng-href="#/pocket" class="block text-grey semi-auto semi-left-40 semi-right-50">
-                <span class="semi-fixed-left semi-width-60 text-center">
+            <a ng-href="#/pocket" class="block text-grey semi-auto semi-left-30 semi-right-50">
+                <span class="semi-fixed-left semi-width-40 text-center">
         		<i class="vv vv-35 vv-pocket"></i>
         	</span>
                 <span class="btn">我的红包</span>
@@ -98,8 +98,8 @@
         </div>
         <div class="vv-divide"></div>
         <div class="section section-wide">
-            <a ng-href="#/message" class="block text-grey semi-auto semi-left-40 semi-right-50">
-                <span class="semi-fixed-left semi-width-60 text-center">
+            <a ng-href="#/messages" class="block text-grey semi-auto semi-left-30 semi-right-50">
+                <span class="semi-fixed-left semi-width-40 text-center">
         		<i class="vv vv-35 vv-message"></i>
         	</span>
                 <span class="btn">我的消息</span>

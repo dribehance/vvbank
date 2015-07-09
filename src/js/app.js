@@ -83,10 +83,10 @@ angular.module("VVBank", [
                 factory:loginInterceptor
             }
         })
-        .when("/message", {
-            templateUrl: "me/message.html",
+        .when("/messages", {
+            templateUrl: "me/messages.html",
             reloadOnSearch: false,
-            controller:messageController,
+            controller:messagesController,
             resolve: {
                 factory:loginInterceptor
             }
@@ -198,6 +198,7 @@ angular.module("VVBank", [
         .when("/setting", {
             templateUrl: "setting.html",
             reloadOnSearch: false,
+            controller:settingController,
             resolve: {
                 factory:loginInterceptor
             }

@@ -13,7 +13,7 @@ angular.module("VVBank").constant("config", {
     request: {
         "SUCCESS": "0000",
         "EXIST": "1",
-        "UNEXIST": 0,
+        "UNEXIST": "0",
         "TOKEN_INVALID":"0403"
     },
     common_params: {

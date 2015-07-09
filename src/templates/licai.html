@@ -7,19 +7,12 @@
     <span ui-turn-on="filterDropdown">{{ exchange.name ==""?"理财产品":exchange.name }}<i class="vv vv-23 vv-dropdown"></i></span>
 </div>
 <div class="filter-dropdown-hood">
-  <ul 
-    class="dropdown-menu"
-    ui-outer-click="Ui.turnOff('filterDropdown')"
-    ui-outer-click-if="Ui.active('filterDropdown')"
-    role="menu"
-    ui-show="filterDropdown" 
-    ui-state="filterDropdown"
-    ui-turn-off="filterDropdown">
+    <ul class="dropdown-menu" ui-outer-click="Ui.turnOff('filterDropdown')" ui-outer-click-if="Ui.active('filterDropdown')" role="menu" ui-show="filterDropdown" ui-state="filterDropdown" ui-turn-off="filterDropdown">
 
-    <li ng-repeat="(name,exchange) in exchanges track by name" class="section">
-        <div ng-click="query(exchange)" class="section">{{exchange.name}}</div>
-    </li>
-  </ul>
+        <li ng-repeat="(name,exchange) in exchanges track by name" class="section">
+            <div ng-click="query(exchange)" class="section">{{exchange.name}}</div>
+        </li>
+    </ul>
 </div>
 <div ui-content-for="navbarAction">
     <a ng-href="#/licai" class="btn">刷新</a>
@@ -42,20 +35,16 @@
                         </span>
                     </div>
                     <div class="section-wide text-grey row">
-                        <div class="col-xs-8 nowrap">
+                        <div class="col-xs-7 nowrap">
                             <span class="tag-state text-very-big"><b>{{ product.percentage | currency:"" }}%</b></span>
                             <sub class="tag-state text-small">
                                 <b>{{"+"+product.addition +"%"}}</b>
                                 <i class="vv vv-43 vv-state"></i>
                             </sub>
                         </div>
-                        <div class="col-xs-4 text-right text-ellipsis">
-                            <div class="section section-wide">
-                                
+                        <div class="col-xs-5 text-right text-ellipsis" style="padding:5px 5px 0 0">
                             <div class="text-grey text-right">{{product.feature}}</div>
                             <span class="tag-state">{{product.duration}}</span>天<span class="tag-state">{{product.limit}}</span>元起投
-                        
-                            </div>
                         </div>
                     </div>
                     <span class="item-state"><i class="vv vv-stamp vv-87"></i></span>
@@ -74,7 +63,7 @@
                     <p class="text-grey text-right">{{product.feature}}</p>
                     <div class="section-wide text-grey row">
                         <div class="col-xs-8 nowrap">
-                            <span class="tag-state text-very-big"><b>{{product.percentage}}</b></span>
+                            <span class="tag-state text-very-big">{{ product.percentage | currency:"" }}%</b></span>
                             <sub class="tag-state text-large">
                                 <b>{{product.addition}}</b>
                                 <i class="vv vv-43 vv-state"></i>

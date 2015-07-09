@@ -153,10 +153,13 @@ var _m_pocket_group = function() {
     // message ----------------
 var _m_message = function() {
         return {
+            "id":"",
             "title": "系统消息",
             "date": "2015-06-01",
             "content": "...",
-            "type": "1"
+            "type": "1",
+            "status":"0",
+            "path":""
         }
     }
     // pocket

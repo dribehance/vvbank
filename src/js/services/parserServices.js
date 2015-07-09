@@ -19,7 +19,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
         if (tag) {
             return 1;
         }
-        return 2;
+        return 3;
     }
     return {
         // product parser
@@ -257,6 +257,25 @@ angular.module("VVBank").factory("parserServices", function(config) {
                 activities.push(activity);
             }
             return activities;
+        },
+        parseMessage: function(data) {
+            var message = new _m_message();
+            message.id=data.mid;
+            message.title= data.title;
+            message.date= data.time;
+            message.content= data.content;
+            message.type= data.type;
+            message.status=data.status;
+            message.path=data.path;
+            return message;
+        },
+        parseMessages: function(data) {
+            var messages = [];
+            for (var i = 0; i < data.length; i++) {
+                var message = this.parseMessage(data[i]);
+                messages.push(message);
+            }
+            return messages;
         },
     }
 })

@@ -76,11 +76,19 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
         },
         exist: function(telephone, username) {
             return $http({
-                url: config.url + "/v1/service/account",
-                method: "GET",
-                params: angular.extend({}, config.common_params, {
-                    "telephone": telephone,
-                    "username": username
+                url: config.url + "/v1/service/account/logout",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
+                    "token":localStorageService.get("token")
                 })
             }).then(function(data) {
                 return data.data;

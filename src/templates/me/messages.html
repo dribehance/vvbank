@@ -1,0 +1,27 @@
+<div ui-content-for="title">
+    <span>我的消息</span>
+</div>
+<div ui-content-for="backAction">
+    <a ng-click="back()" class="btn">返回</a>
+</div>
+<div ui-content-for="navbarAction">
+    <span></span>
+</div>
+<div class="scrollable">
+    <div class="scrollable-content" ui-scroll-bottom="loadMore()">
+        <div class="message-item" ng-repeat="message in messages">
+
+            <div class="section">
+                <div class="btn-group justified">
+                    <span><img ng-src="{{staticImageUrl + 'images/message_1.png'}}" alt="" style="width:42;height:42px;margin-right:5px">{{ message.title }}</span>
+                    <span class="text-right">{{ message.date }}</span>
+
+                </div>
+            </div>
+            <div class="section text-grey">
+                {{ message.content }}
+            </div>
+            <div class="vv-divide vv-5"></div>
+        </div>
+    </div>
+</div>
