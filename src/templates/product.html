@@ -17,7 +17,8 @@
                 <div class="h4">预期年化收益</div>
                 <span class="text-orange text-very-big"><b>{{ product.percentage | currency:"" }}%</b></span>
                 <sub class="text-orange text-small">
-                    <b>{{"+"+product.addition +"%"}}</b>
+                    <b ng-show="product.addition">{{"+"+product.addition +"%"}}</b>
+                    <b ng-show="!product.addition">不加成</b>
                     <i class="vv vv-43 vv-discount-orange"></i>
                 </sub>
             </div>

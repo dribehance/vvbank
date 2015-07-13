@@ -1,15 +1,23 @@
-var billsController = function($scope, myServices, parserServices, toastServices, errorServices, config) {
+var billsController = function($scope, myServices,toastServices, parserServices, pushToRefreshServices, errorServices, config) {
     var currentPage = 1;
     $scope.bills = [];
+    var no_more = false;
     $scope.loadMore = function() {
-        toastServices.show();
+        if (no_more) {
+            pushToRefreshServices.show("没有了")
+            return;
+        }
+        pushToRefreshServices.show("加载中");
         myServices.bills(currentPage).then(function(data) {
-            toastServices.hide();
-            if (data.respcode == config.request.SUCCESS) {
+            pushToRefreshServices.hide();
+            if (data.respcode == config.request.SUCCESS || data.result.length>0) {
                 $scope.bills = $scope.bills.concat(parserServices.parseBills(data.result));
             } else {
-                toastServices.hide();
+                pushToRefreshServices.hide();
                 errorServices.autoHide(data.message)
+            }
+            if (data.result.length == 0) {
+                no_more = true;
             }
         })
         currentPage++;

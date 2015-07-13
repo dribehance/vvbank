@@ -1,4 +1,4 @@
-var updateSigninPsdController = function($scope, errorServices, toastServices, userServices, config) {
+var updateSigninPsdController = function($scope,$rootScope, errorServices, toastServices, userServices, config) {
     $scope.input = {
             old_password: "",
             password: "",
@@ -24,9 +24,10 @@ var updateSigninPsdController = function($scope, errorServices, toastServices, u
     $scope.ajaxForm = function(form) {
         toastServices.show();
         var password = {
-            o: $scope.input.password,
+            o: $scope.input.old_password,
             n: $scope.input.password
         }
+        console.log(password)
         userServices.updateSignPassword(password).then(function(data) {
             toastServices.hide();
             if (data.respcode == config.request.SUCCESS) {

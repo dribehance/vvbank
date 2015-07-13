@@ -38,7 +38,8 @@
                         <div class="col-xs-7 nowrap">
                             <span class="tag-state text-very-big"><b>{{ product.percentage | currency:"" }}%</b></span>
                             <sub class="tag-state text-small">
-                                <b>{{"+"+product.addition +"%"}}</b>
+                                <b ng-show="product.addition != 0">{{"+"+product.addition +"%"}}</b>
+                                <b ng-show="product.addition == 0">不加成</b>
                                 <i class="vv vv-43 vv-state"></i>
                             </sub>
                         </div>
@@ -55,7 +56,7 @@
             <div class="group-items">
                 <a ng-href="#/products/1" class="block section group-item tag-{{product.tag}}" ng-repeat="product in products">
                     <div class="semi-auto semi-right-50">
-                        <h3 class="text-ellipsis text-black">{{product.title}}</h3>
+                        <h3 class="text-ellipsis text-black normal">{{product.title}}</h3>
                         <span class="semi-fixed-right semi-width-50">
                             <i class="vv vv-tag vv-46"></i>
                         </span>
@@ -65,7 +66,8 @@
                         <div class="col-xs-8 nowrap">
                             <span class="tag-state text-very-big">{{ product.percentage | currency:"" }}%</b></span>
                             <sub class="tag-state text-large">
-                                <b>{{"+"+product.addition +"%"}}</b>
+                                <b ng-show="product.addition">{{"+"+product.addition +"%"}}</b>
+                                <b ng-show="!product.addition">不加成</b>
                                 <i class="vv vv-43 vv-state"></i>
                             </sub>
                         </div>

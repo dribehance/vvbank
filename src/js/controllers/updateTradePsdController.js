@@ -15,9 +15,10 @@ var updateTradePsdController = function($scope, $rootScope, userServices,toastSe
     $scope.ajaxForm = function(form) {
     	toastServices.show();
         var password = {
-            o: $scope.input.password,
+            o: $scope.input.old_password,
             n: $scope.input.password
         }
+        console.log(password)
         userServices.updateTradePassword(password).then(function(data) {
         	toastServices.hide();
             if (data.respcode == config.request.SUCCESS) {
