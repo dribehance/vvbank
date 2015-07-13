@@ -11,12 +11,12 @@
                 <a ng-href="#/products/{{ product.id }}" class="block text-grey">
                     <div class="section text-grey text-center">
                         <h3 class="text-ellipsis normal text-black">{{ product.title }}</h3>
-                        <div class="btn-group justified">
-                            <span class="text-ellipsis">
-                                <i class="vv vv-18 vv-guard"></i>
-                                担保
+                        <div class="btn-group justified" style="min-height:19px">
+                            <span class="text-ellipsis" ng-repeat="(key,value) in product.safety">
+                                <i class="vv vv-18 vv-guard vv-{{key}}"></i>
+                                {{value}}
                             </span>
-                            <span class="text-ellipsis">
+                            <!-- <span class="text-ellipsis">
                                 <i class="vv vv-18 vv-clock"></i>
                                 周期短
                             </span>
@@ -27,7 +27,7 @@
                             <span class="text-ellipsis">
                                 <i class="vv vv-18 vv-safety"></i>
                                 安全性高
-                            </span>
+                            </span> -->
                         </div>
                     </div>
                     <div class="section section-condensed text-center">

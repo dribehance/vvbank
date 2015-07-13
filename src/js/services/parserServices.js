@@ -9,11 +9,14 @@ angular.module("VVBank").factory("parserServices", function(config) {
         if (!safety) {
             return;
         }
-        return safety.split(",").map(function(s) {
+        var obj = {};
+        safety.split(",").map(function(s) {
             var o = {};
             o[s] = config.safety[s];
+            angular.extend(obj,o)
             return o;
         })
+        return obj;
     }
     var parseTag = function (tag) {
         if (tag) {
