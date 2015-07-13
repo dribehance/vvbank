@@ -36,14 +36,14 @@
                         <div class="text-very-large text-orange">{{ product.percentage | currency:"" }}%</div>
                     </div>
                     <div class="section text-grey">
-                        <div class="semi-auto semi-left-75 semi-right-75">
-                            <span class="semi-fixed-left semi-width-75">当前进度：</span>
+                        <div class="semi-auto semi-left-60 semi-right-60">
+                            <span class="semi-fixed-left semi-width-60">当前进度：</span>
                             <div class="progress rectangle">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ product.progress }};">
                                     <span class="sr-only">{{ product.progress |currency:"" }}Complete</span>
                                 </div>
                             </div>
-                            <span class="semi-fixed-right semi-width-75 text-center">{{ product.progress | currency:"" }}%</span>
+                            <span class="semi-fixed-right semi-width-60 text-center">{{ product.progress | currency:"" }}%</span>
                         </div>
                     </div>
                     <div class="section text-grey row">

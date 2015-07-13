@@ -6,8 +6,8 @@ var settingController = function($scope, $location, localStorageService, errorSe
             errorServices.autoHide(data.message)
         }
     });
-    $scope.exit = function() {
-        userServices.exist().then(function(data) {
+    $scope.logout = function() {
+        userServices.logout().then(function(data) {
             if (data.respcode == config.request.SUCCESS) {
             	localStorageService.remove("token");
                 $location.path("/index").replace();
