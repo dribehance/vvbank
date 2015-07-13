@@ -8,7 +8,6 @@ var forgetController = function($scope,$location,userServices,toastServices,loca
 	$scope.callbackTimer = {};
 	$scope.callbackTimer.counting = 0;
 	$scope.callbackTimer.finish = function() {
-		console.log("callbackTimer");
 		$scope.callbackTimer.counting = 0;
 		$scope.$apply();
 	}
@@ -16,6 +15,15 @@ var forgetController = function($scope,$location,userServices,toastServices,loca
 		angular.element("#vvcountdown")[0].clear();
 		angular.element("#vvcountdown")[0].resume();
 		angular.element("#vvcountdown")[0].start();
+	}
+	$scope.getSmscode = function(){
+		userServices.getSmscode($scope.input.telephone,config.smstype.SIGNUP).then(function(data){
+			if (!(data.result.status == 1 && data.respcode == config.request.SUCCESS)) {
+				errorServices.autoHide();
+			}
+		})
+		$scope.callbackTimer.counting = 1;
+		$scope.callbackTimer.addSeconds(5);
 	}
 	$scope.nextStep = function () {
 		toastServices.show();
@@ -30,7 +38,10 @@ var forgetController = function($scope,$location,userServices,toastServices,loca
 		})
 	}
 	$scope.ajaxForm = function(form) {
+		toastServices.show();
 		userServices.forgetPassword($scope.input.telephone,$scope.input.smscode,$scope.input.password).then(function(data){
+			toastServices.hide();
+			console.log(data)
 			if (data.respcode == config.request.SUCCESS) {
 				localStorageService.cookie.set(data.result.token);
 				$location.path("/signin").replace();

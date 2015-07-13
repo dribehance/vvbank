@@ -10,17 +10,11 @@
 <form name="updateForm" ng-submit="ajaxForm(this)">
     <div class="section">
         <div class="section"></div>
-        <div class="semi-auto semi-right-150">
+        <div class="section-wide" ng-show="safety_info.trade_password.status != 0">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
-                <input type="text" class="form-control border-radius-large" ng-model="input.vertifyCode" name="vertifyCode" ng-pattern="/^[0-9]+$/" ng-minlength=4 ng-maxlength=4 required placeholder="短信验证码">
-                <span class="vv-input-tip" ng-show="!updateForm.vertifyCode.$valid">验证码为发送到您手机的四位数</span>
-            </div>
-            <div class="semi-fixed-right semi-width-150 input-group input-group-lg text-center">
-                <button type="button" class="btn btn-primary btn-lg" ng-click="getVertifyCode()" ng-disabled="callbackTimer.counting">
-                    <timer id="vvcountdown" interval="1000" countdown="5" auto-start='false' ng-show="callbackTimer.counting" finish-callback="callbackTimer.finish()">{{countdown + 1}}</timer>
-                    获取验证码
-                </button>
+                <input type="password" class="form-control border-radius-large" name="old_password" ng-model="input.old_password" required ng-minlength=8 placeholder="旧密码 请输入旧密码">
+                <span class="vv-input-tip" ng-show="!updateForm.old_password.$valid">旧密码</span>
             </div>
         </div>
         <div class="section-wide">
@@ -41,6 +35,6 @@
     </div>
     <div class="vv-divide"></div>
     <div class="section">
-        <button type="submit" class="btn btn-lg btn-primary block full-width rectangle" ng-disabled="!(updateForm.vertifyCode.$valid && updateForm.password.$valid && updateForm.password_1.$valid && input.password == input.password_1)">完成设置</button>
+        <button type="submit" class="btn btn-lg btn-primary block full-width rectangle" ng-disabled="!(updateForm.password.$valid && input.password == input.password_1)">完成设置</button>
     </div>
 </form>

@@ -1,8 +1,8 @@
-var buyController = function($scope, $location, $routeParams, toastServices, userServices, productServices, errorServices, config) {
+var buyController = function($scope, $location, $routeParams, toastServices, userServices,parserServices, productServices, errorServices, config) {
     $scope.input = {
         amount: "",
         password: "",
-        agreement: 0,
+        agreement: true,
         remain: $routeParams.remain,
         balance: 0
     }
@@ -13,6 +13,14 @@ var buyController = function($scope, $location, $routeParams, toastServices, use
             errorServices.autoHide(data.message)
         }
     })
+    productServices.queryById($routeParams.productID).then(function(data) {
+        toastServices.hide();
+        if (data.respcode == config.request.SUCCESS) {
+            $scope.product = parserServices.parseProduct(data.result);
+        } else {
+            errorServices.autoHide(data.message)
+        }
+    });
     $scope.ajaxForm = function(form) {
         toastServices.show()
         productServices.buy({

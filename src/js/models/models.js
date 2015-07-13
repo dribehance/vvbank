@@ -51,6 +51,7 @@ var _m_product = function() {
     // feature: 到期还本付息
     // duration: 持有时长(项目期限)---------10天
     // limit: 起投金额------------1000元起投
+    // max: 最大投资金额
     // percentage:收益率----------5.00%
     // addtion:加送---------------1.00%
     // progress:投资进度
@@ -70,6 +71,7 @@ var _m_product = function() {
         feature: "1",
         duration: "15",
         limit: "1000",
+        max:"1000",
         percentage: "5.00%",
         addition: "1.00%",
         progress: "60%",

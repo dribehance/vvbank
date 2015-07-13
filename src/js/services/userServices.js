@@ -134,8 +134,17 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
         forgetPassword: function(telephone, smscode, password) {
             return $http({
                 url: config.url + "/v1/service/findpassword",
-                method: "PUT",
-                params: angular.extend({}, config.common_params, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
                     "telephone": telephone,
                     "smscode": smscode,
                     "signcode": $rootScope.signcode,
@@ -164,7 +173,6 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                     params: angular.extend({}, config.common_params, {
                         "token": localStorageService.get("token")
                     }),
-                    cache: true,
                 }).then(function(data) {
                     return data.data;
                 })
@@ -173,7 +181,6 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 return $http({
                     url: config.url + "/v1/service/user/account",
                     method: "GET",
-                    cache: true,
                     params: angular.extend({}, config.common_params, {
                         "token": localStorageService.get("token")
                     })
@@ -221,8 +228,27 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 return data.data;
             })
         },
-        updateSignPassword: function() {
-
+        updateSignPassword: function(password) {
+            return $http({
+                url: config.url + "/v1/service/loginpwd",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "oldpwd": password.o,
+                    "newpwd": password.n
+                })
+            }).then(function(data) {
+                return data.data;
+            })
         },
         updateTradePassword: function(password) {
             return $http({

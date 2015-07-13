@@ -6,4 +6,9 @@ var safetySettingController = function($scope, $location, errorServices, userSer
             errorServices.autoHide(data.message)
         }
     });
+    $scope.goAuthen = function () {
+    	if ($scope.safety_info.realname.status == 0 ) {
+    		$location.path("/name-authen")
+    	}	
+    }
 }

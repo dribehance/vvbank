@@ -18,7 +18,7 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
             $rootScope.hasNavbarTop = true;
         }
         // navbar bottom
-        var _navbars_b = ["/index", "/licai", "/me", "/"];
+        var _navbars_b = ["/index", "/licai", "/me", "/","/signIn"];
         if (!_navbars_b.contains($location.path())) {
             // SharedState.turnOff("navbarBottom");
             $rootScope.hasNavbarBottom = false;

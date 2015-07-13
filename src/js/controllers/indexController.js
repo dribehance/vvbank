@@ -2,10 +2,7 @@ var indexController = function($scope, $timeout, toastServices, licaiServices, b
     toastServices.show();
     licaiServices.recommand().then(function(data) {
         toastServices.hide();
-        console.log(data)
         $scope.products = parserServices.parseRecommendProduct(data.result);
-
-        console.log($scope.products)
         $timeout(function() {
             $("#product-carousel").owlCarousel({
                 autoPlay: false,

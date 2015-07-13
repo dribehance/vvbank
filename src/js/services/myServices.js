@@ -8,7 +8,6 @@ angular.module("VVBank").factory("myServices", function($http, localStorageServi
                     "token": localStorageService.get("token"),
                     "current": page
                 }),
-                cache: true,
             }).then(function(data) {
                 return data.data;
             })
@@ -21,7 +20,6 @@ angular.module("VVBank").factory("myServices", function($http, localStorageServi
                     "token": localStorageService.get("token"),
                     "current": page
                 }),
-                cache: true,
             }).then(function(data) {
                 return data.data;
             })

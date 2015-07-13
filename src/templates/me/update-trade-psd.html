@@ -10,6 +10,13 @@
 <form name="updateForm" ng-submit="ajaxForm(this)">
     <div class="section">
         <div class="section"></div>
+        <div class="section-wide" ng-show="safety_info.trade_password.status != 0">
+            <div class="vv-input-group input-group-lg full-width">
+                <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
+                <input type="password" class="form-control border-radius-large" name="old_password" ng-model="input.old_password" required ng-minlength=8 placeholder="旧密码 请输入旧密码">
+                <span class="vv-input-tip" ng-show="!updateForm.old_password.$valid">旧密码</span>
+            </div>
+        </div>
         <div class="section-wide">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
@@ -20,13 +27,13 @@
         <div class="section-wide">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
-                <input type="password" class="form-control border-radius-large" name="password_1" ng-model="input.password_1" required ng-minlength=8 placeholder="新密码 请输入新密码">
+                <input type="password" class="form-control border-radius-large" name="password_1" ng-model="input.password_1" required ng-minlength=8 placeholder="新密码 再次输入密码">
                 <span class="vv-input-tip" ng-show="input.password != input.password_1">再次输入密码,请确保两次输入的密码一致</span>
             </div>
         </div>
     </div>
     <div class="vv-divide"></div>
     <div class="section">
-        <button type="submit" class="btn btn-lg btn-primary block full-width rectangle" ng-disabled="!(updateForm.password.$valid && updateForm.password_1.$valid && input.password == input.password_1)">完成设置</button>
+        <button type="submit" class="btn btn-lg btn-primary block full-width rectangle" ng-disabled="!(updateForm.password.$valid && input.password == input.password_1)">完成设置</button>
     </div>
 </form>

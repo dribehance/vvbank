@@ -4,8 +4,7 @@ angular.module("VVBank").factory("productServices", function($rootScope, $http, 
             return $http({
                 url: config.url + "/v1/service/product/" + id,
                 method: "GET",
-                params: angular.extend({}, config.common_params),
-                cache: true
+                params: angular.extend({}, config.common_params)
             }).then(function(data) {
                 return data.data;
             })
@@ -14,8 +13,7 @@ angular.module("VVBank").factory("productServices", function($rootScope, $http, 
             return $http({
                 url: config.url + "/v1/service/attachment/" + productID,
                 method: "GET",
-                params: angular.extend({}, config.common_params),
-                cache: true
+                params: angular.extend({}, config.common_params)
             }).then(function(data) {
                 return data.data;
             })

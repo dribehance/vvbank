@@ -32,7 +32,8 @@ angular.module("VVBank").factory("parserServices", function(config) {
             product.title = data.productName;
             product.feature = feature_parser(data.repaymentType);
             product.duration = data.investPeriod || "";
-            product.limit = data.minInvestAmount + "元";
+            product.limit = data.minInvestAmount || "0";
+            product.max = data.maxInvestAmount || "0";
             product.percentage = data.annualRate || "0";
             product.addition = data.addRate || "0";
             product.progress = (parseInt(data.totalInvestAmount) || "0") / data.amount * 100;

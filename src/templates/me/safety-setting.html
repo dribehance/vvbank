@@ -16,7 +16,7 @@
                 <i class="vv vv-35 vv-phone-authen"></i>
             </span>
         <span class="btn">手机绑定</span>
-        <span class="semi-fixed-right semi-width-150 text-success text-center" style="line-height:35px"><i class="vv vv-text-success vv-22" style="margin-right:5px"></i>已认证</span>
+        <span class="semi-fixed-right semi-width-150 text-success text-center" style="line-height:35px">已认证</span>
     </div>
 </div>
 <div class="section section-wide" ng-show="safety_info.telephone.status != 2">
@@ -25,63 +25,36 @@
                 <i class="vv vv-35 vv-phone-authen"></i>
             </span>
         <span class="btn">手机绑定</span>
-        <span class="semi-fixed-right semi-width-150 text-grey text-center" style="line-height:35px"><i class="vv vv-22" style="margin-right:5px"></i>未认证</span>
+        <span class="semi-fixed-right semi-width-150 text-grey text-center" style="line-height:35px">未认证</span>
     </div>
 </div>
 <!-- 实名认证 -->
-<div class="section section-wide" ng-show="safety_info.realname.status == 1">
-    <div class="block text-grey semi-auto semi-left-40 semi-right-150">
+<div class="section section-wide">
+    <a ng-click="goAuthen()" class="block text-grey semi-auto semi-left-40 semi-right-150">
         <span class="semi-fixed-left semi-width-60 text-center">
                 <i class="vv vv-35 vv-name-authen"></i>
             </span>
         <span class="btn">实名认证</span>
-        <span class="semi-fixed-right semi-width-150 text-success text-center" style="line-height:35px"><i class="vv vv-text-success vv-22" style="margin-right:5px"></i>已认证</span>
-    </div>
-</div>
-<div class="section section-wide" ng-show="safety_info.realname.status != 1">
-    <a ng-href="#/name-authen" class="block text-grey semi-auto semi-left-40 semi-right-150">
-        <span class="semi-fixed-left semi-width-60 text-center">
-                <i class="vv vv-35 vv-name-authen"></i>
-            </span>
-        <span class="btn">实名认证</span>
-        <span class="semi-fixed-right semi-width-150 text-grey text-center" style="line-height:35px"><i class="vv vv-22" style="margin-right:5px"></i>未认证</span>
+        <span class="semi-fixed-right semi-width-150 text-grey text-center" ng-class="{'text-success':safety_info.trade_password.status == 1}" style="line-height:35px">{{safety_info.realname.message}}</span>
     </a>
 </div>
 <!-- 交易密码 -->
-<div class="section section-wide" ng-show="safety_info.trade_password.status == 1">
-    <div class="block text-grey semi-auto semi-left-40 semi-right-150">
-        <span class="semi-fixed-left semi-width-60 text-center">
-                <i class="vv vv-35 vv-password-1"></i>
-            </span>
-        <span class="btn">交易密码</span>
-        <span class="semi-fixed-right semi-width-150 text-success text-center" style="line-height:35px"><i class="vv vv-text-success vv-22" style="margin-right:5px"></i>已设置</span>
-    </div>
-</div>
-<div class="section section-wide" ng-show="safety_info.trade_password.status != 1">
+<div class="section section-wide">
     <a ng-href="#/update-trade-psd" class="block text-grey semi-auto semi-left-40 semi-right-150">
         <span class="semi-fixed-left semi-width-60 text-center">
-                <i class="vv vv-35 vv-password-1"></i>
+                <i class="vv vv-35 vv-password-1" ng-class="{'active':safety_info.trade_password.status == 1}"></i>
             </span>
         <span class="btn">交易密码</span>
-        <span class="semi-fixed-right semi-width-150 text-grey text-center" style="line-height:35px"><i class="vv vv-22" style="margin-right:5px"></i>未设置</span>
+        <span class="semi-fixed-right semi-width-150 text-grey text-center" ng-class="{'text-success':safety_info.trade_password.status == 1}" style="line-height:35px">{{safety_info.trade_password.message}}</span>
     </a>
 </div>
 <!-- 登陆密码 -->
-<div class="section section-wide" ng-show="safety_info.signin_password.status == 1">
-    <div class="block text-grey semi-auto semi-left-40 semi-right-150">
-        <span class="semi-fixed-left semi-width-60 text-center">
-                <i class="vv vv-35 vv-password-2"></i>
-            </span>
-        <span class="btn">登陆密码</span>
-        <span class="semi-fixed-right semi-width-150 text-success text-center" style="line-height:35px"><i class="vv vv-text-success vv-22" style="margin-right:5px"></i>已设置</span>
-    </div>
-</div>
-<div class="section section-wide" ng-show="safety_info.signin_password.status != 1">
+<div class="section section-wide" >
     <a ng-href="#/update-signin-psd" class="block text-grey semi-auto semi-left-40 semi-right-150">
         <span class="semi-fixed-left semi-width-60 text-center">
-                <i class="vv vv-35 vv-password-2"></i>
+                <i class="vv vv-35 vv-password-2" ng-class="{'active':safety_info.trade_password.status == 1}"></i>
             </span>
         <span class="btn">登陆密码</span>
-        <span class="semi-fixed-right semi-width-150 text-grey text-center" style="line-height:35px"><i class="vv vv-22" style="margin-right:5px"></i>未设置</span>
+        <span class="semi-fixed-right semi-width-150 text-grey text-center" ng-class="{'text-success':safety_info.trade_password.status == 1}" style="line-height:35px">{{safety_info.signin_password.message}}</span>
     </a>
 </div>
