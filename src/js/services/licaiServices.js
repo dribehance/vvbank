@@ -40,6 +40,15 @@ angular.module("VVBank").factory("licaiServices", function($rootScope, $http, co
             }).then(function(data){
                 return data.data;
             })
+        },
+        queryExchange:function() {
+            return $http({
+                url:config.url +"/v1/service/productType",
+                method:"GET",
+                params:angular.extend({},config.common_params)
+            }).then(function(data){
+                return data.data;
+            })
         }
     }
 });

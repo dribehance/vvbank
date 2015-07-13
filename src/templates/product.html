@@ -54,7 +54,7 @@
 
             </div>
             <div class="col-xs-6 section-wide text-center">
-                <span class="text-grey"><strong>冻结金额（元）</strong></span>
+                <span class="text-grey"><strong>剩余金额（元）</strong></span>
                 <div class="text-orange text-large text-ellipsis"><strong>{{ product.remain | currency:"￥"}}</strong></div>
             </div>
         </div>
@@ -90,7 +90,7 @@
             <a href="#/buy/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning rectangle">购买</a>
         </div>
         <div ng-show="product.tag !=1">
-            <div class="section section-lg text-center full-width text-white bg-grey rectangle">购买</div>
+            <div class="section btn btn-lg text-center full-width text-white bg-grey rectangle">购买</div>
         </div>
     </div>
 </div>

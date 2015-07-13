@@ -39,7 +39,7 @@
                         <div class="semi-auto semi-left-60 semi-right-60">
                             <span class="semi-fixed-left semi-width-60">当前进度：</span>
                             <div class="progress rectangle">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ product.progress }};">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ product.progress+'%' }};">
                                     <span class="sr-only">{{ product.progress |currency:"" }}Complete</span>
                                 </div>
                             </div>
@@ -58,7 +58,12 @@
                         还款方式：{{product.feature}}
                     </div>
                 </a>
-                <a ng-href="#/buy/{{product.id}}/{{product.remain}}" class="block full-width btn btn-warning text-center rectangle">我要购买</a>
+                <div ng-show="product.tag == 1">
+                    <a href="#/buy/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning rectangle">购买</a>
+                </div>
+                <div ng-show="product.tag !=1">
+                    <div class="section btn btn-lg text-center full-width text-white bg-grey rectangle">购买</div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,51 +1,53 @@
-var licaiController = function($scope, licaiServices, toastServices, parserServices, errorServices, config) {
-    $scope.exchange = {
-        name: "理财产品",
-        code: "all"
+var licaiController = function($scope, $location, licaiServices, toastServices, parserServices, errorServices, config) {
+    toastServices.show();
+    // fresh
+    $scope.reload = function() {
+        if ($scope.current_exchange) {
+            $scope.queryByExchange($scope.current_exchange);
+        }
     }
+    // ------------query product by exchange
     var page = 1;
-    $scope.query = function(exchange) {
-        $scope.exchange = exchange;
-        if (exchange.code == "all") {
-            $scope.queryAll();
+    $scope.current_exchange={
+        "name":"",
+        "productCode":""
+    };
+    $scope.queryByExchange = function(exchange) {
+        toastServices.show();
+        if ($scope.current_exchange != exchange) {
+            page = 1;
         }
-        else {
-        	$scope.queryByExchange(exchange,page)
-        }
-    }
-    $scope.queryAll = function() {
-    	toastServices.show();
-        licaiServices.query().then(function(data) {
-        	toastServices.hide();
-            if (data.respcode == config.request.SUCCESS) {
-                var result = parserServices.parseLicaiProduct(data.result);
-                $scope.groups = result.groups;
-                $scope.exchanges = result.exchanges
-            } else {
-                errorServices.autoHide(data.message)
-            }
-            // $scope.groups = data;
-        });
-    }
-    $scope.queryByExchange = function(exchange,page) {
-    	toastServices.show();
-    	licaiServices.queryByExchange(exchange.code, page).then(function(data) {
+        $scope.current_exchange = exchange;
+        licaiServices.queryByExchange(exchange.productCode, page).then(function(data) {
             $scope.groups = "";
             toastServices.hide();
             if (data.result.length > 0) {
-                $scope.products = data;
+                $scope.products = parserServices.parseProducts(data.result);
             } else {
+                $scope.products = [];
                 errorServices.autoHide("暂无数据")
             }
         })
+        page++;
     }
+    // infinit scroll
     $scope.loadMore = function() {
-        // licaiServices.loadMore().then(function(data){
-        // 	if (data.respcode == config.request.SUCCESS) {
-        // 		$scope.groups = $scope.groups.concat(parserServices.parserLicaiProduct(data.result))
-        // 	}
-        // });
+        
     }
-    // fetch data
-    $scope.queryAll();
+    // query exchange
+    licaiServices.queryExchange().then(function(data) {
+        $scope.exchanges = data.result;
+    })
+    // query all product
+    licaiServices.query().then(function(data) {
+        toastServices.hide();
+        if (data.respcode == config.request.SUCCESS) {
+            var result = parserServices.parseLicaiProduct(data.result);
+            $scope.groups = result.groups;
+            // $scope.exchanges = result.exchanges
+        } else {
+            errorServices.autoHide(data.message)
+        }
+        // $scope.groups = data;
+    });
 }
