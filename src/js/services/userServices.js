@@ -271,6 +271,29 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
             }).then(function(data) {
                 return data.data;
             })
+        },
+        bindTelephone: function(telephone,smscode) {
+            return $http({
+                url: config.url + "/v1/service/validateTelephone",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "smscode": smscode,
+                    "telephone":telephone,
+                    "signcode": $rootScope.signcode,
+                })
+            }).then(function(data) {
+                return data.data;
+            })
         }
     }
 });

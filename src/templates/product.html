@@ -101,10 +101,10 @@
         <p class="text-grey text-center"><i class="vv vv-18 vv-bank" style="margin-right:5px"></i>VVBank所有资金均由财付通交易</p>
     </div>
     <div class="scrollable-footer">
-        <div ng-show="product.tag == 1">
+        <div ng-show="product.tag == 0">
             <a href="#/buy/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning rectangle">购买</a>
         </div>
-        <div ng-show="product.tag !=1">
+        <div ng-show="product.tag !=0">
             <div class="section btn btn-lg text-center full-width text-white bg-grey rectangle">购买</div>
         </div>
     </div>

@@ -58,10 +58,10 @@
                         还款方式：{{product.feature}}
                     </div>
                 </a>
-                <div ng-show="product.tag == 1">
+                <div ng-show="product.tag == 0">
                     <a href="#/buy/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning rectangle">购买</a>
                 </div>
-                <div ng-show="product.tag !=1">
+                <div ng-show="product.tag !=0">
                     <div class="section btn btn-lg text-center full-width text-white bg-grey rectangle">购买</div>
                 </div>
             </div>

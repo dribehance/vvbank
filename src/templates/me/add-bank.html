@@ -50,9 +50,10 @@
     </div>
     <div class="vv-divide vv-5"></div>
     <div class="section">
+        {{user.realname}}
         <div class="btn-group justified text-center">
             <span class="btn">
-            <button type="submit" class="btn btn-lg bg-primary full-width" ng-disabled="!bankForm.$valid || user.realname == '' ">确认</button>
+            <button type="submit" class="btn btn-lg bg-primary full-width" ng-disabled="!bankForm.$valid || !user.realname ">确认</button>
         </span>
             <span class="btn">
             <a ng-click="back()" class="btn btn-lg btn-default full-width">取消</a>

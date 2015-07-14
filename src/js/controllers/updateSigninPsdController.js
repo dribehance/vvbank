@@ -27,10 +27,9 @@ var updateSigninPsdController = function($scope,$rootScope, errorServices, toast
             o: $scope.input.old_password,
             n: $scope.input.password
         }
-        console.log(password)
         userServices.updateSignPassword(password).then(function(data) {
             toastServices.hide();
-            if (data.respcode == config.request.SUCCESS) {
+            if (data.respcode == config.request.SUCCESS && data.result.status ==1) {
                 $rootScope.back();
             } else {
                 errorServices.autoHide(data.message)

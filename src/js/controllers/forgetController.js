@@ -17,7 +17,7 @@ var forgetController = function($scope,$location,userServices,toastServices,loca
 		angular.element("#vvcountdown")[0].start();
 	}
 	$scope.getSmscode = function(){
-		userServices.getSmscode($scope.input.telephone,config.smstype.SIGNUP).then(function(data){
+		userServices.getSmscode($scope.input.telephone,config.smstype.RESET_PASSWORD).then(function(data){
 			if (!(data.result.status == 1 && data.respcode == config.request.SUCCESS)) {
 				errorServices.autoHide();
 			}
@@ -43,7 +43,7 @@ var forgetController = function($scope,$location,userServices,toastServices,loca
 			toastServices.hide();
 			console.log(data)
 			if (data.respcode == config.request.SUCCESS) {
-				localStorageService.cookie.set(data.result.token);
+				localStorageService.set("token",data.result.token);
 				$location.path("/signin").replace();
 			}
 			else {

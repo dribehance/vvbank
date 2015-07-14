@@ -3,7 +3,6 @@ var updateBankController = function($scope, $rootScope, errorServices, toastServ
     $scope.provinces = PROVINCES;
     $scope.cities = CITIES;
     $scope.banks = config.banks;
-
     settingServices.queryBanks().then(function(data) {
         if (data.respcode == config.request.SUCCESS) {
             $scope.bank = parserServices.parseBank(data.result);

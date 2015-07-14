@@ -234,6 +234,14 @@ angular.module("VVBank", [
                 factory:loginInterceptor
             }
         })
+        .when("/bind-telephone", {
+            templateUrl: "bind-telephone.html",
+            reloadOnSearch: false,
+            controller: bindTelephoneController,
+            resolve: {
+                factory:loginInterceptor
+            }
+        })
         .otherwise({
             redirectTo: "/index"
         });

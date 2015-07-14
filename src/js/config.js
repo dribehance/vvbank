@@ -8,7 +8,8 @@ angular.module("VVBank").constant("config", {
         "RETURN": 3,
         "ACTIVE_ACCOUNT": 4,
         "SYNC_PASSWOARD": 5,
-        "RESET_PASSWORD": 6
+        "RESET_PASSWORD": 6,
+        "BIND_TELEPHONE":7
     },
     request: {
         "SUCCESS": "0000",

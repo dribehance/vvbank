@@ -45,7 +45,8 @@ angular.module("VVBank").factory("licaiServices", function($rootScope, $http, co
             return $http({
                 url:config.url +"/v1/service/productType",
                 method:"GET",
-                params:angular.extend({},config.common_params)
+                params:angular.extend({},config.common_params),
+                cache:true
             }).then(function(data){
                 return data.data;
             })

@@ -40,7 +40,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
             product.safety = safety_parser(data.safety);
             product.total = data.amount || "";
             product.remain = parseInt(data.amount) - (parseInt(data.totalInvestAmount) || "0");
-            product.tag = parseTag(product.remain);
+            product.tag = data.status;
             product.faqiren = data.initiator || "";
             product.dealer = data.underwriter || "";
             product.exchange = data.financialExchange || "";
