@@ -1,6 +1,9 @@
 angular.module("VVBank").factory("settingServices", function($http, localStorageService, userServices, transformServices, config) {
     return {
         updateAccount: function(user) {
+            console.log(user)
+            console.log(config.scale)
+            console.log(transformServices.rever(config.scale))
             return $http({
                 url: config.url + "/v1/service/user/userinfo",
                 method: "POST",
@@ -17,13 +20,13 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                     "token": localStorageService.get("token"),
                     "position": user.job,
                     "birthday": user.birthday,
-                    "corporateSize": transformServices.rever(config.scale)[user.scale],
+                    "corporateSize": transformServices.rever(config.scales)[user.scale],
                     "maxEducation": user.degree,
                     "college": user.school,
                     "homeAddress": user.address,
                     "maritalStatus": transformServices.rever(config.is_marry)[user.is_marry],
                     "gender": transformServices.rever(config.sex)[user.sex],
-                    "salary": transformServices.rever(config.salary)[user.salary],
+                    "salary": transformServices.rever(config.incomes)[user.income],
                     "industry": user.industry
                 })
             }).then(function(data) {

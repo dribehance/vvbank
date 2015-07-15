@@ -10,7 +10,7 @@ var addBankController = function($scope, $rootScope, errorServices, toastService
         name: "中国工商银行",
         card_number: "",
         branch: "",
-        code: "",
+        code: "ccb",
 
     }
     $scope.ajaxForm = function(form) {

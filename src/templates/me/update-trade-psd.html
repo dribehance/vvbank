@@ -20,7 +20,7 @@
         <div class="section-wide">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
-                <input type="password" class="form-control border-radius-large" name="password" ng-model="input.password" required ng-minlength=8 placeholder="新密码 请输入新密码">
+                <input type="password" class="form-control border-radius-large" name="password" ng-model="input.password" required ng-minlength=8 ng-maxlength=16 placeholder="新密码 请输入新密码">
                 <span class="vv-input-tip" ng-show="!updateForm.password.$valid">新密码,将作为您登录系统用的密码,并确保密码位数不少于8位</span>
             </div>
         </div>

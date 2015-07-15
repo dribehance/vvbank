@@ -13,7 +13,7 @@
 <div class="section section-wide">
     <a ng-click="goAuthenTelephone()" class="block text-grey semi-auto semi-left-40 semi-right-150">
         <span class="semi-fixed-left semi-width-60 text-center">
-                <i class="vv vv-35 vv-name-authen"></i>
+                <i class="vv vv-35 vv-phone-authen" ng-class="{'active':safety_info.telephone.status ==2}"></i>
             </span>
         <span class="btn">手机绑定</span>
         <span class="semi-fixed-right semi-width-150 text-grey text-center" ng-class="{'text-success':safety_info.telephone.status == 2}" style="line-height:35px">{{safety_info.telephone.message}}</span>
@@ -23,7 +23,7 @@
 <div class="section section-wide">
     <a ng-click="goAuthen()" class="block text-grey semi-auto semi-left-40 semi-right-150">
         <span class="semi-fixed-left semi-width-60 text-center">
-                <i class="vv vv-35 vv-name-authen"></i>
+                <i class="vv vv-35 vv-name-authen" ng-class="{'active':safety_info.realname.status ==1}"></i>
             </span>
         <span class="btn">实名认证</span>
         <span class="semi-fixed-right semi-width-150 text-grey text-center" ng-class="{'text-success':safety_info.realname.status == 1}" style="line-height:35px">{{safety_info.realname.message}}</span>

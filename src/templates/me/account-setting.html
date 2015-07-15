@@ -43,7 +43,7 @@
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 btn section-wide">性别</span>
-                    <select class="block form-control rectangle full-width" name="sex" ng-model="user.sex" value="{{user.sex}}" required>
+                    <select class="block form-control rectangle full-width" name="sex" ng-model="user.sex" value="{{user.sex}}">
                         <option selected>男</option>
                         <option>女</option>
                         <option>未知</option>
@@ -53,31 +53,31 @@
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 btn section-wide">出生日期</span>
-                    <input type="date" name="birthday" ng-model="user.birthday" placeholder="yyyy-MM-dd" class="block form-control rectangle full-width" required>
+                    <input type="date" name="birthday" ng-model="user.birthday" placeholder="yyyy-MM-dd" class="block form-control rectangle full-width">
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 btn section-wide">最高学历</span>
-                    <select class="block form-control rectangle full-width" name="degree" ng-model="user.degree" ng-options="d for d in degrees" required></select>
+                    <select class="block form-control rectangle full-width" name="degree" ng-model="user.degree" ng-options="d for d in degrees"></select>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750  btn section-wide text-left btn section-wide">毕业院校</span>
-                    <input type="text" class="form-control block full-width rectangle" name="school" ng-model="user.school" required placeholder="请输入毕业院校">
+                    <input type="text" class="form-control block full-width rectangle" name="school" ng-model="user.school" placeholder="请输入毕业院校">
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 text-left btn section-wide">居住地址</span>
-                    <input type="text" class="form-control block full-width rectangle" name="address" ng-model="user.address" required placeholder="请输入居住地址">
+                    <input type="text" class="form-control block full-width rectangle" name="address" ng-model="user.address" placeholder="请输入居住地址">
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 btn section-wide">婚否</span>
-                    <select class="block form-control rectangle full-width" name="is_marry" ng-model="user.is_marry" value="{{user.is_marry}}" required>
+                    <select class="block form-control rectangle full-width" name="is_marry" ng-model="user.is_marry" value="{{user.is_marry}}">
                         <option selected>已婚</option>
                         <option>未婚</option>
                     </select>
@@ -86,25 +86,25 @@
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 text-left btn section-wide">公司行业</span>
-                    <input type="text" class="form-control block full-width rectangle" name="industry" ng-model="user.industry" required placeholder="请输入公司所在行业">
+                    <input type="text" class="form-control block full-width rectangle" name="industry" ng-model="user.industry" placeholder="请输入公司所在行业">
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 btn section-wide">公司规模</span>
-                    <select class="block form-control rectangle full-width" name="scale" ng-model="user.scale" ng-options="s for s in scales" required></select>
+                    <select class="block form-control rectangle full-width" name="scale" ng-model="user.scale" ng-options="s for s in scales"></select>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 text-left btn section-wide ">职位</span>
-                    <input type="text" class="form-control block full-width rectangle" name="job" ng-model="user.job" required placeholder="请输入居住地址">
+                    <input type="text" class="form-control block full-width rectangle" name="job" ng-model="user.job" placeholder="请输入居住地址">
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 btn section-wide ">月收入</span>
-                    <select class="block form-control rectangle full-width" name="income" ng-model="user.income" ng-options="i for i in incomes" required></select>
+                    <select class="block form-control rectangle full-width" name="income" ng-model="user.income" ng-options="i for i in incomes"></select>
                 </div>
             </div>
             <button type="submit" class="btn btn-lg bg-green block full-width text-white rectangle" ng-disabled="!accountForm.$valid">保存</button>

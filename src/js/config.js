@@ -74,7 +74,7 @@ angular.module("VVBank").constant("config", {
         "2": "未婚"
     },
     sex: {
-        "0": "其他",
+        "0": "未知",
         "1": "男",
         "2": "女"
     },

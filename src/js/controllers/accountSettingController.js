@@ -22,7 +22,7 @@ var accountSettingController = function($scope,$location,errorServices,parserSer
 	$scope.ajaxForm = function(form) {
 		// $scope.user =
 		settingServices.updateAccount($scope.user).then(function(data){
-			if (data.respcode == config.request.SUCCESS) {
+			if (data.respcode == config.request.SUCCESS && data.result.status ==1) {
 				$location.path("/setting").replace();
 			}
 			else {
