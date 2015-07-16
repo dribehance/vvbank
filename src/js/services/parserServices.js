@@ -142,10 +142,10 @@ angular.module("VVBank").factory("parserServices", function(config) {
             user.birthday = new Date(data.birthday || "1990,01,01");
             user.degree = data.maxEducation || "本科生";
             user.address = data.homeAddress || "";
-            user.industry = data.industry || "";
+            user.industry = data.industry || "互联网金融";
             user.scale = config.scales[data.corporateSize] || "1-100人";
             user.job = data.position || "工程师";
-            user.income = data.salary || "5000以内";
+            user.income = config.incomes[data.salary] || "5000以内";
             return user;
         },
         // eyuan
@@ -156,7 +156,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
 
             for (var i=0,r=data.info;i<r.length;i++) {
                 var eyuan = new _m_eyuan();
-                eyuan.date = r[i].time.split(" ");
+                eyuan.date = r[i].time.split(" ")[0];
                 eyuan.type = r[i].eyuanType;
                 eyuan.amount = r[i].amount;
                 eyuan.remain = r[i].surplusAmount;
@@ -171,14 +171,13 @@ angular.module("VVBank").factory("parserServices", function(config) {
             var pocket_group = new _m_pocket_group(),
                 pockets = [];
             pocket_group.remain = data.bonus || "0";
-
             for (var i=0,r=data.info;i<r.length;i++) {
                 var pocket = new _m_pocket();
-                pocket.date = r[i].createTime.split(" ");
-                pocket.expires = r[i].expiryTime.split(" ");
+                pocket.date = r[i].createTime.split(" ")[0];
+                pocket.expires = r[i].expiryTime.split(" ")[0];
                 pocket.type = r[i].type || "";
                 pocket.money = r[i].amount || "";
-                pocket.status = pocket.expires;
+                pocket.status = new Date() > new Date(pocket.expires)?"过期":"可用";
                 pockets.push(pocket);
             }
 

@@ -1,5 +1,5 @@
 angular.module("VVBank").constant("config", {
-    url: "http://localhost:8000/proxy/www.vvbank.net",
+    url: "https://www.vvbank.net",
     appid: "android_vv",
     version: "1.0",
     smstype: {
@@ -68,6 +68,8 @@ angular.module("VVBank").constant("config", {
     scales: ["1-100人", "100-500人", "500-1000人", "1000-5000人", "5000+人"],
     // 收入
     incomes: ["5000以内", "5000-10000元", "10000-20000元", "20000-50000元", "50000以上"],
+    // 行业
+    industries:["互联网金融","IT互联网科技","制造业","政府机关"],
     // 婚否
     is_marry: {
         "1": "已婚",

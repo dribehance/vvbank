@@ -18,6 +18,10 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
             $rootScope.hasNavbarTop = true;
         }
         // navbar bottom
+        if ($location.path().toString().indexOf("/licai/") == 0) {
+            $rootScope.hasNavbarBottom = true;
+            return;
+        }
         var _navbars_b = ["/index", "/licai", "/me", "/","/signIn"];
         if (!_navbars_b.contains($location.path())) {
             // SharedState.turnOff("navbarBottom");
@@ -26,6 +30,7 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
             // SharedState.turnOn("navbarBottom");
             $rootScope.hasNavbarBottom = true;
         }
+
     }
     var onBackKeyDown = function() {
         $rootScope.$apply(function() {

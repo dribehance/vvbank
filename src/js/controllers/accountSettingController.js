@@ -4,6 +4,7 @@ var accountSettingController = function($scope,$location,errorServices,parserSer
 	$scope.degrees = config.degrees;
 	$scope.scales = config.scales;
 	$scope.incomes = config.incomes;
+	$scope.industries = config.industries;
 	// safety
 	userServices.info.safety().then(function(data){
 		if (data.respcode == config.request.SUCCESS) {
@@ -22,6 +23,7 @@ var accountSettingController = function($scope,$location,errorServices,parserSer
 	$scope.ajaxForm = function(form) {
 		// $scope.user =
 		settingServices.updateAccount($scope.user).then(function(data){
+			console.log(data)
 			if (data.respcode == config.request.SUCCESS && data.result.status ==1) {
 				$location.path("/setting").replace();
 			}

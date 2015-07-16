@@ -4,12 +4,11 @@ var eyuanController = function($scope, myServices, pushToRefreshServices, errorS
     var no_more = false;
     $scope.loadMore = function() {
         if (no_more) {
-            pushToRefreshServices.show("没有了")
+            pushToRefreshServices.show("我就静静的瞅着，没有更多了...")
             return;
         }
         pushToRefreshServices.show("加载中");
         myServices.eyuan(currentPage).then(function(data) {
-        	console.log(data)
             pushToRefreshServices.hide();
             if (data.respcode == config.request.SUCCESS || data.result.length > 0) {
                 $scope.eyuan_groups = parserServices.parseEyuan(data.result);
@@ -18,7 +17,7 @@ var eyuanController = function($scope, myServices, pushToRefreshServices, errorS
                 pushToRefreshServices.hide();
                 errorServices.autoHide(data.message)
             }
-            if (data.result.length == 0) {
+            if (data.result.info.length == 0) {
                 no_more = true;
             }
         })

@@ -18,10 +18,10 @@ var addBankController = function($scope, $rootScope, errorServices, toastService
         $scope.bank.name = $scope.banks[$scope.bank.code];
         settingServices.createBank($scope.bank).then(function(data) {
             toastServices.hide();
-            if (data.respcode == config.request.SUCCESS) {
+            if (data.respcode == config.request.SUCCESS && data.result.status ==1) {
                 $rootScope.back();
             } else {
-                errorServices.autoHide()
+                errorServices.autoHide(data.message)
             }
         })
     }

@@ -20,6 +20,11 @@ angular.module("VVBank", [
             reloadOnSearch: false,
             controller: licaiController,
         })
+        .when("/licai/:exchangeCode", {
+            templateUrl: "products.html",
+            reloadOnSearch: false,
+            controller: productsController,
+        })
         .when("/me", {
             templateUrl: "me.html",
             reloadOnSearch: false,

@@ -4,7 +4,7 @@
     </a> -->
 </div>
 <div ui-content-for="title">
-    <span ui-turn-on="filterDropdown">理财产品<i class="vv vv-23 vv-dropdown"></i></span>
+    <span ui-turn-on="filterDropdown">{{exchangeName}}<i class="vv vv-23 vv-dropdown"></i></span>
 </div>
 <div class="filter-dropdown-hood">
     <ul class="dropdown-menu" ui-outer-click="Ui.turnOff('filterDropdown')" ui-outer-click-if="Ui.active('filterDropdown')" role="menu" ui-show="filterDropdown" ui-state="filterDropdown" ui-turn-off="filterDropdown">
@@ -18,33 +18,27 @@
     <a ng-click="reload()" class="btn">刷新</a>
 </div>
 <div class="scrollable">
-    <div class="scrollable-content">
-        <div class="group" ng-repeat="group in groups">
-            <div class="section group-header">
-                <div class="semi-auto semi-right-50">
-                    <span class="text-ellipsis">{{group.name}}</span>
-                    <a ng-href="#/licai/{{group.code}}" class="semi-fixed-right semi-width-50 text-right text-grey">更多</a>
-                </div>
-            </div>
+    <div class="scrollable-content" ui-scroll-bottom="loadMore()">
+        <div class="group">
             <div class="group-items">
-                <a ng-href="#/products/{{product.id}}" class="block section group-item tag-{{product.tag}}" ng-repeat="product in group.products">
+                <a ng-href="#/products/{{product.id}}" class="block section group-item tag-{{product.tag}}" ng-repeat="product in products">
                     <div class="semi-auto semi-right-50">
                         <h3 class="text-ellipsis text-black normal">{{product.title}}</h3>
                         <span class="semi-fixed-right semi-width-50">
                             <i class="vv vv-tag vv-46"></i>
                         </span>
                     </div>
+                    <p class="text-grey text-right">{{product.feature}}</p>
                     <div class="section-wide text-grey row">
-                        <div class="col-xs-7 nowrap">
-                            <span class="tag-state text-very-big"><b>{{ product.percentage | currency:"" }}%</b></span>
-                            <sub class="tag-state text-small">
-                                <b ng-show="product.addition != 0">{{"+"+product.addition +"%"}}</b>
-                                <b ng-show="product.addition == 0">不加成</b>
+                        <div class="col-xs-8 nowrap">
+                            <span class="tag-state text-very-big">{{ product.percentage | currency:"" }}%</b></span>
+                            <sub class="tag-state text-large">
+                                <b ng-show="product.addition">{{"+"+product.addition +"%"}}</b>
+                                <b ng-show="!product.addition">不加成</b>
                                 <i class="vv vv-43 vv-state"></i>
                             </sub>
                         </div>
-                        <div class="col-xs-5 text-right text-ellipsis" style="padding:5px 5px 0 0">
-                            <div class="text-grey text-right">{{product.feature}}</div>
+                        <div class="col-xs-4 text-right text-ellipsis">
                             <span class="tag-state">{{product.duration}}</span>天<span class="tag-state">{{product.limit}}</span>元起投
                         </div>
                     </div>

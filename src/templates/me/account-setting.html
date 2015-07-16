@@ -86,7 +86,7 @@
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 text-left btn section-wide">公司行业</span>
-                    <input type="text" class="form-control block full-width rectangle" name="industry" ng-model="user.industry" placeholder="请输入公司所在行业">
+                    <select class="block form-control rectangle full-width" name="income" ng-model="user.industry" ng-options="i for i in industries"></select>
                 </div>
             </div>
             <div class="section">

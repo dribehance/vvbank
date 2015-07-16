@@ -1,25 +1,22 @@
 angular.module("VVBank").factory("settingServices", function($http, localStorageService, userServices, transformServices, config) {
     return {
         updateAccount: function(user) {
-            console.log(user)
-            console.log(config.scale)
-            console.log(transformServices.rever(config.scale))
             return $http({
                 url: config.url + "/v1/service/user/userinfo",
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                transformRequest: function(obj) {
-                    var str = [];
-                    for (var p in obj)
-                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                    return str.join("&");
-                },
-                data: angular.extend({}, config.common_params, {
+                method: "PUT",
+                // headers: {
+                //     'Content-Type': 'application/x-www-form-urlencoded'
+                // },
+                // transformRequest: function(obj) {
+                //     var str = [];
+                //     for (var p in obj)
+                //         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                //     return str.join("&");
+                // },
+                params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "position": user.job,
-                    "birthday": user.birthday,
+                    "birthday": user.birthday.getFullYear() + "-" +user.birthday.getMonth() + 1 +"-"+user.birthday.getDate(),
                     "corporateSize": transformServices.rever(config.scales)[user.scale],
                     "maxEducation": user.degree,
                     "college": user.school,
@@ -47,17 +44,8 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
         updateBank: function(bank) {
             return $http({
                 url: config.url + "/v1/service/bankinfo",
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                transformRequest: function(obj) {
-                    var str = [];
-                    for (var p in obj)
-                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                    return str.join("&");
-                },
-                data: angular.extend({}, config.common_params, {
+                method: "PUT",
+                params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "cardId": bank.id,
                     "cardno": bank.card_number,
@@ -74,17 +62,8 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
         deleteBank: function(bank) {
             return $http({
                 url: config.url + "/v1/service/bankinfo",
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                transformRequest: function(obj) {
-                    var str = [];
-                    for (var p in obj)
-                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                    return str.join("&");
-                },
-                data: angular.extend({}, config.common_params, {
+                method: "DELETE",
+                params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "cardId": bank.id,
                 })
