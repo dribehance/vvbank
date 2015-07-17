@@ -4,6 +4,15 @@ var licaiController = function($scope,$route, $location, licaiServices, toastSer
     $scope.reload = function() {
         $route.reload();
     }
+    $scope.more = function (name) {
+        var exchangeCode = "";
+        for (var i=0;i<$scope.exchanges.length;i++) {
+            if ($scope.exchanges[i].name == name) {
+                exchangeCode = $scope.exchanges[i].productCode;
+            }
+        }
+        $location.path("/licai/"+exchangeCode);
+    }
     // query exchange
     licaiServices.queryExchange().then(function(data) {
         $scope.exchanges = data.result;

@@ -1,4 +1,4 @@
-var signinController = function($scope, $location, userServices, toastServices, errorServices, localStorageService, config) {
+var signinController = function($scope, $location, userServices, platformServices,toastServices, errorServices, localStorageService, config) {
     $scope.input = {
         name: "",
         password: ""
@@ -9,6 +9,10 @@ var signinController = function($scope, $location, userServices, toastServices, 
             toastServices.hide();
             if (data.respcode == config.request.SUCCESS) {
                 localStorageService.set("token", data.result.token);
+                if ($rootScope.isNativeAndroid) {
+                    platformServices.setToken();
+                    return;
+                }
                 $location.path("/me").replace();
             } else {
                 errorServices.autoHide(data.message);
