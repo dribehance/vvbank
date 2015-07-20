@@ -12,7 +12,9 @@ angular.module("VVBank").factory("platformServices", function($rootScope, $windo
                 return;
             }
             // navbar handle
-            $rootScope.isNative = true;
+            $rootScope.hasNavbarTop = true;
+            $rootScope.hasNavbarBottom = false;
+            // back
             $rootScope.back = this.nativeBack;
         },
         nativeBack:function() {

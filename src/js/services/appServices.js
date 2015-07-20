@@ -48,6 +48,8 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
                 // rootScope binding
                 $rootScope.$on("$routeChangeStart", routeChangeStart);
                 $rootScope.$on("$routeChangeSuccess", routeChangeSuccess);
+                $rootScope.hasNavbarBottom = true;
+                $rootScope.hasNavbarTop = true;
                 // android backkey
                 document.addEventListener("backbutton", onBackKeyDown, false);
                 // manual back control
@@ -55,6 +57,7 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
                     $window.history.back();
                 }
             }
+            // token expired
             $interval(function() {
                 userServices.token();
             }, 1000 * 60 * 25);

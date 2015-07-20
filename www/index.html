@@ -15,7 +15,7 @@
     <script src="js/app.min.js"></script>
 </head>
 
-<body ng-app="VVBank" ng-init="hasNavbarTop = 1;hasNavbarBottom = 1" ng-class="{'has-navbar-top':hasNavbarTop,'has-navbar-bottom':hasNavbarBottom,'is-native':isNative}">
+<body ng-app="VVBank" ng-class="{'has-navbar-top':hasNavbarTop,'has-navbar-bottom':hasNavbarBottom,'is-native':isNative}">
 
 
     <div class="app">
@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <div class="navbar navbar-app navbar-absolute-bottom" ng-show="hasNavbarBottom" ng-hide="isNative">
+        <div class="navbar navbar-app navbar-absolute-bottom" ng-show="hasNavbarBottom">
             <div class="btn-group justified">
                 <a ng-href="#/index" class="btn btn-navbar"><i class="vv vv-33 vv-index"></i><span class="block">首页</span></a>
                 <a ng-href="#/licai" class="btn btn-navbar"><i class="vv vv-33 vv-licai"></i> <span class="block">理财产品</span></a>
