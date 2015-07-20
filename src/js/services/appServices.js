@@ -14,23 +14,23 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
         // navbar top
         if ($location.path() == "/me") {
             // SharedState.turnOff("navbarTop");
-            $rootScope.hasNavbarTop = false;
+            $rootScope.navbar.top = false;
         } else {
             // SharedState.turnOn("navbarTop");
-            $rootScope.hasNavbarTop = true;
+            $rootScope.navbar.top = true;
         }
         // navbar bottom
         if ($location.path().toString().indexOf("/licai/") == 0) {
-            $rootScope.hasNavbarBottom = true;
+            $rootScope.navbar.bottom = true;
             return;
         }
         var _navbars_b = ["/index", "/licai", "/me", "/", "/signIn"];
         if (!_navbars_b.contains($location.path())) {
             // SharedState.turnOff("navbarBottom");
-            $rootScope.hasNavbarBottom = false;
+            $rootScope.navbar.bottom = false;
         } else {
             // SharedState.turnOn("navbarBottom");
-            $rootScope.hasNavbarBottom = true;
+            $rootScope.navbar.bottom = true;
         }
 
     }
@@ -48,8 +48,10 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
                 // rootScope binding
                 $rootScope.$on("$routeChangeStart", routeChangeStart);
                 $rootScope.$on("$routeChangeSuccess", routeChangeSuccess);
-                $rootScope.hasNavbarBottom = true;
-                $rootScope.hasNavbarTop = true;
+                $rootScope.navbar = {
+                    top:true,
+                    bottom:true
+                }
                 // android backkey
                 document.addEventListener("backbutton", onBackKeyDown, false);
                 // manual back control
