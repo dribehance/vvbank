@@ -42,18 +42,18 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
     return {
         init: function() {
             // native app handle
-            if ($rootScope.isNative) {
-                platformServices.nativeHandle();
-            }
+            platformServices.nativeHandle();
             // handle android browser backkeydown
-            else {
-                document.addEventListener("backbutton", onBackKeyDown, false);
+            if (!platformServices.isNative()) {
                 // rootScope binding
                 $rootScope.$on("$routeChangeStart", routeChangeStart);
-                $rootScope.$on("$routeChangeSuccess", routeChangeSuccess);     
-            }
-            $rootScope.back = function() {
-                $window.history.back();
+                $rootScope.$on("$routeChangeSuccess", routeChangeSuccess);
+                // android backkey
+                document.addEventListener("backbutton", onBackKeyDown, false);
+                // manual back control
+                $rootScope.back = function() {
+                    $window.history.back();
+                }
             }
             $interval(function() {
                 userServices.token();
