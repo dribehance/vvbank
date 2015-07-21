@@ -1,13 +1,30 @@
 angular.module("VVBank").factory("platformServices", function($rootScope, $window, $route, $location, localStorageService, config) {
-    $window.toggle = function() {
-        $rootScope.$apply(function() {
-            $rootScope.hasNavbarBottom = !$rootScope.hasNavbarBottom;
-        })
+    $window.connectWebViewJavascriptBridge = function(callback) {
+        if ($window.WebViewJavascriptBridge) {
+            callback(WebViewJavascriptBridge)
+        } else {
+            document.addEventListener('WebViewJavascriptBridgeReady', function() {
+                callback(WebViewJavascriptBridge)
+            }, false)
+        }
     }
     return {
-        isNative: function() {
+        isAndroid:function(){
             var ua = $window.navigator.userAgent.toLowerCase();
             if (ua.indexOf("vvandroid") != -1) {
+                return true;
+            }
+            return false;
+        },
+        isIos:function(){
+            var ua = $window.navigator.userAgent.toLowerCase();
+            if (ua.indexOf("vvios") != -1) {
+                return true;
+            }
+            return false;
+        },
+        isNative: function() {
+            if (this.isAndroid() || this.isIos()) {
                 return true;
             }
             return false;
@@ -32,10 +49,22 @@ angular.module("VVBank").factory("platformServices", function($rootScope, $windo
                 $rootScope.navbar.bottom = false;
             });
             // back
-            $rootScope.back = this.nativeBack;
+            if (this.isAndroid()) {
+                $rootScope.back = this.androidBack;
+            }
+            if (this.isIos()) {
+                $rootScope.back = this.iosBack;
+            }
         },
-        nativeBack: function() {
+        androidBack: function() {
             android.mygoBack();
+        },
+        iosBack:function(){
+            $window.connectWebViewJavascriptBridge(function(bridge){
+                bridge.send("ios_back",function(data){
+                    console.log("ios back");
+                });
+            });
         },
         setToken: function() {
             android.getToken(localStorageService.get("token"));
