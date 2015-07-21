@@ -38,7 +38,10 @@ var signupController = function($rootScope,$scope,$location,userServices,errorSe
 	$scope.getSmscode = function(){
 		userServices.getSmscode($scope.input.telephone,config.smstype.SIGNUP).then(function(data){
 			if (!(data.result.status == 1 && data.respcode == config.request.SUCCESS)) {
-				errorServices.autoHide();
+				// errorServices.autoHide();
+			}
+			else {
+				errorServices.autoHide(data.message)
 			}
 		})
 		$scope.callbackTimer.counting = 1;
