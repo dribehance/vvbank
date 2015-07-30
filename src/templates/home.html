@@ -16,24 +16,12 @@
                                 <i class="vv vv-18 vv-guard vv-{{key}}"></i>
                                 {{value}}
                             </span>
-                            <!-- <span class="text-ellipsis">
-                                <i class="vv vv-18 vv-clock"></i>
-                                周期短
-                            </span>
-                            <span class="text-ellipsis">
-                                <i class="vv vv-18 vv-money"></i>
-                                收益稳定
-                            </span>
-                            <span class="text-ellipsis">
-                                <i class="vv vv-18 vv-safety"></i>
-                                安全性高
-                            </span> -->
                         </div>
                     </div>
                     <div class="section section-condensed text-center">
                         <div><strong>预期年化收益</strong>
                         </div>
-                        <div class="text-very-large text-orange">{{ product.percentage | currency:"" }}%</div>
+                        <div class="text-very-large text-orange gothambook">{{ product.percentage | currency:"" }}%</div>
                     </div>
                     <div class="section text-grey">
                         <div class="semi-auto semi-left-60 semi-right-60">
@@ -43,15 +31,15 @@
                                     <span class="sr-only">{{ product.progress |currency:"" }}Complete</span>
                                 </div>
                             </div>
-                            <span class="semi-fixed-right semi-width-60 text-center">{{ product.progress | currency:"" }}%</span>
+                            <span class="semi-fixed-right semi-width-60 text-center gothambook">{{ product.progress | currency:"" }}%</span>
                         </div>
                     </div>
                     <div class="section text-grey row">
                         <div class="col-xs-6 col-condensed text-left text-ellipsis">
-                            项目金额：{{product.total | currency:""}}元
+                            项目金额：<span class="gothambook">{{product.total | currency:""}}</span>元
                         </div>
                         <div class="col-xs-6 col-condensed text-right text-ellipsis">
-                            项目期限：{{ product.duration}}天
+                            项目期限：<span class="gothambook">{{ product.duration}}</span>天
                         </div>
                     </div>
                     <div class="section text-grey text-ellipsis">

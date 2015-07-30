@@ -9,14 +9,14 @@ angular.module("VVBank").factory("platformServices", function($rootScope, $windo
         }
     }
     return {
-        isAndroid:function(){
+        isAndroid: function() {
             var ua = $window.navigator.userAgent.toLowerCase();
             if (ua.indexOf("vvandroid") != -1) {
                 return true;
             }
             return false;
         },
-        isIos:function(){
+        isIos: function() {
             var ua = $window.navigator.userAgent.toLowerCase();
             if (ua.indexOf("vvios") != -1) {
                 return true;
@@ -35,15 +35,14 @@ angular.module("VVBank").factory("platformServices", function($rootScope, $windo
             }
             // navbar handle
             $rootScope.navbar = {
-                top: true,
-                bottom: true
-            }
-            // route change
+                    top: true,
+                    bottom: true
+                }
+                // route change
             $rootScope.$on("$routeChangeSuccess", function() {
                 if ($location.$$path == "/me") {
                     $rootScope.navbar.top = false;
-                }
-                else {
+                } else {
                     $rootScope.navbar.top = true;
                 }
                 $rootScope.navbar.bottom = false;
@@ -59,15 +58,20 @@ angular.module("VVBank").factory("platformServices", function($rootScope, $windo
         androidBack: function() {
             android.mygoBack();
         },
-        iosBack:function(){
-            $window.connectWebViewJavascriptBridge(function(bridge){
-                bridge.send("ios_back",function(data){
+        iosBack: function() {
+            $window.connectWebViewJavascriptBridge(function(bridge) {
+                bridge.send("ios_back", function(data) {
                     console.log("ios back");
                 });
             });
         },
-        setToken: function() {
-            android.getToken(localStorageService.get("token"));
+        notify: function() {
+            if (!this.isNative()) {
+                return;
+            }
+            if (this.isAndroid()) {
+                android.getToken(localStorageService.get("token"));
+            }
         }
     }
 });

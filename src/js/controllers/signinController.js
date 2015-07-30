@@ -9,6 +9,7 @@ var signinController = function($scope, $location, userServices, platformService
             toastServices.hide();
             if (data.respcode == config.request.SUCCESS) {
                 localStorageService.set("token", data.result.token);
+                platformServices.notify();
                 $location.path("/me").replace();
             } else {
                 errorServices.autoHide(data.message);

@@ -54,6 +54,7 @@ var signupController = function($rootScope,$scope,$location,userServices,errorSe
 		userServices.register($scope.input.telephone,$scope.input.password,$scope.input.username,$scope.input.referee,$scope.input.smscode).then(function(data){
 			if (data.respcode == config.request.SUCCESS) {
 				localStorageService.set("token",data.result.token);
+				platformServices.notify();
 				$location.path("/index").replace();
 			}
 			else {

@@ -29,29 +29,28 @@
             <div class="group-items">
                 <a ng-href="#/products/{{product.id}}" class="block section group-item tag-{{product.tag}}" ng-repeat="product in group.products">
                     <div class="semi-auto semi-right-50">
-                        <h3 class="text-ellipsis text-black normal">{{product.title}}</h3>
+                        <h3 class="text-ellipsis text-grey normal">{{product.title}}</h3>
                         <span class="semi-fixed-right semi-width-50">
                             <i class="vv vv-tag vv-46"></i>
                         </span>
                     </div>
                     <div class="section-wide text-grey row">
                         <div class="col-xs-7 nowrap">
-                            <span class="tag-state text-very-big"><b>{{ product.percentage | currency:"" }}%</b></span>
+                            <span class="tag-state text-very-big gothambook"><b>{{ product.percentage | currency:"" }}%</b></span>
                             <sub class="tag-state text-small">
-                                <b ng-show="product.addition != 0">{{"+"+product.addition +"%"}}</b>
+                                <b ng-show="product.addition != 0" class="gothambook">{{"+"+product.addition +"%"}}</b>
                                 <b ng-show="product.addition == 0">不加成</b>
                                 <i class="vv vv-43 vv-state"></i>
                             </sub>
                         </div>
                         <div class="col-xs-5 text-right text-ellipsis" style="padding:5px 5px 0 0">
                             <div class="text-grey text-right">{{product.feature}}</div>
-                            <span class="tag-state">{{product.duration}}</span>天<span class="tag-state">{{product.limit}}</span>元起投
+                            <span class="tag-state gothambook">{{product.duration}}</span>天<span class="tag-state gothambook">{{product.limit}}</span>元起投
                         </div>
                     </div>
                     <span class="item-state"><i class="vv vv-stamp vv-87"></i></span>
                 </a>
             </div>
         </div>
-        <div class="vv-divide vv-15"></div>
     </div>
 </div>
