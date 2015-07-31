@@ -20,10 +20,22 @@ var indexController = function($scope, $timeout, toastServices, licaiServices, b
         }, 0);
     });
     $scope.gauge_data = [{
-        label: "CPU",
+        label: "",
         value: 75,
         suffix: "%",
-        color: "steelblue"
+        color: "#007cd2"
     }];
-    $scope.gauge_options = {thickness: 5, mode: "gauge", total: 100};
+    $scope.gauge_options = {
+        thickness: 4,
+        mode: "gauge",
+        total: 100
+    };
+    $scope.pieChart = function(progress) {
+        return [{
+            label: "",
+            value: progress,
+            suffix: "%",
+            color: "#007cd2"
+        }]
+    }
 }

@@ -36,8 +36,8 @@
         <div ng-repeat="product in products">
             <a ng-href="#/products/{{product.id}}" class="section section-condenced block text-grey">
                 <h5 class="text-large">{{ product.title }}</h5>
-                <div class="semi-auto semi-left-135 semi-right-75">
-                    <div class="semi-fixed-left semi-width-135" style="margin:0">
+                <div class="semi-auto semi-left-130 semi-right-60">
+                    <div class="semi-fixed-left semi-width-130" style="margin:0">
                         <div class="text-ellipsis">
                             <span class="text-very-big text-primary">{{ product.percentage | currency:"" }}%</span>
                             <span class="text-orange">{{"+"+product.addition +"%"}}</span>
@@ -46,15 +46,18 @@
                     <div class="row">
                         <div class="col-xs-6 text-center section-wide text-ellipsis">
                             <div>期限</div>
-                            <div class="text-black"><b>{{ product.duration}}天</b></div>
+                            <div class="text-black"><b>{{ product.duration}}天</b>
+                            </div>
                         </div>
                         <div class="col-xs-6 text-center section-wide text-ellipsis">
                             <div>借款总额</div>
-                            <div class="text-black"><b>{{product.total | currency:""}}元</b></div>
+                            <div class="text-black"><b>{{product.total | currency:""}}元</b>
+                            </div>
                         </div>
                     </div>
-                    <div class="semi-fixed-right text-center semi-width-75">
-                        <pie-chart data="gauge_data" options="gauge_options"></pie-chart>
+                    <div class="semi-fixed-right text-center semi-width-60" style="right: -12px; top: -11px;height:60px;">
+                        <pie-chart data="[{label: '',value: product.progress,suffix: '%',color: '#007cd2'}]" options="gauge_options" style="position:relative;z-index:1"></pie-chart>
+                        <div class="pie-chart-bg"></div>
                     </div>
                 </div>
             </a>
