@@ -28,10 +28,13 @@
 	font-size: 36px;
 }
 .text-very-big {
-	font-size: 30px;
+	font-size: 26px;
 }
 .text-large {
 	font-size: 18px;
+}
+.text-big {
+	font-size: 15px;
 }
 .text-small {
 	font-size: 12px;
@@ -49,6 +52,9 @@
 }
 .text-left {
 	text-align: left;
+}
+.text-right {
+	text-align: right;
 }
 .text-ellipsis {
 	white-space: nowrap;
@@ -93,6 +99,9 @@
 	&.semi-left-150 {
 		padding-left: 150px;
 	}
+	&.semi-left-135 {
+		padding-left: 135px;
+	}
 	.semi-fixed-left {
 		display: block;	
 		position: absolute;
@@ -121,6 +130,9 @@
 		width:98px;
 	}
 	.semi-width-150 {
+		width: 150px;
+	}
+	.semi-width-135 {
 		width: 135px;
 		margin-left: 10px;
 	}
@@ -170,8 +182,14 @@
 .vv-divide {
 	display: block;
 	height: 1px;
+	&.vv-1 {
+		height: 1px;
+	}
 	&.vv-5 {
 		height: 5px;
+	}
+	&.vv-10 {
+		height: 10px;
 	}
 	&.vv-15 {
 		height: 15px;

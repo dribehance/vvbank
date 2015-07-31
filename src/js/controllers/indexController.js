@@ -19,4 +19,11 @@ var indexController = function($scope, $timeout, toastServices, licaiServices, b
             });
         }, 0);
     });
+    $scope.gauge_data = [{
+        label: "CPU",
+        value: 75,
+        suffix: "%",
+        color: "steelblue"
+    }];
+    $scope.gauge_options = {thickness: 5, mode: "gauge", total: 100};
 }

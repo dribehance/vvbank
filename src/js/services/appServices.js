@@ -32,7 +32,8 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
             // SharedState.turnOn("navbarBottom");
             $rootScope.navbar.bottom = true;
         }
-
+        // always hide navbar bottom
+        $rootScope.navbar.bottom = false;
     }
     var onBackKeyDown = function() {
         $rootScope.$apply(function() {

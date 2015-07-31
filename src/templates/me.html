@@ -9,7 +9,14 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="section me-info">
-        <div class="text-right"><a ng-href="#/setting" class="vv vv-setting vv-38"></a></div>
+        <div class="btn-group justified">
+            <span class="btn section-wide text-left">
+                <a ng-click="back()" class="vv vv-back vv-38"></a>
+            </span>
+            <span class="btn section-wide text-right">
+                <a ng-href="#/setting" class="vv vv-setting vv-38"></a>
+            </span>
+        </div>
             <div class="semi-auto semi-left-75">
                 <span class="semi-fixed-left semi-width-75">
 					<img ng-src="{{ user.avatar || staticImageUrl +'images/default-avatar.png'}}" alt="">

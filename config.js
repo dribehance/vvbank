@@ -31,6 +31,7 @@ module.exports = function(config) {
   config.vendor.js.push('./bower_components/angular-timer/dist/angular-timer.min.js');
   config.vendor.js.push('./bower_components/humanize-duration/humanize-duration.js');
   config.vendor.js.push('./bower_components/momentjs/moment.js');
+  config.vendor.js.push('./bower_components/pie-chart/dist/pie-chart.min.js');
   config.vendor.js.push('./bower_components/OwlCarousel/owl-carousel/owl.carousel.min.js');
   config.vendor.js.push('./bower_components/angular-local-storage/dist/angular-local-storage.min.js');
   config.vendor.js.push('./node_modules/china-identity-card/validate.js');

@@ -6,7 +6,8 @@ angular.module("VVBank", [
     "mobile-angular-ui.core.sharedState",
     "flow",
     "timer",
-    "LocalStorageModule"
+    "LocalStorageModule",
+    "n3-pie-chart"
 ])
 .config(function($routeProvider,$httpProvider,localStorageServiceProvider) {
     $routeProvider

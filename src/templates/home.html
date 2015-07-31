@@ -1,12 +1,88 @@
+<div ui-content-for="title">
+    <span><b>优选项目 快乐投资</b></span>
+</div>
+<div ui-content-for="backAction"></div>
+<div ui-content-for="navbarAction">
+    <a ng-href="#/me" class="btn"><i class="vv vv-35 vv-me-top"></i></a>
+</div>
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="owl-carousel banner" id="banner">
             <a href="{{ banner.path }}" ng-repeat="banner in banners">
                 <img ng-src="{{ banner.path }}" alt="" class="block full-width">
             </a>
-
         </div>
-        <div class="owl-carousel cards-carousel " id="product-carousel">
+        <div class="section">
+            <div class="row">
+                <div class="col-xs-4 text-center">
+                    <img ng-src="{{ staticImageUrl +'images/project_1.png'}}" alt="">
+                    <div>信用标</div>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <img ng-src="{{ staticImageUrl +'images/project_2.png'}}" alt="">
+                    <div>红本抵押</div>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <img ng-src="{{ staticImageUrl +'images/project_3.png'}}" alt="">
+                    <div>车辆抵押</div>
+                </div>
+            </div>
+        </div>
+        <div class="vv-divide vv-10"></div>
+        <div class="section">
+            <b class="text-large">直投项目</b>
+        </div>
+        <div class="vv-divide vv-1"></div>
+        <div ng-repeat="product in products">
+            <a ng-href="#/products/{{product.id}}" class="section section-condenced block text-grey">
+                <h5 class="text-large">{{ product.title }}</h5>
+                <div class="semi-auto semi-left-135 semi-right-75">
+                    <div class="semi-fixed-left semi-width-135" style="margin:0">
+                        <div class="text-ellipsis">
+                            <span class="text-very-big text-primary">{{ product.percentage | currency:"" }}%</span>
+                            <span class="text-orange">{{"+"+product.addition +"%"}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 text-center section-wide text-ellipsis">
+                            <div>期限</div>
+                            <div class="text-black"><b>{{ product.duration}}天</b></div>
+                        </div>
+                        <div class="col-xs-6 text-center section-wide text-ellipsis">
+                            <div>借款总额</div>
+                            <div class="text-black"><b>{{product.total | currency:""}}元</b></div>
+                        </div>
+                    </div>
+                    <div class="semi-fixed-right text-center semi-width-75">
+                        <pie-chart data="gauge_data" options="gauge_options"></pie-chart>
+                    </div>
+                </div>
+            </a>
+            <div class="vv-divide vv-5 bg-light-grey"></div>
+        </div>
+
+        <a href="" class="section btn block full-width text-large text-grey">加载更多项目</a>
+        <div class="vv-divide vv-5 bg-light-grey"></div>
+        <div class="section bg-light-grey">
+            <div class="semi-auto semi-left-50 semi-right-50">
+                <div class="semi-fixed-left semi-width-50 text-center">
+                    <a ng-href="#/signIn" class="btn btn-primary bg-light-grey text-primary">登录</a>
+                </div>
+                <div class="semi-fixed-right semi-width-50 text-center">
+                    <a ng-href="#/signUp" class="btn btn-primary bg-light-grey text-primary">注册</a>
+                </div>
+                <div class="btn-group justified">
+                    <a ng-href="#/about" class="btn text-grey section-wide">关于我们</a>
+                    <a class="btn text-grey section-wide">联系我们</a>
+                    <a ng-href="#/licai" class="btn text-grey section-wide">投资列表</a>
+                </div>
+            </div>
+            <div class="vv-divide vv-5 bg-light-grey"></div>
+            <div class="text-center text-grey">粤ICP备14018439号</div>
+            <div class="vv-divide vv-5 bg-light-grey"></div>
+            <div class="text-center text-grey">深圳前海优易投互联网金融服务有限公司</div>
+        </div>
+        <!-- <div class="owl-carousel cards-carousel " id="product-carousel">
             <div ng-repeat="product in products">
                 <a ng-href="#/products/{{ product.id }}" class="block text-grey">
                     <div class="section text-grey text-center">
@@ -53,6 +129,6 @@
                     <div class="section btn btn-lg text-center full-width text-white bg-grey rectangle">购买</div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
