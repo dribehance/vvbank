@@ -23,4 +23,7 @@ var productController = function($scope, $routeParams, toastServices, productSer
     $scope.parseUnit = function(number) {
         return number = number / 10000;
     };
+    $scope.getTime = function(time) {
+        return time = new Date(time).getTime();
+    }
 }

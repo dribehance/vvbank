@@ -46,6 +46,8 @@ angular.module("VVBank").factory("parserServices", function(config) {
             product.exchange = data.financialExchange || "";
             product.agency = data.guarantor || "";
             product.code = data.code || "";
+            product.endtime = data.endtime || "2016-07-31 16:00:00";
+            product.transaction = data.transaction || "0";
             return product;
         },
         parseProducts: function(data) {

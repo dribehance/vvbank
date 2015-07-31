@@ -45,21 +45,25 @@
                     <span class="semi-fixed-left semi-width-60">当前进度：</span>
                     <div class="progress rectangle">
                         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ product.progress+'%' }};">
-                            <span class="sr-only">{{ product.progress |currency:"" }}Complete</span>
+                            <span class="sr-only">{{ product.progress | currency:"" }}Complete</span>
                         </div>
                     </div>
                     <span class="semi-fixed-right semi-width-60 text-center gothambook">{{ product.progress | currency:"" }}%</span>
                 </div>
                 <div class="vv-divide vv-5"></div>
-                <i class="vv vv-18 vv-clock"></i><span style="vertical-align:middle">剩余时间60天21小时33分22秒</span>
+                <i class="vv vv-18 vv-clock"></i>
+                <span style="vertical-align:middle">
+                    剩余时间
+                    <timer end-time="getTime(product.endtime)">{{days}}天{{hhours}}小时{{mminutes}}分钟{{sseconds}}秒</timer>
+                </span>
             </div>
         </div>
         <div class="vv-divide vv-1 bg-light-grey"></div>
         <div class="text-grey section section-sm">起投金额：{{ product.limit }}</div>
         <div class="text-grey section section-sm">还款方式：{{ product.feature }}</div>
-        <div class="text-grey section section-sm">起息时间：{{ product.exchange }}</div>
-        <div class="text-grey section section-sm">已投笔数：{{ product.agency }}</div>
-        <div class="text-grey section section-sm">已募金额：{{ product.total }}</div>
+        <div class="text-grey section section-sm">起息时间：{{ product.endtime }}</div>
+        <div class="text-grey section section-sm">已投笔数：{{ product.transaction }}</div>
+        <div class="text-grey section section-sm">已募金额：{{ product.total|currency:"" }}元</div>
         <div class="section">
             <div ng-if="product.tag == 0">
                 <a href="#/buy/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning rectangle">购买</a>
@@ -70,7 +74,7 @@
         </div>
         <div class="vv-divide vv-5"></div>
         <!-- 相关文件 -->
-        <div class="section">
+        <div class="section" ng-show="files.length>0">
             <div class="section section-wide text-black" style="padding-bottom:0">
                 <span class="normal text-black text-large"><b>相关文件</b></span>
             </div>
