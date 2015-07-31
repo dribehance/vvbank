@@ -21,21 +21,21 @@
                     <div class="">
                         <div style="margin-bottom:5px">借款金额</div>
                         <div class="text-ellipsis">
-                            <span class="text-big">100.00</span>
+                            <span class="text-big">{{parseUnit(product.total)}}</span>
                             <span class="text-small">万</span>
                         </div>
                     </div>
                     <div class="">
                         <div style="margin-bottom:5px">年化收益率</div>
                         <div class="text-ellipsis text-primary">
-                            <span class="text-big">10.50%</span>
-                            <span class="text-small">+1%</span>
+                            <span class="text-big">{{ product.percentage | currency:"" }}</span>
+                            <span class="text-small">%{{"+"+product.addition +"%"}}</span>
                         </div>
                     </div>
                     <div class="">
                         <div style="margin-bottom:5px">投资期限</div>
                         <div class="text-ellipsis">
-                            <span class="text-big">90</span>
+                            <span class="text-big">{{ product.duration }}</span>
                             <span class="text-small">天</span>
                         </div>
                     </div>
@@ -55,15 +55,42 @@
             </div>
         </div>
         <div class="vv-divide vv-1 bg-light-grey"></div>
-        <div class="text-grey section section-sm"><i class="vv vv-18 vv-faqiren" style="margin-right:5px"></i>起投金额：{{ product.faqiren }}</div>
-        <div class="text-grey section section-sm"><i class="vv vv-18 vv-dealer" style="margin-right:5px"></i>还款方式：{{ product.dealer }}</div>
-        <div class="text-grey section section-sm"><i class="vv vv-18 vv-house" style="margin-right:5px"></i>起息时间：{{ product.exchange }}</div>
-        <div class="text-grey section section-sm"><i class="vv vv-18 vv-agency" style="margin-right:5px"></i>已投笔数：{{ product.agency }}</div>
-        <div class="text-grey section section-sm"><i class="vv vv-18 vv-agency" style="margin-right:5px"></i>已募金额：{{ product.agency }}</div>
+        <div class="text-grey section section-sm">起投金额：{{ product.limit }}</div>
+        <div class="text-grey section section-sm">还款方式：{{ product.feature }}</div>
+        <div class="text-grey section section-sm">起息时间：{{ product.exchange }}</div>
+        <div class="text-grey section section-sm">已投笔数：{{ product.agency }}</div>
+        <div class="text-grey section section-sm">已募金额：{{ product.total }}</div>
         <div class="section">
-            <a href="" class="btn btn-primary block full-width">立即认购</a>
+            <div ng-if="product.tag == 0">
+                <a href="#/buy/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning rectangle">购买</a>
+            </div>
+            <div ng-if="product.tag !=0">
+                <div class="section btn btn-lg text-center full-width text-white bg-grey rectangle">购买</div>
+            </div>
         </div>
         <div class="vv-divide vv-5"></div>
+        <!-- 相关文件 -->
+        <div class="section">
+            <div class="section section-wide text-black" style="padding-bottom:0">
+                <span class="normal text-black text-large"><b>相关文件</b></span>
+            </div>
+            <div class="section section-wide" ng-repeat="file in files">
+                <p>{{file.title}}</p>
+                <img ng-src="{{file.path}}" alt="">
+                <p>{{file.content}}</p>
+            </div>
+        </div>
+        <!-- 项目详情 -->
+        <div class="section" ng-show="projects.length>0">
+            <div class="section section-wide text-black" style="padding-bottom:0">
+                <span class="normal text-black text-large"><b>项目详情</b></span>
+            </div>
+            <div class="section text-center" ng-repeat="project in projects">
+                <p class="text-center">{{project.title}}</p>
+                <img ng-src="{{project.path}}" alt="">
+                <p class="text-left">{{project.description}}</p>
+            </div>
+        </div>
         <!-- old -->
         <!-- <div class="section section-sm">
             <div class="col-xs-6 col-condensed nowrap">
@@ -127,7 +154,7 @@
                 <i class="vv vv-arrow-right vv-35"></i>
             </span>
             </a>
-        </div> 
+        </div>
         <div class="vv-divide"></div>
         <div class="section section-sm section-wide">
             <a ng-href="#/products-files/{{ product.id }}" class="block text-grey semi-auto semi-right-50">
@@ -137,7 +164,7 @@
             </span>
             </a>
         </div>
-        -->
+ -->
         <div class="vv-divide vv-5"></div>
         <div class="vv-divide vv-5"></div>
         <p class="text-grey text-center"><i class="vv vv-18 vv-bank" style="margin-right:5px"></i>VVBank所有资金均由财付通交易</p>
