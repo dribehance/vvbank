@@ -24,6 +24,18 @@ var productController = function($scope, $routeParams, toastServices, productSer
         return number = number / 10000;
     };
     $scope.getTime = function(time) {
-        return time = new Date(time).getTime();
+        if (!time) {
+            return;
+        }
+        var time_string = time.split(" ")[0],
+            hour_string = time.split(" ")[1],
+            year = time_string.split("-")[0],
+            month = time_string.split("-")[1],
+            day = time_string.split("-")[2],
+
+            hour = hour_string.split(":")[0],
+            minute = hour_string.split(":")[1],
+            second = hour_string.split(":")[2];
+        return time = new Date(year,month-1,day,hour,minute,second).getTime();
     }
 }
