@@ -42,6 +42,9 @@ var indexController = function($scope, $timeout, toastServices, errorServices, l
         'chongqing': "车辆抵押",
     }
     $scope.queryProjectByCode = function(code) {
+        if ($scope.project.code == code ) {
+            return;
+        }
         $scope.project = {
             name: projects_name[code],
             code: code,
@@ -51,16 +54,18 @@ var indexController = function($scope, $timeout, toastServices, errorServices, l
         // reset products
         $scope.products = [];
         $scope.no_more = false;
-        toastServices.show();
         $scope.loadMore();
     }
     $scope.loadMore = function() {
         if ($scope.no_more) {
             return;
         }
+        toastServices.show();
+        $scope.load_more_message = "正在加载...";
         licaiServices.queryByExchange($scope.project.code, $scope.project.page).then(function(data) {
             toastServices.hide();
             if (data.result.length > 0) {
+                $scope.load_more_message = "加载更多项目";
                 $scope.products = $scope.products.concat(parserServices.parseProducts(data.result));
             } else {
                 errorServices.autoHide("没有了");

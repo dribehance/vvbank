@@ -9,8 +9,12 @@ a:active, a:focus, button:active, button:focus {
     outline: none !important;
     text-decoration: none !important;
 }
+a:visited {
+    color: inherit;
+    // color: initial;
+}
 .btn {
-    font-size: 12px !important;
+    // font-size: 12px !important;
 }
 .normal {
     line-height: normal;
@@ -25,4 +29,15 @@ b, optgroup, strong {
 }
 .progress {
     height: 15px;
+}
+.navbar-app {
+    background-color: white;
+}
+.app {
+    background-color: @lightGrey;
+}
+.btn-group.justified.strip {
+    >*:not(:first-child) {
+        border-left: 1px solid @black;
+    }
 }

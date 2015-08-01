@@ -37,11 +37,11 @@ var signupController = function($rootScope,$scope,$location,userServices,errorSe
 	}
 	$scope.getSmscode = function(){
 		userServices.getSmscode($scope.input.telephone,config.smstype.SIGNUP).then(function(data){
-			if (!(data.result.status == 1 && data.respcode == config.request.SUCCESS)) {
-				// errorServices.autoHide();
+			if (data.result.status == 1 && data.respcode == config.request.SUCCESS) {
+				errorServices.autoHide("验证码发送成功");
 			}
 			else {
-				errorServices.autoHide(data.message)
+				errorServices.autoHide(data.message);
 			}
 		})
 		$scope.callbackTimer.counting = 1;

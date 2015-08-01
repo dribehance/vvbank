@@ -7,6 +7,7 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
+        <imageview src="../images/banner.png" rate="1"></imageview>
         <div class="owl-carousel banner" id="banner">
             <a href="{{ banner.path }}" ng-repeat="banner in banners">
                 <img ng-src="{{ banner.path }}" alt="" class="block full-width">
@@ -61,23 +62,23 @@
                     </div>
                 </div>
             </a>
-            <div class="vv-divide vv-5 bg-light-grey"></div>
+            <div class="vv-divide vv-1 bg-light-grey"></div>
         </div>
-
+        <div class="vv-divide vv-5 bg-light-grey"></div>
         <a ng-click="loadMore()" ng-if="project.code !='0'" class="section btn block full-width text-large text-grey">{{load_more_message}}</a>
         <div class="vv-divide vv-5 bg-light-grey"></div>
         <div class="section bg-light-grey">
             <div class="semi-auto semi-left-50 semi-right-50">
-                <div class="semi-fixed-left semi-width-50 text-center">
+                <div class="semi-fixed-left semi-width-50 text-center text-primary">
                     <a ng-href="#/signIn" class="btn btn-primary bg-light-grey text-primary">登录</a>
                 </div>
-                <div class="semi-fixed-right semi-width-50 text-center">
+                <div class="semi-fixed-right semi-width-50 text-center text-primary">
                     <a ng-href="#/signUp" class="btn btn-primary bg-light-grey text-primary">注册</a>
                 </div>
-                <div class="btn-group justified">
-                    <a ng-href="#/about" class="btn text-grey section-wide">关于我们</a>
-                    <a href="tel:18689221152" class="btn text-grey section-wide">联系我们</a>
-                    <!-- <a ng-href="#/licai" class="btn text-grey section-wide">投资列表</a> -->
+                <div class="btn-group btn section-wide justified strip" style="line-height:12px;padding:9px 0">
+                    <a ng-href="#/about" class="text-grey section-wide">关于我们</a>
+                    <a href="tel:18689221152" class="text-grey section-wide">联系我们</a>
+                    <a class="text-grey section-wide">投资列表</a>
                 </div>
             </div>
             <div class="vv-divide vv-5 bg-light-grey"></div>
@@ -85,53 +86,5 @@
             <div class="vv-divide vv-5 bg-light-grey"></div>
             <div class="text-center text-grey">深圳前海优易投互联网金融服务有限公司</div>
         </div>
-        <!-- <div class="owl-carousel cards-carousel " id="product-carousel">
-            <div ng-repeat="product in products">
-                <a ng-href="#/products/{{ product.id }}" class="block text-grey">
-                    <div class="section text-grey text-center">
-                        <h3 class="text-ellipsis normal text-black">{{ product.title }}</h3>
-                        <div class="btn-group justified" style="min-height:19px">
-                            <span class="text-ellipsis" ng-repeat="(key,value) in product.safety">
-                                <i class="vv vv-18 vv-guard vv-{{key}}"></i>
-                                {{value}}
-                            </span>
-                        </div>
-                    </div>
-                    <div class="section section-condensed text-center">
-                        <div><strong>预期年化收益</strong>
-                        </div>
-                        <div class="text-very-large text-orange gothambook">{{ product.percentage | currency:"" }}%</div>
-                    </div>
-                    <div class="section text-grey">
-                        <div class="semi-auto semi-left-60 semi-right-60">
-                            <span class="semi-fixed-left semi-width-60">当前进度：</span>
-                            <div class="progress rectangle">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ product.progress+'%' }};">
-                                    <span class="sr-only">{{ product.progress |currency:"" }}Complete</span>
-                                </div>
-                            </div>
-                            <span class="semi-fixed-right semi-width-60 text-center gothambook">{{ product.progress | currency:"" }}%</span>
-                        </div>
-                    </div>
-                    <div class="section text-grey row">
-                        <div class="col-xs-6 col-condensed text-left text-ellipsis">
-                            项目金额：<span class="gothambook">{{product.total | currency:""}}</span>元
-                        </div>
-                        <div class="col-xs-6 col-condensed text-right text-ellipsis">
-                            项目期限：<span class="gothambook">{{ product.duration}}</span>天
-                        </div>
-                    </div>
-                    <div class="section text-grey text-ellipsis">
-                        还款方式：{{product.feature}}
-                    </div>
-                </a>
-                <div ng-show="product.tag == 0">
-                    <a href="#/buy/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning rectangle">购买</a>
-                </div>
-                <div ng-show="product.tag !=0">
-                    <div class="section btn btn-lg text-center full-width text-white bg-grey rectangle">购买</div>
-                </div>
-            </div>
-        </div> -->
     </div>
 </div>

@@ -10,11 +10,11 @@
 <form name="buyForm" ng-submit="ajaxForm(this)">
     <div class="section">
         <div class="semi-auto semi-left-75">
-            <span class="semi-fixed-left semi-width-75 btn section-wide text-left">投资金额：</span>
-            <input type="number" class="form-control block full-width rectangle" name="amount" ng-model="input.amount" required min="{{product.limit}}" max="{{product.max}}" ng-pattern="/^[0-9]+$/" placeholder="请输入投资金额">
+            <span class="semi-fixed-left semi-width-75 btn section-wide text-left">投资金额</span>
+            <input type="number" class="form-control block full-width" name="amount" ng-model="input.amount" required min="{{product.limit}}" max="{{product.max}}" ng-pattern="/^[0-9]+$/" placeholder="请输入投资金额">
         </div>
     </div>
-    <div class="row section section-wide bg-light-grey">
+    <div class="row section section-wide bg-white-grey">
         <div class="col-xs-6 section-wide text-center">
             <span class="text-grey"><strong>剩余份额</strong></span>
             <div class="text-orange text-large text-ellipsis"><strong>{{input.remain | currency:"￥"}}</strong>
@@ -29,15 +29,15 @@
     </div>
     <div class="section">
         <div class="semi-auto semi-left-75">
-            <span class="semi-fixed-left semi-width-75 btn section-wide text-left">交易密码：</span>
-            <input type="password" class="form-control block full-width rectangle" name="password" ng-model="input.password" ng-minlength=8 required placeholder="请输入交易密码">
+            <span class="semi-fixed-left semi-width-75 btn section-wide text-left">交易密码</span>
+            <input type="password" class="form-control block full-width" name="password" ng-model="input.password" ng-minlength=8 required placeholder="请输入交易密码">
         </div>
     </div>
     <div class="vv-divide"></div>
     <div class="section">
         <div class="section">
             <label for="agreement" class="block text-grey" style="font-weight:100">
-                <input type="checkbox" id="agreement" name="agreement" ng-model="input.agreement" required>我已经阅读并同意<a ng-href="#/agreement" class="text-primary">《用户服务协议》</a>
+                <input type="checkbox" id="agreement" name="agreement" ng-model="input.agreement" required>我已经阅读并同意<a class="text-primary">《用户服务协议》</a>
             </label>
         </div>
     </div>

@@ -5,7 +5,7 @@
     <span>登录</span>
 </div>
 <div ui-content-for="navbarAction"></div>
-<div ui-if="!signIn">
+<div ui-if="!signIn" style="height:100%;background-color:white">
     <div class="section bg-grey text-center text-white" style="padding:30px 20px;">
         <h2><b>您还没有登录</b></h2>
         <p>
@@ -17,23 +17,24 @@
         <a class="btn btn-lg btn-primary block full-width" ui-turn-on="signIn">立即登录</a>
     </div>
 </div>
-<form name="signinForm" ng-submit="ajaxSubmit(this)" class="section" ui-state="signIn" ui-default="0" ui-if="signIn" novalidate>
+<form name="signinForm" ng-submit="ajaxSubmit(this)" class="section" ui-state="signIn" ui-default="0" ui-if="signIn"  style="height:100%;background-color:white">
     <div class="text-center">
         <img ng-src="{{staticImageUrl +'images/YYT_logo.png'}}" alt="">
     </div>
     <div class="vv-input-group input-group-lg">
         <span class="vv-input-group-addon"><i class="vv vv-20 vv-user"></i></span>
-        <input type="text" class="form-control" name="username" ng-model="input.name" placeholder="请输入用户名" required>
-        <span class="vv-input-tip" ng-show="signinForm.username.$error.required">用户名为必填</span>
+        <input type="text" class="form-control text-big" name="username" ng-model="input.name" placeholder="请输入用户名" required>
+        <span class="vv-input-tip" ng-show="signinForm.username.$dirty && signinForm.username.$error.required">用户名为必填</span>
     </div>
     <div class="vv-input-group input-group-lg">
         <span class="vv-input-group-addon"><i class="vv vv-20 vv-password"></i></span>
-        <input type="password" class="form-control" name="password" ng-model="input.password" placeholder="请输入登录密码" required ng-minlength=8>
-        <span class="vv-input-tip" ng-show="signinForm.password.$error.required || signinForm.password.$error.minlength">密码必填并且密码位数不少于8位</span>
+        <input type="password" class="form-control text-big" name="password" ng-model="input.password" placeholder="请输入登录密码" required ng-minlength=8>
+        <span class="vv-input-tip" ng-show="signinForm.password.$dirty && signinForm.password.$error.required || signinForm.password.$error.minlength">密码必填并且密码位数不少于8位</span>
     </div>
-    <p class="text-right"><a ng-href="#/forget" class="btn">忘记密码</a></p>
+    <p class="text-right text-primary"><a ng-href="#/forget">忘记密码</a></p>
     <div class="section-wide">
-        <button type="submit" class="btn btn-lg btn-primary block full-width" ng-disabled="signinForm.$invalid">立即登录</button>
+        <button type="submit" class="btn btn-lg text-large btn-primary block full-width" ng-disabled="signinForm.$invalid">立即登录</button>
     </div>
-    <p class="text-center"><span class="text-grey">还没有账号？</span><a ng-href="#/signUp" class="btn">免费注册</a></p>
+    <p></p>
+    <p class="text-center text-primary"><span class="text-grey">还没有账号？</span><a ng-href="#/signUp">免费注册</a></p>
 </form>

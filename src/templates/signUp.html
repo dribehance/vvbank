@@ -5,7 +5,7 @@
     <span>注册</span>
 </div>
 <div ui-content-for="navbarAction"></div>
-<form name="signupForm" ng-submit="ajaxForm(this)">
+<form name="signupForm" ng-submit="ajaxForm(this)" style="height:100%;background-color:white">
     <div class="section" ui-state="signUpStep" ui-default="1" ui-if="signUpStep == 1">
         <div class="text-center">
             <img ng-src="{{ staticImageUrl +'images/logo-big.png'}}" alt="">
@@ -15,8 +15,8 @@
         <div class="section"></div>
         <div class="vv-input-group input-group-lg">
             <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
-            <input type="text" class="form-control" name="telephone" ng-model="input.telephone" required ng-pattern="/(^(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/" placeholder="请输入手机号">
-            <span class="vv-input-tip" ng-show="!signupForm.telephone.$valid">请输入11位手机号码</span>
+            <input type="text" class="form-control text-big" name="telephone" ng-model="input.telephone" required ng-pattern="/(^(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/" placeholder="请输入手机号">
+            <span class="vv-input-tip" ng-show="signupForm.telephone.$dirty && signupForm.telephone.$invalid">请输入11位手机号码</span>
         </div>
         <div class="section-wide">
             <button type="button" class="btn btn-lg btn-primary block full-width" ng-click="nextStep()" ng-disabled="signupForm.telephone.$error.pattern || signupForm.telephone.$error.required">下一步</button>
@@ -27,8 +27,8 @@
         <div class="semi-auto semi-right-150">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
-                <input type="text" class="form-control border-radius-large" ng-model="input.smscode" name="smscode" ng-pattern="/^[0-9]+$/" ng-minlength=4 ng-maxlength=4 required placeholder="短信验证码">
-                <span class="vv-input-tip" ng-show="!signupForm.smscode.$valid">验证码为发送到您手机的四位数</span>
+                <input type="text" class="form-control text-big border-radius-large" ng-model="input.smscode" name="smscode" ng-pattern="/^[0-9]+$/" ng-minlength=4 ng-maxlength=4 required placeholder="短信验证码">
+                <span class="vv-input-tip" ng-show="signupForm.smscode.$dirty && signupForm.smscode.$invalid">验证码为四位</span>
             </div>
             <div class="semi-fixed-right semi-width-150 input-group input-group-lg text-center">
                 <button type="button" class="btn btn-primary btn-lg" ng-click="getSmscode()" ng-disabled="callbackTimer.counting">
@@ -40,14 +40,14 @@
         <div class="section-wide">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
-                <input type="text" class="form-control border-radius-large" name="password" ng-model="input.password" required ng-minlength=8 placeholder="新密码 请输入新密码">
-                <span class="vv-input-tip" ng-show="!signupForm.password.$valid">新密码,将作为您登录系统用的密码,并确保密码位数不少于8位</span>
+                <input type="text" class="form-control text-big border-radius-large" name="password" ng-model="input.password" required ng-minlength=8 placeholder="新密码 请输入新密码">
+                <span class="vv-input-tip" ng-show="signupForm.password.$dirty && signupForm.password.$invalid">密码必填，且不少于8位</span>
             </div>
         </div>
         <div class="section-wide">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
-                <input type="text" class="form-control border-radius-large" name="referee" ng-model="input.referee" placeholder="推荐人 请输入推荐码或推荐人手机号，没有可不填">
+                <input type="text" class="form-control text-big border-radius-large" name="referee" ng-model="input.referee" placeholder="推荐人 (可选)请输入推荐码或推荐人手机号">
             </div>
         </div>
         <div class="section-wide">

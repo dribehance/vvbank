@@ -3,7 +3,8 @@
 </div>
 <div ui-content-for="backAction">
     <a ng-click="back()" class="btn">
-        <i class="vv vv-35 vv-back-1"></i>
+        <!-- <i class="vv vv-35 vv-back-1"></i> -->
+        返回
     </a>
 </div>
 <div ui-content-for="navbarAction">
@@ -16,7 +17,7 @@
             <span class="normal text-black text-large"><b>{{ product.title || "..."}}</b></span>
         </div>
         <div class="section">
-            <div class="section bg-light-grey">
+            <div class="section bg-white-grey">
                 <div class="btn-group justified">
                     <div class="">
                         <div style="margin-bottom:5px">借款金额</div>
@@ -65,11 +66,11 @@
         <div class="text-grey section section-sm">已投笔数：{{ product.transaction }}</div>
         <div class="text-grey section section-sm">已募金额：{{ product.total|currency:"" }}元</div>
         <div class="section">
-            <div ng-if="product.tag == 0">
-                <a href="#/buy/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning rectangle">购买</a>
+            <div class="text-white" ng-if="product.tag == 0">
+                <a href="#/buy/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning">购买</a>
             </div>
             <div ng-if="product.tag !=0">
-                <div class="section btn btn-lg text-center full-width text-white bg-grey rectangle">购买</div>
+                <div class="section btn btn-lg text-center full-width text-white bg-grey">已募满</div>
             </div>
         </div>
         <div class="vv-divide vv-5"></div>
