@@ -1,18 +1,29 @@
 <div ui-content-for="title">
-    <span><b>优选项目 快乐投资</b></span>
+    <!-- <span><b>优选项目 快乐投资</b></span> -->
 </div>
 <div ui-content-for="backAction"></div>
 <div ui-content-for="navbarAction">
-    <a ng-href="#/me" class="btn"><i class="vv vv-35 vv-me-top"></i></a>
+    <!-- <a ng-href="#/me" class="btn"><i class="vv vv-35 vv-me-top"></i></a> -->
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
         <imageview src="../images/banner.png" rate="1"></imageview>
-        <div class="owl-carousel banner" id="banner">
+        <div class="navbar navbar-app" style="margin-bottom:0">
+            <div class="navbar-brand navbar-brand-center text-black"><span><b>优选项目 快乐投资</b></span></div>
+            <div class="btn-group pull-left"></div>
+            <div class="btn-group pull-right"><a ng-href="#/me" class="btn"><i class="vv vv-35 vv-me-top"></i></a></div>
+        </div>
+        <wrap-owlcarousel class="owl-carousel" data-options="{autoPlay: 5000, stopOnHover: true,  
+        slideSpeed : 300, paginationSpeed : 400, singleItem : true}">
+            <a href="{{ banner.path }}" ng-repeat="banner in banners" on-repeat-done>
+                <img ng-src="{{ banner.path }}" alt="" class="block full-width">
+            </a>
+        </wrap-owlcarousel>
+        <!-- <div class="owl-carousel banner" id="banner">
             <a href="{{ banner.path }}" ng-repeat="banner in banners">
                 <img ng-src="{{ banner.path }}" alt="" class="block full-width">
             </a>
-        </div>
+        </div> -->
         <div class="section">
             <div class="row">
                 <div class="col-xs-4 text-center" ng-click="queryProjectByCode('liaoning')">

@@ -12,7 +12,7 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
     var navBarHandler = function(e, currentRoute, prevRoute) {
 
         // navbar top
-        if ($location.path() == "/me") {
+        if ($location.path() == "/me" || $location.path() == "/index") {
             // SharedState.turnOff("navbarTop");
             $rootScope.navbar.top = false;
         } else {
