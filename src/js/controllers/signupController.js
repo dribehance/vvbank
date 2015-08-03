@@ -45,7 +45,7 @@ var signupController = function($rootScope,$scope,$location,userServices,errorSe
 			}
 		})
 		$scope.callbackTimer.counting = 1;
-		$scope.callbackTimer.addSeconds(5);
+		$scope.callbackTimer.addSeconds(30);
 	}
 	// error handler
 	$scope.errormsg = "";

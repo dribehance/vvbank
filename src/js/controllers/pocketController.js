@@ -4,7 +4,6 @@ var pocketController = function($scope, myServices, pushToRefreshServices, error
     var no_more = false;
     $scope.loadMore = function() {
         if (no_more) {
-            pushToRefreshServices.show("我就静静的瞅着，没有更多了...")
             return;
         }
         pushToRefreshServices.show("加载中");
@@ -19,6 +18,7 @@ var pocketController = function($scope, myServices, pushToRefreshServices, error
             }
             if (data.result.info.length == 0) {
                 no_more = true;
+                pushToRefreshServices.show("我就静静的瞅着，没有更多了...")
             }
         })
         currentPage++;

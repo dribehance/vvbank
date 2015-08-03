@@ -4,7 +4,6 @@ var billsController = function($scope, myServices,toastServices, parserServices,
     var no_more = false;
     $scope.loadMore = function() {
         if (no_more) {
-            pushToRefreshServices.show("没有了")
             return;
         }
         pushToRefreshServices.show("加载中");
@@ -18,6 +17,7 @@ var billsController = function($scope, myServices,toastServices, parserServices,
             }
             if (data.result.length == 0) {
                 no_more = true;
+                pushToRefreshServices.show("我就静静的瞅着，没有更多了...")
             }
         })
         currentPage++;

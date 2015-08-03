@@ -28,7 +28,7 @@
     </div>
     <div class="vv-input-group input-group-lg">
         <span class="vv-input-group-addon"><i class="vv vv-20 vv-password"></i></span>
-        <input type="password" class="form-control text-big" name="password" ng-model="input.password" placeholder="请输入登录密码" required ng-minlength=8>
+        <input type="password" class="form-control text-big" name="password" ng-model="input.password" placeholder="请输入登录密码,8位以上" required ng-minlength=8>
         <span class="vv-input-tip" ng-show="signinForm.password.$dirty && signinForm.password.$error.required || signinForm.password.$error.minlength">密码必填并且密码位数不少于8位</span>
     </div>
     <p class="text-right text-primary"><a ng-href="#/forget">忘记密码</a></p>

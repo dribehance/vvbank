@@ -1,4 +1,8 @@
-var indexController = function($scope, $timeout, toastServices, errorServices, licaiServices, bannerServices, parserServices) {
+var indexController = function($scope, $timeout, toastServices, localStorageService, errorServices, licaiServices, bannerServices, parserServices) {
+    $scope.is_login = false;
+    if (localStorageService.get("token")) {
+        $scope.is_login = true;
+    }
     // 直投项目
     $scope.project = {
         name: "直投项目",
@@ -42,7 +46,7 @@ var indexController = function($scope, $timeout, toastServices, errorServices, l
         'chongqing': "车辆抵押",
     }
     $scope.queryProjectByCode = function(code) {
-        if ($scope.project.code == code ) {
+        if ($scope.project.code == code) {
             return;
         }
         $scope.project = {
