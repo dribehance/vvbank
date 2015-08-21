@@ -27,7 +27,7 @@
         <div class="semi-auto semi-right-150">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
-                <input type="text" class="form-control text-big border-radius-large" ng-model="input.smscode" name="smscode" ng-pattern="/^[0-9]+$/" ng-minlength=4 ng-maxlength=4 required placeholder="短信验证码,4位">
+                <input type="text" class="form-control text-big border-radius-large" ng-model="input.smscode" name="smscode" ng-pattern="/^[0-9]+$/" ng-minlength=6 ng-maxlength=6 required placeholder="短信验证码,6位">
                 <span class="vv-input-tip" ng-show="signupForm.smscode.$dirty && signupForm.smscode.$invalid">验证码为四位</span>
             </div>
             <div class="semi-fixed-right semi-width-150 input-group input-group-lg text-center">
@@ -40,8 +40,8 @@
         <div class="section-wide">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
-                <input type="text" class="form-control text-big border-radius-large" name="password" ng-model="input.password" required ng-minlength=8 placeholder="新密码 请输入新密码,8位以上">
-                <span class="vv-input-tip" ng-show="signupForm.password.$dirty && signupForm.password.$invalid">密码必填，且不少于8位</span>
+                <input type="text" class="form-control text-big border-radius-large" name="password" ng-model="input.password" required ng-minlength=6 placeholder="新密码 请输入新密码,8位以上">
+                <span class="vv-input-tip" ng-show="signupForm.password.$dirty && signupForm.password.$invalid">密码必填，且不少于6位</span>
             </div>
         </div>
         <div class="section-wide">

@@ -8,21 +8,24 @@ var productController = function($scope, $routeParams, toastServices, productSer
             errorServices.autoHide(data.message)
         }
     });
-    productServices.queryFiles($routeParams.productID).then(function(data) {
-        if (data.respcode == config.request.SUCCESS) {
-            $scope.files = data.result;
-        }
-    });
-    projectServices.queryById($routeParams.productID).then(function(data) {
-        if (data.respcode == config.request.SUCCESS) {
-            $scope.projects = parserServices.parseProject(data.result);
-        } else {
-            errorServices.autoHide(data.message)
-        }
-    });
+    // productServices.queryFiles($routeParams.productID).then(function(data) {
+    //     if (data.respcode == config.request.SUCCESS) {
+    //         $scope.files = data.result;
+    //     }
+    // });
+    // projectServices.queryById($routeParams.productID).then(function(data) {
+    //     if (data.respcode == config.request.SUCCESS) {
+    //         $scope.projects = parserServices.parseProject(data.result);
+    //     } else {
+    //         errorServices.autoHide(data.message)
+    //     }
+    // });
     $scope.parseUnit = function(number) {
         return number = number / 10000;
     };
+    $scope.parseTime = function(time){
+        return time = new Date(time)
+    }
     $scope.getTime = function(time) {
         if (!time) {
             return;

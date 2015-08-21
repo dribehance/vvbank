@@ -1,6 +1,6 @@
 angular.module("VVBank").constant("config", {
-    url: "https://www.vvbank.net",
-    // url: "http://192.168.1.100:9000/proxy/www.vvbank.net",
+    // url: "http://youyitou.f3322.net:8022/ws",
+    url: "http://localhost:9000/proxy/youyitou.f3322.net:8022/ws",
     appid: "android_vv",
     version: "1.0",
     smstype: {

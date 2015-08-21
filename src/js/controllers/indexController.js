@@ -1,4 +1,4 @@
-var indexController = function($scope, $timeout, toastServices, localStorageService, errorServices, licaiServices, bannerServices, parserServices) {
+var indexController = function($scope, $timeout, toastServices, localStorageService, errorServices, licaiServices, bannerServices, parserServices, config) {
     $scope.is_login = false;
     if (localStorageService.get("token")) {
         $scope.is_login = true;
@@ -13,12 +13,6 @@ var indexController = function($scope, $timeout, toastServices, localStorageServ
     licaiServices.recommand().then(function(data) {
         toastServices.hide();
         $scope.products = parserServices.parseRecommendProduct(data.result);
-        $timeout(function() {
-            $("#product-carousel").owlCarousel({
-                autoPlay: false,
-                singleItem: true
-            });
-        }, 0);
     });
     // banner
     bannerServices.get().then(function(data) {
@@ -45,13 +39,20 @@ var indexController = function($scope, $timeout, toastServices, localStorageServ
         'shenzhen': "红本抵押",
         'chongqing': "车辆抵押",
     }
-    $scope.queryProjectByCode = function(code) {
-        if ($scope.project.code == code) {
+    licaiServices.queryExchange().then(function(data) {
+        if (data.respcode == config.request.SUCCESS) {
+            $scope.channels = data.result;
+        } else {
+            errorServices.autoHide(data.message)
+        }
+    });
+    $scope.queryProjectByCode = function(channel) {
+        if ($scope.project.code == channel.channelType) {
             return;
         }
         $scope.project = {
-            name: projects_name[code],
-            code: code,
+            name: channel.name,
+            code: channel.channelType,
             page: 1
         }
         $scope.load_more_message = "加载更多项目";

@@ -76,7 +76,7 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
             if ($location.$$host == "localhost" || $location.$$host == "192.168.1.100") {
                 $rootScope.staticImageUrl = "/";
             } else {
-                $rootScope.staticImageUrl = "/app/";
+                $rootScope.staticImageUrl = "/resources/app/";
             }
             if (localStorageService.get("token")) {
                 userServices.info.basic().then(function(data) {

@@ -30,7 +30,8 @@ angular.module("VVBank").factory("parserServices", function(config) {
             var product = new _m_product();
             product.id = data.productId;
             product.title = data.productName;
-            product.feature = feature_parser(data.repaymentType);
+            // product.feature = feature_parser(data.repaymentType);
+            product.feature = data.repaymentType;
             product.duration = data.investPeriod || "";
             product.limit = data.minInvestAmount || "0";
             product.max = data.maxInvestAmount || "0";
@@ -45,9 +46,10 @@ angular.module("VVBank").factory("parserServices", function(config) {
             product.dealer = data.underwriter || "";
             product.exchange = data.financialExchange || "";
             product.agency = data.guarantor || "";
-            product.code = data.code || "";
-            product.endtime = data.endtime || "2015-12-30 17:00:00";
-            product.transaction = data.transaction || "0";
+            product.code = data.channelType || "";
+            product.unit = data.periodUnit || "天";
+            product.endtime = data.remainderTime || "0";
+            product.transaction = data.investPersonConut || "0";
             return product;
         },
         parseProducts: function(data) {

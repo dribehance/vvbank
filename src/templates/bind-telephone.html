@@ -13,7 +13,7 @@
         <div class="semi-auto semi-right-150">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
-                <input type="text" class="form-control border-radius-large" ng-model="input.smscode" name="smscode" ng-pattern="/^[0-9]+$/" ng-minlength=4 ng-maxlength=4 required placeholder="短信验证码">
+                <input type="text" class="form-control border-radius-large" ng-model="input.smscode" name="smscode" ng-pattern="/^[0-9]+$/" ng-minlength=6 ng-maxlength=6 required placeholder="短信验证码,6位">
                 <span class="vv-input-tip" ng-show="!bindForm.smscode.$valid">验证码为发送到您手机的四位数</span>
             </div>
             <div class="semi-fixed-right semi-width-150 input-group input-group-lg text-center">

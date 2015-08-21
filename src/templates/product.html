@@ -37,7 +37,7 @@
                         <div style="margin-bottom:5px">投资期限</div>
                         <div class="text-ellipsis">
                             <span class="text-big">{{ product.duration }}</span>
-                            <span class="text-small">天</span>
+                            <span class="text-small">{{ product.unit }}</span>
                         </div>
                     </div>
                 </div>
@@ -55,14 +55,14 @@
                 <i class="vv vv-18 vv-clock"></i>
                 <span style="vertical-align:middle">
                     剩余时间
-                    <timer end-time="getTime(product.endtime)">{{days}}天{{hhours}}小时{{mminutes}}分钟{{sseconds}}秒</timer>
+                    <timer end-time="product.endtime">{{days}}天{{hhours}}小时{{mminutes}}分钟{{sseconds}}秒</timer>
                 </span>
             </div>
         </div>
         <div class="vv-divide vv-1 bg-light-grey"></div>
         <div class="text-grey section section-sm">起投金额：{{ product.limit }}</div>
         <div class="text-grey section section-sm">还款方式：{{ product.feature }}</div>
-        <div class="text-grey section section-sm">起息时间：{{ product.endtime }}</div>
+        <div class="text-grey section section-sm">起息时间：{{ parseTime(product.endtime) |date:"yyyy-MM-dd" }}</div>
         <div class="text-grey section section-sm">已投笔数：{{ product.transaction }}</div>
         <div class="text-grey section section-sm">已募金额：{{ product.total|currency:"" }}元</div>
         <div class="section">

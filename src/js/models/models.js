@@ -85,6 +85,7 @@ var _m_product = function() {
         exchange: "",
         agency: "",
         code: "",
+        unit:"",
         endtime:"",
         transaction:""
     }

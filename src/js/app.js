@@ -157,9 +157,9 @@ angular.module("VVBank", [
             templateUrl: "me/about.html",
             reloadOnSearch: false,
             controller:aboutController,
-            resolve: {
-                factory:loginInterceptor
-            }
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
         })
         .when("/name-authen", {
             templateUrl: "me/name-authen.html",
