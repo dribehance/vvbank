@@ -13,7 +13,7 @@
             <div class="btn-group pull-right"><a ng-href="#/me" class="btn"><i class="vv vv-35 vv-me-top"></i></a></div>
         </div>
         <wrap-owlcarousel class="owl-carousel" data-options="{autoPlay: 5000, stopOnHover: true,  
-        slideSpeed : 300, paginationSpeed : 400, singleItem : true}">
+        slideSpeed : 300, paginationSpeed : 400, singleItem : true}" style="overflow:hidden">
             <a href="{{ banner.path }}" ng-repeat="banner in banners" on-repeat-done>
                 <img ng-src="{{ banner.path }}" alt="" class="block full-width">
             </a>

@@ -87,7 +87,8 @@ var _m_product = function() {
         code: "",
         unit:"",
         endtime:"",
-        transaction:""
+        transaction:"",
+        detail:""
     }
     return product;
 }
@@ -115,6 +116,7 @@ var _m_bill = function() {
             "date": "",
             "type": "",
             "money": "",
+            "trade_money":"",
             "status":""
         }
     }

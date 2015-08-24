@@ -20,10 +20,10 @@
                             <span class="text-ellipsis">类别 </span>
                         </div>
                         <div class="col-xs-3">
-                            <span class="text-ellipsis">金额（元） </span>
+                            <span class="text-ellipsis">交易金额(元) </span>
                         </div>
                         <div class="col-xs-3">
-                            <span class="text-ellipsis">状态 </span>
+                            <span class="text-ellipsis">可用金额(元) </span>
                         </div>
                     </div>
                 </div>
@@ -39,12 +39,15 @@
                             <span class="text-ellipsis">{{ bill.money | currency:"￥"}} </span>
                         </div>
                         <div class="col-xs-3 text-ellipsis">
-                            <span class="text-ellipsis">{{ bill.status}}</span>
+                            <span class="text-ellipsis">{{ bill.trade_money | currency:"￥"}}</span>
                         </div>
                     </div>
                     <!-- push tip -->
-                    <div class="push" ui-state="push_state" ui-if="push_state" ui-default="true">
+                    <!-- <div class="push" ui-state="push_state" ui-if="push_state" ui-default="true">
                         <span class="text-center">{{pushmsg}}</span>
+                    </div> -->
+                    <div class="section text-center" ng-click="loadMore()">
+                        {{page.message}}
                     </div>
                 </div>
             </div>

@@ -5,28 +5,27 @@
     <a ng-click="back()" class="btn">返回</a>
 </div>
 <div ui-content-for="navbarAction">
-    <a ng-href="#/add-bank" class="btn" ng-show="!bank">添加</a>
+    <a ng-href="#/add-bank" class="btn" ng-show="banks.length<3">添加</a>
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
-        <div ng-show="bank">
+        <div ng-show="banks.length>0">
             <div class="section">
                 已添加银行
             </div>
-            <div class="bank-item blue-stip">
+            <div class="bank-item blue-stip" ng-repeat="bank in banks">
                 <div class="section">
-                    <div class="section bg-light-blue" style>
+                    <div class="section bg-light-blue">
                         <span class="btn bg-light-blue text-white">{{ bank.name }}</span>
-                        <span class="text-white">尾号{{ bank.card_number}}</span>
-                        <div class="section section-wide bg-light-blue text-white">开户人姓名：{{ user.realname }}</div>
+                        <span class="text-white">尾号{{ parseNumber(bank.card_number)}}</span>
+                        <div class="section section-wide bg-light-blue text-white">开户人姓名：{{ parseName(user.realname) }}</div>
                     </div>
                     <div class="btn-group justified">
-                        <a class="btn section text-center text-grey" ng-href="#/update-bank">修改</a>
-                        <span class="btn section text-center" ng-click="deleteBank()">删除</span>
+                        <span class="section text-center" ng-click="deleteBank(bank)">删除</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="text-center section" ng-show="!bank">暂无银行卡</div>
+        <div class="text-center section" ng-show="banks.length==0">暂无银行卡</div>
     </div>
 </div>

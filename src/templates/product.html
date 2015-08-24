@@ -66,14 +66,18 @@
         <div class="text-grey section section-sm">已投笔数：{{ product.transaction }}</div>
         <div class="text-grey section section-sm">已募金额：{{ product.total|currency:"" }}元</div>
         <div class="section">
-            <div class="text-white" ng-if="product.tag == 0">
-                <a href="#/buy/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning">购买</a>
+            <div class="text-white" ng-if="product.progress == 0">
+                <a href="#/buy/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning">立即认购</a>
             </div>
-            <div ng-if="product.tag !=0">
+            <div ng-if="product.progress == 100">
                 <div class="section btn btn-lg text-center full-width text-white bg-grey">已募满</div>
             </div>
         </div>
         <div class="vv-divide vv-5"></div>
+        <!-- 产品详情 -->
+        <div class="section">
+            {{product.detail}}
+        </div>
         <!-- 相关文件 -->
         <div class="section" ng-show="files.length>0">
             <div class="section section-wide text-black" style="padding-bottom:0">

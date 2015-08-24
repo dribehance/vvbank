@@ -50,6 +50,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
             product.unit = data.periodUnit || "天";
             product.endtime = data.remainderTime || "0";
             product.transaction = data.investPersonConut || "0";
+            product.detail = data.detail;
             return product;
         },
         parseProducts: function(data) {
@@ -178,10 +179,11 @@ angular.module("VVBank").factory("parserServices", function(config) {
             for (var i=0,r=data.info;i<r.length;i++) {
                 var pocket = new _m_pocket();
                 pocket.date = r[i].createTime.split(" ")[0];
-                pocket.expires = r[i].expiryTime.split(" ")[0];
+                // pocket.expires = r[i].expiryTime.split(" ")[0];
                 pocket.type = r[i].type || "";
                 pocket.money = r[i].amount || "";
-                pocket.status = new Date() > new Date(pocket.expires)?"过期":"可用";
+                // pocket.status = new Date() > new Date(pocket.expires)?"过期":"可用";
+                pocket.status = r[i].scoreChange;
                 pockets.push(pocket);
             }
 
@@ -198,6 +200,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
                 bill.type = r[i].fundType;
                 bill.status = config.bill_status[r[i].fundStatus];
                 bill.money = r[i].amount;
+                bill.trade_money = r[i].tradeAmount;
                 bills.push(bill);
             }
             return bills;
@@ -234,6 +237,14 @@ angular.module("VVBank").factory("parserServices", function(config) {
             bank.province = data.province;
             bank.city = data.city;
             return bank;
+        },
+        parseBanks:function(data){
+            var banks = [];
+            for(var i=0;i<data.length;i++) {
+                var investment = this.parseBank(data[i]);
+                banks.push(investment);
+            }
+            return banks;
         },
         parseInvestment:function(data){
             var investment = new _m_investment();

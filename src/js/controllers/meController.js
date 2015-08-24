@@ -8,6 +8,7 @@ var meController = function($scope, $rootScope, errorServices,toastServices, par
             $rootScope.user.total = user.total;
             $rootScope.user.frozen = user.frozen;
             $rootScope.user.earning = user.earning;
+            $rootScope.user.realname = user.realname
         } else {
             toastServices.hide();
             errorServices.autoHide(data.message)

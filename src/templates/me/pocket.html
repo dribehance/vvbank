@@ -21,7 +21,7 @@
                         <span class="text-ellipsis">时间 </span>
                         <span class="text-ellipsis">类型</span>
                         <span class="text-ellipsis">金额 </span>
-                        <span class="text-ellipsis">状态</span>
+                        <span class="text-ellipsis">额度变化</span>
                     </div>
                 </div>
                 <div class="vv-table-content">
@@ -40,8 +40,11 @@
                         </div>
                     </div>
                     <!-- push tip -->
-                    <div class="push" ui-state="push_state" ui-if="push_state" ui-default="true">
+                    <!-- <div class="push" ui-state="push_state" ui-if="push_state" ui-default="true">
                         <span class="text-center">{{pushmsg}}</span>
+                    </div> -->
+                    <div class="section text-center" ng-click="loadMore()">
+                        {{page.message}}
                     </div>
                 </div>
             </div>

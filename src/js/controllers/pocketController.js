@@ -1,27 +1,31 @@
-var pocketController = function($scope, myServices, pushToRefreshServices, errorServices, parserServices, config) {
-    var currentPage = 1;
+var pocketController = function($scope, myServices, toastServices, errorServices, parserServices, config) {
     $scope.pockets = [];
-    var no_more = false;
+    $scope.page = {
+        number:1,
+        page_size:1,
+        message:"点击加载更多"
+    }
     $scope.loadMore = function() {
-        if (no_more) {
+        if ($scope.no_more) {
             return;
         }
-        pushToRefreshServices.show("加载中");
-        myServices.pocket(currentPage).then(function(data) {
-            pushToRefreshServices.hide();
-            if (data.respcode == config.request.SUCCESS || data.result.length > 0) {
-                $scope.pocket_groups = parserServices.parsePocket(data.result);
-                $scope.pockets = $scope.pockets.concat($scope.pocket_groups.pockets);
+        toastServices.show();
+        $scope.page.message ="正在加载...";
+        myServices.pocket($scope.page.number).then(function(data) {
+            toastServices.hide();
+            $scope.page.message ="点击加载更多";
+            if (data.respcode == config.request.SUCCESS) {
+                $scope.pockets = $scope.pockets.concat(parserServices.parsePocket(data.result));
             } else {
-                pushToRefreshServices.hide();
-                errorServices.autoHide(data.message)
+                errorServices.autoHide("服务器错误");
             }
-            if (data.result.info.length == 0) {
-                no_more = true;
-                pushToRefreshServices.show("我就静静的瞅着，没有更多了...")
+            if (data.result.length == 0) {
+                $scope.no_more = true;
+                $scope.page.message = "我就静静的瞅着，没有更多了...";
             }
+            $scope.page.number++;
         })
-        currentPage++;
+    
     }
     $scope.loadMore();
 }
