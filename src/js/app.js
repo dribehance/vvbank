@@ -257,7 +257,10 @@ angular.module("VVBank", [
         localStorageServiceProvider.setStorageCookie(1/50);
         $httpProvider.interceptors.push('tokenInterceptor');
 
-}).run(function($rootScope, $window,appServices) {
+}).run(function($rootScope, $window, $sce, appServices) {
     // init event such as routechangestart...
     appServices.init();
+    $rootScope.trustAsHtml = function (safehtml) {
+        return $sce.trustAsHtml(safehtml)
+    }
 });

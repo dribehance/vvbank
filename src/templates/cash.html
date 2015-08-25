@@ -18,14 +18,18 @@
     <div class="section">
         <div class="semi-auto semi-left-98">
             <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">提现金额</span>
-            <input type="text" class="form-control block full-width" name="money" ng-model="input.money" ng-pattern="/^[0-9]+$/" ng-min="10" required placeholder="请输入金额，最低10元">
+            <input type="number" class="form-control block full-width" name="money" ng-model="input.money" required ng-min=100 placeholder="请输入金额，最低100元">
+            <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$dirty && cashForm.money.$error.required">金额必填</div>
+            <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.min">提现金额最少为100元</div>
+            <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.number">金额为整数</div>
         </div>
     </div>
     <div class="vv-divide"></div>
     <div class="section">
         <div class="semi-auto semi-left-98">
             <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">交易密码</span>
-            <input type="password" class="form-control block full-width" name="password" ng-model="input.password" ng-minlength="8" required placeholder="请输入交易密码">
+            <input type="password" class="form-control block full-width" name="password" ng-model="input.password" ng-minlength="6" required placeholder="请输入交易密码,6位">
+            <span class="vv-input-tip" ng-show="cashForm.password.$dirty && cashForm.password.$error.required || cashForm.password.$error.minlength" style="position:absolute;right:0;top:-17px;color:#f70">密码必填,不少于6位</span>
         </div>
     </div>
     <div class="vv-divide"></div>
@@ -33,15 +37,15 @@
         <div class="semi-auto semi-left-98 semi-right-98">
             <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">短信验证码</span>
             <input type="text" class="form-control block full-width" name="smscode" ng-model="input.smscode" ng-pattern="/^[0-9]+$/" ng-minlength="4" required placeholder="短信验证码">
-            <button type="button" class="semi-fixed-right semi-width-98 btn text-center btn-warning" ng-click="getSmscode()">
-                发送
+            <button type="button" class="semi-fixed-right semi-width-98 btn text-center btn-warning" ng-click="getSmscode()" style="border-radius:0 5px 5px 0;-webkit-border-radius:0 5px 5px 0;">
+                获取验证码
                 <timer id="vvcountdown" interval="1000" countdown="30" auto-start='false' ng-show="callbackTimer.counting" finish-callback="callbackTimer.finish()">{{countdown + 1}}</timer>
             </button>
         </div>
     </div>
     <div class="vv-divide vv-5"></div>
     <div class="vv-divide vv-5"></div>
-    <div class="section">
+    <div class="section bg-light-grey">
         <button type="submit" class="btn btn-lg btn-warning block full-width" ng-disabled="cashForm.$invalid">马上提现</button>
     </div>
 </form>

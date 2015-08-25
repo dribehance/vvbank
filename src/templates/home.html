@@ -47,11 +47,11 @@
         <div ng-repeat="product in products">
             <a ng-href="#/products/{{product.id}}" class="section section-condenced block text-grey">
                 <h5 class="text-large">{{ product.title }}</h5>
-                <div class="semi-auto semi-left-150 semi-right-60">
+                <div class="semi-auto semi-left-165 semi-right-50">
                     <div class="semi-fixed-left semi-width-140" style="margin:0">
                         <div class="text-ellipsis">
                             <span class="text-very-big text-primary">{{ product.percentage | currency:"" }}%</span>
-                            <span class="text-orange">{{"+"+product.addition +"%"}}</span>
+                            <span class="text-orange" ng-show="product.addition !=0">{{"+"+product.addition +"%"}}</span>
                         </div>
                     </div>
                     <div class="row">

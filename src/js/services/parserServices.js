@@ -135,8 +135,8 @@ angular.module("VVBank").factory("parserServices", function(config) {
 
             user.total = data.netAsset || "0";
             user.earning = data.incomeAmount || "0";
-            user.frozen = data.frozenAmount || "0";
-
+            // user.frozen = data.frozenAmount || "0";
+            user.frozen = data.usableAmonut || 0;
             user.identify = data.idNo || "";
             user.telephone = data.cellphone || "";
             user.email = data.email || "";

@@ -28,7 +28,7 @@
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-20 vv-phone"></i></span>
                 <input type="text" class="form-control text-big border-radius-large" ng-model="input.smscode" name="smscode" ng-pattern="/^[0-9]+$/" ng-minlength=6 ng-maxlength=6 required placeholder="短信验证码,6位">
-                <span class="vv-input-tip" ng-show="signupForm.smscode.$dirty && signupForm.smscode.$invalid">验证码为四位</span>
+                <span class="vv-input-tip" ng-show="signupForm.smscode.$dirty && signupForm.smscode.$invalid">验证码为6位</span>
             </div>
             <div class="semi-fixed-right semi-width-150 input-group input-group-lg text-center">
                 <button type="button" class="btn btn-primary btn-lg" ng-click="getSmscode()" ng-disabled="callbackTimer.counting">

@@ -27,7 +27,6 @@ var addBankController = function($scope, $rootScope, errorServices, toastService
         queryCity(n);
     })
     var queryCity = function(province_id) {
-        console.log(province_id)
         settingServices.queryCityByProvinceId(province_id).then(function(data){
             $scope.cities = data.result;
         })
