@@ -62,7 +62,9 @@
         <div class="vv-divide vv-1 bg-light-grey"></div>
         <div class="text-grey section section-sm">起投金额：{{ product.limit }}</div>
         <div class="text-grey section section-sm">还款方式：{{ product.feature }}</div>
-        <div class="text-grey section section-sm">起息时间：{{ parseTime(product.endtime) |date:"yyyy-MM-dd" }}</div>
+        <div class="text-grey section section-sm">起息时间：T(满标审核日)+1日
+            <!-- {{ parseTime(product.endtime) |date:"yyyy-MM-dd" }} -->
+        </div>
         <div class="text-grey section section-sm">已投笔数：{{ product.transaction }}</div>
         <div class="text-grey section section-sm">已募金额：{{ product.total|currency:"" }}元</div>
         <div class="section">
