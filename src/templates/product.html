@@ -66,8 +66,8 @@
         <div class="text-grey section section-sm">已投笔数：{{ product.transaction }}</div>
         <div class="text-grey section section-sm">已募金额：{{ product.total|currency:"" }}元</div>
         <div class="section">
-            <div class="text-white" ng-if="product.progress == 0">
-                <a href="#/buy/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning">立即认购</a>
+            <div class="text-white" ng-if="product.progress < 100">
+                <a href="#/buy/{{product.code}}/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning">立即认购</a>
             </div>
             <div ng-if="product.progress == 100">
                 <div class="section btn btn-lg text-center full-width text-white bg-grey">已募满</div>
@@ -79,9 +79,9 @@
             <h4>项目详情</h4>
             <div ng-bind-html="trustAsHtml(product.detail)"></div>
         </div>
+        <!-- <div class="vv-divide vv-5"></div>
         <div class="vv-divide vv-5"></div>
-        <div class="vv-divide vv-5"></div>
-        <p class="text-grey text-center"><i class="vv vv-18 vv-bank" style="margin-right:5px"></i>VVBank所有资金均由财付通交易</p>
+        <p class="text-grey text-center"><i class="vv vv-18 vv-bank" style="margin-right:5px"></i>VVBank所有资金均由财付通交易</p> -->
     </div>
     <!-- <div class="scrollable-footer">
         <div ng-show="product.tag == 0">

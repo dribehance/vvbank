@@ -224,7 +224,7 @@ angular.module("VVBank", [
             reloadOnSearch: false,
             controller: productFilesController
         })
-        .when("/buy/:productID/:remain", {
+        .when("/buy/:productCode/:productID/:remain", {
             templateUrl: "buy.html",
             reloadOnSearch: false,
             controller: buyController,

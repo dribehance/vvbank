@@ -40,7 +40,8 @@ var _m_user = function() {
             industry: "未填写",
             scale: "未填写",
             job: "未填写",
-            income: "0"
+            income: "0",
+            coin:"0",
         }
         return _m_user;
     }
@@ -88,7 +89,7 @@ var _m_product = function() {
         unit:"",
         endtime:"",
         transaction:"",
-        detail:""
+        detail:"",
     }
     return product;
 }

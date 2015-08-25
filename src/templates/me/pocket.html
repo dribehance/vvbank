@@ -9,11 +9,11 @@
 </div>
 <div class="scrollable">
 	<div class="scrollable-content" ui-scroll-bottom="loadMore()">
-		<div class="section bg-light-blue text-white">
+		<!-- <div class="section bg-light-blue text-white">
 			当前红包（元）
 		</div>
 		<div class="section bg-light-blue text-very-large text-center text-white"><b>{{ pocket_groups.remain || "0"}}</b></div>
-		<div class="section bg-light-blue text-right text-white hide">e圆常见问题</div>
+		<div class="section bg-light-blue text-right text-white hide">e圆常见问题</div> -->
 		<div class="section">
             <div class="vv-table text-center">
                 <div class="vv-table-header">
@@ -43,11 +43,15 @@
                     <!-- <div class="push" ui-state="push_state" ui-if="push_state" ui-default="true">
                         <span class="text-center">{{pushmsg}}</span>
                     </div> -->
-                    <div class="section text-center" ng-click="loadMore()">
+                    <!-- <div class="section text-center" ng-click="loadMore()">
                         {{page.message}}
-                    </div>
+                    </div> -->
                 </div>
             </div>
+        </div>
+        <div class="vv-divide vv-5"></div>
+        <div class="section text-center" ng-click="loadMore()">
+            {{page.message}}
         </div>
 	</div>
 </div>

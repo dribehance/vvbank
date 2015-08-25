@@ -25,9 +25,14 @@
             <div class="text-orange text-large text-ellipsis"><strong>{{input.remain | currency:"￥"}}</strong>
             </div>
         </div>
-        <div class="col-xs-6 section-wide text-center">
+        <div class="col-xs-6 section-wide text-center" ng-if="input.code != 'EXPERIENCE_PROJECT'">
             <span class="text-grey"><strong>账户余额</strong></span>
             <div class="text-orange text-large text-ellipsis"><strong>{{ input.balance | currency:"￥"}}</strong>
+            </div>
+        </div>
+        <div class="col-xs-6 section-wide text-center" ng-if="input.code == 'EXPERIENCE_PROJECT'">
+            <span class="text-grey"><strong>新人尊享金额</strong></span>
+            <div class="text-orange text-large text-ellipsis"><strong>{{ user.coin | currency:"￥"}}</strong>
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@ var buyController = function($scope, $location, $routeParams, toastServices, use
         password: "",
         agreement: true,
         remain: $routeParams.remain,
+        code:$routeParams.productCode,
         balance: 0
     }
     userServices.info.account().then(function(data) {

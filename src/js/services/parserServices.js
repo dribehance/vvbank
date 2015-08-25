@@ -46,10 +46,10 @@ angular.module("VVBank").factory("parserServices", function(config) {
             product.dealer = data.underwriter || "";
             product.exchange = data.financialExchange || "";
             product.agency = data.guarantor || "";
-            product.code = data.channelType || "";
+            product.code = data.channelType || "EXAMPLE";
             product.unit = data.periodUnit || "天";
             product.endtime = data.remainderTime || "0";
-            product.transaction = data.investPersonConut || "0";
+            product.transaction = data.investPersonCount || "0";
             product.detail = data.detail;
             return product;
         },
@@ -136,7 +136,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
             user.total = data.netAsset || "0";
             user.earning = data.incomeAmount || "0";
             // user.frozen = data.frozenAmount || "0";
-            user.frozen = data.usableAmonut || 0;
+            user.frozen = data.usableAmount || 0;
             user.identify = data.idNo || "";
             user.telephone = data.cellphone || "";
             user.email = data.email || "";
@@ -151,6 +151,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
             user.scale = config.scales[data.corporateSize] || "1-100人";
             user.job = data.position || "工程师";
             user.income = config.incomes[data.salary] || "5000以内";
+            user.coin = data.coin || "0";
             return user;
         },
         // eyuan
@@ -173,10 +174,11 @@ angular.module("VVBank").factory("parserServices", function(config) {
 
         },
         parsePocket:function (data) {
-            var pocket_group = new _m_pocket_group(),
-                pockets = [];
-            pocket_group.remain = data.bonus || "0";
-            for (var i=0,r=data.info;i<r.length;i++) {
+            // var pocket_group = new _m_pocket_group(),
+            //     pockets = [];
+            // pocket_group.remain = data.bonus || "0";
+            var pockets = [];
+            for (var i=0,r=data;i<r.length;i++) {
                 var pocket = new _m_pocket();
                 pocket.date = r[i].createTime.split(" ")[0];
                 // pocket.expires = r[i].expiryTime.split(" ")[0];
@@ -187,8 +189,8 @@ angular.module("VVBank").factory("parserServices", function(config) {
                 pockets.push(pocket);
             }
 
-            pocket_group.pockets = pockets;
-            return pocket_group;
+            // pocket_group.pockets = pockets;
+            return pockets;
 
         },
         // bills
