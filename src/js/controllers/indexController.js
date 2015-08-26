@@ -68,6 +68,9 @@ var indexController = function($scope, $timeout, toastServices, localStorageServ
             loadOther();
         }
     }
+    $scope.parseProgress = function (progress) {
+        return progress = parseFloat(progress).toFixed(2);
+    }
     var loadOther = function() {
         toastServices.show();
         $scope.load_more_message = "正在加载...";

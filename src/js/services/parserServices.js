@@ -40,6 +40,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
             product.progress = parseFloat(data.totalInvestAmount || "0") / data.amount * 100;
             product.safety = safety_parser(data.safety);
             product.total = data.amount || "";
+            product.already = data.totalInvestAmount || "0";
             product.remain = parseFloat(data.amount) - (parseFloat(data.totalInvestAmount) || "0");
             product.tag = data.status;
             product.faqiren = data.initiator || "";

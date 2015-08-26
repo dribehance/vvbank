@@ -44,14 +44,14 @@
             <span class="vv-input-tip" ng-show="buyForm.password.$dirty && buyForm.password.$error.required || buyForm.password.$error.minlength" style="position:absolute;right:0;top:-17px;color:#f70">密码必填,不少于6位</span>
         </div>
     </div>
-    <div class="vv-divide"></div>
+    <!-- <div class="vv-divide"></div>
     <div class="section">
         <div class="section">
             <label for="agreement" class="block text-grey" style="font-weight:100">
                 <input type="checkbox" id="agreement" name="agreement" ng-model="input.agreement" required>我已经阅读并同意<a class="text-primary">《用户服务协议》</a>
             </label>
         </div>
-    </div>
+    </div> -->
     <div class="section">
         <button type="submit" class="btn btn-lg btn-warning block full-width" ng-disabled="buyForm.$invalid || input.amount > input.balance ">立即购买</button>
     </div>

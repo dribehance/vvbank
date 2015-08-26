@@ -27,7 +27,7 @@ angular.module("VVBank").factory("licaiServices", function($rootScope, $http, co
                 params: angular.extend({}, config.common_params,{
                     "current":page
                 }),
-                cache: true
+                // cache: true
             }).then(function(data) {
                 return data.data;
             })

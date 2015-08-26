@@ -31,7 +31,10 @@ var buyController = function($scope, $location, $routeParams, toastServices, use
         }).then(function(data) {
             toastServices.hide()
             if (data.respcode == config.request.SUCCESS && data.result.status == "1") {
-                $location.path("/index").replace();
+                errorServices.autoHide("投资成功，正在为你跳转")
+                $timeout(function(){
+                    $location.path("/index").replace();
+                },1000)
             } else {
                 errorServices.autoHide(data.message)
             }

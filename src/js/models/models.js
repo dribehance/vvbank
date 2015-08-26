@@ -80,6 +80,7 @@ var _m_product = function() {
         progress: "60%",
         safety: [],
         total: "",
+        already:"",
         remain: 0,
         faqiren: "",
         dealer: "",

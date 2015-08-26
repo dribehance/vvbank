@@ -39,7 +39,7 @@
             <input type="text" class="form-control block full-width" name="smscode" ng-model="input.smscode" ng-pattern="/^[0-9]+$/" ng-minlength="4" required placeholder="短信验证码">
             <button type="button" class="semi-fixed-right semi-width-98 btn text-center btn-warning" ng-click="getSmscode()" style="border-radius:0 5px 5px 0;-webkit-border-radius:0 5px 5px 0;">
                 获取验证码
-                <timer id="vvcountdown" interval="1000" countdown="30" auto-start='false' ng-show="callbackTimer.counting" finish-callback="callbackTimer.finish()">{{countdown + 1}}</timer>
+                <timer id="vvcountdown" interval="1000" countdown="150" auto-start='false' ng-show="callbackTimer.counting" finish-callback="callbackTimer.finish()">{{countdown + 1}}</timer>
             </button>
         </div>
     </div>

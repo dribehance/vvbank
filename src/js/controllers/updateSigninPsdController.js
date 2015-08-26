@@ -19,7 +19,7 @@ var updateSigninPsdController = function($scope,$rootScope, errorServices, toast
     }
     $scope.getVertifyCode = function() {
         $scope.callbackTimer.counting = 1;
-        $scope.callbackTimer.addSeconds(30);
+        $scope.callbackTimer.addSeconds(150);
     }
     $scope.ajaxForm = function(form) {
         toastServices.show();
