@@ -90,6 +90,7 @@ var _m_product = function() {
         endtime:"",
         transaction:"",
         detail:"",
+        delta:""
     }
     return product;
 }

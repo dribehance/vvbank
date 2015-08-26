@@ -29,7 +29,7 @@
                     <div class="">
                         <div style="margin-bottom:5px">年化收益率</div>
                         <div class="text-ellipsis text-primary">
-                            <span class="text-big">{{ product.percentage | currency:"" }}</span>
+                            <span class="text-big">{{ product.percentage | currency:"" }}%</span>
                             <span class="text-small" ng-show="product.addition != 0">%{{"+"+product.addition +"%"}}</span>
                         </div>
                     </div>
@@ -37,7 +37,8 @@
                         <div style="margin-bottom:5px">投资期限</div>
                         <div class="text-ellipsis">
                             <span class="text-big">{{ product.duration }}</span>
-                            <span class="text-small">{{ product.unit }}</span>
+                            <span class="text-small" ng-if="product.unit=='天'">{{ product.unit }}</span>
+                            <span class="text-small" ng-if="product.unit=='月'">个{{ product.unit }}</span>
                         </div>
                     </div>
                 </div>
