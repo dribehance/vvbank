@@ -48,7 +48,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
             product.exchange = data.financialExchange || "";
             product.agency = data.guarantor || "";
             product.code = data.channelType || "EXAMPLE";
-            product.unit = data.periodUnit || "天";
+            product.unit = data.periodUnit == "天"?"天":"个月";
             product.endtime = data.remainderTime || "0";
             product.transaction = data.investPersonCount || "0";
             product.detail = data.detail;

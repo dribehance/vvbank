@@ -31,7 +31,7 @@
         <input type="password" class="form-control text-big" name="password" ng-model="input.password" placeholder="请输入登录密码,6位以上" required ng-minlength=6>
         <span class="vv-input-tip" ng-show="signinForm.password.$dirty && signinForm.password.$error.required || signinForm.password.$error.minlength">密码必填,不少于6位</span>
     </div>
-    <p class="text-right text-primary"><a ng-href="#/forget">忘记密码</a></p>
+    <p class="text-right text-primary hide"><a ng-href="#/forget">忘记密码</a></p>
     <div class="section-wide">
         <button type="submit" class="btn btn-lg text-large btn-primary block full-width" ng-disabled="signinForm.$invalid">立即登录</button>
     </div>

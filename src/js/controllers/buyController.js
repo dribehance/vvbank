@@ -1,4 +1,4 @@
-var buyController = function($scope, $location, $routeParams, toastServices, userServices,parserServices, productServices, errorServices, config) {
+var buyController = function($scope, $location, $routeParams,$timeout, toastServices, userServices,parserServices, productServices, errorServices, config) {
     $scope.input = {
         amount: "",
         password: "",
@@ -31,7 +31,7 @@ var buyController = function($scope, $location, $routeParams, toastServices, use
         }).then(function(data) {
             toastServices.hide()
             if (data.respcode == config.request.SUCCESS && data.result.status == "1") {
-                errorServices.autoHide("投资成功，正在为你跳转")
+                errorServices.show("投资成功，正在为你跳转")
                 $timeout(function(){
                     $location.path("/index").replace();
                 },1000)
