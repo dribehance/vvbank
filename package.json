@@ -1,6 +1,6 @@
 {
   "name": "vvbank",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "devDependencies": {
     "gulp": "^3.8.1",
     "gulp-connect": "^2.2.0",
