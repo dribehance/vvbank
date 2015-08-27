@@ -69,6 +69,9 @@ var indexController = function($scope, $timeout, toastServices, localStorageServ
         }
     }
     $scope.parseProgress = function (progress) {
+        if (progress >100 || progress ==100 ) {
+            return progress;
+        }
         return progress = parseFloat(progress).toFixed(2);
     }
     var loadOther = function() {

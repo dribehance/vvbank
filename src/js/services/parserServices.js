@@ -254,7 +254,8 @@ angular.module("VVBank").factory("parserServices", function(config) {
             var investment = new _m_investment();
             investment.name = data.productName;
             investment.money = data.investAmount;
-            investment.rate = data.annualRate;
+            // investment.rate = data.annualRate;
+            investment.rate = data.investTime.split(" ")[0] || "-";
             return investment;
         },
         parseInvestments:function(data) {

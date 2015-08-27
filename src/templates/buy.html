@@ -11,12 +11,12 @@
     <div class="section" style="padding-top:20px;">
         <div class="semi-auto semi-left-75">
             <span class="semi-fixed-left semi-width-75 btn section-wide text-left">投资金额</span>
-            <input type="number" class="form-control block full-width" name="amount" ng-model="input.amount" required min="{{product.limit}}" max="{{product.max}}" delta="{{product.delta}}" placeholder="请输入投资金额{{product.limit}}-{{product.max}}元">
+            <input type="number" class="form-control block full-width" name="amount" ng-model="input.amount" required min="{{product.limit}}" max="{{product.max}}" balance="{{input.balance}}" delta="{{product.delta}}" placeholder="请输入投资金额{{product.limit}}-{{product.max}}元">
             <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="buyForm.amount.$dirty && buyForm.amount.$error.required">金额必填</div>
             <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="buyForm.amount.$error.min">起投金额最小为{{product.limit}}元</div>
             <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="buyForm.amount.$error.max">起投金额最大为{{product.max}}元</div>
             <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="buyForm.amount.$error.number">金额为整数</div>
-            <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="( product.limit< input.amount) &&( input.amount  < product.max )&& input.amount>input.balance">账户余额不足</div>
+            <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="buyForm.amount.$error.balance">账户余额不足</div>
             <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="(product.limit< input.amount ) &&( input.amount  < product.max )&&  buyForm.amount.$error.delta">必须是{{product.delta}}的整数倍</div>
         </div>
     </div>

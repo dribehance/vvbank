@@ -40,8 +40,8 @@
         <div class="section-wide">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-20 vv-password"></i></span>
-                <input type="text" class="form-control text-big border-radius-large" name="password" ng-model="input.password" required ng-minlength=6 placeholder="新密码 请输入新密码,6位以上">
-                <span class="vv-input-tip" ng-show="signupForm.password.$dirty && signupForm.password.$invalid">密码必填，且不少于6位</span>
+                <input type="text" class="form-control text-big border-radius-large" name="password" ng-model="input.password" required ng-minlength=6 maxlength=16 placeholder="新密码 请输入新密码,6-16位">
+                <span class="vv-input-tip" ng-show="signupForm.password.$dirty && signupForm.password.$invalid">6-16位字符(字母、数字、符号),区分大小写</span>
             </div>
         </div>
         <div class="section-wide">

@@ -1,6 +1,6 @@
 <div ui-content-for="title">
-    <span ng-if="safety_info.signin_password.status == 0">设置交易密码</span>
-    <span ng-if="safety_info.signin_password.status != 0">修改交易密码</span>
+    <span ng-if="safety_info.trade_password.status == 0">设置交易密码</span>
+    <span ng-if="safety_info.trade_password.status != 0">修改交易密码</span>
 </div>
 <div ui-content-for="backAction">
     <a ng-click="back()" class="btn">返回</a>
@@ -11,7 +11,7 @@
 <form name="updateForm" ng-submit="ajaxForm(this)">
     <div class="section">
         <div class="section"></div>
-        <div class="section-wide" ng-if="safety_info.signin_password.status != 0">
+        <div class="section-wide" ng-if="safety_info.trade_password.status != 0">
             <div class="vv-input-group input-group-lg no-addon full-width">
                 <span class="vv-input-group-addon">旧密码</span>
                 <input type="password" class="form-control border-radius-large" name="old_password" ng-model="input.old_password" required ng-minlength=6 placeholder="请输入旧密码,6位以上">
