@@ -1,8 +1,8 @@
 angular.module("VVBank").constant("config", {
-    url: "http://youyitou.f3322.net:8022/ws",
-    // url: "http://192.168.1.118:9000/proxy/youyitou.f3322.net:8022/ws",
-    appid: "android_vv",
-    version: "1.0",
+    // url: "http://youyitou.f3322.net:8022/ws",
+    url: "http://localhost:9000/proxy/youyitou.f3322.net:8022/ws",
+    appid: "mobile_h5",
+    version: "1.01",
     smstype: {
         "SIGNUP": 1,
         "CASH": 2,
@@ -19,8 +19,8 @@ angular.module("VVBank").constant("config", {
         "TOKEN_INVALID":"0403"
     },
     common_params: {
-        appid: "android_vv",
-        version: "1.0"
+        appid: "mobile_h5",
+        version: "1.01"
     },
     feature: {
         "averageByMonth": "按月等额本息",

@@ -1,12 +1,12 @@
-var signupController = function($rootScope, $scope, $location, userServices, errorServices, platformServices, SharedState, config, toastServices, localStorageService, signatureServices) {
+var signupController = function($rootScope, $window, $scope, $location, userServices, errorServices, platformServices, SharedState, config, toastServices, localStorageService, signatureServices) {
     $scope.input = {
-            telephone: "",
-            password: "",
-            smscode: "",
-            username: "",
-            referee: ""
-        }
-        // bind telephone and password
+        telephone: "",
+        password: "",
+        smscode: "",
+        username: "",
+        referee: ""
+    };
+    // bind telephone and password
     $scope.$watch("input.telephone", function(n, o) {
         $scope.input.username = n;
     });
@@ -53,7 +53,8 @@ var signupController = function($rootScope, $scope, $location, userServices, err
             if (data.respcode == config.request.SUCCESS) {
                 localStorageService.set("token", data.result.token);
                 platformServices.notify();
-                $location.path("/index").replace();
+                $window.location.href = data.result.wapUrl;
+                // $location.path("/index").replace();
             } else {
                 errorServices.autoHide(data.message);
             }
