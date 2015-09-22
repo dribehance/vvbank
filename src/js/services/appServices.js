@@ -12,7 +12,7 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
     var navBarHandler = function(e, currentRoute, prevRoute) {
 
         // navbar top
-        if ($location.path() == "/me") {
+        if ($location.path() == "/me" || $location.path() == "/index") {
             // SharedState.turnOff("navbarTop");
             $rootScope.navbar.top = false;
         } else {
@@ -20,10 +20,10 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
             $rootScope.navbar.top = true;
         }
         // navbar bottom
-        if ($location.path().toString().indexOf("/licai/") == 0) {
-            $rootScope.navbar.bottom = true;
-            return;
-        }
+        // if ($location.path().toString().indexOf("/licai/") == 0) {
+        //     $rootScope.navbar.bottom = true;
+        //     return;
+        // }
         var _navbars_b = ["/index", "/licai", "/me", "/", "/signIn"];
         if (!_navbars_b.contains($location.path())) {
             // SharedState.turnOff("navbarBottom");
@@ -32,7 +32,8 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
             // SharedState.turnOn("navbarBottom");
             $rootScope.navbar.bottom = true;
         }
-
+        // always hide navbar bottom
+        $rootScope.navbar.bottom = false;
     }
     var onBackKeyDown = function() {
         $rootScope.$apply(function() {

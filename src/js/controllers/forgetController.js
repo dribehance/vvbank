@@ -18,12 +18,15 @@ var forgetController = function($scope,$location,userServices,toastServices,loca
 	}
 	$scope.getSmscode = function(){
 		userServices.getSmscode($scope.input.telephone,config.smstype.RESET_PASSWORD).then(function(data){
-			if (!(data.result.status == 1 && data.respcode == config.request.SUCCESS)) {
-				errorServices.autoHide();
+			if (data.result.status == 1 && data.respcode == config.request.SUCCESS) {
+				errorServices.autoHide("验证码发送成功");
+			}
+			else {
+				errorServices.autoHide(data.message)
 			}
 		})
 		$scope.callbackTimer.counting = 1;
-		$scope.callbackTimer.addSeconds(5);
+		$scope.callbackTimer.addSeconds(30);
 	}
 	$scope.nextStep = function () {
 		toastServices.show();

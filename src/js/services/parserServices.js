@@ -36,7 +36,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
             product.max = data.maxInvestAmount || "0";
             product.percentage = data.annualRate || "0";
             product.addition = data.addRate || "0";
-            product.progress = (parseInt(data.totalInvestAmount) || "0") / data.amount * 100;
+            product.progress = Math.round((parseInt(data.totalInvestAmount) || "0") / data.amount * 100);
             product.safety = safety_parser(data.safety);
             product.total = data.amount || "";
             product.remain = parseInt(data.amount) - (parseInt(data.totalInvestAmount) || "0");
@@ -46,6 +46,8 @@ angular.module("VVBank").factory("parserServices", function(config) {
             product.exchange = data.financialExchange || "";
             product.agency = data.guarantor || "";
             product.code = data.code || "";
+            product.endtime = data.endtime || "2015-12-30 17:00:00";
+            product.transaction = data.transaction || "0";
             return product;
         },
         parseProducts: function(data) {

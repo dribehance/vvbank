@@ -27,7 +27,7 @@ var bindTelephoneController = function($scope, $rootScope,userServices,config) {
             }
         })
         $scope.callbackTimer.counting = 1;
-        $scope.callbackTimer.addSeconds(5);
+        $scope.callbackTimer.addSeconds(30);
     }
     $scope.ajaxForm = function(form) {
         userServices.bindTelephone($rootScope.user.telephone, $scope.input.smscode).then(function(data) {

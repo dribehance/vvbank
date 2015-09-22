@@ -63,6 +63,8 @@ var _m_product = function() {
     // exchange:交易所
     // agency:担保机构
 
+    // endtime
+    // transaction
     var product = {
 
         id: "",
@@ -82,7 +84,9 @@ var _m_product = function() {
         dealer: "",
         exchange: "",
         agency: "",
-        code: ""
+        code: "",
+        endtime:"",
+        transaction:""
     }
     return product;
 }
