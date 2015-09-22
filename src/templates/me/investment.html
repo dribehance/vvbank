@@ -20,7 +20,7 @@
                             <span class="text-ellipsis">投资金额（元） </span>
                         </div>
                         <div class="col-xs-4">
-                            <span class="text-ellipsis">年化利率 </span>
+                            <span class="text-ellipsis">投资时间 </span>
                         </div>
                     </div>
                 </div>
@@ -33,15 +33,19 @@
                             <span class="text-ellipsis">{{investment.money | currency:"￥"}} </span>
                         </div>
                         <div class="col-xs-4 text-ellipsis">
-                            <span class="text-ellipsis">{{investment.rate | currency:""}}% </span>
+                            <span class="text-ellipsis">{{investment.rate}}</span>
                         </div>
                     </div>
                     <!-- push tip -->
-                    <div class="push" ui-state="push_state" ui-if="push_state" ui-default="true">
+                    <!-- <div class="push" ui-state="push_state" ui-if="push_state" ui-default="true">
                         <span class="text-center">{{pushmsg}}</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
+        </div>
+        <div class="vv-divide vv-5"></div>
+        <div class="section text-center" ng-click="loadMore()">
+            {{page.message}}
         </div>
     </div>
 </div>

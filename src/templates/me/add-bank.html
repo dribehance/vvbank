@@ -17,7 +17,7 @@
     <div class="section">
         <div class="semi-auto semi-left-75">
             <span class="semi-fixed-left semi-width-75 btn text-left text-grey section-wide">选择银行</span>
-            <select class="form-control rectangle sex block full-width" name="bank.code" ng-model="bank.code" ng-options="code as name for (code,name) in banks" required></select>
+            <select class="form-control rectangle sex block full-width" name="bank.bankId" ng-model="selected_bank" ng-options="selected_bank as selected_bank.bankName for selected_bank in banks" required></select>
         </div>
     </div>
     <div class="vv-divide"></div>
@@ -26,10 +26,10 @@
             <span class="semi-fixed-left semi-width-75 btn text-left text-grey section-wide">所在地</span>
             <div class="btn-group justified">
                 <span class="section-wide">
-                    <select class="form-control rectangle block full-width" name="province" ng-model="bank.province" ng-options="p for p in provinces" required></select>
+                    <select class="form-control rectangle block full-width" name="province" ng-model="bank.provinceId" ng-options="p.provinceId as p.provinceName for p in provinces" required></select>
                 </span>
                 <span class="section-wide">
-                    <select class="form-control rectangle block full-width" name="city" ng-model="bank.city" ng-options="c for c in cities[bank.province]" required></select>
+                    <select class="form-control rectangle block full-width" name="city" ng-model="bank.cityId" ng-options="c.cityId as c.cityName for c in cities" required></select>
                 </span>
             </div>
         </div>
@@ -52,10 +52,10 @@
     <div class="section">
         <div class="btn-group justified text-center">
             <span class="btn">
-            <button type="submit" class="btn btn-lg bg-primary full-width" ng-disabled="!bankForm.$valid || !user.realname ">确认</button>
+            <button type="submit" class="btn btn-sm bg-primary full-width" ng-disabled="!bankForm.$valid || !user.realname ">确认</button>
         </span>
             <span class="btn">
-            <a ng-click="back()" class="btn btn-lg btn-default full-width">取消</a>
+            <a ng-click="back()" class="btn btn-sm btn-default full-width">取消</a>
         </span>
         </div>
     </div>

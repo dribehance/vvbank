@@ -24,13 +24,15 @@
                 <div class="section bg-primary">
                     <p class="text-large"><b>{{ user.username || "..." }}</b>
                     </p>
-                    <p class="text-ellipsis">您的总收益：{{ user.earning | currency:"" }}元</p>
+                    <p class="text-ellipsis" style="font-size:14px">您的总收益：{{ user.earning | currency:"" }}元</p>
                 </div>
             </div>
         </div>
         <div class="btn-group justified bg-dark-blue text-white">
-            <a ng-href="#/charge" class="btn text-white">充值</a>
-            <a ng-href="#/cash" class="btn text-white">提现</a>
+            <!-- <a ng-href="#/charge" class="btn text-white">充值</a>
+            <a ng-href="#/cash" class="btn text-white">提现</a> -->
+            <a class="btn text-white">充值</a>
+            <a class="btn text-white">提现</a>
         </div>
         <div class="row bg-white section section-wide">
             <div class="col-xs-6 section-wide text-center">
@@ -39,7 +41,7 @@
 
             </div>
             <div class="col-xs-6 section-wide text-center">
-                <span class="text-grey"><strong>冻结金额（元）</strong></span>
+                <span class="text-grey"><strong>可用金额（元）</strong></span>
                 <div class="text-orange text-large text-ellipsis"><strong>{{ user.frozen | currency:"￥"}}</strong></div>
             </div>
         </div>
@@ -78,7 +80,7 @@
         		<i class="vv vv-arrow-right vv-35"></i>
         	</span>
             </a>
-        </div> -->
+        </div>
         <div class="vv-divide"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/eyuan" class="block text-grey semi-auto semi-left-30 semi-right-50">
@@ -90,8 +92,8 @@
         		<i class="vv vv-arrow-right vv-35"></i>
         	</span>
             </a>
-        </div>
-        <div class="vv-divide"></div>
+        </div> -->
+        <!-- <div class="vv-divide"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/pocket" class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
@@ -102,7 +104,7 @@
         		<i class="vv vv-arrow-right vv-35"></i>
         	</span>
             </a>
-        </div>
+        </div> -->
         <div class="vv-divide"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/messages" class="block text-grey semi-auto semi-left-30 semi-right-50">

@@ -3,11 +3,7 @@ var meController = function($scope, $rootScope, errorServices,toastServices, par
     userServices.info.account().then(function(data) {
         toastServices.hide();
         if (data.respcode == config.request.SUCCESS) {
-            var user = parserServices.parseUser(data.result);
-            $rootScope.user.username = user.username;
-            $rootScope.user.total = user.total;
-            $rootScope.user.frozen = user.frozen;
-            $rootScope.user.earning = user.earning;
+            $rootScope.user = angular.extend({},$rootScope.user,parserServices.parseUser(data.result));
         } else {
             toastServices.hide();
             errorServices.autoHide(data.message)

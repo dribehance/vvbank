@@ -20,7 +20,7 @@
     </a>
 </div>
 <!-- 实名认证 -->
-<div class="section section-wide">
+<!-- <div class="section section-wide">
     <a ng-click="goAuthen()" class="block text-grey semi-auto semi-left-40 semi-right-150">
         <span class="semi-fixed-left semi-width-60 text-center">
                 <i class="vv vv-35 vv-name-authen" ng-class="{'active':safety_info.realname.status ==1}"></i>
@@ -28,9 +28,9 @@
         <span class="btn">实名认证</span>
         <span class="semi-fixed-right semi-width-150 text-grey text-center" ng-class="{'text-success':safety_info.realname.status == 1}" style="line-height:35px">{{safety_info.realname.message}}</span>
     </a>
-</div>
+</div> -->
 <!-- 交易密码 -->
-<div class="section section-wide">
+<!-- <div class="section section-wide" ng-if="safety_info.trade_password.status != 1">
     <a ng-href="#/update-trade-psd" class="block text-grey semi-auto semi-left-40 semi-right-150">
         <span class="semi-fixed-left semi-width-60 text-center">
                 <i class="vv vv-35 vv-password-1" ng-class="{'active':safety_info.trade_password.status == 1}"></i>
@@ -38,9 +38,9 @@
         <span class="btn">交易密码</span>
         <span class="semi-fixed-right semi-width-150 text-grey text-center" ng-class="{'text-success':safety_info.trade_password.status == 1}" style="line-height:35px">{{safety_info.trade_password.message}}</span>
     </a>
-</div>
+</div> -->
 <!-- 登陆密码 -->
-<div class="section section-wide" >
+<div class="section section-wide" ng-if="safety_info.signin_password.status != 1" >
     <a ng-href="#/update-signin-psd" class="block text-grey semi-auto semi-left-40 semi-right-150">
         <span class="semi-fixed-left semi-width-60 text-center">
                 <i class="vv vv-35 vv-password-2" ng-class="{'active':safety_info.signin_password.status == 1}"></i>

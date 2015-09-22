@@ -20,12 +20,14 @@ angular.module("VVBank").factory("licaiServices", function($rootScope, $http, co
                 return data.data;
             })
         },
-        recommand: function() {
+        recommand: function(page) {
             return $http({
                 url: config.url + "/v1/service/homepage/products",
                 method: "GET",
-                params: angular.extend({}, config.common_params),
-                cache: true
+                params: angular.extend({}, config.common_params,{
+                    "current":page
+                }),
+                // cache: true
             }).then(function(data) {
                 return data.data;
             })

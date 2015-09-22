@@ -1,43 +1,86 @@
 body {
-	font-family: Gothambook,"微软雅黑";
+    font-family: Gothambook, "微软雅黑";
     font-size: 12px !important;
 }
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-	font-family: Gothambook,"微软雅黑";
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Gothambook, "微软雅黑";
 }
-a:active, a:focus, button:active, button:focus {
+
+a:active,
+a:focus,
+button:active,
+button:focus {
     outline: none !important;
     text-decoration: none !important;
 }
+
 a:visited {
     color: inherit;
     // color: initial;
 }
+
 .btn {
     // font-size: 12px !important;
 }
+
 .normal {
     line-height: normal;
     font-weight: 100;
 }
-b, optgroup, strong {
+
+b,
+optgroup,
+strong {
     font-weight: 400 !important;
 }
+
 .section-sm {
-	padding-top:5px;
-	padding-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
+
 .progress {
     height: 15px;
 }
+
 .navbar-app {
     background-color: white;
 }
+
 .app {
     background-color: @lightGrey;
 }
+
 .btn-group.justified.strip {
-    >*:not(:first-child) {
+    >*:not(: first-child) {
         border-left: 1px solid @black;
     }
+}
+
+.vv-input-group.no-addon .vv-input-group-addon {
+    position: absolute;
+    left: 13px;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    top: -6px;
+    bottom: 0;
+    width: auto;
+    font-size: 18px !important;
+}
+
+.vv-input-group.no-addon input {
+    padding-left: 75px!important;
 }

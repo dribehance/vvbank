@@ -7,14 +7,13 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
-        <imageview src="../images/banner.png" rate="1"></imageview>
         <div class="navbar navbar-app" style="margin-bottom:0">
             <div class="navbar-brand navbar-brand-center text-black"><span><b>优选项目 快乐投资</b></span></div>
             <div class="btn-group pull-left"></div>
             <div class="btn-group pull-right"><a ng-href="#/me" class="btn"><i class="vv vv-35 vv-me-top"></i></a></div>
         </div>
         <wrap-owlcarousel class="owl-carousel" data-options="{autoPlay: 5000, stopOnHover: true,  
-        slideSpeed : 300, paginationSpeed : 400, singleItem : true}">
+        slideSpeed : 300, paginationSpeed : 400, singleItem : true}" style="overflow:hidden">
             <a href="{{ banner.path }}" ng-repeat="banner in banners" on-repeat-done>
                 <img ng-src="{{ banner.path }}" alt="" class="block full-width">
             </a>
@@ -26,18 +25,18 @@
         </div> -->
         <div class="section">
             <div class="row">
-                <div class="col-xs-4 text-center" ng-click="queryProjectByCode('liaoning')">
-                    <img ng-src="{{ staticImageUrl +'images/project_1.png'}}" alt="">
-                    <div>信用标</div>
+                <div class="col-xs-4 text-center" ng-repeat="channel in channels" ng-click="queryProjectByCode(channel)">
+                    <img ng-src="{{ staticImageUrl +'images/project_'+ $index +'.png'}}" alt="">
+                    <div>{{channel.name}}</div>
                 </div>
-                <div class="col-xs-4 text-center" ng-click="queryProjectByCode('shenzhen')">
+                <!-- <div class="col-xs-4 text-center" ng-click="queryProjectByCode('shenzhen')">
                     <img ng-src="{{ staticImageUrl +'images/project_2.png'}}" alt="">
                     <div>红本抵押</div>
                 </div>
                 <div class="col-xs-4 text-center" ng-click="queryProjectByCode('chongqing')">
                     <img ng-src="{{ staticImageUrl +'images/project_3.png'}}" alt="">
                     <div>车辆抵押</div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="vv-divide vv-10"></div>
@@ -48,17 +47,17 @@
         <div ng-repeat="product in products">
             <a ng-href="#/products/{{product.id}}" class="section section-condenced block text-grey">
                 <h5 class="text-large">{{ product.title }}</h5>
-                <div class="semi-auto semi-left-140 semi-right-60">
+                <div class="semi-auto semi-left-165 semi-right-50">
                     <div class="semi-fixed-left semi-width-140" style="margin:0">
                         <div class="text-ellipsis">
                             <span class="text-very-big text-primary">{{ product.percentage | currency:"" }}%</span>
-                            <span class="text-orange">{{"+"+product.addition +"%"}}</span>
+                            <span class="text-orange" ng-show="product.addition !=0">{{"+"+product.addition +"%"}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-5 text-left section-wide text-ellipsis">
                             <div>期限</div>
-                            <div class="text-black"><b>{{ product.duration}}天</b>
+                            <div class="text-black"><b>{{ product.duration}} {{ product.unit }} </b>
                             </div>
                         </div>
                         <div class="col-xs-7 text-left section-wide text-ellipsis">
@@ -68,7 +67,7 @@
                         </div>
                     </div>
                     <div class="semi-fixed-right text-center semi-width-60" style="right: -12px; top: -11px;height:60px;">
-                        <pie-chart data="[{label: '',value: product.progress,suffix: '%',color: '#007cd2'}]" options="gauge_options" style="position:relative;z-index:1"></pie-chart>
+                        <pie-chart data="[{label: '',value: parseProgress(product.progress),suffix: '%',color: '#007cd2'}]" options="gauge_options" style="position:relative;z-index:1"></pie-chart>
                         <div class="pie-chart-bg"></div>
                     </div>
                 </div>
@@ -76,7 +75,7 @@
             <div class="vv-divide vv-1 bg-light-grey"></div>
         </div>
         <div class="vv-divide vv-5 bg-light-grey"></div>
-        <a ng-click="loadMore()" ng-if="project.code !='0'" class="section btn block full-width text-large text-grey">{{load_more_message}}</a>
+        <a ng-click="loadMore()" class="section btn block full-width text-large text-grey">{{load_more_message}}</a>
         <div class="vv-divide vv-5 bg-light-grey"></div>
         <div class="section bg-light-grey">
             <div class="semi-auto semi-left-50 semi-right-50">
@@ -86,8 +85,8 @@
                 <div class="semi-fixed-right semi-width-50 text-center text-primary" ng-hide="is_login">
                     <a ng-href="#/signUp" class="btn btn-primary bg-light-grey text-primary">注册</a>
                 </div>
-                <div class="btn-group btn section-wide justified strip" style="line-height:12px;padding:9px 0">
-                    <a ng-href="#/about" class="text-grey section-wide">关于我们</a>
+                <div class="btn-group btn section-wide justified strip" style="line-height:12px;padding:9px 0 text-grey">
+                    <a class="text-grey section-wide">关于我们</a>
                     <a href="tel:4006-388-399" class="text-grey section-wide">联系我们</a>
                     <a class="text-grey section-wide">投资列表</a>
                 </div>

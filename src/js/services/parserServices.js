@@ -30,24 +30,29 @@ angular.module("VVBank").factory("parserServices", function(config) {
             var product = new _m_product();
             product.id = data.productId;
             product.title = data.productName;
-            product.feature = feature_parser(data.repaymentType);
+            // product.feature = feature_parser(data.repaymentType);
+            product.feature = data.repaymentType;
             product.duration = data.investPeriod || "";
             product.limit = data.minInvestAmount || "0";
             product.max = data.maxInvestAmount || "0";
             product.percentage = data.annualRate || "0";
             product.addition = data.addRate || "0";
-            product.progress = Math.round((parseInt(data.totalInvestAmount) || "0") / data.amount * 100);
+            product.progress = parseFloat(data.totalInvestAmount || "0") / data.amount * 100;
             product.safety = safety_parser(data.safety);
             product.total = data.amount || "";
-            product.remain = parseInt(data.amount) - (parseInt(data.totalInvestAmount) || "0");
+            product.already = data.totalInvestAmount || "0";
+            product.remain = parseFloat(data.amount) - (parseFloat(data.totalInvestAmount) || "0");
             product.tag = data.status;
             product.faqiren = data.initiator || "";
             product.dealer = data.underwriter || "";
             product.exchange = data.financialExchange || "";
             product.agency = data.guarantor || "";
-            product.code = data.code || "";
-            product.endtime = data.endtime || "2015-12-30 17:00:00";
-            product.transaction = data.transaction || "0";
+            product.code = data.channelType || "EXAMPLE";
+            product.unit = data.periodUnit == "天"?"天":"个月";
+            product.endtime = data.remainderTime || "0";
+            product.transaction = data.investPersonCount || "0";
+            product.detail = data.detail;
+            product.delta = data.incrementAmount || "5";
             return product;
         },
         parseProducts: function(data) {
@@ -132,8 +137,8 @@ angular.module("VVBank").factory("parserServices", function(config) {
 
             user.total = data.netAsset || "0";
             user.earning = data.incomeAmount || "0";
-            user.frozen = data.frozenAmount || "0";
-
+            // user.frozen = data.frozenAmount || "0";
+            user.frozen = data.usableAmount || 0;
             user.identify = data.idNo || "";
             user.telephone = data.cellphone || "";
             user.email = data.email || "";
@@ -148,6 +153,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
             user.scale = config.scales[data.corporateSize] || "1-100人";
             user.job = data.position || "工程师";
             user.income = config.incomes[data.salary] || "5000以内";
+            user.coin = data.coin || "0";
             return user;
         },
         // eyuan
@@ -170,21 +176,23 @@ angular.module("VVBank").factory("parserServices", function(config) {
 
         },
         parsePocket:function (data) {
-            var pocket_group = new _m_pocket_group(),
-                pockets = [];
-            pocket_group.remain = data.bonus || "0";
-            for (var i=0,r=data.info;i<r.length;i++) {
+            // var pocket_group = new _m_pocket_group(),
+            //     pockets = [];
+            // pocket_group.remain = data.bonus || "0";
+            var pockets = [];
+            for (var i=0,r=data;i<r.length;i++) {
                 var pocket = new _m_pocket();
                 pocket.date = r[i].createTime.split(" ")[0];
-                pocket.expires = r[i].expiryTime.split(" ")[0];
+                // pocket.expires = r[i].expiryTime.split(" ")[0];
                 pocket.type = r[i].type || "";
                 pocket.money = r[i].amount || "";
-                pocket.status = new Date() > new Date(pocket.expires)?"过期":"可用";
+                // pocket.status = new Date() > new Date(pocket.expires)?"过期":"可用";
+                pocket.status = r[i].scoreChange;
                 pockets.push(pocket);
             }
 
-            pocket_group.pockets = pockets;
-            return pocket_group;
+            // pocket_group.pockets = pockets;
+            return pockets;
 
         },
         // bills
@@ -196,6 +204,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
                 bill.type = r[i].fundType;
                 bill.status = config.bill_status[r[i].fundStatus];
                 bill.money = r[i].amount;
+                bill.trade_money = r[i].tradeAmount;
                 bills.push(bill);
             }
             return bills;
@@ -233,11 +242,20 @@ angular.module("VVBank").factory("parserServices", function(config) {
             bank.city = data.city;
             return bank;
         },
+        parseBanks:function(data){
+            var banks = [];
+            for(var i=0;i<data.length;i++) {
+                var investment = this.parseBank(data[i]);
+                banks.push(investment);
+            }
+            return banks;
+        },
         parseInvestment:function(data){
             var investment = new _m_investment();
             investment.name = data.productName;
             investment.money = data.investAmount;
-            investment.rate = data.annualRate;
+            // investment.rate = data.annualRate;
+            investment.rate = data.investTime.split(" ")[0] || "-";
             return investment;
         },
         parseInvestments:function(data) {

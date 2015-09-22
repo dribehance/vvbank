@@ -40,7 +40,8 @@ var _m_user = function() {
             industry: "未填写",
             scale: "未填写",
             job: "未填写",
-            income: "0"
+            income: "0",
+            coin:"0",
         }
         return _m_user;
     }
@@ -79,14 +80,18 @@ var _m_product = function() {
         progress: "60%",
         safety: [],
         total: "",
+        already:"",
         remain: 0,
         faqiren: "",
         dealer: "",
         exchange: "",
         agency: "",
         code: "",
+        unit:"",
         endtime:"",
-        transaction:""
+        transaction:"",
+        detail:"",
+        delta:""
     }
     return product;
 }
@@ -114,6 +119,7 @@ var _m_bill = function() {
             "date": "",
             "type": "",
             "money": "",
+            "trade_money":"",
             "status":""
         }
     }

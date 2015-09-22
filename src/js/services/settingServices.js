@@ -41,6 +41,70 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                 return data.data;
             })
         },
+        queryBanksExample:function() {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/v1/service/bank",
+                method: "GET",
+                // headers: {
+                //     'Content-Type': 'application/x-www-form-urlencoded'
+                // },
+                // transformRequest: function(obj) {
+                //     var str = [];
+                //     for (var p in obj)
+                //         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                //     return str.join("&");
+                // },
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token")
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        queryProvinces:function(){
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/v1/service/provinceinfo",
+                method: "GET",
+                // headers: {
+                //     'Content-Type': 'application/x-www-form-urlencoded'
+                // },
+                // transformRequest: function(obj) {
+                //     var str = [];
+                //     for (var p in obj)
+                //         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                //     return str.join("&");
+                // },
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token")
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        queryCityByProvinceId:function(id){
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/v1/service/cityinfo",
+                method: "GET",
+                // headers: {
+                //     'Content-Type': 'application/x-www-form-urlencoded'
+                // },
+                // transformRequest: function(obj) {
+                //     var str = [];
+                //     for (var p in obj)
+                //         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                //     return str.join("&");
+                // },
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "provinceId":id
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
         updateBank: function(bank) {
             return $http({
                 url: config.url + "/v1/service/bankinfo",
@@ -88,10 +152,11 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                     "token": localStorageService.get("token"),
                     "cardno": bank.card_number,
                     "bank": bank.name,
-                    "province": bank.province,
-                    "city": bank.city,
+                    "provinceId": bank.provinceId,
+                    "cityId": bank.cityId,
+                    "bankId": bank.bankId,
                     "bankBranch": bank.branch,
-                    "bankCode": bank.code
+                    "realName":bank.realname
                 })
             }).then(function(data) {
                 return data.data;

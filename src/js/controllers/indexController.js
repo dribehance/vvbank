@@ -1,4 +1,4 @@
-var indexController = function($scope, $timeout, toastServices, localStorageService, errorServices, licaiServices, bannerServices, parserServices) {
+var indexController = function($scope, $timeout, toastServices, localStorageService, errorServices, licaiServices, bannerServices, parserServices, config) {
     $scope.is_login = false;
     if (localStorageService.get("token")) {
         $scope.is_login = true;
@@ -9,17 +9,7 @@ var indexController = function($scope, $timeout, toastServices, localStorageServ
         code: "0",
         page: "1",
     };
-    toastServices.show();
-    licaiServices.recommand().then(function(data) {
-        toastServices.hide();
-        $scope.products = parserServices.parseRecommendProduct(data.result);
-        $timeout(function() {
-            $("#product-carousel").owlCarousel({
-                autoPlay: false,
-                singleItem: true
-            });
-        }, 0);
-    });
+    $scope.products = [];
     // banner
     bannerServices.get().then(function(data) {
         $scope.banners = parserServices.parseBanner(data.result);
@@ -45,13 +35,20 @@ var indexController = function($scope, $timeout, toastServices, localStorageServ
         'shenzhen': "红本抵押",
         'chongqing': "车辆抵押",
     }
-    $scope.queryProjectByCode = function(code) {
-        if ($scope.project.code == code) {
+    licaiServices.queryExchange().then(function(data) {
+        if (data.respcode == config.request.SUCCESS) {
+            $scope.channels = data.result;
+        } else {
+            errorServices.autoHide(data.message)
+        }
+    });
+    $scope.queryProjectByCode = function(channel) {
+        if ($scope.project.code == channel.channelType) {
             return;
         }
         $scope.project = {
-            name: projects_name[code],
-            code: code,
+            name: channel.name,
+            code: channel.channelType,
             page: 1
         }
         $scope.load_more_message = "加载更多项目";
@@ -64,6 +61,20 @@ var indexController = function($scope, $timeout, toastServices, localStorageServ
         if ($scope.no_more) {
             return;
         }
+        if ($scope.project.code == "0") {
+            loadRecommand();
+        }
+        else {
+            loadOther();
+        }
+    }
+    $scope.parseProgress = function (progress) {
+        if (progress >100 || progress ==100 ) {
+            return progress;
+        }
+        return progress = parseFloat(progress).toFixed(2);
+    }
+    var loadOther = function() {
         toastServices.show();
         $scope.load_more_message = "正在加载...";
         licaiServices.queryByExchange($scope.project.code, $scope.project.page).then(function(data) {
@@ -79,4 +90,21 @@ var indexController = function($scope, $timeout, toastServices, localStorageServ
             $scope.project.page++;
         })
     }
+    var loadRecommand = function() {
+        toastServices.show();
+        $scope.load_more_message = "正在加载...";
+        licaiServices.recommand($scope.project.page).then(function(data) {
+            toastServices.hide();
+            if (data.result.length > 0) {
+                $scope.load_more_message = "加载更多项目";
+                $scope.products = $scope.products.concat(parserServices.parseProducts(data.result));
+            } else {
+                errorServices.autoHide("没有了");
+                $scope.no_more = true;
+                $scope.load_more_message = "没有了";
+            }
+            $scope.project.page++;
+        });
+    }
+    $scope.loadMore();
 }

@@ -29,15 +29,15 @@
                     <div class="">
                         <div style="margin-bottom:5px">年化收益率</div>
                         <div class="text-ellipsis text-primary">
-                            <span class="text-big">{{ product.percentage | currency:"" }}</span>
-                            <span class="text-small">%{{"+"+product.addition +"%"}}</span>
+                            <span class="text-big">{{ product.percentage | currency:"" }}%</span>
+                            <span class="text-small" ng-show="product.addition != 0">%{{"+"+product.addition +"%"}}</span>
                         </div>
                     </div>
                     <div class="">
                         <div style="margin-bottom:5px">投资期限</div>
                         <div class="text-ellipsis">
                             <span class="text-big">{{ product.duration }}</span>
-                            <span class="text-small">天</span>
+                            <span class="text-small">{{ product.unit }}</span>
                         </div>
                     </div>
                 </div>
@@ -55,124 +55,35 @@
                 <i class="vv vv-18 vv-clock"></i>
                 <span style="vertical-align:middle">
                     剩余时间
-                    <timer end-time="getTime(product.endtime)">{{days}}天{{hhours}}小时{{mminutes}}分钟{{sseconds}}秒</timer>
+                    <timer end-time="product.endtime">{{days}}天{{hhours}}小时{{mminutes}}分钟{{sseconds}}秒</timer>
                 </span>
             </div>
         </div>
         <div class="vv-divide vv-1 bg-light-grey"></div>
         <div class="text-grey section section-sm">起投金额：{{ product.limit }}</div>
         <div class="text-grey section section-sm">还款方式：{{ product.feature }}</div>
-        <div class="text-grey section section-sm">起息时间：{{ product.endtime }}</div>
+        <div class="text-grey section section-sm">起息时间：T(满标审核日)+1日
+            <!-- {{ parseTime(product.endtime) |date:"yyyy-MM-dd" }} -->
+        </div>
         <div class="text-grey section section-sm">已投笔数：{{ product.transaction }}</div>
-        <div class="text-grey section section-sm">已募金额：{{ product.total|currency:"" }}元</div>
+        <div class="text-grey section section-sm">已募金额：{{ product.already|currency:"" }}元</div>
         <div class="section">
-            <div class="text-white" ng-if="product.tag == 0">
-                <a href="#/buy/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning">购买</a>
+            <div class="text-white" ng-if="product.tag == '申购中'">
+                <a href="#/buy/{{product.code}}/{{ product.id }}/{{product.remain}}" class="block btn btn-lg full-width btn-warning">立即认购</a>
             </div>
-            <div ng-if="product.tag !=0">
-                <div class="section btn btn-lg text-center full-width text-white bg-grey">已募满</div>
+            <div ng-if="product.tag != '申购中'">
+                <div class="section btn btn-lg text-center full-width text-white bg-grey">{{product.tag}}</div>
             </div>
         </div>
         <div class="vv-divide vv-5"></div>
-        <!-- 相关文件 -->
-        <div class="section" ng-show="files.length>0">
-            <div class="section section-wide text-black" style="padding-bottom:0">
-                <span class="normal text-black text-large"><b>相关文件</b></span>
-            </div>
-            <div class="section section-wide" ng-repeat="file in files">
-                <p>{{file.title}}</p>
-                <img ng-src="{{file.path}}" alt="">
-                <p>{{file.content}}</p>
-            </div>
-        </div>
         <!-- 项目详情 -->
-        <div class="section" ng-show="projects.length>0">
-            <div class="section section-wide text-black" style="padding-bottom:0">
-                <span class="normal text-black text-large"><b>项目详情</b></span>
-            </div>
-            <div class="section text-center" ng-repeat="project in projects">
-                <p class="text-center">{{project.title}}</p>
-                <img ng-src="{{project.path}}" alt="">
-                <p class="text-left">{{project.description}}</p>
-            </div>
+        <div ng-show="product.detail" class="section">
+            <h4>项目详情</h4>
+            <div ng-bind-html="trustAsHtml(product.detail)"></div>
         </div>
-        <!-- old -->
-        <!-- <div class="section section-sm">
-            <div class="col-xs-6 col-condensed nowrap">
-                <div class="h4">预期年化收益</div>
-                <span class="text-orange text-very-big"><b>{{ product.percentage | currency:"" }}%</b></span>
-                <sub class="text-orange text-small">
-                    <b ng-show="product.addition">{{"+"+product.addition +"%"}}</b>
-                    <b ng-show="!product.addition">不加成</b>
-                    <i class="vv vv-43 vv-discount-orange"></i>
-                </sub>
-            </div>
-            <div class="col-xs-6">
-                <div class="semi-auto semi-left-75 text-ellipsis" style="margin-top: 14px;line-height: 45px;">
-                    <span class="semi-fixed-left semi-width-75 text-grey">项目期限：</span>
-                    <div class="text-black text-right">{{ product.duration }}天 <span class="text-grey"></span>
-                    </div>
-                </div>
-                <div class="semi-auto semi-left-60 text-ellipsis">
-                    <span class="semi-fixed-left semi-width-60 text-grey">投资进度：</span>
-                    <div class="progress rectangle">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ product.progress + '%'}};">
-                            <span class="sr-only">{{ product.progress }}Complete</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section section-condensed">
-            <div class="btn-group justified text-center" style="min-height:19px">
-                <span class="text-ellipsis" ng-repeat="(key,value) in product.safety">
-                    <i class="vv vv-18 vv-guard vv-{{key}}"></i>
-                    {{value}}
-                </span>
-            </div>
-        </div>
-        <div class="section section-sm"></div>
-        <div class="vv-divide"></div>
-        <div class="row bg-white section section-wide">
-            <div class="col-xs-6 section-wide text-center">
-                <span class="text-grey"><strong>总资产（元）</strong></span>
-                <div class="text-orange text-large text-ellipsis"><strong>{{product.total | currency:"￥"}}</strong>
-                </div>
-
-            </div>
-            <div class="col-xs-6 section-wide text-center">
-                <span class="text-grey"><strong>剩余金额（元）</strong></span>
-                <div class="text-orange text-large text-ellipsis"><strong>{{ product.remain | currency:"￥"}}</strong>
-                </div>
-            </div>
-        </div>
-        <div class="vv-divide"></div>
-        <div class="text-grey section section-sm"><i class="vv vv-18 vv-faqiren" style="margin-right:5px"></i>发起人：{{ product.faqiren }}</div>
-        <div class="text-grey section section-sm"><i class="vv vv-18 vv-dealer" style="margin-right:5px"></i>承销商：{{ product.dealer }}</div>
-        <div class="text-grey section section-sm"><i class="vv vv-18 vv-house" style="margin-right:5px"></i>交易所：{{ product.exchange }}</div>
-        <div class="text-grey section section-sm"><i class="vv vv-18 vv-agency" style="margin-right:5px"></i>担保机构：{{ product.agency }}</div>
-        <div class="vv-divide"></div>
-        <div class="section section-sm section-wide">
-            <a ng-href="#/project/{{ product.id }}" class="block text-grey semi-auto semi-right-50">
-                <span class="btn">项目详情</span>
-                <span class="semi-fixed-right semi-width-50 text-center">
-                <i class="vv vv-arrow-right vv-35"></i>
-            </span>
-            </a>
-        </div>
-        <div class="vv-divide"></div>
-        <div class="section section-sm section-wide">
-            <a ng-href="#/products-files/{{ product.id }}" class="block text-grey semi-auto semi-right-50">
-                <span class="btn">相关文件</span>
-                <span class="semi-fixed-right semi-width-50 text-center">
-                <i class="vv vv-arrow-right vv-35"></i>
-            </span>
-            </a>
-        </div>
- -->
+        <!-- <div class="vv-divide vv-5"></div>
         <div class="vv-divide vv-5"></div>
-        <div class="vv-divide vv-5"></div>
-        <p class="text-grey text-center"><i class="vv vv-18 vv-bank" style="margin-right:5px"></i>VVBank所有资金均由财付通交易</p>
+        <p class="text-grey text-center"><i class="vv vv-18 vv-bank" style="margin-right:5px"></i>VVBank所有资金均由财付通交易</p> -->
     </div>
     <!-- <div class="scrollable-footer">
         <div ng-show="product.tag == 0">

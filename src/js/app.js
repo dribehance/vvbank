@@ -157,9 +157,9 @@ angular.module("VVBank", [
             templateUrl: "me/about.html",
             reloadOnSearch: false,
             controller:aboutController,
-            resolve: {
-                factory:loginInterceptor
-            }
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
         })
         .when("/name-authen", {
             templateUrl: "me/name-authen.html",
@@ -224,7 +224,7 @@ angular.module("VVBank", [
             reloadOnSearch: false,
             controller: productFilesController
         })
-        .when("/buy/:productID/:remain", {
+        .when("/buy/:productCode/:productID/:remain", {
             templateUrl: "buy.html",
             reloadOnSearch: false,
             controller: buyController,
@@ -257,7 +257,10 @@ angular.module("VVBank", [
         localStorageServiceProvider.setStorageCookie(1/50);
         $httpProvider.interceptors.push('tokenInterceptor');
 
-}).run(function($rootScope, $window,appServices) {
+}).run(function($rootScope, $window, $sce, appServices) {
     // init event such as routechangestart...
     appServices.init();
+    $rootScope.trustAsHtml = function (safehtml) {
+        return $sce.trustAsHtml(safehtml)
+    }
 });

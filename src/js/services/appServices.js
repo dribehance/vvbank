@@ -50,10 +50,10 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
                 $rootScope.$on("$routeChangeStart", routeChangeStart);
                 $rootScope.$on("$routeChangeSuccess", routeChangeSuccess);
                 $rootScope.navbar = {
-                    top:true,
-                    bottom:true
-                }
-                // android backkey
+                        top: true,
+                        bottom: true
+                    }
+                    // android backkey
                 document.addEventListener("backbutton", onBackKeyDown, false);
                 // manual back control
                 $rootScope.back = function() {
@@ -73,20 +73,27 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
             // each time startup the app fetch the user info
             $rootScope.user = {};
             // static image url handle
-            if ($location.$$host == "localhost" || $location.$$host == "192.168.1.100") {
+            if ($location.$$host == "localhost" || $location.$$host == "192.168.1.118") {
                 $rootScope.staticImageUrl = "/";
             } else {
-                $rootScope.staticImageUrl = "/app/";
+                $rootScope.staticImageUrl = "/resources/app/";
             }
             if (localStorageService.get("token")) {
                 userServices.info.basic().then(function(data) {
                     if (data.respcode == config.request.SUCCESS) {
-                        $rootScope.user = parserServices.parseUser(data.result);
+                        $rootScope.user = angular.extend({}, parserServices.parseUser(data.result));
                     } else {
-                        errorServices.autoHide()
+                        errorServices.autoHide(data.message)
                     }
                     if (data.respcode == config.request.TOKEN_INVALID) {
                         localStorageService.cookie.remove("token");
+                    }
+                });
+                userServices.info.account().then(function(data) {
+                    if (data.respcode == config.request.SUCCESS) {
+                        $rootScope.user = angular.extend({}, $rootScope.user, parserServices.parseUser(data.result));
+                    } else {
+                        errorServices.autoHide(data.message)
                     }
                 })
             }

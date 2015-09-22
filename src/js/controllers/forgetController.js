@@ -26,7 +26,7 @@ var forgetController = function($scope,$location,userServices,toastServices,loca
 			}
 		})
 		$scope.callbackTimer.counting = 1;
-		$scope.callbackTimer.addSeconds(30);
+		$scope.callbackTimer.addSeconds(150);
 	}
 	$scope.nextStep = function () {
 		toastServices.show();

@@ -10,12 +10,10 @@
 <div class="scrollable">
     <div class="scrollable-content" ui-scroll-bottom="loadMore()">
         <div class="message-item" ng-repeat="message in messages" ng-show="messages.length>0">
-
             <div class="section">
                 <div class="btn-group justified">
                     <span><img ng-src="{{staticImageUrl + 'images/message_1.png'}}" alt="" style="width:42;height:42px;margin-right:5px">{{ message.title }}</span>
                     <span class="text-right">{{ message.date }}</span>
-
                 </div>
             </div>
             <div class="section text-grey">
@@ -23,8 +21,8 @@
             </div>
             <div class="vv-divide vv-5"></div>
         </div>
-        <div class="message-item text-center" ng-show="!messages.length>0">
-            我就静静的瞅着，没有更多了...
+        <div class="section text-center" ng-click="loadMore()">
+            {{page.message}}
         </div>
     </div>
 </div>

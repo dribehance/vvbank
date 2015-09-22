@@ -37,7 +37,7 @@ var cashController = function($scope, $rootScope, userServices, toastServices, p
             }
         })
         $scope.callbackTimer.counting = 1;
-        $scope.callbackTimer.addSeconds(30);
+        $scope.callbackTimer.addSeconds(150);
     }
 
     $scope.ajaxForm = function(form) {

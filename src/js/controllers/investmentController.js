@@ -1,26 +1,32 @@
-var investmentController = function($scope, errorServices, myServices, pushToRefreshServices, parserServices, config) {
-    var currentPage = 1;
+var investmentController = function($scope,toastServices, errorServices, myServices, pushToRefreshServices, parserServices, config) {
     $scope.investments = [];
-    var no_more = false;
+    $scope.page = {
+        number:1,
+        page_size:1,
+        message:"点击加载更多"
+    }
     $scope.loadMore = function() {
-        if (no_more) {
+        if ($scope.no_more) {
             return;
         }
-        pushToRefreshServices.show("加载中");
-        myServices.investment(currentPage).then(function(data) {
-            pushToRefreshServices.hide();
+        toastServices.show();
+        $scope.page.message ="正在加载...";
+        myServices.investment($scope.page.number).then(function(data) {
+            toastServices.hide();
+            $scope.page.message ="点击加载更多";
             if (data.respcode == config.request.SUCCESS) {
                 $scope.investments = $scope.investments.concat(parserServices.parseInvestments(data.result));
             } else {
-                pushToRefreshServices.hide();
-                errorServices.autoHide(data.message)
+                errorServices.autoHide("服务器错误");
             }
             if (data.result.length == 0) {
-                no_more = true;
-                pushToRefreshServices.show("我就静静的瞅着，没有更多了...")
+                $scope.no_more = true;
+                $scope.page.message = "我就静静的瞅着，没有更多了...";
             }
-        });
-        currentPage++;
+            $scope.page.number++;
+        })
+    
     }
     $scope.loadMore();
+
 }
