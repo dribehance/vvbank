@@ -11,29 +11,22 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
     }
     var navBarHandler = function(e, currentRoute, prevRoute) {
 
-        // navbar top
-        if ($location.path() == "/me" || $location.path() == "/index") {
-            // SharedState.turnOff("navbarTop");
-            $rootScope.navbar.top = false;
-        } else {
-            // SharedState.turnOn("navbarTop");
+        // always hide all navbar top
+        // $rootScope.navbar.top = false;
+        var _navbars_t = ["/eyuan_mall","/hotels","/restaurants","/stores","/clubs","/shopping_cart"];
+        if (_navbars_t.contains($location.path())) {
             $rootScope.navbar.top = true;
         }
-        // navbar bottom
-        // if ($location.path().toString().indexOf("/licai/") == 0) {
-        //     $rootScope.navbar.bottom = true;
-        //     return;
-        // }
-        var _navbars_b = ["/index", "/licai", "/me", "/", "/signIn"];
-        if (!_navbars_b.contains($location.path())) {
-            // SharedState.turnOff("navbarBottom");
-            $rootScope.navbar.bottom = false;
-        } else {
-            // SharedState.turnOn("navbarBottom");
-            $rootScope.navbar.bottom = true;
+        else {
+            $rootScope.navbar.top = false;
         }
-        // always hide navbar bottom
-        $rootScope.navbar.bottom = false;
+        // navbar bottom 
+        // var _navbars_b = ["/index", "/licai", "/me", "/", "/signIn"];
+        // if (!_navbars_b.contains($location.path())) {
+        //     $rootScope.navbar.bottom = false;
+        // } else {
+        //     $rootScope.navbar.bottom = true;
+        // }
     }
     var onBackKeyDown = function() {
         $rootScope.$apply(function() {
@@ -50,16 +43,16 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
                 $rootScope.$on("$routeChangeStart", routeChangeStart);
                 $rootScope.$on("$routeChangeSuccess", routeChangeSuccess);
                 $rootScope.navbar = {
-                        top: true,
-                        bottom: true
-                    }
-                    // android backkey
+                    top: false,
+                    bottom: true
+                };
+                // android backkey
                 document.addEventListener("backbutton", onBackKeyDown, false);
                 // manual back control
                 $rootScope.back = function() {
                     $window.history.back();
                 }
-            }
+            };
             // token expired
             $interval(function() {
                 userServices.token();
@@ -79,16 +72,16 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
                 $rootScope.staticImageUrl = "/resources/app/";
             }
             if (localStorageService.get("token")) {
-                userServices.info.basic().then(function(data) {
-                    if (data.respcode == config.request.SUCCESS) {
-                        $rootScope.user = angular.extend({}, parserServices.parseUser(data.result));
-                    } else {
-                        errorServices.autoHide(data.message)
-                    }
-                    if (data.respcode == config.request.TOKEN_INVALID) {
-                        localStorageService.cookie.remove("token");
-                    }
-                });
+                // userServices.info.basic().then(function(data) {
+                //     if (data.respcode == config.request.SUCCESS) {
+                //         $rootScope.user = angular.extend({}, parserServices.parseUser(data.result));
+                //     } else {
+                //         errorServices.autoHide(data.message)
+                //     }
+                //     if (data.respcode == config.request.TOKEN_INVALID) {
+                //         localStorageService.cookie.remove("token");
+                //     }
+                // });
                 userServices.info.account().then(function(data) {
                     if (data.respcode == config.request.SUCCESS) {
                         $rootScope.user = angular.extend({}, $rootScope.user, parserServices.parseUser(data.result));

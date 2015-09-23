@@ -16,6 +16,11 @@ angular.module("VVBank", [
             reloadOnSearch: false,
             controller: indexController
         })
+        .when("/investment_projects", {
+            templateUrl: "investment_projects.html",
+            reloadOnSearch: false,
+            controller: investmentProjectsController
+        })
         .when("/licai", {
             templateUrl: "licai.html",
             reloadOnSearch: false,
@@ -247,6 +252,54 @@ angular.module("VVBank", [
             resolve: {
                 factory:loginInterceptor
             }
+        })
+        .when("/hotels", {
+            templateUrl: "hotels.html",
+            reloadOnSearch: false,
+            controller: hotelsController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/restaurants", {
+            templateUrl: "restaurants.html",
+            reloadOnSearch: false,
+            controller: restaurantsController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/stores", {
+            templateUrl: "stores.html",
+            reloadOnSearch: false,
+            controller: storesController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/clubs", {
+            templateUrl: "clubs.html",
+            reloadOnSearch: false,
+            controller: clubsController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/shopping_cart", {
+            templateUrl: "shopping_cart.html",
+            reloadOnSearch: false,
+            controller: shoppingcartController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/eyuan_mall", {
+            templateUrl: "eyuan_mall.html",
+            reloadOnSearch: false,
+            controller: eyuanMallController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
         })
         .otherwise({
             redirectTo: "/index"
