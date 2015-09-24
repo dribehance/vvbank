@@ -13,8 +13,9 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
 
         // always hide all navbar top
         // $rootScope.navbar.top = false;
-        var _navbars_t = ["/eyuan_mall","/hotels","/restaurants","/stores","/clubs","/shopping_cart"];
-        if (_navbars_t.contains($location.path())) {
+        var _navbars_t = ["eyuan_mall"];
+
+        if (_navbars_t.contains($location.path().split("/")[1])) {
             $rootScope.navbar.top = true;
         }
         else {

@@ -1,0 +1,139 @@
+.hotel {
+    position: relative;
+    margin: 15px;
+    .intro {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 12px;
+        color: white;
+        background-color: @lightGrey;
+        background-color: fade(black, 50%);
+    }
+    .title {
+        font-size: 18px;
+    }
+    .summary {
+        margin: 6px 0 0 0;
+        height: 32px;
+        line-height: 16px;
+        overflow: hidden;
+    }
+}
+
+.niuniu-dialog {
+    .niuniu {
+        display: block;
+        width: 300px;
+        height: 270px;
+        margin: 70px auto 0;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        &.happy {
+            background-image: url("../images/niuniu.png");
+        }
+        &.cry {
+            background-image: url("../images/niuniu_1.png");
+        }
+    }
+    .footer {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 20px;
+        text-align: center;
+    }
+}
+
+.shopping-cart {
+    .cart-item {
+        position: relative;
+        padding: 8px 8px 8px 110px;
+        border-bottom: 1px solid #eeeeee;
+        background-color: white;
+    }
+    .item-status {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        left: 8px;
+        top: 50%;
+        margin-top: -10px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-image: url("../images/item_uncheck.png")
+    }
+    .item-status.active {
+        background-image: url("../images/item_check.png")
+    }
+    .item-title {
+        padding: 10px 10px 0 10px;
+        font-size: 16px;
+    }
+    .item-info {
+        padding: 0 10px;
+    }
+    .item-thumbnail {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        left: 38px;
+        top: 50%;
+        margin-top: -35px;
+    }
+    .item-control {
+        display: inline-block;
+        border: 1px solid #eeeeee;
+        text-align: center;
+        .control-handle {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: #f8f8f8;
+        }
+        .item-count {
+            display: inline-block;
+            padding: 5px;
+        }
+    }
+}
+
+.bega {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 8px;
+    font-style: normal;
+    text-align: center;
+    color: white;
+    background-color: red;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+}
+.order-item {
+    position: relative;
+    padding-left: 70px;
+    padding-right: 80px;
+    overflow: hidden;
+    .order-thumbnail {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        left: 0;
+        top: 50%;
+        margin-top: -35px;
+    }
+    .order-price {
+        position: absolute;
+        width: 70px;
+        height: 16px;
+        right: 0;
+        top: 50%;
+        margin-top: -8px;
+        text-overflow:ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        color: red;
+    }
+}

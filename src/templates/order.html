@@ -1,0 +1,57 @@
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<!-- <div ui-content-for="title">标题</div>
+<div ui-content-for="navbarAction">右侧菜单</div>
+<div ui-content-for="backAction">
+  <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+</div>
+ -->
+<div class="scrollable">
+    <div class="scrollable-content">
+        <div class="section">
+            <div class="order-item">
+                <div class="order-thumbnail">
+                    <img ng-src="../images/order_example.png" alt="" class="block full-width">
+                </div>
+                <div class="section text-ellipsis">希尔顿南海标准房1晚</div>
+                <p class="clearfix section" style="padding-top:0">
+                    <span class="pull-left">09-06 12:12</span>
+                </p>
+            </div>
+        </div>
+        <div class="vv-divide"></div>
+        <div class="section clearfix">
+            <div class="pull-left">数量:x3</div>
+            <div class="pull-right">兑换单价:10,000e圆</div>
+        </div>
+        <div class="section">
+            商品序列号
+            <p class="row">
+                <div class="col-xs-6">20152485247522</div>
+                <div class="col-xs-6"><a ng-href="" ui-turn-on="qrcode">二维码</a></div>
+            </p>
+            <p class="row">
+                <div class="col-xs-6">20152485247522</div>
+                <div class="col-xs-6"><a ng-href="" ui-turn-on="qrcode">二维码</a></div>
+            </p>
+            <p class="row">
+                <div class="col-xs-6">20152485247522</div>
+                <div class="col-xs-6"><a ng-href="" ui-turn-on="qrcode">二维码</a></div>
+            </p>
+        </div>
+        <div class="section">希尔顿南海标准房1晚</div>
+        <div class="vv-divide"></div>
+        <div class="section">联系电话：0755-26312233</div>
+        <div class="section">地址：广东省 深圳市 罗湖区 京基100 68楼</div>
+        <div class="section">
+            <img ng-src="../images/qrcode_example.png" class="block full-width" alt="">
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal" ui-if="qrcode" ui-state='qrcode'>
+        <div class="modal-backdrop in" ui-turn-off="qrcode"></div>
+        <div class="modal-dialog bg-transparent">
+            <img ng-src="../images/qrcode.png" class="block full-width" alt="">
+        </div>
+    </div>
+</div>

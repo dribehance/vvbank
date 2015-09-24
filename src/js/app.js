@@ -253,7 +253,7 @@ angular.module("VVBank", [
                 factory:loginInterceptor
             }
         })
-        .when("/hotels", {
+        .when("/eyuan_mall/hotels", {
             templateUrl: "hotels.html",
             reloadOnSearch: false,
             controller: hotelsController,
@@ -261,7 +261,15 @@ angular.module("VVBank", [
             //     factory:loginInterceptor
             // }
         })
-        .when("/restaurants", {
+        .when("/eyuan_mall/hotels/:hotel_id", {
+            templateUrl: "hotel.html",
+            reloadOnSearch: false,
+            controller: hotelController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/eyuan_mall/restaurants", {
             templateUrl: "restaurants.html",
             reloadOnSearch: false,
             controller: restaurantsController,
@@ -269,7 +277,7 @@ angular.module("VVBank", [
             //     factory:loginInterceptor
             // }
         })
-        .when("/stores", {
+        .when("/eyuan_mall/stores", {
             templateUrl: "stores.html",
             reloadOnSearch: false,
             controller: storesController,
@@ -277,7 +285,7 @@ angular.module("VVBank", [
             //     factory:loginInterceptor
             // }
         })
-        .when("/clubs", {
+        .when("/eyuan_mall/clubs", {
             templateUrl: "clubs.html",
             reloadOnSearch: false,
             controller: clubsController,
@@ -285,10 +293,18 @@ angular.module("VVBank", [
             //     factory:loginInterceptor
             // }
         })
-        .when("/shopping_cart", {
+        .when("/eyuan_mall/shopping_cart", {
             templateUrl: "shopping_cart.html",
             reloadOnSearch: false,
             controller: shoppingcartController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/eyuan_mall/payment", {
+            templateUrl: "payment.html",
+            reloadOnSearch: false,
+            controller: paymentController,
             // resolve: {
             //     factory:loginInterceptor
             // }
@@ -297,6 +313,62 @@ angular.module("VVBank", [
             templateUrl: "eyuan_mall.html",
             reloadOnSearch: false,
             controller: eyuanMallController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/qrcode", {
+            templateUrl: "qrcode.html",
+            reloadOnSearch: false,
+            controller: qrcodeController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/serial", {
+            templateUrl: "serial.html",
+            reloadOnSearch: false,
+            controller: serialController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/promote", {
+            templateUrl: "promote.html",
+            reloadOnSearch: false,
+            controller: promoteController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/people", {
+            templateUrl: "people.html",
+            reloadOnSearch: false,
+            controller: peopleController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/orders", {
+            templateUrl: "orders.html",
+            reloadOnSearch: false,
+            controller: ordersController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/orders/:order_id", {
+            templateUrl: "order.html",
+            reloadOnSearch: false,
+            controller: orderController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
+        .when("/orders_offline/:order_id", {
+            templateUrl: "order_offline.html",
+            reloadOnSearch: false,
+            controller: orderOfflineController,
             // resolve: {
             //     factory:loginInterceptor
             // }
