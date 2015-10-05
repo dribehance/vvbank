@@ -261,7 +261,7 @@ angular.module("VVBank", [
             //     factory:loginInterceptor
             // }
         })
-        .when("/eyuan_mall/hotels/:hotel_id", {
+        .when("/eyuan_mall/hotels/:item_id", {
             templateUrl: "hotel.html",
             reloadOnSearch: false,
             controller: hotelController,

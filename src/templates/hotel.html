@@ -2,11 +2,12 @@
 <!-- <div ui-content-for="title">标题</div>
 <div ui-content-for="navbarAction">右侧菜单</div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div> -->
 <div class="scrollable">
     <div class="scrollable-content">
-        <imageview rate="580/300" src="hotel.image"></imageview>
+        <!-- static temp -->
+        <!-- <imageview rate="580/300" src="t_hotel.image"></imageview>
         <div class="section">
             <div class="h3">希尔顿南海酒店大床房</div>
             <div class="text-grey">尊享深圳希尔顿南海酒店大床房，1个晚上+1份早餐+免费wifi+更多优惠！</div>
@@ -14,10 +15,10 @@
         <div class="section">
             <div class="btn-group justified">
                 <span class="btn btn-lg btn-primary rectangle" ui-turn-on="modal1">
-					10e圆试手气
-				</span>
+                    10e圆试手气
+                </span>
                 <span class="btn btn-lg">
-					<span class="text-orange">123456</span>人已获奖
+                    <span class="text-orange">123456</span>人已获奖
                 </span>
             </div>
         </div>
@@ -36,13 +37,54 @@
             <div class="btn-group justified">
                 <div class="section section-condensed" style="padding-left:0">
                     <span class="btn btn-lg btn-primary rectangle full-width">
-						立即兑换
-					</span>
+                        立即兑换
+                    </span>
                 </div>
                 <div class="section section-condensed text-white" style="padding-right:0">
                     <a ng-href="#/eyuan_mall/shopping_cart" class="btn btn-lg btn-warning rectangle full-width">
-						加入购物车
-	                </a>
+                        加入购物车
+                    </a>
+                </div>
+            </div>
+        </div> -->
+        <!-- dynamic -->
+        <imageview rate="580/300" src="emall_item.logo"></imageview>
+        <div class="section">
+            <div class="h3">{{emall_item.goodsName}}</div>
+            <div class="text-grey">{{emall_item.summary}}</div>
+        </div>
+        <div class="section">
+            <div class="btn-group justified">
+                <span class="btn btn-lg btn-primary rectangle" ng-click="try(emall_item.goodsId)">
+                    {{emall_item.luckPrice}}e圆试手气
+                </span>
+                <span class="btn btn-lg">
+                    <span class="text-orange">123456</span>人已获奖
+                </span>
+            </div>
+        </div>
+        <div class="vv-divide"></div>
+        <div class="section">
+            <div>兑换价格：<span class="text-orange">{{emall_item.exchangePrice}}</span>e圆</div>
+            <div>兑换数量：
+                <select>
+                    <option value="10000">10000</option>
+                </select>
+                已经有<span class="text-orange">1000</span>人兑换此商品
+            </div>
+        </div>
+        <div class="vv-divide"></div>
+        <div class="section">
+            <div class="btn-group justified">
+                <div class="section section-condensed" style="padding-left:0">
+                    <span class="btn btn-lg btn-primary rectangle full-width">
+                        立即兑换
+                    </span>
+                </div>
+                <div class="section section-condensed text-white" style="padding-right:0">
+                    <a ng-href="#/eyuan_mall/shopping_cart" class="btn btn-lg btn-warning rectangle full-width">
+                        加入购物车
+                    </a>
                 </div>
             </div>
         </div>
@@ -52,9 +94,9 @@
     <div class="modal" ui-if="modal1" ui-state='modal1'>
         <div class="modal-backdrop in" ui-turn-off="modal1"></div>
         <div class="modal-dialog niuniu-dialog">
-            <div class="niuniu happy"></div>
+            <div class="niuniu" ng-class="{'happy':award_status == 1,'cry':award_status == '0'}"></div>
             <div class="footer">
-            	<span class="btn btn-primary">点击查看产品</span>
+                <span class="btn btn-primary">点击查看产品</span>
             </div>
         </div>
     </div>

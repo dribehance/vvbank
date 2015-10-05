@@ -8,7 +8,7 @@ angular.module("VVBank").factory("mallServices", function($http,$rootScope, conf
                 url: config.url + "/e1/emall/indexGoods",
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
-                    "current": input.current,
+                    "current": input.number,
                     "categoryID": input.category_id
                 })
             }).then(function(data) {
