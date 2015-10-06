@@ -33,7 +33,7 @@
                 <input type="checkbox" name="check_all" ng-model="input.all" value="all" style="vertical-align:middle;margin:0"><span ng-click="remove()">[移除选中商品]</span>
             </div>
             <div class="pull-right">
-                已选择<span class="text-orange">1</span>商品
+                已选择<span class="text-orange">{{selected_items()}}</span>商品
             </div>
         </div>
         <div class="section">

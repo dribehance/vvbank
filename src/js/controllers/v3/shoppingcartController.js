@@ -35,6 +35,16 @@ var shoppingcartController = function($scope, errorServices, toastServices, loca
         });
         return sum;
     };
+    // calculate selected item;
+    $scope.selected_items = function() {
+        var count = 0;
+        angular.forEach($scope.items, function(item) {
+            if (item.checked) {
+                count++;
+            }
+        });
+        return count;
+    }
     // amount control
     $scope.minus = function(item) {
         if (item.amount == 0) {

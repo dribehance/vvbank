@@ -1,4 +1,4 @@
 // by dribehance <dribehance.kksdapp.com>
-var ordersController = function($scope,errorServices,toastServices,localStorageService,config){
-	
+var ordersController = function($scope,shoppingCartServices, errorServices, toastServices, localStorageService, config) {
+	// $scope.orders = 
 }

@@ -22,12 +22,12 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
         //     $rootScope.navbar.top = false;
         // }
         // navbar bottom 
-        // var _navbars_b = ["/index", "/licai", "/me", "/", "/signIn"];
-        // if (!_navbars_b.contains($location.path())) {
-        //     $rootScope.navbar.bottom = false;
-        // } else {
-        //     $rootScope.navbar.bottom = true;
-        // }
+        var _navbars_b = ["/index", "/investment_projects", "/eyuan_mall", "/", "/me"];
+        if (!_navbars_b.contains($location.path())) {
+            $rootScope.navbar.bottom = false;
+        } else {
+            $rootScope.navbar.bottom = true;
+        }
     }
     var onBackKeyDown = function() {
         $rootScope.$apply(function() {
