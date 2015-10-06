@@ -12,15 +12,15 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
     var navBarHandler = function(e, currentRoute, prevRoute) {
 
         // always hide all navbar top
-        // $rootScope.navbar.top = false;
-        var _navbars_t = ["eyuan_mall"];
+        $rootScope.navbar.top = false;
+        // var _navbars_t = ["eyuan_mall"];
 
-        if (_navbars_t.contains($location.path().split("/")[1])) {
-            $rootScope.navbar.top = true;
-        }
-        else {
-            $rootScope.navbar.top = false;
-        }
+        // if (_navbars_t.contains($location.path().split("/")[1])) {
+        //     $rootScope.navbar.top = true;
+        // }
+        // else {
+        //     $rootScope.navbar.top = false;
+        // }
         // navbar bottom 
         // var _navbars_b = ["/index", "/licai", "/me", "/", "/signIn"];
         // if (!_navbars_b.contains($location.path())) {

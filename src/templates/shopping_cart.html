@@ -7,50 +7,30 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="shopping-cart">
-            <div class="cart-item">
-                <div class="item-status active"></div>
+            <div class="cart-item" ng-repeat="item in items">
+                <div class="item-status" ng-class="{'active':item.checked}" ng-click="toggle(item)"></div>
                 <div class="item-thumbnail">
                     <img ng-src="../images/example_3.png" alt="">
                 </div>
                 <div class="item-title text-ellipsis">
-                    保利影院电影2D电影兑换券1张
+                    {{item.goodsName}}
                 </div>
                 <div class="item-info">
-                    e圆：<span class="text-orange">1268.0</span><i class="bega">奖</i>
-                </div>
-                <div class="item-info">
-                    数量：
-                    <span class="item-control">
-						<span class="item-minus control-handle">-</span>
-                    <span class="item-count">0</span>
-                    <span class="item-plus control-handle">+</span>
-                    </span>
-                </div>
-            </div>
-            <div class="cart-item">
-                <div class="item-status"></div>
-                <div class="item-thumbnail">
-                    <img ng-src="../images/example_3.png" alt="">
-                </div>
-                <div class="item-title text-ellipsis">
-                    保利影院电影2D电影兑换券1张
-                </div>
-                <div class="item-info">
-                    e圆：<span class="text-orange">1268.0</span><i class="bega">奖</i>
+                    e圆：<span class="text-orange">{{item.exchangPrice}}</span><i class="bega" ng-show="item.status == 1">奖</i>
                 </div>
                 <div class="item-info">
                     数量：
                     <span class="item-control">
-						<span class="item-minus control-handle">-</span>
-                    <span class="item-count">0</span>
-                    <span class="item-plus control-handle">+</span>
+						<span class="item-minus control-handle" ng-click="minus(item)">-</span>
+                    <span class="item-count">{{item.amount}}</span>
+                    <span class="item-plus control-handle" ng-click="plus(item)">+</span>
                     </span>
                 </div>
             </div>
         </div>
         <div class="section clearfix">
             <div class="pull-left">
-                <input type="checkbox" name="check_all" style="vertical-align:middle;margin:0">[移除选中商品]
+                <input type="checkbox" name="check_all" ng-model="input.all" value="all" style="vertical-align:middle;margin:0"><span ng-click="remove()">[移除选中商品]</span>
             </div>
             <div class="pull-right">
                 已选择<span class="text-orange">1</span>商品
@@ -58,7 +38,7 @@
         </div>
         <div class="section">
             <div class="btn-group justified">
-                <span>总价：<span class="text-orange">1268.0</span></span>
+                <span>总价：<span class="text-orange">{{sum()}}</span></span>
                 <span class="text-white"><a ng-href="#/eyuan_mall/payment" class="btn btn-warning rectangle btn-lg full-width">去结算</a></span>
             </div>
         </div>

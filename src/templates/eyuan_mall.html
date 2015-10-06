@@ -5,29 +5,29 @@
 	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div> -->
 <div class="scrollable">
-	<div class="scrollable-content">
-		<div class="hotels">
-			<a ng-href="#/eyuan_mall/hotels/1" class="hotel block" ng-repeat="h in hotels">
-				<imageview rate="580/300" src="h"></imageview>
-				<div class="intro">
-					<div class="text-ellipsis title">希尔顿南海酒店大床房1晚</div>
-					<div class="summary">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore reiciendis soluta, animi veniam ab aperiam mollitia est architecto distinctio deserunt ex iusto molestias, quidem ullam laboriosam neque accusamus obcaecati fugit?
-					</div>
-				</div>
-			</a>
-		</div>
-		<div class="hotels">
-			<a ng-href="#/eyuan_mall/hotels/{{hotel.goodsId}}" class="hotel block" ng-repeat="item in emall_items">
-				<imageview rate="580/300" src="item.logo"></imageview>
-				<div class="intro">
-					<div class="text-ellipsis title">{{item.goodsName}}</div>
-					<div class="summary">
-						{{item.summary}}
-					</div>
-				</div>
-			</a>
-		</div>
-		<a ng-click="loadMore()" class="section btn block full-width text-large text-grey">{{load_more_message}}</a>
-	</div>
+    <div class="scrollable-header">
+        <div class="btn-group justified bg-primary">
+            <a ng-click="categoryFilter(category)" class="btn text-white section-wide bg-transparent" ng-class="{'active':category.id == filter_category.id}" ng-repeat="category in categories" ng-if="$index <4">
+                <span class="tag">{{category.categoryName}}<i class="triangle"></i></span>
+            </a>
+            <a ng-href="#/eyuan_mall/shopping_cart" class="btn text-white">
+                <i class="vv vv-20 vv-shopping-cart"></i>
+                <span class="tag">购物车<i class="triangle"></i></span>
+            </a>
+        </div>
+    </div>
+    <div class="scrollable-content">
+        <div class="hotels">
+            <a ng-href="#/eyuan_mall/hotels/{{item.goodsId}}" class="hotel block bg-white-grey" ng-repeat="item in emall_items">
+                <imageview data-rate="580/300" src="item.logo"></imageview>
+                <div class="intro">
+                    <div class="text-ellipsis title">{{item.goodsName}}</div>
+                    <div class="summary">
+                        {{item.summary}}
+                    </div>
+                </div>
+            </a>
+        </div>
+        <a ng-click="loadMore()" class="section m btn block full-width text-large text-grey">{{load_more_message}}</a>
+    </div>
 </div>
