@@ -140,20 +140,23 @@ gulp.task('livereload', function () {
 =            Minify images            =
 =====================================*/
 
-gulp.task('images', function () {
-  var stream = gulp.src('src/images/**/*');
+// gulp.task('images', function () {
+//   var stream = gulp.src('src/images/**/*');
   
-  if (config.minify_images) {
-    stream = stream.pipe(imagemin({
-        progressive: true,
-        svgoPlugins: [{removeViewBox: false}],
-        use: [pngcrush()]
-    }));
-  }
+//   if (config.minify_images) {
+//     stream = stream.pipe(imagemin({
+//         progressive: true,
+//         svgoPlugins: [{removeViewBox: false}],
+//         use: [pngcrush()]
+//     }));
+//   }
   
-  return stream.pipe(gulp.dest(path.join(config.dest, 'images')));
+//   return stream.pipe(gulp.dest(path.join(config.dest, 'images')));
+// });
+gulp.task('images', function() {
+    return gulp.src('src/images/**/*')
+        .pipe(gulp.dest(path.join(config.dest, 'images')));
 });
-
 
 /*==================================
 =            Copy fonts            =
