@@ -18,8 +18,18 @@
             <input type="text" class="form-control text-big" name="telephone" ng-model="input.telephone" required ng-pattern="/(^(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/" placeholder="请输入手机号">
             <span class="vv-input-tip" ng-show="signupForm.telephone.$dirty && signupForm.telephone.$invalid">请输入11位手机号码</span>
         </div>
+        <div class="semi-auto semi-right-120">
+            <div class="vv-input-group input-group-lg full-width">
+                <span class="vv-input-group-addon"><i class="vv vv-20 vv-verifycode"></i></span>
+                <input type="text" class="form-control text-big border-radius-large" ng-model="input.verifycode" name="verifycode" required placeholder="验证码">
+                <span class="vv-input-tip" ng-show="signupForm.verifycode.$dirty && signupForm.verifycode.$invalid">右图验证码</span>
+            </div>
+            <div class="semi-fixed-right semi-width-120 input-group input-group-lg text-center bg-light-grey">
+                <img ng-src="{{input.verifyimage}}" ng-click="getVerifycode()" width="120px" height="46px">
+            </div>
+        </div>
         <div class="section-wide">
-            <button type="button" class="btn btn-lg btn-primary block full-width" ng-click="nextStep()" ng-disabled="signupForm.telephone.$error.pattern || signupForm.telephone.$error.required">下一步</button>
+            <button type="button" class="btn btn-lg btn-primary block full-width" ng-click="nextStep()" ng-disabled="signupForm.$invalid">下一步</button>
         </div>
     </div>
     <div class="section" ui-if="signUpStep == 2">

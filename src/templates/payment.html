@@ -2,59 +2,107 @@
 <!-- <div ui-content-for="title">标题</div>
 <div ui-content-for="navbarAction">右侧菜单</div>
 <div ui-content-for="backAction">
-	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div> -->
 <div class="scrollable">
-	<div class="scrollable-content">
-		<div class="section text-very-big">结算</div>
-		<div class="section text-large">收货人</div>
-		<div class="section">
-			<p>黄晓明</p>
-			<p>广东省 深圳市 罗湖区 京基100 68楼</p>
-			<a class="btn section-wide">修改</a>
-		</div>
-		<div class="section text-large">发货单</div>
-		<div class="section">
-			<div class="btn-group justified">
-				<span class="btn section-wide text-ellipsis">
-					希尔顿南海酒店大床房
-				</span>
-				<span class="btn section-wide text-ellipsis">
-					1268.00
-				</span>
-				<span class="btn section-wide text-ellipsis">X1 <i class="bega">奖</i></span>
-				<span class="btn">有货</span>
-			</div>
-			<div class="btn-group justified">
-				<span class="btn section-wide text-ellipsis">
-					希尔顿南海酒店大床房
-				</span>
-				<span class="btn section-wide text-ellipsis">
-					1268.00
-				</span>
-				<span class="btn section-wide text-ellipsis">X1 <i class="bega">奖</i></span>
-				<span class="btn">有货</span>
-			</div>
-		</div>
-		<div class="vv-divide vv-1"></div>
-		<div class="section clearfix">
-			<div class="pull-left">2件商品,e圆总额：1268.00</div>
-			<div class="pull-right">账户e圆总额：3123.20</div>
-		</div>
-		<div class="section clearfix section-condensed">
-			<div class="pull-left">应付e圆总额：<span class="text-large text-orange">1268.00</span></div>
-			<a class="pull-right">e圆不足?去投资获得更多e圆</a>
-		</div>
-		<div class="section" style="padding-top:50px">
-			<div class="row">
-				<div class="col-xs-3 text-ellipsis"><span class="btn section-wide">交易密码</span></div>
-				<div class="col-xs-5 section-wide">
-					<input type="text" class="form-control rectangle" placeholder="请输入交易密码">
-				</div>
-				<div class="col-xs-3">
-					<button class="btn btn-warning rectangle">提交支付</button>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="scrollable-content">
+        <div class="section text-very-big">结算</div>
+        <div class="section text-large">收货人</div>
+        <div class="section">
+            <p>黄晓明</p>
+            <p>广东省 深圳市 罗湖区 京基100 68楼</p>
+            <a class="btn section-wide" ui-turn-on="address_panel">修改</a>
+        </div>
+        <div class="section text-large">发货单</div>
+        <div class="section">
+            <div class="btn-group justified">
+                <span class="btn section-wide text-ellipsis">
+                    希尔顿南海酒店大床房
+                </span>
+                <span class="btn section-wide text-ellipsis">
+                    1268.00
+                </span>
+                <span class="btn section-wide text-ellipsis">X1 <i class="bega">奖</i></span>
+                <span class="btn">有货</span>
+            </div>
+            <div class="btn-group justified">
+                <span class="btn section-wide text-ellipsis">
+                    希尔顿南海酒店大床房
+                </span>
+                <span class="btn section-wide text-ellipsis">
+                    1268.00
+                </span>
+                <span class="btn section-wide text-ellipsis">X1 <i class="bega">奖</i></span>
+                <span class="btn">有货</span>
+            </div>
+        </div>
+        <div class="vv-divide vv-1"></div>
+        <div class="section clearfix">
+            <div class="pull-left">2件商品,e圆总额：1268.00</div>
+            <div class="pull-right">账户e圆总额：3123.20</div>
+        </div>
+        <div class="section clearfix section-condensed">
+            <div class="pull-left">应付e圆总额：<span class="text-large text-orange">1268.00</span></div>
+            <a class="pull-right">e圆不足?去投资获得更多e圆</a>
+        </div>
+        <div class="section" style="padding-top:50px">
+            <div class="row">
+                <div class="col-xs-3 text-ellipsis"><span class="btn section-wide">交易密码</span></div>
+                <div class="col-xs-5 section-wide">
+                    <input type="text" class="form-control rectangle" placeholder="请输入交易密码">
+                </div>
+                <div class="col-xs-3">
+                    <button class="btn btn-warning rectangle">提交支付</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal" ui-if="address_panel" ui-state='address_panel'>
+        <div class="modal-backdrop in" ui-turn-off="address_panel"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    修改收货地址
+                    <span class="off" ui-turn-off="address_panel"></span>
+                </div>
+                <div class="modal-body">
+                    <form ng-submit="ajaxForm()" name="addressForm">
+                        <div class="section">
+                            <div class="semi-auto semi-left-75">
+                                <span class="semi-fixed-left semi-width-750 text-left btn section-wide">收货人</span>
+                                <input type="text" class="form-control block full-width rectangle" name="address" ng-model="input.username" required placeholder="请填写收货人真实姓名">
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="semi-auto semi-left-75">
+                                <span class="semi-fixed-left semi-width-750 text-left btn section-wide">联系电话</span>
+                                <input type="text" class="form-control block full-width rectangle" name="address" ng-model="input.telephone" required placeholder="请填写手机号码">
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="semi-auto semi-left-75">
+                                <span class="semi-fixed-left semi-width-75 btn text-left text-grey section-wide">地址</span>
+                                <div class="btn-group justified">
+                                    <span class="section-wide">
+                                        <select class="form-control rectangle block full-width" name="province" ng-model="input.provinceId" ng-options="p.provinceId as p.provinceName for p in provinces" required></select>
+                                    </span>
+                                    <span class="section-wide">
+                                        <select class="form-control rectangle block full-width" name="city" ng-model="input.cityId" ng-options="c.cityId as c.cityName for c in cities" required></select>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <input type="text" class="form-control block full-width rectangle" name="address" ng-model="input.address" required placeholder="请输入详细街道、小区门牌号等">
+                        </div>
+                        <div class="section">
+                            <button type="submit" class="btn btn-primary block full-width rectangle" ng-disabled="addressForm.$invalid">确认</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

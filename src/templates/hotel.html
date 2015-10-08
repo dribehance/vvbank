@@ -37,13 +37,13 @@
         <div class="vv-divide"></div>
         <div class="section">
             <div class="btn-group justified">
-                <div class="section section-condensed" style="padding-left:0">
-                    <span class="btn btn-primary rectangle full-width">
+                <div class="section section-condensed text-white" style="padding-left:0">
+                    <a ng-href="#/eyuan_mall/payment" class="btn btn-primary rectangle full-width">
                         立即兑换
-                    </span>
+                    </a>
                 </div>
                 <div class="section section-condensed text-white" style="padding-right:0">
-                    <a ng-href="#/eyuan_mall/shopping_cart" class="btn btn-warning rectangle full-width">
+                    <a ng-click="addToCart()" class="btn btn-warning rectangle full-width">
                         加入购物车
                     </a>
                 </div>
@@ -52,16 +52,36 @@
     </div>
 </div>
 <div ui-content-for="modals">
-    <div class="modal" ui-if="modal1" ui-state='modal1'>
-        <div class="modal-backdrop in" ui-turn-off="modal1"></div>
+    <div class="modal" ui-if="award_panel" ui-state='award_panel'>
+        <div class="modal-backdrop in" ui-turn-off="award_panel"></div>
         <div class="modal-dialog niuniu-dialog">
+            <span class="off" ui-turn-off="award_panel"></span>
             <div class="niuniu" ng-class="{'happy':prize.status == 1,'cry':prize.status == '0'}"></div>
             <!-- <div class="section text-white" style="position:absolute;background-color:#f70;opacity:0.7">{{prize.message}}</div> -->
-            <div class="footer" ng-if="prize.status==1">
-                <span class="btn btn-primary">点击查看产品</span>
+            <div class="footer text-white" ng-if="prize.status==1">
+                <a ng-href="#/eyuan_mall/shopping_cart" class="btn btn-primary">点击查看产品</a>
             </div>
             <div class="footer" ng-if="prize.status==0">
-                <span class="btn btn-primary" ui-turn-off="modal1">就差一点点，再接再厉！</span>
+                <span class="btn btn-primary" ui-turn-off="award_panel">就差一点点，再接再厉！</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal" ui-if="password_panel" ui-state='password_panel'>
+        <div class="modal-backdrop in" ui-turn-off="password_panel"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    请输入交易密码
+                    <span class="off" ui-turn-off="password_panel"></span>
+                </div>
+                <div class="modal-body">
+                    <form ng-submit="ajaxForm()" name="passwordForm">
+                        <p>
+                            <input type="password" class="form-control rectangle" ng-model="input.password" required placeholder="请输入交易密码">
+                        </p>
+                        <button type="submit" class="btn btn-primary block full-width rectangle" ng-disabled="passwordForm.$invalid">确认</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
