@@ -98,6 +98,30 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 return data.data;
             });
         },
+        getVerifycode: function(input) {
+            return $http({
+                url: config.url + "/v1/service/verifycode",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "signcode": $rootScope.signcode,
+                    "width": input.width,
+                    "height": input.height,
+                })
+            }).then(function(data) {
+                return data.data;
+            })
+        },
+        checkVerifycode: function(input) {
+            return $http({
+                url: config.url + "/v1/service/checkVerifyCode",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "verifycode": input.verifycode,
+                })
+            }).then(function(data) {
+                return data.data;
+            })
+        },
         getSmscode: function(telephone, smstype) {
             return $http({
                 url: config.url + "/v1/service/smscode",

@@ -3,6 +3,7 @@
     display: block;
     overflow: hidden;
 }
+
 // bottom navgation
 .vv {
     display: inline-block;
@@ -74,6 +75,9 @@
     &.vv-licai {
         background-image: url("../images/licai_normal.png");
     }
+    &.vv-eyuan {
+        background-image: url("../images/eyuan_normal.png");
+    }
     &.vv-me {
         background-image: url("../images/me_normal.png");
     }
@@ -104,6 +108,11 @@
     }
     &.vv-smscode {
         background-image: url("../images/smscode.png");
+    }
+    &.vv-verifycode {
+        background-size: initial;
+        background-image: url("../images/icon.png");
+        background-position: -52px -202px;
     }
     &.vv-password {
         background-image: url("../images/password.png");
@@ -154,6 +163,10 @@
     &.vv-setting {
         background-size: 70%;
         background-image: url("../images/setting.png");
+    }
+    &.vv-qrcode {
+        background-size: 100%;
+        background-image: url("../images/qrcode_icon.png");
     }
     &.vv-back {
         background-size: 70%;
@@ -258,24 +271,97 @@
     &.vv-vvbank {
         background-image: url("../images/vv_bank.png");
     }
+    &.vv-shopping-cart {
+        background-image: url("../images/shopping_cart.png");
+    }
+    &.vv-me-1 {
+        background-image: url("../images/me_1.png");
+    }
+    &.vv-me-2 {
+        background-image: url("../images/me_2.png");
+    }
+    &.vv-me-3 {
+        background-image: url("../images/me_3.png");
+    }
+    &.vv-me-4 {
+        background-image: url("../images/me_4.png");
+    }
+    &.vv-me-5 {
+        background-image: url("../images/me_5.png");
+    }
+    &.vv-me-6 {
+        background-image: url("../images/me_6.png");
+    }
+    &.vv-me-7 {
+        background-image: url("../images/me_7.png");
+    }
+    &.vv-me-8 {
+        background-image: url("../images/me_8.png");
+    }
+    &.vv-me-9 {
+        background-image: url("../images/me_9.png");
+    }
+    &.vv-me-10 {
+        background-image: url("../images/me_10.png");
+    }
+    &.vv-me-11 {
+        background-image: url("../images/me_11.png");
+    }
+    &.vv-me-12 {
+        background-image: url("../images/me_12.png");
+    }
+    &.vv-me-13 {
+        background-image: url("../images/me_13.png");
+    }
+
 }
+
 a.active .vv.vv-index {
     background-image: url("../images/home_active.png");
 }
+
 a.active .vv.vv-licai {
     background-image: url("../images/licai_active.png");
 }
+
+a.active .vv.vv-eyuan {
+    background-image: url("../images/eyuan_active.png");
+}
+
 a.active .vv.vv-me {
     background-image: url("../images/me_active.png");
 }
+
 .navbar-absolute-bottom .btn-navbar {
     padding-top: 3px;
     line-height: 18px;
     color: @grey;
 }
+
 .navbar-absolute-bottom .btn-navbar.active {
     color: @blue;
 }
+// .navbar-absolute-top .btn {
+//     padding-right: 0;
+// }
+// .navbar-absolute-top a.active .tag {
+//     position: relative;
+//     padding: 5px;
+//     color: #007cd2;
+//     background-color: white;
+//     border-radius: 3px;
+//     .triangle {
+//         position: absolute;
+//         bottom: -10px;
+//         left: 50%;
+//         margin-left: -4px;
+//         border-top: 5px solid white;
+//         border-left: 5px solid transparent;
+//         border-right: 5px solid transparent;
+//         border-bottom: 5px solid transparent;
+//     }
+// }
+
 .vv-tel {
     display: inline-block;
     width: 68px;
@@ -285,6 +371,7 @@ a.active .vv.vv-me {
     background-repeat: no-repeat;
     background-position: center center;
 }
+
 // card carousel
 .cards-carousel {
     display: block;
@@ -299,6 +386,7 @@ a.active .vv.vv-me {
         text-align: center;
     }
 }
+
 // sigin
 .nav-logo {
     display: inline-block;
@@ -310,11 +398,13 @@ a.active .vv.vv-me {
     right: 0;
     margin: auto;
 }
+
 .filter-dropdown-hood {
     position: relative;
     left: 50%;
     margin-left: -103px;
 }
+
 .pie-chart-bg {
     position: absolute;
     height: 52px;

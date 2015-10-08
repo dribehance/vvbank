@@ -24,15 +24,34 @@ var signupController = function($rootScope, $window, $scope, $location, userServ
     }
     $scope.nextStep = function() {
         toastServices.show();
+
         userServices.exist($scope.input.telephone, $scope.input.username).then(function(data) {
 
             toastServices.hide();
             if (data.result.status == config.request.UNEXIST) {
-                SharedState.set("signUpStep", 2)
+                // SharedState.set("signUpStep", 2)
+                return true;
             } else {
                 errorServices.autoHide("该手机号已经注册");
+                return false;
             }
-        })
+        }).then(function(d) {
+            if(!d) {
+                return;
+            }
+            console.log("checkVerifycode")
+            userServices.checkVerifycode({
+                verifycode: $scope.input.verifycode
+            }).then(function(data) {
+                SharedState.set("signUpStep", 2)
+                if (data.respcode == config.request.SUCCESS) {
+                    // errorServices.autoHide(data.message);
+                    // SharedState.set("signUpStep", 2)
+                } else {
+                    errorServices.autoHide(data.message);
+                }
+            })
+        });
     }
     $scope.getSmscode = function() {
             userServices.getSmscode($scope.input.telephone, config.smstype.SIGNUP).then(function(data) {
@@ -53,11 +72,26 @@ var signupController = function($rootScope, $window, $scope, $location, userServ
             if (data.respcode == config.request.SUCCESS) {
                 localStorageService.set("token", data.result.token);
                 platformServices.notify();
-                $window.location.href = data.result.wapUrl;
-                // $location.path("/index").replace();
+                // $window.location.href = data.result.wapUrl;
+                $location.path("/index").replace();
             } else {
                 errorServices.autoHide(data.message);
             }
         });
     }
+    $scope.getVerifycode = function() {
+        userServices.getVerifycode({
+            width: 120,
+            height: 46
+        }).then(function(data) {
+            if(data.respcode == config.request.SUCCESS) {
+                $scope.input.verifyimage = data.result.verifycode;
+                console.log($scope.input.verifyimage)
+            }
+            else {
+                errorServices.autoHide(data.message);
+            }
+        })
+    }
+    $scope.getVerifycode();
 }
