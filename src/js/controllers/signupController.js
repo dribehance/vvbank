@@ -43,8 +43,8 @@ var signupController = function($rootScope, $window, $scope, $location, userServ
             userServices.checkVerifycode({
                 verifycode: $scope.input.verifycode
             }).then(function(data) {
-                SharedState.set("signUpStep", 2)
                 if (data.respcode == config.request.SUCCESS) {
+                    SharedState.set("signUpStep", 2)
                     // errorServices.autoHide(data.message);
                     // SharedState.set("signUpStep", 2)
                 } else {
