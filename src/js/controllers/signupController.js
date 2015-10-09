@@ -39,7 +39,7 @@ var signupController = function($rootScope,$routeParams, $window, $scope, $locat
             if(!d) {
                 return;
             }
-            SharedState.set("signUpStep", 2)
+            // SharedState.set("signUpStep", 2)
             userServices.checkVerifycode({
                 verifycode: $scope.input.verifycode
             }).then(function(data) {
