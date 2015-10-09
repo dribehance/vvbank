@@ -1,4 +1,4 @@
-var signupController = function($rootScope,$routeParams, $window, $scope, $location, userServices, errorServices, platformServices, SharedState, config, toastServices, localStorageService, signatureServices) {
+var signupController = function($rootScope,$routeParams,$interval, $window, $scope, $location, userServices, errorServices, platformServices, SharedState, config, toastServices, localStorageService, signatureServices) {
     $scope.input = {
         telephone: "",
         password: "",
@@ -80,18 +80,26 @@ var signupController = function($rootScope,$routeParams, $window, $scope, $locat
         });
     }
     $scope.getVerifycode = function() {
+        if (!$rootScope.signcode) {
+            return;
+        }
         userServices.getVerifycode({
             width: 120,
             height: 46
         }).then(function(data) {
             if(data.respcode == config.request.SUCCESS) {
                 $scope.input.verifyimage = data.result.verifycode;
-                console.log($scope.input.verifyimage)
             }
             else {
                 errorServices.autoHide(data.message);
             }
         })
     }
-    $scope.getVerifycode();
+    var timer = $interval(function(){
+        $scope.getVerifycode();
+        if ($rootScope.signcode) {
+            $interval.cancel(timer);
+            return;
+        }
+    },100);
 }
