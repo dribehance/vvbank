@@ -1,10 +1,10 @@
-var signupController = function($rootScope, $window, $scope, $location, userServices, errorServices, platformServices, SharedState, config, toastServices, localStorageService, signatureServices) {
+var signupController = function($rootScope,$routeParams, $window, $scope, $location, userServices, errorServices, platformServices, SharedState, config, toastServices, localStorageService, signatureServices) {
     $scope.input = {
         telephone: "",
         password: "",
         smscode: "",
         username: "",
-        referee: ""
+        referee: $routeParams.rc || "",
     };
     // bind telephone and password
     $scope.$watch("input.telephone", function(n, o) {
@@ -39,7 +39,7 @@ var signupController = function($rootScope, $window, $scope, $location, userServ
             if(!d) {
                 return;
             }
-            console.log("checkVerifycode")
+            SharedState.set("signUpStep", 2)
             userServices.checkVerifycode({
                 verifycode: $scope.input.verifycode
             }).then(function(data) {
@@ -54,7 +54,7 @@ var signupController = function($rootScope, $window, $scope, $location, userServ
         });
     }
     $scope.getSmscode = function() {
-            userServices.getSmscode($scope.input.telephone, config.smstype.SIGNUP).then(function(data) {
+            userServices.getSmscode($scope.input.telephone, config.smstype.SIGNUP,$scope.input.verifycode).then(function(data) {
                 if (data.result.status == 1 && data.respcode == config.request.SUCCESS) {
                     errorServices.autoHide("验证码发送成功");
                 } else {
