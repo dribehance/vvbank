@@ -1,10 +1,10 @@
-var signupController = function($rootScope, $window, $scope, $location, userServices, errorServices, platformServices, SharedState, config, toastServices, localStorageService, signatureServices) {
+var signupController = function($rootScope,$routeParams, $window, $scope, $location, userServices, errorServices, platformServices, SharedState, config, toastServices, localStorageService, signatureServices) {
     $scope.input = {
         telephone: "",
         password: "",
         smscode: "",
         username: "",
-        referee: ""
+        referee: $routeParams.rc || "",
     };
     // bind telephone and password
     $scope.$watch("input.telephone", function(n, o) {
