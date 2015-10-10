@@ -1,25 +1,17 @@
 // by dribehance <dribehance.kksdapp.com>
-var shoppingcartController = function($scope, errorServices, toastServices, localStorageService, config) {
+var shoppingcartController = function($scope, shoppingCartServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {};
-    // static
-    $scope.items = [{
-        "goodsId": 1,
-        "carId": 22,
-        "exchangPrice": 100,
-        "status": "1",
-        "carNumber": 1,
-        "goodsName": "希尔顿南海酒店大床房1晚"
-    }, {
-        "goodsId": 1,
-        "carId": 26,
-        "exchangPrice": 100,
-        "status": "0",
-        "carNumber": 1,
-        "goodsName": "希尔顿南海酒店大床房1晚"
-    }]
-    $scope.items = angular.forEach($scope.items, function(item) {
-        item.amount = 0;
-        item.checked = false;
+    toastServices.show();
+    shoppingCartServices.query().then(function(data) {
+        toastServices.hide()
+        if (data.respcode == config.request.SUCCESS) {
+            $scope.items = data.result;
+            $scope.items = angular.forEach($scope.items, function(item) {
+                item.checked = false;
+            });
+        } else {
+            errorServices.autoHide("服务器错误");
+        }
     });
     // toggle check shopping cart item
     $scope.toggle = function(item) {
@@ -37,23 +29,27 @@ var shoppingcartController = function($scope, errorServices, toastServices, loca
     };
     // calculate selected item;
     $scope.selected_items = function() {
-        var count = 0;
-        angular.forEach($scope.items, function(item) {
-            if (item.checked) {
-                count++;
-            }
-        });
-        return count;
-    }
-    // amount control
+            var count = 0;
+            angular.forEach($scope.items, function(item) {
+                if (item.checked) {
+                    count++;
+                }
+            });
+            return count;
+        }
+        // amount control
     $scope.minus = function(item) {
-        if (item.amount == 0) {
+        if (item.carNumber == 0) {
             return;
         }
-        return item.amount--;
+        return item.carNumber--;
     }
     $scope.plus = function(item) {
-        return item.amount++;
+        if (item.carNumber == item.goodsNumber || item.carNumber > item.goodsNumber) {
+            errorServices.autoHide("库存上限")
+            return;
+        }
+        return item.carNumber++;
     }
     $scope.remove = function() {
         var goods_ids = [];
@@ -63,21 +59,32 @@ var shoppingcartController = function($scope, errorServices, toastServices, loca
             return item.goodsId;
         }).join(",");
         if (goods_ids.length == 0) {
-        	errorServices.autoHide("未选中任何商品！")
+            errorServices.autoHide("未选中任何商品！")
             return;
         }
         console.log(goods_ids)
+        toastServices.show();
+        shoppingCartServices.remove({
+            car_id:goods_ids
+        }).then(function(data){
+            toastServices.hide()
+            if(data.respcode == config.request.SUCCESS) {
+                errorServices.autoHide(data.message)       
+            }
+            else {
+                errorServices.autoHide(data.message);
+            }
+        })
     }
     $scope.$watch("input.all", function(n, o) {
-    	if (n == true) {
-	        angular.forEach($scope.items,function(item) {
-	        	item.checked = true;
-	        })
-    	}
-    	else {
-    		angular.forEach($scope.items,function(item) {
-	        	item.checked = false;
-	        })
-    	}
-    },true)
+        if (n == true) {
+            angular.forEach($scope.items, function(item) {
+                item.checked = true;
+            })
+        } else {
+            angular.forEach($scope.items, function(item) {
+                item.checked = false;
+            })
+        }
+    }, true)
 }

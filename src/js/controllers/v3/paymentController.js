@@ -1,6 +1,8 @@
 // by dribehance <dribehance.kksdapp.com>
-var paymentController = function($scope, settingServices, errorServices, toastServices, localStorageService, config) {
+var paymentController = function($scope,mallServices, settingServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {};
+    
+
     // query provinces
     settingServices.queryProvinces().then(function(data) {
         if (data.respcode == config.request.SUCCESS) {

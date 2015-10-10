@@ -1,59 +1,69 @@
 // by dribehance <dribehance.kksdapp.com>
-var hotelController = function($scope, $routeParams, SharedState, mallServices, shoppingCartServices, errorServices, toastServices, localStorageService, config) {
-    // $scope.emall_item = {
-    //     "summary": "尊享深圳希尔顿南海酒店大床房1晚＋1份免费早餐＋免费wifi＋更多优惠! 深圳蛇口希尔顿南海酒店地处南山区望海路",
-    //     "logo": "http://192.168.16.20:80/resources/images/index/1.png",
-    //     "goodsId": 1,
-    //     "category": "酒店",
-    //     "exchangPrice": 100,
-    //     "luckPrice": 100,
-    //     "goodsName": "希尔顿南海酒店大床房1晚"
-    // };
+var hotelController = function($scope,$location, $routeParams,$filter, SharedState, mallServices, shoppingCartServices, errorServices, toastServices, localStorageService, config) {
+    $scope.input = {
+        password: "",
+        message:"",
+        error:false
+    }
+    $scope.amount_options = [1,2,3,4,5,6,7,8,9,10];
     toastServices.show();
     mallServices.queryById({
-        id:$routeParams.item_id
+        id: $routeParams.item_id
     }).then(function(data) {
         toastServices.hide()
         if (data.respcode == config.request.SUCCESS) {
             $scope.emall_item = data.result;
+            var amount = $scope.emall_item.goodsNumber > 10?10:$scope.emall_item.goodsNumber;
+            $scope.amount_options = $filter("limitTo")($scope.amount_options,amount);
         } else {
             errorServices.autoHide(data.message);
         }
-    })
-    $scope.try = function(goods_id) {
-        // $scope.prize = {
-        //     "message": "客户18219351089抽取商品希尔顿南海酒店大床房1晚花费100.00e圆，未中奖",
-        //     "status": "0"
-        // };
-        // SharedState.turnOn("award_panel");
+    });
+    $scope.enter_password = function () {
+        if (!localStorageService.get("token")) {
+            $location.path("/signIn");
+            return;
+        }
+        SharedState.turnOn("password_panel");
+    }
+    $scope.try = function() {
         toastServices.show();
         mallServices.tryLucky({
-            goods_id: goods_id
+            goods_id: $scope.emall_item.goodsId,
+            password: $scope.input.password
         }).then(function(data) {
             toastServices.hide()
             if (data.respcode == config.request.SUCCESS) {
-                $scope.prize = data.result;
-                SharedState.turnOn("password_panel");
-            } else {
-                errorServices.autoHide(data.message);
+                $scope.prize_status = 1;
+                SharedState.turnOff("password_panel");
+                SharedState.turnOn("award_panel");
+                $scope.input.message = "";
+                return;
+            } 
+            if (data.respcode == "0001") {
+                $scope.prize_status = 0;
+                SharedState.turnOff("password_panel");
+                SharedState.turnOn("award_panel");
+                return;
             }
+            $scope.input.message = data.message;
         })
     }
     $scope.addToCart = function() {
+        if (!localStorageService.get("token")) {
+            $location.path("/signIn");
+            return;
+        }
         toastServices.show();
         shoppingCartServices.add({
             goodsId: $scope.emall_item.goodsId
         }).then(function(data) {
             toastServices.hide()
             if (data.respcode == config.request.SUCCESS) {
-
+                errorServices.autoHide(data.message)
             } else {
                 errorServices.autoHide(data.message);
             }
         })
-    }
-    $scope.ajaxForm = function () {
-        SharedState.turnOff("password_panel");
-        SharedState.turnOn("award_panel")
     }
 }

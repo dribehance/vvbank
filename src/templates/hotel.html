@@ -16,11 +16,11 @@
         </div>
         <div class="section">
             <div class="btn-group justified">
-                <span class="btn btn-primary rectangle" ng-click="try(emall_item.goodsId)">
+                <span class="btn btn-primary rectangle" ng-click="enter_password()">
                     {{emall_item.luckPrice}}e圆试手气
                 </span>
                 <span class="btn">
-                    <span class="text-orange">123456</span>人已获奖
+                    <span class="text-orange">{{emall_item.isWinSum}}</span>人已获奖
                 </span>
             </div>
         </div>
@@ -28,10 +28,8 @@
         <div class="section">
             <div>兑换价格：<span class="text-orange">{{emall_item.exchangPrice}}</span>e圆</div>
             <div>兑换数量：
-                <select>
-                    <option value="10000">10000</option>
-                </select>
-                已经有<span class="text-orange">1000</span>人兑换此商品
+                <select name="selected_amount" ng-model="input.amount" ng-options="o as o for o in amount_options track by $index" required></select>
+                已经有<span class="text-orange">{{emall_item.cartSum}}</span>人兑换此商品
             </div>
         </div>
         <div class="vv-divide"></div>
@@ -56,12 +54,12 @@
         <div class="modal-backdrop in" ui-turn-off="award_panel"></div>
         <div class="modal-dialog niuniu-dialog">
             <span class="off" ui-turn-off="award_panel"></span>
-            <div class="niuniu" ng-class="{'happy':prize.status == 1,'cry':prize.status == '0'}"></div>
+            <div class="niuniu" ng-class="{'happy':prize_status == 1,'cry':prize_status == 0}"></div>
             <!-- <div class="section text-white" style="position:absolute;background-color:#f70;opacity:0.7">{{prize.message}}</div> -->
-            <div class="footer text-white" ng-if="prize.status==1">
+            <div class="footer text-white" ng-if="prize_status==1">
                 <a ng-href="#/eyuan_mall/shopping_cart" class="btn btn-primary">点击查看产品</a>
             </div>
-            <div class="footer" ng-if="prize.status==0">
+            <div class="footer" ng-if="prize_status==0">
                 <span class="btn btn-primary" ui-turn-off="award_panel">就差一点点，再接再厉！</span>
             </div>
         </div>
@@ -75,10 +73,11 @@
                     <span class="off" ui-turn-off="password_panel"></span>
                 </div>
                 <div class="modal-body">
-                    <form ng-submit="ajaxForm()" name="passwordForm">
+                    <form ng-submit="try()" name="passwordForm">
                         <p>
                             <input type="password" class="form-control rectangle" ng-model="input.password" required placeholder="请输入交易密码">
                         </p>
+                        <p ng-show="input.message" class="text-orange">{{input.message}}</p>
                         <button type="submit" class="btn btn-primary block full-width rectangle" ng-disabled="passwordForm.$invalid">确认</button>
                     </form>
                 </div>

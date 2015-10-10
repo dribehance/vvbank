@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("VVBank").factory("shoppingCartServices", function($http, $rootScope, config) {
+angular.module("VVBank").factory("shoppingCartServices", function($http, $rootScope,localStorageService, config) {
     return {
         query: function() {
             return $http({
@@ -7,8 +7,7 @@ angular.module("VVBank").factory("shoppingCartServices", function($http, $rootSc
                 url: config.url + "/e1/emall/carItem",
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
-                    "mobile": $rootScope.user.telephone,
-                    "username": $rootScope.user.username
+                    "token":localStorageService.get("token"),
                 })
             }).then(function(data) {
                 return data.data;
@@ -20,8 +19,7 @@ angular.module("VVBank").factory("shoppingCartServices", function($http, $rootSc
                 url: config.url + "/e1/emall/addCar",
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
-                    "mobile": $rootScope.user.telephone,
-                    "username": $rootScope.user.username,
+                    "token":localStorageService.get("token"),
                     "goodsId": input.goods_id
                 })
             }).then(function(data) {
@@ -34,8 +32,7 @@ angular.module("VVBank").factory("shoppingCartServices", function($http, $rootSc
                 url: config.url + "/e1/emall/modifyCar",
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
-                    "mobile": $rootScope.user.telephone,
-                    "username": $rootScope.user.username,
+                    "token":localStorageService.get("token"),
                     "quantity": input.quantity,
                     "carId": input.car_id,
                     "goodsId": input.goods_id
@@ -59,6 +56,7 @@ angular.module("VVBank").factory("shoppingCartServices", function($http, $rootSc
                     return str.join("&");
                 },
                 data: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
                     "carId": input.car_id,
                 })
             }).then(function(data) {
@@ -71,8 +69,7 @@ angular.module("VVBank").factory("shoppingCartServices", function($http, $rootSc
         	    url: config.url + "/e1/emall/showOrderItem",
         	    method: "GET",
         	    params: angular.extend({}, config.common_params, {
-        	        "mobile": $rootScope.user.telephone,
-                    "username": $rootScope.user.username,
+                    "token":localStorageService.get("token"),
         	    })
         	}).then(function(data) {
         	    return data.data;

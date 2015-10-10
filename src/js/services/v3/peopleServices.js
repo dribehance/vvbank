@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("VVBank").factory("peopleServices", function($http, $rootScope, config) {
+angular.module("VVBank").factory("peopleServices", function($http, $rootScope,localStorageService, config) {
     return {
         query: function(input) {
             return $http({
@@ -16,8 +16,7 @@ angular.module("VVBank").factory("peopleServices", function($http, $rootScope, c
                     return str.join("&");
                 },
                 data: angular.extend({}, config.common_params, {
-                    "mobile": $rootScope.user.telephone,
-                    "username": $rootScope.user.username,
+                    "token":localStorageService.get("token"),
                 })
             }).then(function(data) {
                 return data.data;
@@ -39,8 +38,7 @@ angular.module("VVBank").factory("peopleServices", function($http, $rootScope, c
         	        return str.join("&");
         	    },
         	    data: angular.extend({}, config.common_params, {
-        	        "mobile": $rootScope.user.telephone,
-                    "username": $rootScope.user.username,
+                    "token":localStorageService.get("token"),
                     "memberId": input.member_id
         	    })
         	}).then(function(data) {
