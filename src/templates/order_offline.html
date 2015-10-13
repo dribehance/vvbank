@@ -9,28 +9,28 @@
         <div class="section">
             <div class="order-item">
                 <div class="order-thumbnail">
-                    <img ng-src="../images/order_example.png" alt="" class="block full-width">
+                    <img ng-src="{{order.logo}}" alt="" class="block full-width">
                 </div>
-                <div class="section text-ellipsis">希尔顿南海标准房1晚</div>
+                <div class="section text-ellipsis">{{order.goodsName}}</div>
                 <p class="clearfix section" style="padding-top:0">
-                    <span class="pull-left">09-06 12:12</span>
+                    <span class="pull-left">{{parseTime(order.createdTime)}}</span>
                 </p>
             </div>
         </div>
         <div class="vv-divide"></div>
         <div class="section clearfix">
-        	<div class="pull-left">数量:x3</div>
-        	<div class="pull-right">兑换单价: <span class="text-orange">10,000e圆</span></div>
+        	<div class="pull-left">数量:x{{order.quantity}}</div>
+        	<div class="pull-right">兑换单价: <span class="text-orange">{{order.price}}e圆</span></div>
         </div>
         <div class="section clearfix">
-        	<div class="pull-left">收货人</div>
-        	<div class="pull-right">联系电话：13612361236</div>
+        	<div class="pull-left">收货人：{{order.contractName}}</div>
+        	<div class="pull-right">联系电话：{{order.contractPhone}}</div>
         </div>
-       	<div class="section">收货地址：广东省 深圳市 罗湖区 京基100 68楼</div>
-        <div class="section">快递单号：265232658623626 顺丰快递 已到达深圳中转仓库</div>
+       	<div class="section">收货地址：{{order.contractAddress}}</div>
+        <div class="section">快递单号：{{order.expressNo}} {{order.expressCompany}} {{order.expressDetails}}</div>
         <div class="section">商品详细信息</div>
         <div class="section">
-        	<img ng-src="../images/qrcode_example.png" class="block full-width" alt="">
+        	<img ng-src="{{order.logo}}" class="block full-width" alt="">
         </div>
     </div>
 </div>
