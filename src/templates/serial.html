@@ -49,7 +49,7 @@
                 </p>
             </div>
             <div class="section">
-                <button class="btn btn-primary full-width" ng-show="{{serial_entity.status == '1'}}" ng-click="use()">登记并使用</button>
+                <button class="btn btn-primary full-width" ng-show="{{serial_entity.serialStatus    == '0000' && serial_entity.status == '1'}}" ng-click="use()">登记并使用</button>
             </div>
         </div>
     </div>

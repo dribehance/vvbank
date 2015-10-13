@@ -154,6 +154,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
             user.job = data.position || "工程师";
             user.income = config.incomes[data.salary] || "5000以内";
             user.coin = data.coin || "0";
+            user.provider = data.provider;
             return user;
         },
         // eyuan
