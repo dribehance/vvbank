@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("VVBank").factory("mallServices", function($http, $rootScope,localStorageService, config) {
+angular.module("VVBank").factory("mallServices", function($http, $rootScope, localStorageService, config) {
     return {
         // 首页商品信息,包括分类商品列表;
         query: function(input) {
@@ -9,7 +9,7 @@ angular.module("VVBank").factory("mallServices", function($http, $rootScope,loca
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "current": input.number,
-                    "categoryID": input.category_id
+                    "categoryId": input.category_id
                 })
             }).then(function(data) {
                 return data.data;
@@ -62,20 +62,25 @@ angular.module("VVBank").factory("mallServices", function($http, $rootScope,loca
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "goodsId": input.goods_id,
+                    "contractName": input.contractName,
+                    "contractPhone": input.contractPhone,
+                    "provinceId": input.provinceId,
+                    "cityId": input.cityId,
+                    "contractAddress": input.contractAddress,
+                    "check": input.check
                 })
             }).then(function(data) {
                 return data.data;
             });
         },
-        queryPaymentInfo:function(input) {
+        queryPaymentInfo: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/e1/emall/readyBalance",
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "cardIds": input.card_ids,
+                    "carIds": input.car_ids,
                     "goodsId": input.goods_id,
                     "quantity": input.quantity
                 })
@@ -90,8 +95,13 @@ angular.module("VVBank").factory("mallServices", function($http, $rootScope,loca
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
+                    "carIds": input.car_ids,
                     "goodsId": input.goods_id,
-                    "quantity": input.quantity
+                    "quantity": input.quantity,
+                    "pwd":input.pwd,
+                    "contractName": input.contractName,
+                    "contractPhone": input.contractPhone,
+                    "contractAddress": input.contractAddress
                 })
             }).then(function(data) {
                 return data.data;
@@ -145,5 +155,56 @@ angular.module("VVBank").factory("mallServices", function($http, $rootScope,loca
                 return data.data;
             });
         },
+        querySerial: function() {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/e1/emall/doProvider",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        querySerialCode: function(input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/e1/emall/serialNo",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "serial": input.serial
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        useSerialCode: function(input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/e1/emall/useSerial",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "serial": input.serial,
+                    "itemId": input.itemId
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        queryQrcode: function(input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/e1/emall/extensionUrl",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        }
     }
 });

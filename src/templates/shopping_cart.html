@@ -27,8 +27,9 @@
                     </span>
                 </div>
             </div>
+            <div class="section text-center" ng-show="items.length == 0">购物车空空如也！</div>
         </div>
-        <div class="section clearfix">
+        <div class="section clearfix" ng-show="items.length > 0">
             <div class="pull-left">
                 <input type="checkbox" name="check_all" ng-model="input.all" value="all" style="vertical-align:middle;margin:0"><span ng-click="remove()">[移除选中商品]</span>
             </div>
@@ -36,10 +37,12 @@
                 已选择<span class="text-orange">{{selected_items()}}</span>商品
             </div>
         </div>
-        <div class="section">
+        <div class="section" ng-show="items.length > 0">
             <div class="btn-group justified">
                 <span>总价：<span class="text-orange">{{sum()}}</span></span>
-                <span class="text-white"><a ng-href="#/eyuan_mall/payment" class="btn btn-warning rectangle btn-lg full-width">去结算</a></span>
+                <span class="text-white">
+                    <button class="btn  rectangle btn-lg full-width" ng-class="{'bg-grey':sum() == 0,'btn-warning':sum() !=0}" ng-click="pay()" ng-disabled="sum() == 0">去结算</button>
+                </span>
             </div>
         </div>
     </div>

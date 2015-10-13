@@ -15,7 +15,7 @@
             </span>
             <span class="btn section-wide text-right">
                 <!-- <a ng-href="#/setting" class="vv vv-setting vv-38"></a> -->
-                <a class="vv vv-qrcode vv-38" ui-turn-on="qrcode_panel"></a>
+                <a class="vv vv-qrcode vv-38" ng-click="queryQrcode()"></a>
             </span>
         </div>
             <div class="semi-auto semi-left-75">
@@ -259,7 +259,7 @@
     <div class="modal" ui-if="qrcode_panel" ui-state='qrcode_panel'>
         <div class="modal-backdrop in" ui-turn-off="qrcode_panel"></div>
         <div class="modal-dialog bg-transparent">
-            <img ng-src="../images/qrcode.png" class="block full-width" alt="">
+            <img ng-src="{{qrcode_url}}" class="block full-width" alt="">
         </div>
     </div>
 </div>

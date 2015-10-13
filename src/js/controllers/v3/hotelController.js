@@ -15,6 +15,10 @@ var hotelController = function($scope,$location, $routeParams,$filter, SharedSta
             $scope.emall_item = data.result;
             var amount = $scope.emall_item.goodsNumber > 10?10:$scope.emall_item.goodsNumber;
             $scope.amount_options = $filter("limitTo")($scope.amount_options,amount);
+            if ($scope.amount_options.length == 0) {
+                $scope.amount_options.push("0")
+            }
+            $scope.input.amount = $scope.amount_options[0];
         } else {
             errorServices.autoHide(data.message);
         }
@@ -22,6 +26,9 @@ var hotelController = function($scope,$location, $routeParams,$filter, SharedSta
     $scope.enter_password = function () {
         if (!localStorageService.get("token")) {
             $location.path("/signIn");
+            return;
+        }
+        if ($scope.emall_item.goodsNumber == 0) {
             return;
         }
         SharedState.turnOn("password_panel");
@@ -49,14 +56,24 @@ var hotelController = function($scope,$location, $routeParams,$filter, SharedSta
             $scope.input.message = data.message;
         })
     }
+    $scope.exchange = function() {
+        var url = "/eyuan_mall/payment?goods_id="+$scope.emall_item.goodsId+"&quantity="+$scope.input.amount;
+        if ($scope.emall_item.goodsNumber == 0) {
+            return;
+        }
+        $location.url(url)
+    }
     $scope.addToCart = function() {
         if (!localStorageService.get("token")) {
             $location.path("/signIn");
             return;
         }
+        if ($scope.emall_item.goodsNumber == 0 || $scope.emall_item.goodsNumber < 0) {
+            return;
+        }
         toastServices.show();
         shoppingCartServices.add({
-            goodsId: $scope.emall_item.goodsId
+            goods_id: $scope.emall_item.goodsId
         }).then(function(data) {
             toastServices.hide()
             if (data.respcode == config.request.SUCCESS) {

@@ -16,7 +16,7 @@
         </div>
         <div class="section">
             <div class="btn-group justified">
-                <span class="btn btn-primary rectangle" ng-click="enter_password()">
+                <span class="btn rectangle text-white" ng-class="{'bg-grey':emall_item.goodsNumber ==0,'btn-primary':emall_item.goodsNumber >0}" ng-click="enter_password()">
                     {{emall_item.luckPrice}}e圆试手气
                 </span>
                 <span class="btn">
@@ -36,14 +36,14 @@
         <div class="section">
             <div class="btn-group justified">
                 <div class="section section-condensed text-white" style="padding-left:0">
-                    <a ng-href="#/eyuan_mall/payment" class="btn btn-primary rectangle full-width">
+                    <a class="btn rectangle text-white full-width" ng-class="{'bg-grey':emall_item.goodsNumber ==0,'btn-primary':emall_item.goodsNumber >0}" ng-click="exchange()">
                         立即兑换
                     </a>
                 </div>
                 <div class="section section-condensed text-white" style="padding-right:0">
-                    <a ng-click="addToCart()" class="btn btn-warning rectangle full-width">
+                    <button ng-click="addToCart()" class="btn rectangle full-width" ng-class="{'bg-grey':emall_item.goodsNumber ==0,'btn-warning':emall_item.goodsNumber >0}">
                         加入购物车
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>

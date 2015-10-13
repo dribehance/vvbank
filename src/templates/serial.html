@@ -5,14 +5,52 @@
 	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div> -->
 <div class="scrollable">
-	<div class="scrollable-content">
-		<div class="section text-very-large text-center">希尔顿南海店</div>
-		<div class="section section-condensed text-center">请输入商品序列号:</div>
-		<div class="section">
-			<input type="text" class="form-control rectangle">
-		</div>
-		<div class="section text-center">
-			<button class="btn btn-primary btn-lg full-width rectangle">查询</button>
-		</div>
-	</div>
+    <div class="scrollable-content">
+        <div ng-if="!input.search_result">
+            <div class="section text-very-large text-center">{{serial_name}}</div>
+            <div class="section section-condensed text-center">请输入商品序列号:</div>
+            <div class="section">
+                <input type="text" class="form-control rectangle" ng-model="input.serial_code">
+            </div>
+            <div class="section text-center">
+                <button class="btn btn-primary btn-lg full-width rectangle" ng-disabled="input.serial_code == ''" ng-click="query()">查询</button>
+            </div>
+        </div>
+        <div ng-if="input.search_result">
+            <imageview rate="640/320" src="banner"></imageview>
+            <div class="section">
+                <p class="row">
+                    <div class="col-xs-4">商品名称</div>
+                    <div class="col-xs-8 section-wide">：{{serial_entity.providerName}}</div>
+                </p>
+                <p class="row">
+                    <div class="col-xs-4">序列号</div>
+                    <div class="col-xs-8 section-wide">：{{serial_entity.serial}}</div>
+                </p>
+                <p class="row">
+                    <div class="col-xs-4">商家</div>
+                    <div class="col-xs-8 section-wide">：{{serial_entity.providerName}}</div>
+                </p>
+                <p class="row">
+                    <div class="col-xs-4">商家地址</div>
+                    <div class="col-xs-8 section-wide">：{{serial_entity.providerAddress}}</div>
+                </p>
+                <p class="row">
+                    <div class="col-xs-4">客户</div>
+                    <div class="col-xs-8 section-wide">：{{serial_entity.contractName}}</div>
+                </p>
+                <p class="row">
+                    <div class="col-xs-4">身份证号码</div>
+                    <div class="col-xs-8 section-wide">：{{serial_entity.contractNumber}}</div>
+                </p>
+                <p class="row">
+                    <div class="col-xs-4">序列号状态</div>
+                    <div class="col-xs-8 section-wide">：{{serial_entity.serialMessage}}</div>
+                </p>
+            </div>
+            <div class="section">
+                <button class="btn btn-primary full-width" ng-show="{{serial_entity.status == '1'}}" ng-click="use()">登记并使用</button>
+            </div>
+        </div>
+    </div>
 </div>

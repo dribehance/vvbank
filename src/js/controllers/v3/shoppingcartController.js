@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var shoppingcartController = function($scope, shoppingCartServices, errorServices, toastServices, localStorageService, config) {
+var shoppingcartController = function($scope,$location, shoppingCartServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {};
     toastServices.show();
     shoppingCartServices.query().then(function(data) {
@@ -10,7 +10,7 @@ var shoppingcartController = function($scope, shoppingCartServices, errorService
                 item.checked = false;
             });
         } else {
-            errorServices.autoHide("服务器错误");
+            errorServices.autoHide(data.message);
         }
     });
     // toggle check shopping cart item
@@ -29,49 +29,76 @@ var shoppingcartController = function($scope, shoppingCartServices, errorService
     };
     // calculate selected item;
     $scope.selected_items = function() {
-            var count = 0;
-            angular.forEach($scope.items, function(item) {
-                if (item.checked) {
-                    count++;
-                }
-            });
-            return count;
-        }
-        // amount control
+        var count = 0;
+        angular.forEach($scope.items, function(item) {
+            if (item.checked) {
+                count++;
+            }
+        });
+        return count;
+    };
+    // amount control
     $scope.minus = function(item) {
-        if (item.carNumber == 0) {
+        if (item.carNumber == 1 || item.carNumber < 1) {
             return;
         }
-        return item.carNumber--;
+        item.carNumber--;
+        shoppingCartServices.modify({
+            "quantity":item.carNumber,
+            "car_id": item.carId,
+            "goods_id": item.goodsId
+        }).then(function(data){
+            if(data.respcode == config.request.SUCCESS) {
+                // errorServices.autoHide(data.message)        
+            }
+            else {
+                errorServices.autoHide(data.message);
+            }
+        })
+        return item.carNumber;
     }
     $scope.plus = function(item) {
         if (item.carNumber == item.goodsNumber || item.carNumber > item.goodsNumber) {
             errorServices.autoHide("库存上限")
             return;
         }
-        return item.carNumber++;
+        item.carNumber++;
+        shoppingCartServices.modify({
+            "quantity":item.carNumber,
+            "car_id": item.carId,
+            "goods_id": item.goodsId
+        }).then(function(data){
+            if(data.respcode == config.request.SUCCESS) {
+                // errorServices.autoHide(data.message)        
+            }
+            else {
+                errorServices.autoHide(data.message);
+            }
+        })
+        return item.carNumber;
     }
     $scope.remove = function() {
-        var goods_ids = [];
-        goods_ids = $scope.items.filter(function(item) {
+        var car_ids = [];
+        car_ids = $scope.items.filter(function(item) {
             return item.checked;
         }).map(function(item) {
-            return item.goodsId;
+            return item.carId;
         }).join(",");
-        if (goods_ids.length == 0) {
+        if (car_ids.length == 0) {
             errorServices.autoHide("未选中任何商品！")
             return;
         }
-        console.log(goods_ids)
         toastServices.show();
         shoppingCartServices.remove({
-            car_id:goods_ids
-        }).then(function(data){
+            car_id: car_ids
+        }).then(function(data) {
             toastServices.hide()
-            if(data.respcode == config.request.SUCCESS) {
-                errorServices.autoHide(data.message)       
-            }
-            else {
+            if (data.respcode == config.request.SUCCESS) {
+                $scope.items = $scope.items.filter(function(item) {
+                    return car_ids.indexOf(item.carId) == -1;
+                })
+                errorServices.autoHide(data.message)
+            } else {
                 errorServices.autoHide(data.message);
             }
         })
@@ -87,4 +114,17 @@ var shoppingcartController = function($scope, shoppingCartServices, errorService
             })
         }
     }, true)
+    $scope.pay = function() {
+        var car_ids = [];
+        car_ids = $scope.items.filter(function(item) {
+            return item.checked;
+        }).map(function(item) {
+            return item.carId;
+        }).join(",");
+        var url = "/eyuan_mall/payment?car_ids="+car_ids;
+        if (!car_ids) {
+            return;
+        }
+        $location.url(url)
+    }
 }

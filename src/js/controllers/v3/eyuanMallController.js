@@ -1,7 +1,7 @@
 // by dribehance <dribehance.kksdapp.com>
 var eyuanMallController = function($scope, mallServices, errorServices, toastServices, localStorageService, config) {
     $scope.filter_category = {
-        id: 1
+        id: ""
     };
     // category;
     mallServices.queryCategory().then(function(data) {
@@ -27,7 +27,7 @@ var eyuanMallController = function($scope, mallServices, errorServices, toastSer
     $scope.page = {
         number: 1,
         message: "点击加载更多",
-        category_id: 1
+        category_id: ""
     }
     $scope.loadMore = function() {
         if ($scope.no_more) {

@@ -349,6 +349,14 @@ angular.module("VVBank", [
             //     factory:loginInterceptor
             // }
         })
+        .when("/people_two/:member_id", {
+            templateUrl: "people_two.html",
+            reloadOnSearch: false,
+            controller: peopleTwoController,
+            // resolve: {
+            //     factory:loginInterceptor
+            // }
+        })
         .when("/orders", {
             templateUrl: "orders.html",
             reloadOnSearch: false,
