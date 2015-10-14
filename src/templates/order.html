@@ -23,7 +23,7 @@
             <div class="pull-left">数量:x{{order.quantity}}</div>
             <div class="pull-right">兑换单价:{{order.price}}e圆</div>
         </div>
-        <div class="section">
+        <div class="section" ng-show="{{order.goodsCode}}">
             商品序列号
             <p class="row">
                 <div class="col-xs-6">{{order.goodsCode}}</div>
@@ -35,7 +35,7 @@
         <div class="section">联系电话：{{order.providerContractPhone}}</div>
         <div class="section">地址：{{order.providerContractAddress}}</div>
         <div class="section">
-            <img ng-src="{{order.mapLogo}}" class="block full-width" alt="">
+            <div ng-bind-html="trustAsHtml(order.description)"></div>
         </div>
     </div>
 </div>

@@ -27,10 +27,10 @@
         	<div class="pull-right">联系电话：{{order.contractPhone}}</div>
         </div>
        	<div class="section">收货地址：{{order.contractAddress}}</div>
-        <div class="section">快递单号：{{order.expressNo}} {{order.expressCompany}} {{order.expressDetails}}</div>
-        <div class="section">商品详细信息</div>
-        <div class="section">
-        	<img ng-src="{{order.logo}}" class="block full-width" alt="">
+        <div class="section" ng-show="{{order.expressNo}}">快递单号：{{order.expressNo}} {{order.expressCompany}} {{order.expressDetails}}</div>
+        <div class="section" ng-show="{{order.description}}">
+            <p>商品详细信息</p>
+        	<div ng-bind-html="trustAsHtml(order.description)"></div>
         </div>
     </div>
 </div>

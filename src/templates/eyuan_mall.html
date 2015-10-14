@@ -5,7 +5,7 @@
 	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div> -->
 <div class="scrollable">
-    <div class="scrollable-header">
+    <!-- <div class="scrollable-header">
         <div class="btn-group justified bg-primary">
             <a ng-click="categoryFilter(category)" class="btn text-white section-wide bg-transparent" ng-class="{'active':category.id == filter_category.id}" ng-repeat="category in categories" ng-if="$index <4">
                 <span class="tag">{{category.categoryName}}<i class="triangle"></i></span>
@@ -15,7 +15,7 @@
                 <span class="tag">购物车<i class="triangle"></i></span>
             </a>
         </div>
-    </div>
+    </div> -->
     <div class="scrollable-content">
         <div class="hotels">
             <a ng-href="#/eyuan_mall/hotels/{{item.goodsId}}" class="hotel block bg-white-grey" ng-repeat="item in emall_items">

@@ -1,5 +1,5 @@
 // EventHandle
-angular.module("VVBank").factory("appServices", function($rootScope, $location, $interval, $window, platformServices, SharedState, localStorageService, signatureServices, errorServices, userServices, parserServices, toastServices, config) {
+angular.module("VVBank").factory("appServices", function($rootScope, $location, $interval, $window, mallServices, platformServices, SharedState, localStorageService, signatureServices, errorServices, userServices, parserServices, toastServices, config) {
 
     var routeChangeStart = function(e) {
         // userServices.checkAuth();
@@ -12,21 +12,20 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
     var navBarHandler = function(e, currentRoute, prevRoute) {
 
         // always hide all navbar top
-        $rootScope.navbar.top = false;
-        // var _navbars_t = ["eyuan_mall"];
+        // $rootScope.navbar.top = false;
+        var _navbars_t = ["eyuan_mall"];
 
-        // if (_navbars_t.contains($location.path().split("/")[1])) {
-        //     $rootScope.navbar.top = true;
-        // }
-        // else {
-        //     $rootScope.navbar.top = false;
-        // }
-        // navbar bottom 
-        var _navbars_b = ["/index", "/investment_projects", "/eyuan_mall", "/", "/me"];
-        if (!_navbars_b.contains($location.path())) {
-            $rootScope.navbar.bottom = false;
+        if (_navbars_t.contains($location.path().split("/")[1])) {
+            $rootScope.navbar.top = true;
         } else {
+            $rootScope.navbar.top = false;
+        }
+        // navbar bottom 
+        var _navbars_b = ["/index", "/investment_projects", "/", "/me"];
+        if (_navbars_b.contains($location.path()) || _navbars_t.contains($location.path().split("/")[1])) {
             $rootScope.navbar.bottom = true;
+        } else {
+            $rootScope.navbar.bottom = false;
         }
     }
     var onBackKeyDown = function() {
@@ -72,7 +71,7 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
             } else {
                 $rootScope.staticImageUrl = "/resources/app/";
             }
-            localStorageService.set("token","e9f9d15687ad1194cf7aab9470e87ba5_18219351089")
+            localStorageService.set("token", "e9f9d15687ad1194cf7aab9470e87ba5_18219351089")
             if (localStorageService.get("token")) {
                 // userServices.info.basic().then(function(data) {
                 //     if (data.respcode == config.request.SUCCESS) {
@@ -91,7 +90,13 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
                         errorServices.autoHide(data.message)
                     }
                 })
-            }
+            };
+            // global category nav for eyuan mall
+            mallServices.queryCategory().then(function(data) {
+                if (data.respcode == config.request.SUCCESS) {
+                    $rootScope.categories = data.result;
+                }
+            })
         }
     }
 });

@@ -39,7 +39,7 @@
         </div>
         <div class="section" ng-show="items.length > 0">
             <div class="btn-group justified">
-                <span>总价：<span class="text-orange">{{sum()}}</span></span>
+                <span>总价：<span class="text-orange">{{sum()}}e圆</span></span>
                 <span class="text-white">
                     <button class="btn  rectangle btn-lg full-width" ng-class="{'bg-grey':sum() == 0,'btn-warning':sum() !=0}" ng-click="pay()" ng-disabled="sum() == 0">去结算</button>
                 </span>

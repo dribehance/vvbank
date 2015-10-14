@@ -311,7 +311,7 @@ angular.module("VVBank", [
         })
         .when("/eyuan_mall", {
             templateUrl: "eyuan_mall.html",
-            reloadOnSearch: false,
+            reloadOnSearch: true,
             controller: eyuanMallController,
             // resolve: {
             //     factory:loginInterceptor

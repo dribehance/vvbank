@@ -17,24 +17,15 @@
     <div class="app">
         <!-- Navbars -->
         <div class="navbar navbar-app navbar-absolute-top">
-            <!-- <div class="btn-group justified">
-                <a ng-href="#/eyuan_mall/hotels" class="btn text-white">
-                    <span class="tag">酒店<i class="triangle"></i></span>
-                </a>
-                <a ng-href="#/eyuan_mall/restaurants" class="btn text-white">
-                    <span class="tag">餐厅<i class="triangle"></i></span>
-                </a>
-                <a ng-href="#/eyuan_mall/stores" class="btn text-white">
-                    <span class="tag">便利店<i class="triangle"></i></span>
-                </a>
-                <a ng-href="#/eyuan_mall/clubs" class="btn text-white">
-                    <span class="tag">养生会所<i class="triangle"></i></span>
+            <div class="btn-group justified bg-primary">
+                <a ng-href="#/eyuan_mall?category_id={{category.id}}" class="btn text-white section-wide bg-transparent" ng-class="{'active':category.id == current_category_id}" ng-repeat="category in categories" ng-if="$index <4">
+                    <span class="tag">{{category.categoryName}}<i class="triangle"></i></span>
                 </a>
                 <a ng-href="#/eyuan_mall/shopping_cart" class="btn text-white">
                     <i class="vv vv-20 vv-shopping-cart"></i>
                     <span class="tag">购物车<i class="triangle"></i></span>
                 </a>
-            </div> -->
+            </div>
         </div>
         <div class="navbar navbar-app navbar-absolute-bottom">
             <div class="btn-group justified">

@@ -1,33 +1,12 @@
 // by dribehance <dribehance.kksdapp.com>
-var eyuanMallController = function($scope, mallServices, errorServices, toastServices, localStorageService, config) {
-    $scope.filter_category = {
-        id: ""
-    };
-    // category;
-    mallServices.queryCategory().then(function(data) {
-        if (data.respcode == config.request.SUCCESS) {
-            $scope.categories = data.result;
-        } else {
-            errorServices.autoHide(data.result);
-        }
-    })
-    $scope.categoryFilter = function(item) {
-        $scope.filter_category.id = item.id;
-        $scope.page = {
-            number: 1,
-            message: "点击加载更多",
-            category_id: item.id
-        }
-        $scope.emall_items = [];
-        $scope.no_more = false;
-        $scope.loadMore();
-    };
+var eyuanMallController = function($scope,$rootScope,$routeParams, mallServices, errorServices, toastServices, localStorageService, config) {
+    $rootScope.current_category_id = $routeParams.category_id;
     // items;
     $scope.emall_items = [];
     $scope.page = {
         number: 1,
         message: "点击加载更多",
-        category_id: ""
+        category_id: $routeParams.category_id
     }
     $scope.loadMore = function() {
         if ($scope.no_more) {
