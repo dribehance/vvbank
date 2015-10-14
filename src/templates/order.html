@@ -23,12 +23,12 @@
             <div class="pull-left">数量:x{{order.quantity}}</div>
             <div class="pull-right">兑换单价:{{order.price}}e圆</div>
         </div>
-        <div class="section" ng-show="{{order.goodsCode}}">
-            商品序列号
-            <p class="row" ng-repeat="goodcode in parseCode(order.goodsCode) track by $index">
+        <div class="section">
+            <p>商品序列号</p>
+            <div class="row" ng-repeat="goodcode in parseCode(order.goodsCode) track by $index" style="margin-bottom:5px">
                 <div class="col-xs-6">{{goodcode}}</div>
                 <div class="col-xs-6"><a ng-click="showQrcode(goodcode)">二维码</a></div>
-            </p>
+            </div>
         </div>
         <div class="section">{{order.providerName}}</div>
         <div class="vv-divide"></div>
@@ -42,7 +42,7 @@
 <div ui-content-for="modals">
     <div class="modal" ui-if="qrcode" ui-state='qrcode'>
         <div class="modal-backdrop in" ui-turn-off="qrcode"></div>
-        <div class="modal-dialog bg-transparent">
+        <div class="modal-dialog bg-transparent text-center">
             <qrcode data="{{current_qrcode}}" version="10" size="274"></qrcode>
         </div>
     </div>
