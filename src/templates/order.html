@@ -25,9 +25,9 @@
         </div>
         <div class="section" ng-show="{{order.goodsCode}}">
             商品序列号
-            <p class="row">
-                <div class="col-xs-6">{{order.goodsCode}}</div>
-                <div class="col-xs-6"><a ng-href="" ui-turn-on="qrcode">二维码</a></div>
+            <p class="row" ng-repeat="goodcode in parseCode(order.goodsCode) track by $index">
+                <div class="col-xs-6">{{goodcode}}</div>
+                <div class="col-xs-6"><a ng-click="showQrcode(goodcode)">二维码</a></div>
             </p>
         </div>
         <div class="section">{{order.providerName}}</div>
@@ -43,7 +43,7 @@
     <div class="modal" ui-if="qrcode" ui-state='qrcode'>
         <div class="modal-backdrop in" ui-turn-off="qrcode"></div>
         <div class="modal-dialog bg-transparent">
-            <img ng-src="../images/qrcode.png" class="block full-width" alt="">
+            <qrcode data="{{current_qrcode}}" version="10" size="274"></qrcode>
         </div>
     </div>
 </div>

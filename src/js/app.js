@@ -7,7 +7,8 @@ angular.module("VVBank", [
     "flow",
     "timer",
     "LocalStorageModule",
-    "n3-pie-chart"
+    "n3-pie-chart",
+    "monospaced.qrcode"
 ])
 .config(function($routeProvider,$httpProvider,localStorageServiceProvider) {
     $routeProvider

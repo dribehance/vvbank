@@ -202,6 +202,10 @@
             </span>
             </a>
         </div>
+        <div class="vv-divide vv-5"></div>
+        <div class="section text-center">
+            <a ng-click="logout()" class="btn btn-lg btn-primary block" style="margin:25px">退出</a>
+        </div>
         <!-- <div class="vv-divide vv-5"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/activities" class="block text-grey semi-auto semi-left-30 semi-right-50">
@@ -258,8 +262,8 @@
 <div ui-content-for="modals">
     <div class="modal" ui-if="qrcode_panel" ui-state='qrcode_panel'>
         <div class="modal-backdrop in" ui-turn-off="qrcode_panel"></div>
-        <div class="modal-dialog bg-transparent">
-            <img ng-src="{{qrcode_url}}" class="block full-width" alt="">
+        <div class="modal-dialog bg-transparent text-center">
+            <qrcode data="{{qrcode_url}}" version="10" size="274"></qrcode>
         </div>
     </div>
 </div>

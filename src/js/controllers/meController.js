@@ -21,5 +21,16 @@ var meController = function($scope, $rootScope, mallServices, SharedState, error
                 errorServices.autoHide(data.message);
             }
         })
+    };
+    $scope.logout = function() {
+        userServices.logout().then(function(data) {
+            if (data.respcode == config.request.SUCCESS) {
+                localStorageService.remove("token");
+                platformServices.notify();
+                $location.path("/index").replace();
+            } else {
+                errorServices.autoHide(data.message)
+            }
+        })
     }
 }
