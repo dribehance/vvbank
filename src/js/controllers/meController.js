@@ -1,4 +1,4 @@
-var meController = function($scope, $rootScope, mallServices, SharedState, errorServices, toastServices, parserServices, userServices, config) {
+var meController = function($scope, $rootScope, $location, localStorageService, platformServices, mallServices, SharedState, errorServices, toastServices, parserServices, userServices, config) {
     // toastServices.show();
     userServices.info.account().then(function(data) {
         toastServices.hide();
