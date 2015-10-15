@@ -124,12 +124,21 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
         },
         getSmscode: function(telephone, smstype) {
             return $http({
-                url: config.url + "/v1/service/smscode",
-                method: "GET",
-                params: angular.extend({}, config.common_params, {
-                    "telephone": telephone,
-                    "signcode": $rootScope.signcode,
-                    "smstype": smstype
+                url: config.url + "/v1/service/sendSMSCode",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
+                    "mobile": telephone,
+                    "code": $rootScope.signcode,
+                    "sendType": smstype
                 })
             }).then(function(data) {
                 return data.data;
