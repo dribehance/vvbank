@@ -20,7 +20,8 @@ angular.module("VVBank").factory("shoppingCartServices", function($http, $rootSc
                 method: "GET",
                 params: angular.extend({}, config.common_params, {
                     "token":localStorageService.get("token"),
-                    "goodsId": input.goods_id
+                    "goodsId": input.goods_id,
+                    "quantity": input.quantity
                 })
             }).then(function(data) {
                 return data.data;

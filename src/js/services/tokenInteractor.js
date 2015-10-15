@@ -4,7 +4,9 @@ angular.module("VVBank").factory("tokenInterceptor", function($window, $location
         'request': function(config) {
             // do something on success
             for(key in config.params) {
-                config.params[key] = encodeURIComponent(config.params[key]);
+                if(config.params[key]) {
+                    config.params[key] = encodeURIComponent(config.params[key]);
+                }
             }
             return config;
         },

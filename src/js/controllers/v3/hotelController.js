@@ -42,18 +42,18 @@ var hotelController = function($scope,$location, $routeParams,$filter, SharedSta
             toastServices.hide()
             if (data.respcode == config.request.SUCCESS) {
                 $scope.prize_status = 1;
-                SharedState.turnOff("password_panel");
+                // SharedState.turnOff("password_panel");
                 SharedState.turnOn("award_panel");
                 $scope.input.message = "";
                 return;
             } 
             if (data.respcode == "0001") {
                 $scope.prize_status = 0;
-                SharedState.turnOff("password_panel");
+                // SharedState.turnOff("password_panel");
                 SharedState.turnOn("award_panel");
                 return;
             }
-            $scope.input.message = data.message;
+            errorServices.autoHide(data.message)
         })
     }
     $scope.exchange = function() {
@@ -73,7 +73,8 @@ var hotelController = function($scope,$location, $routeParams,$filter, SharedSta
         }
         toastServices.show();
         shoppingCartServices.add({
-            goods_id: $scope.emall_item.goodsId
+            goods_id: $scope.emall_item.goodsId,
+            quantity: $scope.input.amount
         }).then(function(data) {
             toastServices.hide()
             if (data.respcode == config.request.SUCCESS) {
