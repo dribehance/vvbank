@@ -10,7 +10,7 @@
             <div class="cart-item" ng-repeat="item in items">
                 <div class="item-status" ng-class="{'active':item.checked}" ng-click="toggle(item)"></div>
                 <div class="item-thumbnail">
-                    <img ng-src="../images/example_3.png" alt="">
+                    <imageview data-rate="1" src="item.logo" class="bg-light-grey"></imageview>
                 </div>
                 <div class="item-title text-ellipsis">
                     {{item.goodsName}}
@@ -30,9 +30,10 @@
             <div class="section text-center" ng-show="items.length == 0">购物车空空如也！</div>
         </div>
         <div class="section clearfix" ng-show="items.length > 0">
-            <div class="pull-left">
-                <input type="checkbox" name="check_all" ng-model="input.all" value="all" style="vertical-align:middle;margin:0"><span ng-click="remove()">[移除选中商品]</span>
-            </div>
+            <label>
+                <input type="checkbox" name="check_all" ng-model="input.all" class="needsclick" style="vertical-align:middle;margin:0">
+            </label>
+            <span ng-click="remove()">[移除选中商品]</span>
             <div class="pull-right">
                 已选择<span class="text-orange">{{selected_items()}}</span>商品
             </div>

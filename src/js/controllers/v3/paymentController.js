@@ -1,11 +1,13 @@
 // by dribehance <dribehance.kksdapp.com>
-var paymentController = function($scope, $routeParams, mallServices,SharedState, settingServices, errorServices, toastServices, localStorageService, config) {
+var paymentController = function($scope, $rootScope, $timeout, $routeParams, mallServices, SharedState, settingServices, errorServices, toastServices, localStorageService, config) {
+    $rootScope.page_title = "e圆商城|结算";
     $scope.input = {
         password: "",
-        province:{},
-        city:{},
+        province: {},
+        city: {},
         payment_result: false
     };
+    // query payment infor;
     toastServices.show();
     mallServices.queryPaymentInfo({
         car_ids: $routeParams.car_ids,
@@ -22,8 +24,9 @@ var paymentController = function($scope, $routeParams, mallServices,SharedState,
             errorServices.autoHide(data.message);
         }
     });
+    // pay;
     $scope.pay = function() {
-        if ($scope.delivery.recipientName.trim() == '' || $scope.delivery.address.trim() == '' || $scope.delivery.recipientPhone.trim() == '') {
+        if (!$scope.delivery.recipientName || $scope.delivery.recipientName.trim() == '' || !$scope.delivery.address || $scope.delivery.address.trim() == '' || $scope.delivery.address.trim() == "null" || !$scope.delivery.recipientPhone || $scope.delivery.recipientPhone.trim() == '') {
             errorServices.autoHide("请先完善收货信息")
             return;
         }
@@ -37,13 +40,13 @@ var paymentController = function($scope, $routeParams, mallServices,SharedState,
             contractAddress: $scope.delivery.address
         }
         toastServices.show();
-        mallServices.payment(params).then(function(data){
+        mallServices.payment(params).then(function(data) {
             toastServices.hide()
-            if(data.respcode == config.request.SUCCESS) {
-                errorServices.autoHide(data.message) 
-                $scope.input.payment_result = true;   
-            }
-            else {
+            if (data.respcode == config.request.SUCCESS) {
+                errorServices.autoHide(data.message)
+                $scope.input.payment_result = true;
+                $rootScope.page_title = "e圆商城|支付";
+            } else {
                 errorServices.autoHide(data.message);
             }
         })
@@ -66,28 +69,43 @@ var paymentController = function($scope, $routeParams, mallServices,SharedState,
     var queryCity = function(province_id) {
         settingServices.queryCityByProvinceId(province_id).then(function(data) {
             $scope.cities = data.result;
+            $scope.input.city = $scope.cities[0]
         })
-    }
+    };
+    $scope.modifyAddress = function() {
+        SharedState.turnOn("address_panel");
+        $scope.input.username = $scope.delivery.recipientName;
+        $scope.input.telephone = $scope.delivery.recipientPhone;
+        $scope.input.address = $scope.delivery.address;
+        $scope.input.province.provinceId = $scope.delivery.provider.providerId;
+        $scope.input.province.provinceCode = $scope.delivery.provider.providerCode;
+        $scope.input.province.provinceName = $scope.delivery.provider.providerName;
+        $timeout(function() {
+            $scope.input.city.cityId = $scope.delivery.city.cityId;
+            $scope.input.city.cityCode = $scope.delivery.city.cityCode;
+            $scope.input.city.cityName = $scope.delivery.city.cityName;
+        }, 25)
+    };
+    // sync address; 
     $scope.ajaxForm = function() {
         toastServices.show();
         mallServices.modifyAddress({
-            "contractName":$scope.input.username,
-            "contractPhone":$scope.input.telephone,
-            "provinceId":$scope.input.province.provinceId,
-            "cityId":$scope.input.city.cityId,
-            "contractAddress":$scope.input.address,
-            "check":$scope.input.check
+            "contractName": $scope.input.username,
+            "contractPhone": $scope.input.telephone,
+            "provinceId": $scope.input.province.provinceId,
+            "cityId": $scope.input.city.cityId,
+            "contractAddress": $scope.input.address,
+            "check": $scope.input.check
 
-        }).then(function(data){
+        }).then(function(data) {
             toastServices.hide()
-            if(data.respcode == config.request.SUCCESS) {
+            if (data.respcode == config.request.SUCCESS) {
                 $scope.delivery.recipientName = $scope.input.username;
                 $scope.delivery.recipientPhone = $scope.input.telephone;
-                $scope.delivery.address = $scope.input.province.provinceName+$scope.input.city.cityName+$scope.input.address;
+                $scope.delivery.address = $scope.input.province.provinceName + $scope.input.city.cityName + $scope.input.address;
                 SharedState.turnOff("address_panel")
                 errorServices.autoHide(data.message);
-            }
-            else {
+            } else {
                 errorServices.autoHide(data.message);
             }
         })

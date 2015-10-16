@@ -1,4 +1,5 @@
-var indexController = function($scope, $timeout, toastServices, localStorageService, errorServices, licaiServices, bannerServices, parserServices, config) {
+var indexController = function($scope,$rootScope, $timeout, toastServices, localStorageService, errorServices, licaiServices, bannerServices, parserServices, config) {
+    $rootScope.page_title = "优易投";
     $scope.is_login = false;
     if (localStorageService.get("token")) {
         $scope.is_login = true;

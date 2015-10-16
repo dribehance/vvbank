@@ -1,5 +1,6 @@
 // by dribehance <dribehance.kksdapp.com>
-var serialController = function($scope,$rootScope, mallServices, errorServices, toastServices, localStorageService, config) {
+var serialController = function($scope, $rootScope,$routeParams, mallServices, errorServices, toastServices, localStorageService, config) {
+    $rootScope.page_title = "序列号查询";
     $scope.input = {
         search_result: false,
         serial_code: ""
@@ -35,11 +36,16 @@ var serialController = function($scope,$rootScope, mallServices, errorServices, 
         }).then(function(data) {
             toastServices.hide()
             if (data.respcode == config.request.SUCCESS) {
-            	errorServices.autoHide(data.message);
-            	$rootScope.back();
+                errorServices.autoHide(data.message);
+                $rootScope.back();
             } else {
                 errorServices.autoHide(data.message);
             }
         })
+    };
+    // query serial code ;
+    if ($routeParams.serial_code) {
+        $scope.input.serial_code = $routeParams.serial_code;
+        $scope.query();
     }
 }

@@ -1,5 +1,6 @@
 // by dribehance <dribehance.kksdapp.com>
-var ordersController = function($scope, $location, $filter, shoppingCartServices, errorServices, toastServices, localStorageService, config) {
+var ordersController = function($scope, $rootScope, $location, $filter, shoppingCartServices, errorServices, toastServices, localStorageService, config) {
+    $rootScope.page_title = "订单";
     // $scope.orders = 
     toastServices.show();
     shoppingCartServices.queryOrders().then(function(data) {

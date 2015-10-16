@@ -1,8 +1,9 @@
 // by dribehance <dribehance.kksdapp.com>
-var peopleTwoController = function($scope,$routeParams, peopleServices, errorServices, toastServices, localStorageService, config) {
+var peopleTwoController = function($scope, $rootScope, $routeParams, peopleServices, errorServices, toastServices, localStorageService, config) {
+    $rootScope.page_title = "二级人脉";
     toastServices.show();
     peopleServices.queryByLevel({
-        member_id:$routeParams.member_id,
+        member_id: $routeParams.member_id,
     }).then(function(data) {
         toastServices.hide()
         if (data.respcode == config.request.SUCCESS) {

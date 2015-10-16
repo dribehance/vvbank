@@ -1,4 +1,4 @@
-var signinController = function($scope, $location, userServices, platformServices,toastServices, errorServices, localStorageService, config) {
+var signinController = function($scope, $routeParams, $location, userServices, platformServices, toastServices, errorServices, localStorageService, config) {
     $scope.input = {
         name: "",
         password: ""
@@ -10,7 +10,11 @@ var signinController = function($scope, $location, userServices, platformService
             if (data.respcode == config.request.SUCCESS) {
                 localStorageService.set("token", data.result.token);
                 platformServices.notify();
-                $location.path("/me").replace();
+                if ($routeParams.serial_code) {
+                    $location.path("/serial").replace();
+                } else {
+                    $location.path("/me").replace();
+                }
             } else {
                 errorServices.autoHide(data.message);
             }

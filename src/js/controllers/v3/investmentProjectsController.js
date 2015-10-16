@@ -1,4 +1,5 @@
-var investmentProjectsController = function($scope, $timeout, toastServices, localStorageService, errorServices, licaiServices, bannerServices, parserServices, config) {
+var investmentProjectsController = function($scope, $rootScope, $timeout, toastServices, localStorageService, errorServices, licaiServices, bannerServices, parserServices, config) {
+    $rootScope.page_title = "投资项目";
     $scope.is_login = false;
     if (localStorageService.get("token")) {
         $scope.is_login = true;
@@ -63,13 +64,12 @@ var investmentProjectsController = function($scope, $timeout, toastServices, loc
         }
         if ($scope.project.code == "0") {
             loadRecommand();
-        }
-        else {
+        } else {
             loadOther();
         }
     }
-    $scope.parseProgress = function (progress) {
-        if (progress >100 || progress ==100 ) {
+    $scope.parseProgress = function(progress) {
+        if (progress > 100 || progress == 100) {
             return progress;
         }
         return progress = parseFloat(progress).toFixed(2);

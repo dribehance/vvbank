@@ -1,4 +1,5 @@
 var meController = function($scope, $rootScope, $location, localStorageService, platformServices, mallServices, SharedState, errorServices, toastServices, parserServices, userServices, config) {
+    $rootScope.page_title = "账户中心";
     // toastServices.show();
     userServices.info.account().then(function(data) {
         toastServices.hide();

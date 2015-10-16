@@ -1,5 +1,6 @@
 // by dribehance <dribehance.kksdapp.com>
 var eyuanMallController = function($scope,$rootScope,$routeParams, mallServices, errorServices, toastServices, localStorageService, config) {
+    $rootScope.page_title = "e圆商城";
     $rootScope.current_category_id = $routeParams.category_id;
     // items;
     $scope.emall_items = [];

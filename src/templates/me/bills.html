@@ -28,18 +28,18 @@
                     </div>
                 </div>
                 <div class="vv-table-content">
-                    <div class="row" style="line-height:43px" ng-repeat="bill in bills">
-                        <div class="col-xs-3 section-wide text-ellipsis">
-                            <span class="text-ellipsis">{{ bill.date }}</span>
+                    <div class="row" ng-repeat="bill in bills" style="margin-bottom:10px">
+                        <div class="col-xs-3 section-wide ">
+                            <span class="">{{ bill.date }}</span>
                         </div>
-                        <div class="col-xs-3 section-wide text-ellipsis">
-                            <span class="text-ellipsis">{{ bill.type }}</span>
+                        <div class="col-xs-3 section-wide ">
+                            <span class="">{{ bill.type }}</span>
                         </div>
-                        <div class="col-xs-3 section-wide text-ellipsis">
-                            <span class="text-ellipsis">{{ bill.trade_money | currency:"￥"}} </span>
+                        <div class="col-xs-3 section-wide ">
+                            <span class="">{{ bill.trade_money | currency:"￥"}} </span>
                         </div>
-                        <div class="col-xs-3 section-wide text-ellipsis">
-                            <span class="text-ellipsis">{{ bill.money | currency:"￥"}}</span>
+                        <div class="col-xs-3 section-wide ">
+                            <span class="">{{ bill.money | currency:"￥"}}</span>
                         </div>
                     </div>
                     <!-- push tip -->

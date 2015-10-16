@@ -1,4 +1,5 @@
-var orderOfflineController = function($scope, $filter, $routeParams, $location, shoppingCartServices, errorServices, toastServices, localStorageService, config) {
+var orderOfflineController = function($scope,$rootScope, $filter, $routeParams, $location, shoppingCartServices, errorServices, toastServices, localStorageService, config) {
+    $rootScope.page_title = "订单详情";
     toastServices.show();
     shoppingCartServices.queryOrderById({
         order_id: $routeParams.order_id

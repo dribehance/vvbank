@@ -1,5 +1,6 @@
 // by dribehance <dribehance.kksdapp.com>
-var shoppingcartController = function($scope,$location, shoppingCartServices, errorServices, toastServices, localStorageService, config) {
+var shoppingcartController = function($scope, $rootScope, $location, shoppingCartServices, errorServices, toastServices, localStorageService, config) {
+    $rootScope.page_title = "e圆商城|购物车";
     $scope.input = {};
     toastServices.show();
     shoppingCartServices.query().then(function(data) {
@@ -44,14 +45,13 @@ var shoppingcartController = function($scope,$location, shoppingCartServices, er
         }
         item.carNumber--;
         shoppingCartServices.modify({
-            "quantity":item.carNumber,
+            "quantity": item.carNumber,
             "car_id": item.carId,
             "goods_id": item.goodsId
-        }).then(function(data){
-            if(data.respcode == config.request.SUCCESS) {
+        }).then(function(data) {
+            if (data.respcode == config.request.SUCCESS) {
                 // errorServices.autoHide(data.message)        
-            }
-            else {
+            } else {
                 errorServices.autoHide(data.message);
             }
         })
@@ -64,14 +64,13 @@ var shoppingcartController = function($scope,$location, shoppingCartServices, er
         }
         item.carNumber++;
         shoppingCartServices.modify({
-            "quantity":item.carNumber,
+            "quantity": item.carNumber,
             "car_id": item.carId,
             "goods_id": item.goodsId
-        }).then(function(data){
-            if(data.respcode == config.request.SUCCESS) {
+        }).then(function(data) {
+            if (data.respcode == config.request.SUCCESS) {
                 // errorServices.autoHide(data.message)        
-            }
-            else {
+            } else {
                 errorServices.autoHide(data.message);
             }
         })
@@ -121,7 +120,7 @@ var shoppingcartController = function($scope,$location, shoppingCartServices, er
         }).map(function(item) {
             return item.carId;
         }).join(",");
-        var url = "/eyuan_mall/payment?car_ids="+car_ids;
+        var url = "/eyuan_mall/payment?car_ids=" + car_ids;
         if (!car_ids) {
             return;
         }
