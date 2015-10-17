@@ -1,4 +1,4 @@
-var signupController = function($rootScope, $timeout, $routeParams, $window, $scope, $location, userServices, errorServices, platformServices, SharedState, config, toastServices, localStorageService, signatureServices) {
+var signupController = function($rootScope, $interval, $routeParams, $window, $scope, $location, userServices, errorServices, platformServices, SharedState, config, toastServices, localStorageService, signatureServices) {
     $scope.input = {
         telephone: "",
         password: "",
@@ -90,7 +90,9 @@ var signupController = function($rootScope, $timeout, $routeParams, $window, $sc
             }
         })
     }
-    $timeout(function(){
+    var timer = $interval(function() {
+        if (!$rootScope.signcode) return;
         $scope.getVerifycode();
-    },20);
+        $interval.cancel(timer);
+    }, 10);
 }
