@@ -10,9 +10,11 @@ var signinController = function($scope, $routeParams, $location, userServices, p
             if (data.respcode == config.request.SUCCESS) {
                 localStorageService.set("token", data.result.token);
                 platformServices.notify();
-                if ($routeParams.serial_code) {
-                    $location.path("/serial").replace();
-                } else {
+                var path = $routeParams.from;
+                if (path) {
+                    $location.path(path).replace();
+                }
+                else {
                     $location.path("/me").replace();
                 }
             } else {

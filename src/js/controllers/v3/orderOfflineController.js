@@ -6,7 +6,7 @@ var orderOfflineController = function($scope,$rootScope, $filter, $routeParams, 
     }).then(function(data) {
         toastServices.hide()
         if (data.respcode == config.request.SUCCESS) {
-            if (!data.result.flag) {
+            if (data.result.flag == -1) {
                 $scope.order = data.result;
             } else {
                 $location.path("/orders/" + $routeParams.order_id).replace();

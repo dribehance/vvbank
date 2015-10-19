@@ -37,13 +37,13 @@ var paymentController = function($scope, $rootScope, $timeout, $routeParams, mal
             quantity: $routeParams.quantity,
             contractName: $scope.delivery.recipientName,
             contractPhone: $scope.delivery.recipientPhone,
-            contractAddress: $scope.delivery.address
+            contractAddress: $scope.delivery.provider.providerName + $scope.delivery.city.cityName + $scope.delivery.address,
         }
         toastServices.show();
         mallServices.payment(params).then(function(data) {
             toastServices.hide()
             if (data.respcode == config.request.SUCCESS) {
-                errorServices.autoHide(data.message)
+                // errorServices.autoHide(data.message)
                 $scope.input.payment_result = true;
                 $rootScope.page_title = "e圆商城|支付";
             } else {
@@ -84,7 +84,7 @@ var paymentController = function($scope, $rootScope, $timeout, $routeParams, mal
             $scope.input.city.cityId = $scope.delivery.city.cityId;
             $scope.input.city.cityCode = $scope.delivery.city.cityCode;
             $scope.input.city.cityName = $scope.delivery.city.cityName;
-        }, 25)
+        }, 50)
     };
     // sync address; 
     $scope.ajaxForm = function() {
@@ -102,7 +102,9 @@ var paymentController = function($scope, $rootScope, $timeout, $routeParams, mal
             if (data.respcode == config.request.SUCCESS) {
                 $scope.delivery.recipientName = $scope.input.username;
                 $scope.delivery.recipientPhone = $scope.input.telephone;
-                $scope.delivery.address = $scope.input.province.provinceName + $scope.input.city.cityName + $scope.input.address;
+                $scope.delivery.provider.providerName = $scope.input.province.provinceName;
+                $scope.delivery.city.cityName = $scope.input.city.cityName;
+                $scope.delivery.address = $scope.input.address;
                 SharedState.turnOff("address_panel")
                 errorServices.autoHide(data.message);
             } else {

@@ -19,14 +19,17 @@
                     <div class="section text-ellipsis">{{order.goodsName}}</div>
                     <p class="clearfix section" style="padding-top:0">
                         <span class="pull-left">{{parseTime(order.createdTime)}}</span>
-                        <span class="pull-right">x{{order.quantity}}</span>
+                        <span class="pull-right">x{{order.quantity}}<i class="bega" ng-show="order.winLog == 1">奖</i></span>
                     </p>
                     <div class="order-price">
                         {{order.price}} e圆
                     </div>
+                    <div class="order-status">
+                        {{query_order_status(order.status)}}
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="section text-center" ng-show="orders.length == 0">暂无订单</div>
+        <div class="section text-center" ng-show="no_order">暂无订单</div>
     </div>
 </div>

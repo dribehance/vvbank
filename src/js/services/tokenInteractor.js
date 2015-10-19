@@ -1,4 +1,4 @@
-angular.module("VVBank").factory("tokenInterceptor", function($window, $location, $q, localStorageService, errorServices, config) {
+angular.module("VVBank").factory("tokenInterceptor", function($window, $location, $q,$rootScope, localStorageService, errorServices, config) {
     return {
         // optional method
         'request': function(config) {
@@ -35,6 +35,7 @@ angular.module("VVBank").factory("tokenInterceptor", function($window, $location
             if (response.data.respcode == config.request.TOKEN_INVALID) {
                 console.log("TOKEN_INVALID")
                 localStorageService.remove("token");
+                $location.search("from",$rootScope.last_location);
                 $location.path("/signIn").replace();
                 return defer.promise;
             } else {

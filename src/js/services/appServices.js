@@ -8,6 +8,9 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
         toastServices.hide();
         errorServices.hide();
         navBarHandler(e, currentRoute, prevRoute);
+        // record location change;
+        $rootScope.last_location = $rootScope.current_location || undefined;
+        $rootScope.current_location = $location.path();
     }
     var navBarHandler = function(e, currentRoute, prevRoute) {
 

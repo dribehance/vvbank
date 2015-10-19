@@ -8,7 +8,10 @@ var shoppingcartController = function($scope, $rootScope, $location, shoppingCar
         if (data.respcode == config.request.SUCCESS) {
             $scope.items = data.result;
             $scope.items = angular.forEach($scope.items, function(item) {
-                item.checked = false;
+                item.checked = true;
+                if (item.status == 1) {
+                    item.exchangPrice = 0;
+                }
             });
         } else {
             errorServices.autoHide(data.message);
@@ -23,12 +26,15 @@ var shoppingcartController = function($scope, $rootScope, $location, shoppingCar
         var sum = 0;
         angular.forEach($scope.items, function(item) {
             if (item.checked) {
-                sum += item.exchangPrice;
+                sum += item.exchangPrice * item.carNumber;
             }
         });
         return sum;
     };
-    // calculate selected item;
+    $scope.calculate_price = function(item) {
+            return item.exchangPrice * item.carNumber;
+        }
+        // calculate selected item;
     $scope.selected_items = function() {
         var count = 0;
         angular.forEach($scope.items, function(item) {

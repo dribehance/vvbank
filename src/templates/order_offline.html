@@ -19,7 +19,7 @@
         </div>
         <div class="vv-divide"></div>
         <div class="section clearfix">
-        	<div class="pull-left">数量:x{{order.quantity}}</div>
+        	<div class="pull-left">数量:x{{order.quantity}}<i class="bega" ng-show="order.winLog == 1">奖</i></div>
         	<div class="pull-right">兑换单价: <span class="text-orange">{{order.price}}e圆</span></div>
         </div>
         <div class="section clearfix">
@@ -27,7 +27,12 @@
         	<div class="pull-right">联系电话：{{order.contractPhone}}</div>
         </div>
        	<div class="section">收货地址：{{order.contractAddress}}</div>
-        <div class="section" ng-show="{{order.expressNo}}">快递单号：{{order.expressNo}} {{order.expressCompany}} {{order.expressDetails}}</div>
+        <div class="section" ng-hide="{{order.expressNo == ''}}">
+            快递单号：{{order.expressNo}} {{order.expressCompany}}
+            <div class="section section-wide text-white">
+                <a ng-href="{{order.expressDetails}}" class="btn btn-primary full-width">查看详细快递信息</a>
+            </div>
+        </div>
         <div class="section" ng-show="{{order.description}}">
             <p>商品详细信息</p>
         	<div ng-bind-html="trustAsHtml(order.description)"></div>

@@ -16,7 +16,7 @@
                     {{item.goodsName}}
                 </div>
                 <div class="item-info">
-                    e圆：<span class="text-orange">{{item.exchangPrice}}</span><i class="bega" ng-show="item.status == 1">奖</i>
+                    e圆：<span class="text-orange">{{calculate_price(item)}}</span><i class="bega" ng-show="item.status == 1">奖</i>
                 </div>
                 <div class="item-info">
                     数量：
@@ -42,7 +42,7 @@
             <div class="btn-group justified">
                 <span>总价：<span class="text-orange">{{sum()}}e圆</span></span>
                 <span class="text-white">
-                    <button class="btn  rectangle btn-lg full-width" ng-class="{'bg-grey':sum() == 0,'btn-warning':sum() !=0}" ng-click="pay()" ng-disabled="sum() == 0">去结算</button>
+                    <button class="btn  rectangle btn-lg full-width" ng-class="{'bg-grey':selected_items() == 0,'btn-warning':selected_items()>0}" ng-click="pay()" ng-disabled="selected_items()==0">去结算</button>
                 </span>
             </div>
         </div>

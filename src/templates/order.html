@@ -16,11 +16,14 @@
                 <p class="clearfix section" style="padding-top:0">
                     <span class="pull-left">{{parseTime(order.createdTime)}}</span>
                 </p>
+                <div class="order-status">
+                    <a class="btn btn-success" style="padding-top:0;padding-bottom:0">{{query_order_status(order.status)}}</a>
+                </div>
             </div>
         </div>
         <div class="vv-divide"></div>
         <div class="section clearfix">
-            <div class="pull-left">数量:x{{order.quantity}}</div>
+            <div class="pull-left">数量:x{{order.quantity}}<i class="bega" ng-show="order.winLog == 1">奖</i></div>
             <div class="pull-right">兑换单价:{{order.price}}e圆</div>
         </div>
         <div class="section" ng-show="parseCode(order.goodsCode).length >0">
