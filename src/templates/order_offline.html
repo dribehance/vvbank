@@ -15,6 +15,9 @@
                 <p class="clearfix section" style="padding-top:0">
                     <span class="pull-left">{{parseTime(order.createdTime)}}</span>
                 </p>
+                <div class="order-status">
+                    <a class="btn btn-success" style="padding-top:0;padding-bottom:0">{{query_order_status(order.status)}}</a>
+                </div>
             </div>
         </div>
         <div class="vv-divide"></div>

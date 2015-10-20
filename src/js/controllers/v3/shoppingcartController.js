@@ -46,9 +46,10 @@ var shoppingcartController = function($scope, $rootScope, $location, shoppingCar
     };
     // amount control
     $scope.minus = function(item) {
-        if (item.carNumber == 1 || item.carNumber < 1) {
+        if (item.carNumber == 1 || item.carNumber < 1 || item.status == "1") {
             return;
         }
+        var current = item.carNumber;
         item.carNumber--;
         shoppingCartServices.modify({
             "quantity": item.carNumber,
@@ -59,6 +60,7 @@ var shoppingcartController = function($scope, $rootScope, $location, shoppingCar
                 // errorServices.autoHide(data.message)        
             } else {
                 errorServices.autoHide(data.message);
+                item.carNumber = current;
             }
         })
         return item.carNumber;
@@ -68,6 +70,8 @@ var shoppingcartController = function($scope, $rootScope, $location, shoppingCar
             errorServices.autoHide("库存上限")
             return;
         }
+        if (item.status == "1") return;
+        var current = item.carNumber;
         item.carNumber++;
         shoppingCartServices.modify({
             "quantity": item.carNumber,
@@ -78,6 +82,7 @@ var shoppingcartController = function($scope, $rootScope, $location, shoppingCar
                 // errorServices.autoHide(data.message)        
             } else {
                 errorServices.autoHide(data.message);
+                item.carNumber = current;
             }
         })
         return item.carNumber;
