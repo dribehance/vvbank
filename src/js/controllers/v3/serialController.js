@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var serialController = function($scope, $rootScope,$routeParams, mallServices, errorServices, toastServices, localStorageService, config) {
+var serialController = function($scope, $rootScope,$location, $route, $routeParams, mallServices, errorServices, toastServices, localStorageService, config) {
     $rootScope.page_title = "序列号查询";
     $scope.input = {
         search_result: false,
@@ -37,7 +37,8 @@ var serialController = function($scope, $rootScope,$routeParams, mallServices, e
             toastServices.hide()
             if (data.respcode == config.request.SUCCESS) {
                 errorServices.autoHide(data.message);
-                $rootScope.back();
+                $location.search("serial_code",null);
+                $scope.input.search_result = false;
             } else {
                 errorServices.autoHide(data.message);
             }

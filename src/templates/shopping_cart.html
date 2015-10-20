@@ -31,10 +31,11 @@
             <div class="section text-center" ng-show="items.length == 0">购物车空空如也！</div>
         </div>
         <div class="section clearfix" ng-show="items.length > 0">
-            <label>
+            <label style="margin-right:5px;">
                 <input type="checkbox" name="check_all" ng-model="input.all" class="needsclick" style="vertical-align:middle;margin:0">
-            </label>
-            <span ng-click="remove()">[移除选中商品]</span>
+                全选
+            </label>|
+            <span style="margin-left:5px;" ng-click="remove()">[移除选中商品]</span>
             <div class="pull-right">
                 已选择<span class="text-orange">{{selected_items()}}</span>商品
             </div>

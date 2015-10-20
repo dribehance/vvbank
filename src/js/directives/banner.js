@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-angular.module("VVBank").directive('banner', function() {
+angular.module("VVBank").directive('banner', function($rootScope) {
     return {
         restrict: 'E',
         link: function(scope, element, attrs) {
@@ -10,14 +10,15 @@ angular.module("VVBank").directive('banner', function() {
                 paginationSpeed: 400,
                 singleItem: true
             };
-            var rate = parseFloat(scope.$eval($(element).attr('data-rate')));
+            var rate = parseFloat(scope.$eval($(element).attr('data-rate'))),
+                bgURL = $rootScope.staticImageUrl + "images/banner_1.png";
             var style = {
                 width:$(element).width() || $(window).width(),
                 height:($(element).width() || $(window).width())/rate,
                 "line-height": ($(element).width() || $(window).width())/rate +"px",
                 overflow:"hidden",
                 "text-align":"center",
-                "background-image":"url('../images/banner_1.png')",
+                "background-image": bgURL,
                 "background-repeat":"no-repeat",
                 "background-position":"center center",
                 "background-size":"100%"
