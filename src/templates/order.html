@@ -24,7 +24,7 @@
         <div class="vv-divide"></div>
         <div class="section clearfix">
             <div class="pull-left">数量:x{{order.quantity}}<i class="bega" ng-show="order.winLog == 1">奖</i></div>
-            <div class="pull-right">兑换单价:{{order.price}}e圆</div>
+            <div class="pull-right">兑换单价:{{order.price | currency:""}}e圆</div>
         </div>
         <div class="section" ng-show="parseCode(order.goodsCode).length >0">
             <p>商品序列号</p>
@@ -33,11 +33,13 @@
                 <div class="col-xs-6"><a ng-click="showQrcode(goodcode)">二维码</a></div>
             </div>
         </div>
-        <div class="section">{{order.providerName}}</div>
+        <div class="section"><b>商家信息</b></div>
         <div class="vv-divide"></div>
         <div class="section">联系电话：{{order.providerContractPhone}}</div>
         <div class="section">地址：{{order.providerContractAddress}}</div>
-        <div class="section">
+        <div class="section"><img ng-src="{{order.mapLogo}}" alt=""></div>
+        <div class="section" ng-show="{{order.description}}">
+            <p>商品详细信息</p>
             <div ng-bind-html="trustAsHtml(order.description)"></div>
         </div>
     </div>

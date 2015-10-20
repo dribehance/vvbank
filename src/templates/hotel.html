@@ -9,7 +9,7 @@
         <!-- dynamic -->
         <banner data-options="{}" data-rate="580/300">
             <div class="image-holder" ng-repeat="b in input.banners" on-repeat-done>
-                <img ng-src="{{b}}" err-src="../images/banner_1.png" class="block full-width" alt="">
+                <img ng-src="{{b}}" err-src="{{staticImageUrl+'images/banner_1.png'}}" class="block full-width" alt="">
             </div>
         </banner>
         <div class="section">
@@ -19,7 +19,7 @@
         <div class="section">
             <div class="btn-group justified">
                 <span class="btn rectangle text-white" ng-class="{'bg-grey':emall_item.goodsNumber ==0,'btn-primary':emall_item.goodsNumber >0}" ng-click="try()">
-                    {{emall_item.luckPrice}}e圆试手气
+                    {{emall_item.luckPrice | currency:"" }}e圆试手气
                 </span>
                 <span class="btn">
                     <span class="text-orange">{{emall_item.isWinSum}}</span>人已获奖
@@ -28,7 +28,7 @@
         </div>
         <div class="vv-divide"></div>
         <div class="section">
-            <div>兑换价格：<span class="text-orange">{{emall_item.exchangPrice}}</span>e圆</div>
+            <div>兑换价格：<span class="text-orange">{{emall_item.exchangPrice | currency:"" }}</span>e圆</div>
             <div>兑换数量：
                 <select name="selected_amount" ng-model="input.amount" ng-options="o as o for o in amount_options" required></select>
                 已经有<span class="text-orange">{{emall_item.cartSum || "0"}}</span>人兑换此商品

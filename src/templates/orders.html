@@ -22,7 +22,7 @@
                         <span class="pull-right">x{{order.quantity}}<i class="bega" ng-show="order.winLog == 1">奖</i></span>
                     </p>
                     <div class="order-price">
-                        {{order.price}} e圆
+                        {{order.price | currency:""}} e圆
                     </div>
                     <div class="order-status">
                         {{query_order_status(order.status)}}

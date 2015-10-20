@@ -22,25 +22,25 @@
                     {{product.goodsName}}
                 </span>
                     <span class="col-xs-3 section-wide text-ellipsis text-center">
-                    {{product.price}} 
+                    {{product.price | currency:""}} 
                 </span>
                     <span class="col-xs-3 section-wide text-ellipsis text-center">
                     x{{product.quantity}}
                     <i class="bega" ng-show="product.winlog == '1'">奖</i>
                 </span>
                     <span class="col-xs-2 section-wide text-ellipsis text-center">
-                    <i ng-show="product.status==1">有货</i>
-                    <i ng-show="product.status==0">缺货</i>
+                    <i ng-show="product.status=='1'">有货</i>
+                    <i ng-show="product.status=='0'">缺货</i>
                 </span>
                 </p>
             </div>
             <div class="vv-divide vv-1"></div>
             <div class="section clearfix">
-                <div class="pull-left">{{delivery.goodsNum}}件商品,e圆总额：{{delivery.totalAmount}}</div>
-                <div class="pull-right">账户e圆总额：{{delivery.emoney}}</div>
+                <div class="pull-left">{{delivery.goodsNum}}件商品,e圆总额：{{delivery.totalAmount | currency:""}}</div>
+                <div class="pull-right">账户e圆总额：{{delivery.emoney | currency:""}}</div>
             </div>
             <div class="section clearfix section-condensed">
-                <div class="pull-left">应付e圆总额：<span class="text-large text-orange">{{delivery.totalAmount}}</span></div>
+                <div class="pull-left">应付e圆总额：<span class="text-large text-orange">{{delivery.totalAmount | currency:""}}</span></div>
             </div>
             <div class="section clearfix section-condensed text-primary">
                 <a ng-href="#/investment_projects" class="pull-right text-primary">e圆不足?去投资获得更多e圆</a>

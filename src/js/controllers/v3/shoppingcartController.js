@@ -12,6 +12,9 @@ var shoppingcartController = function($scope, $rootScope, $location, shoppingCar
                 if (item.status == 1) {
                     item.exchangPrice = 0;
                 }
+                if (item.goodStatus == '-1') {
+                    item.checked = false;
+                }
             });
         } else {
             errorServices.autoHide(data.message);
@@ -113,6 +116,7 @@ var shoppingcartController = function($scope, $rootScope, $location, shoppingCar
             }
         })
     }
+    $scope.input.all = true;
     $scope.$watch("input.all", function(n, o) {
         if (n == true) {
             angular.forEach($scope.items, function(item) {
