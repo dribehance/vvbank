@@ -86,8 +86,8 @@
                         <div class="section">
                             <div class="semi-auto semi-left-75">
                                 <span class="semi-fixed-left semi-width-750 text-left btn section-wide">联系电话</span>
-                                <input type="text" class="form-control block full-width rectangle" name="telephone" ng-model="input.telephone" required ng-pattern="/((^(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})|(^\d{3,4}-\d{7,9}))$/" placeholder="请填写手机号码">
-                                <span class="vv-input-tip text-orange" ng-show="addressForm.telephone.$dirty && addressForm.telephone.$invalid">请输入电话号码，手机或固话区号以-分隔</span>
+                                <input type="text" class="form-control block full-width rectangle" name="telephone" ng-model="input.telephone" required ng-pattern="/(^(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/" placeholder="请填写手机号码">
+                                <span class="vv-input-tip text-orange" ng-show="addressForm.telephone.$dirty && addressForm.telephone.$invalid">请输入11位手机号码</span>
                             </div>
                         </div>
                         <div class="section">

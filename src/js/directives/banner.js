@@ -18,7 +18,7 @@ angular.module("VVBank").directive('banner', function($rootScope) {
                 "line-height": ($(element).width() || $(window).width())/rate +"px",
                 overflow:"hidden",
                 "text-align":"center",
-                "background-image": bgURL,
+                "background-image": "url("+bgURL+")",
                 "background-repeat":"no-repeat",
                 "background-position":"center center",
                 "background-size":"100%"
