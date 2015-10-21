@@ -26,6 +26,9 @@
             <div class="pull-left">数量:x{{order.quantity}}<i class="bega" ng-show="order.winLog == 1">奖</i></div>
             <div class="pull-right">兑换单价:{{order.price | currency:""}}e圆</div>
         </div>
+        <div class="section">
+            有效期：{{order.useDate}}
+        </div>
         <div class="section" ng-show="parseCode(order.goodsCode).length >0">
             <p>商品序列号</p>
             <div class="row" ng-repeat="goodcode in parseCode(order.goodsCode) track by $index" style="margin-bottom:5px">
