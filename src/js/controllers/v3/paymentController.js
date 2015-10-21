@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var paymentController = function($scope, $rootScope, $timeout, $routeParams, mallServices, SharedState, settingServices, errorServices, toastServices, localStorageService, config) {
+var paymentController = function($scope, $rootScope,$location, $timeout, $routeParams, mallServices, SharedState, settingServices, errorServices, toastServices, localStorageService, config) {
     $rootScope.page_title = "e圆商城|结算";
     $scope.input = {
         password: "",
@@ -111,5 +111,8 @@ var paymentController = function($scope, $rootScope, $timeout, $routeParams, mal
                 errorServices.autoHide(data.message);
             }
         })
+    };
+    $scope.queryOrders = function () {
+        $location.path("orders").replace();
     }
 }
