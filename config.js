@@ -11,7 +11,7 @@ module.exports = function(config) {
 
   // Development web server
 
-  config.server.host = 'localhost';
+  config.server.host = '172.16.4.70';
   config.server.port = '9000';
   
   // Set to false to disable it:
@@ -20,7 +20,7 @@ module.exports = function(config) {
   // Weinre Remote debug server
   
   config.weinre.httpPort = 9001;
-  config.weinre.boundHost = 'localhost';
+  config.weinre.boundHost = '172.16.4.70';
 
   // Set to false to disable it:
   config.weinre = false;

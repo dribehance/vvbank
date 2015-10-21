@@ -101,6 +101,7 @@ var paymentController = function($scope, $rootScope,$location, $timeout, $routeP
             toastServices.hide()
             if (data.respcode == config.request.SUCCESS) {
                 $scope.delivery.recipientName = $scope.input.username;
+                console.log($scope.input.telephone)
                 $scope.delivery.recipientPhone = $scope.input.telephone;
                 $scope.delivery.provider.providerName = $scope.input.province.provinceName;
                 $scope.delivery.city.cityName = $scope.input.city.cityName;
