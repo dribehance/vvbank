@@ -9,7 +9,7 @@ var peopleTwoController = function($scope, $rootScope, $routeParams, peopleServi
         if (data.respcode == config.request.SUCCESS) {
             $scope.peoples = data.result;
             $scope.total_money = data.totalTwoCommissionRate;
-            $scope.total_income = data.totalCommissionRate;
+            $scope.total_income = data.commissionRate;
             $scope.people_level1 = data.inviteLevelOneCount;
             $scope.people_level2 = data.inviteLevelTwoCount;
         } else {
