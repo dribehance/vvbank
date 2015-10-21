@@ -28,7 +28,7 @@
         </div>
         <div class="vv-divide"></div>
         <div class="section">
-            <div>兑换价格：<span class="text-orange">{{emall_item.exchangPrice | currency:"" }}</span>e圆</div>
+            <p>兑换价格：<span class="text-orange">{{emall_item.exchangPrice | currency:"" }}</span>e圆</p>
             <div>兑换数量：
                 <select name="selected_amount" ng-model="input.amount" ng-options="o as o for o in amount_options" required></select>
                 已经有<span class="text-orange">{{emall_item.cartSum || "0"}}</span>人兑换此商品

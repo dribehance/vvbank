@@ -1,4 +1,5 @@
 var signupController = function($rootScope, $interval, $routeParams, $window, $scope, $location, userServices, errorServices, platformServices, SharedState, config, toastServices, localStorageService, signatureServices) {
+    $rootScope.page_title = "优易投|注册";
     $scope.input = {
         telephone: "",
         password: "",

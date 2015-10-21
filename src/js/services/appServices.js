@@ -99,7 +99,9 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
                 if (data.respcode == config.request.SUCCESS) {
                     $rootScope.categories = data.result;
                 }
-            })
+            });
+            // page title
+            $rootScope.page_title = "优易投";
         }
     }
 });
