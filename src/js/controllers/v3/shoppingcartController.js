@@ -116,15 +116,36 @@ var shoppingcartController = function($scope, $rootScope, $location, shoppingCar
             }
         })
     }
+    $scope.removeById = function(item) {
+        var car_id = item.carId;
+        toastServices.show();
+        shoppingCartServices.remove({
+            car_id: car_id
+        }).then(function(data) {
+            toastServices.hide()
+            if (data.respcode == config.request.SUCCESS) {
+                $scope.items = $scope.items.filter(function(item) {
+                    return car_id != item.carId;
+                })
+                errorServices.autoHide(data.message)
+            } else {
+                errorServices.autoHide(data.message);
+            }
+        })
+    }
     $scope.input.all = true;
     $scope.$watch("input.all", function(n, o) {
         if (n == true) {
             angular.forEach($scope.items, function(item) {
-                item.checked = true;
+                if (item.goodStatus != -1) {
+                    item.checked = true;
+                }
             })
         } else {
             angular.forEach($scope.items, function(item) {
-                item.checked = false;
+                if (item.goodStatus != -1) {
+                    item.checked = false;
+                }
             })
         }
     }, true)
