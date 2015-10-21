@@ -93,7 +93,7 @@ var shoppingcartController = function($scope, $rootScope, $location, shoppingCar
     $scope.remove = function() {
         var car_ids = [];
         car_ids = $scope.items.filter(function(item) {
-            return item.checked;
+            return item.checked && item.status != 1;
         }).map(function(item) {
             return item.carId;
         }).join(",");

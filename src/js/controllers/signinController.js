@@ -1,5 +1,5 @@
-var signinController = function($scope, $routeParams, $location, userServices, platformServices, toastServices, errorServices, localStorageService, config) {
-    $rootScope.page_title = "优易投|登录";
+var signinController = function($scope, $rootScope,$routeParams, $location, userServices, platformServices, toastServices, errorServices, localStorageService, config) {
+    $rootScope.page_title = "优易投";
     $scope.input = {
         name: "",
         password: ""
