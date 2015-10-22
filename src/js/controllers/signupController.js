@@ -54,7 +54,7 @@ var signupController = function($rootScope, $interval, $routeParams, $window, $s
         });
     }
     $scope.getSmscode = function() {
-            userServices.getSmscode($scope.input.telephone, config.smstype.SIGNUP).then(function(data) {
+            userServices.getSmscode($scope.input.telephone,$scope.input.verifycode, config.smstype.SIGNUP).then(function(data) {
                 if (data.result.status == 1 && data.respcode == config.request.SUCCESS) {
                     errorServices.autoHide("验证码发送成功");
                 } else {
@@ -72,8 +72,8 @@ var signupController = function($rootScope, $interval, $routeParams, $window, $s
             if (data.respcode == config.request.SUCCESS) {
                 localStorageService.set("token", data.result.token);
                 platformServices.notify();
-                $window.location.href = data.result.wapUrl;
-                // $location.path("/index").replace();
+                // $window.location.href = data.result.wapUrl;
+                $location.path("/index").replace();
             } else {
                 errorServices.autoHide(data.message);
             }

@@ -122,9 +122,9 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 return data.data;
             })
         },
-        getSmscode: function(telephone, smstype) {
+        getSmscode: function(telephone,verify, smstype) {
             return $http({
-                url: config.url + "/v1/service/sendSMSCode",
+                url: config.url + "/v1/service/sendVerifyCode",
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -138,7 +138,8 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 data: angular.extend({}, config.common_params, {
                     "mobile": telephone,
                     "code": $rootScope.signcode,
-                    "sendType": smstype
+                    "sendType": smstype,
+                    "verify": verify,
                 })
             }).then(function(data) {
                 return data.data;

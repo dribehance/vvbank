@@ -74,12 +74,16 @@ var paymentController = function($scope, $rootScope,$location, $timeout, $routeP
     };
     $scope.modifyAddress = function() {
         SharedState.turnOn("address_panel");
+        // no address provide
+        if ($scope.delivery.provider.providerId == "") return;
         $scope.input.username = $scope.delivery.recipientName;
         $scope.input.telephone = $scope.delivery.recipientPhone;
         $scope.input.address = $scope.delivery.address;
-        $scope.input.province.provinceId = $scope.delivery.provider.providerId;
-        $scope.input.province.provinceCode = $scope.delivery.provider.providerCode;
-        $scope.input.province.provinceName = $scope.delivery.provider.providerName;
+        angular.forEach($scope.provinces,function(province) {
+            if (province.provinceId == $scope.delivery.provider.providerId) {
+                $scope.input.province = province;
+            }
+        })
         $timeout(function() {
             $scope.input.city.cityId = $scope.delivery.city.cityId;
             $scope.input.city.cityCode = $scope.delivery.city.cityCode;
