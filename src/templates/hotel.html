@@ -7,7 +7,7 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <!-- dynamic -->
-        <wrap-owlcarousel class="owl-carousel" data-options="{autoPlay: 5000, stopOnHover: true,  
+        <!-- <wrap-owlcarousel class="owl-carousel" data-options="{autoPlay: 5000, stopOnHover: true,  
         slideSpeed : 300, paginationSpeed : 400, singleItem : true}" style="overflow:hidden">
             <a>
                 <img ng-src="{{ emall_item.imageOne }}" alt="" class="block full-width">
@@ -21,12 +21,12 @@
             <a>
                 <img ng-src="{{ emall_item.imageFour }}" alt="" class="block full-width">
             </a>
-        </wrap-owlcarousel>
-        <!-- <banner data-options="{}" data-rate="580/300">
+        </wrap-owlcarousel> -->
+        <banner data-options="{}" data-rate="4/3">
             <div class="image-holder" ng-repeat="b in input.banners" on-repeat-done>
                 <img ng-src="{{b}}" err-src="{{staticImageUrl+'images/banner_1.png'}}" class="block full-width" alt="">
             </div>
-        </banner> -->
+        </banner>
         <div class="section">
             <div class="h3">{{emall_item.goodsName}}</div>
             <div class="text-grey">{{emall_item.summary}}</div>

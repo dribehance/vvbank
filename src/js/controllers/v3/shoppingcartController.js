@@ -144,7 +144,8 @@ var shoppingcartController = function($scope, $rootScope, $location, shoppingCar
                     item.checked = true;
                 }
             })
-        } else {
+        }
+        else if ($scope.items.length == $scope.selected_items()) {
             angular.forEach($scope.items, function(item) {
                 if (item.goodStatus != -1) {
                     item.checked = false;

@@ -15,10 +15,13 @@ var hotelController = function($scope, $rootScope, $location, $routeParams, $fil
         toastServices.hide()
         if (data.respcode == config.request.SUCCESS) {
             $scope.emall_item = data.result;
-            // $scope.input.banners.push($scope.emall_item.imageOne);
-            // $scope.input.banners.push($scope.emall_item.imageTwo);
-            // $scope.input.banners.push($scope.emall_item.imageThree);
-            // $scope.input.banners.push($scope.emall_item.imageFour);
+            var _banners = [];
+
+            _banners.push($scope.emall_item.imageOne);
+            _banners.push($scope.emall_item.imageTwo);
+            _banners.push($scope.emall_item.imageThree);
+            _banners.push($scope.emall_item.imageFour);
+            $scope.input.banners = _banners;
             var amount = $scope.emall_item.goodsNumber > 10 ? 10 : $scope.emall_item.goodsNumber;
             $scope.amount_options = $filter("limitTo")($scope.amount_options, amount);
             if ($scope.amount_options.length == 0) {
