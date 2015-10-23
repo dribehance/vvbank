@@ -13,9 +13,9 @@ angular.module("VVBank").directive('banner', function($rootScope) {
             var rate = parseFloat(scope.$eval($(element).attr('data-rate'))),
                 bgURL = $rootScope.staticImageUrl + "images/banner_1.png";
             var style = {
-                width:$(element).width() || $(window).width(),
-                height:($(element).width() || $(window).width())/rate,
-                "line-height": ($(element).width() || $(window).width())/rate +"px",
+                // width:$(element).width() || $(window).width(),
+                // height:($(element).width() || $(window).width())/rate,
+                // "line-height": ($(element).width() || $(window).width())/rate +"px",
                 overflow:"hidden",
                 "text-align":"center",
                 "background-image": "url("+bgURL+")",

@@ -22,7 +22,10 @@ var shoppingcartController = function($scope, $rootScope, $location, shoppingCar
     });
     // toggle check shopping cart item
     $scope.toggle = function(item) {
-        return item.checked = !item.checked;
+        item.checked = !item.checked;
+        if (!item.checked) {
+            $scope.input.all = false;
+        }
     };
     // calculate total price;
     $scope.sum = function() {
