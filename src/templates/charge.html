@@ -10,17 +10,18 @@
 <form name="chargeForm" ng-submit="ajaxForm(this)">
     <div class="section">
         <div class="semi-auto semi-left-98">
-            <span class="semi-fixed-left semi-width-98 btn text-left section-wide">支付银行</span>
-            <select class="sex block full-width form-control" ng-model="input.bank" ng-options="b for b in banks" required></select>
+            <span class="semi-fixed-left semi-width-98 btn text-left section-wide">请选择银行</span>
+            <select class="sex block full-width form-control rectangle" ng-model="input.bank" ng-options="b for b in banks" required></select>
         </div>
     </div>
     <div class="vv-divide"></div>
     <div class="section">
         <div class="semi-auto semi-left-98">
             <span class="semi-fixed-left semi-width-98 btn section-wide text-left">充值金额</span>
-            <input type="text" class="form-control block full-width" name="money" ng-model="input.money" ng-pattern="/^[0-9]+$/" required placeholder="请输入金额，最低10元">
+            <input type="text" class="form-control block full-width rectangle" name="money" ng-model="input.money" ng-pattern="/^[0-9]+$/" required placeholder="请输入金额，最低10元">
         </div>
     </div>
+    <div class="vv-divide"></div>
     <!-- <div class="vv-divide vv-5"></div>
     <div class="vv-divide vv-5"></div>
     <div class="section">
@@ -29,6 +30,7 @@
         </label>
     </div> -->
     <div class="section">
-        <button type="submit" class="btn btn-lg btn-primary block full-width" ng-disabled="!chargeForm.$valid">马上充值</button>
+        <button type="submit" class="btn btn-lg btn-primary block full-width" ng-disabled="!chargeForm.$valid">去网上银行充值</button>
     </div>
+    <div class="section text-danger">充值金额经投资方可自由提现，未投资金额提现单日限1万元。</div>
 </form>

@@ -237,26 +237,48 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
         charge: function() {
 
         },
+        queryCashInfo: function () {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/v1/service/withdraw",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token")
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
         cash: function(cash) {
             return $http({
-                url: config.url + "/v1/service/encashment",
-                method: "PUT",
-                // headers: {
-                //     'Content-Type': 'application/x-www-form-urlencoded'
-                // },
-                // transformRequest: function(obj) {
-                //     var str = [];
-                //     for (var p in obj)
-                //         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                //     return str.join("&");
-                // },
+                url: config.url + "/v1/service/submitwithdraw",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
                 params: angular.extend({}, config.common_params, {
-                    "amount": cash.money,
-                    "dealpwd": cash.password,
-                    "signcode": $rootScope.signcode,
-                    "smscode": cash.smscode,
-                    "cardId": cash.id,
                     "token": localStorageService.get("token"),
+                    "withdrawMoney": cash.withdrawMoney,
+                    "antiWithdrawMoney": cash.antiWithdrawMoney,
+                    "voucher": $rootScope.voucher,
+                    "fee1": cash.fee1,
+                    "fee2": cash.fee2,
+                    "bankAccountID": cash.bankAccountID,
                 })
             }).then(function(data) {
                 return data.data;
