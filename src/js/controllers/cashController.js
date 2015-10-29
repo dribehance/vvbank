@@ -7,6 +7,7 @@ var cashController = function($scope, $rootScope, $location, $filter, userServic
     userServices.queryCashInfo().then(function(data) {
         toastServices.hide()
             // if(data.respcode == "1") {
+        $scope.btn_text = data.message;
         if (data.respcode == config.request.SUCCESS) {
             $scope.cash_info = data;
             $scope.banks = data.result;
@@ -15,6 +16,7 @@ var cashController = function($scope, $rootScope, $location, $filter, userServic
                 return bank;
             })
             $scope.input.bank = $scope.banks[0];
+            $scope.btn_text = "马上充值";
         } else {
             errorServices.autoHide(data.message);
         }
