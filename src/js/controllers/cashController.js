@@ -1,4 +1,4 @@
-var cashController = function($scope, $rootScope,$location, userServices, toastServices, parserServices, settingServices, $location, errorServices, myServices, config) {
+var cashController = function($scope, $rootScope, $location, $filter, userServices, toastServices, parserServices, settingServices, $location, errorServices, myServices, config) {
     $scope.input = {
         money: "",
         total_fee: "0"
@@ -21,13 +21,13 @@ var cashController = function($scope, $rootScope,$location, userServices, toastS
     })
     $scope.ajaxForm = function() {
         $location.path("cash_confirm").search({
-            "withdrawMoneyHidden":$scope.queryActuralMoney(),
-            "antiWithdrawMoneyHidden":$scope.cash_info.fee2/$scope.cash_info.feeRate,
-            "fee":$scope.input.total_fee - $scope.cash_info.fee2 - $scope.use_bonus,
-            "fee2":$scope.cash_info.fee2,
-            "voucher":$scope.use_bonus,
-            "selectID":$scope.input.bank.bankId
-        }).replace();
+            "withdrawMoneyHidden": $scope.queryActuralMoney(),
+            "antiWithdrawMoneyHidden": parseFloat($filter("currency")(($scope.cash_info.fee2 / $scope.cash_info.feeRate),"")),
+            "fee": $scope.input.total_fee - $scope.cash_info.fee2 - $scope.use_bonus,
+            "fee2": $scope.cash_info.fee2,
+            "voucher": $scope.use_bonus,
+            "selectID": $scope.input.bank.bankId
+        });
     };
     $scope.queryFee = function() {
         var number_reg = /[0-9]$/;
@@ -42,7 +42,7 @@ var cashController = function($scope, $rootScope,$location, userServices, toastS
         if (flag > 0 || flag == 0) {
             return $scope.input.total_fee = 2;
         }
-        $scope.cash_info.fee2 = -flag * $scope.cash_info.feeRate;
+        $scope.cash_info.fee2 = parseFloat($filter("currency")(-flag * $scope.cash_info.feeRate, ""));
         $scope.input.total_fee = 2 + $scope.cash_info.fee2;
         return $scope.input.total_fee;
     }

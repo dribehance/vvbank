@@ -183,6 +183,14 @@ angular.module("VVBank", [
                 factory:loginInterceptor
             }
         })
+        .when("/charge_confirm", {
+            templateUrl: "charge_confirm.html",
+            reloadOnSearch: false,
+            controller: chargeConfirmController,
+            resolve: {
+                factory:loginInterceptor
+            }
+        })
         .when("/update-trade-psd", {
             templateUrl: "me/update-trade-psd.html",
             reloadOnSearch: false,

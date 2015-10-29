@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var cashConfirmController = function($scope,$rootScope,$timeout, $routeParams, userServices, errorServices, toastServices, localStorageService, config) {
+var cashConfirmController = function($scope, $rootScope,$location, $timeout, $routeParams, userServices, errorServices, toastServices, localStorageService, config) {
     // get confirm info
     $scope.input = {};
     toastServices.show();
@@ -44,11 +44,10 @@ var cashConfirmController = function($scope,$rootScope,$timeout, $routeParams, u
     };
     // ajaxform
     $scope.ajaxForm = function() {
-        console.log("sd")
         toastServices.show();
         userServices.cash({
-        	"pwd":$scope.input.password,
-        	"code":$scope.input.smscode,
+            "pwd": $scope.input.password,
+            "code": $scope.input.smscode,
             "withdrawMoney": $routeParams.withdrawMoneyHidden,
             "antiWithdrawMoney": $routeParams.antiWithdrawMoneyHidden,
             "fee": $routeParams.fee,
@@ -59,10 +58,10 @@ var cashConfirmController = function($scope,$rootScope,$timeout, $routeParams, u
             toastServices.hide()
             console.log(data)
             if (data.respcode == config.request.SUCCESS) {
-            	errorServices.autoHide(data.message);
-                $timeout(function(){
+                errorServices.autoHide(data.message);
+                $timeout(function() {
                     $location.path("me").replace();
-                },1500)
+                }, 1500)
             } else {
                 errorServices.autoHide(data.message);
             }
