@@ -207,6 +207,14 @@ angular.module("VVBank", [
                 factory:loginInterceptor
             }
         })
+        .when("/cash_confirm", {
+            templateUrl: "cash_confirm.html",
+            reloadOnSearch: false,
+            controller: cashConfirmController,
+            resolve: {
+                factory:loginInterceptor
+            }
+        })
         .when("/setting", {
             templateUrl: "setting.html",
             reloadOnSearch: false,

@@ -7,56 +7,47 @@
 <div ui-content-for="navbarAction">
     <span></span>
 </div>
-<form name="cashForm" ng-submit="ajaxForm(this)">
-    <!-- <div class="section">
-        <div class="semi-auto semi-left-98">
-            <span class="semi-fixed-left semi-width-98 text-left section-wide text-grey">提现银行</span>
-            <div class="text-grey">{{ bank.name || "未绑定"}}</div>
-        </div>
-    </div> -->
-    <!-- <div class="vv-divide"></div> -->
-    <div class="section">
-        <div class="semi-auto semi-left-98">
-            <span class="semi-fixed-left semi-width-98 btn text-left section-wide">请选择银行</span>
-            <select class="sex block full-width form-control rectangle" ng-model="input.bank" ng-options="b as b.bankInfo for b in banks" required></select>
-        </div>
+<div class="scrollable">
+    <div class="scrollable-content">
+        <form name="cashForm" ng-submit="ajaxForm()">
+            <div class="section">
+                <div class="semi-auto semi-left-98">
+                    <span class="semi-fixed-left semi-width-98 btn text-left section-wide">请选择银行</span>
+                    <select class="sex block full-width form-control rectangle" ng-model="input.bank" ng-options="b as b.bankInfo for b in banks" required></select>
+                </div>
+            </div>
+            <!-- <div class="vv-divide"></div> -->
+            <div class="section">
+                <div class="semi-auto semi-left-98">
+                    <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">提现金额</span>
+                    <input type="number" class="form-control block full-width rectangle" name="money" ng-model="input.money" min="{{cash_info.minAmount}}" max="{{cash_info.maxAmount}}" required placeholder="请输入金额，最低{{cash_info.minAmount}}元">
+                    <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$dirty && cashForm.money.$error.required">金额必填</div>
+                    <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.min">提现金额最少为{{cash_info.minAmount}}元</div>
+                    <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.max">提现金额最大为{{cash_info.maxAmount}}元</div>
+                    <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.number">金额为整数</div>
+                </div>
+            </div>
+            <div class="vv-divide"></div>
+            <div class="section">
+                手续费：
+                <span class="text-orange">{{queryFee() | currency:"￥"}}</span>
+            </div>
+            <div class="section">
+                实际到账金额: <span class="text-orange">{{queryActuralMoney() | currency:"￥"}}</span>
+            </div>
+            <div class="section">
+                <p>特别说明：</p>
+                <div>1、本次最小提现金额单笔{{cash_info.minAmount| currency:"￥"}}</div>
+                <div>2、本次最大提现金额为单笔{{cash_info.maxAmount| currency:"￥"}}</div>
+                <div>3、默认使用红包抵扣手续费(不包括未投资提现手续费)，当前可用抵现红包{{cash_info.voucher| currency:"￥"}}</div>
+                <div>4、未投资提现手续费按未投资提现金额的{{parsePercentage(cash_info.feeRate)}}%收取</div>
+                <div>
+                    优易投提现处理到账时间为：T(工作日)+1,最终到账时间以收款行的入账时间为准！
+                </div>
+            </div>
+            <div class="section">
+                <button type="submit" class="btn btn-lg btn-warning block full-width" ng-disabled="cashForm.$invalid">马上提现</button>
+            </div>
+        </form>
     </div>
-    <!-- <div class="vv-divide"></div> -->
-    <div class="section">
-        <div class="semi-auto semi-left-98">
-            <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">提现金额</span>
-            <input type="number" class="form-control block full-width rectangle" name="money" ng-model="input.money" min="{{cash_info.minAmount}}" max="{{cash_info.maxAmount}}" required placeholder="请输入金额，最低{{cash_info.minAmount}}元">
-            <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$dirty && cashForm.money.$error.required">金额必填</div>
-            <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.min">提现金额最少为{{cash_info.minAmount}}元</div>
-            <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.max">提现金额最大为{{cash_info.maxAmount}}元</div>
-            <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.number">金额为整数</div>
-        </div>
-    </div>
-    <div class="vv-divide"></div>
-    <!-- <div class="section">
-        可用金额: <span class="text-orange">{{cash_info.balance | currency:"￥"}}</span>
-    </div>
-    <div class="section">
-        未投资提现资金: <span class="text-orange">{{cash_info.antiWithdraw | currency:"￥"}}</span>
-    </div> -->
-    <div class="section">
-        手续费：
-        <span class="text-orange">{{queryFee() | currency:"￥"}}</span>
-    </div>
-    <div class="section">
-        实际到账金额: <span class="text-orange">{{queryActuralMoney() | currency:"￥"}}</span>
-    </div>
-    <div class="section">
-        <p>特别说明：</p>
-        <div>1、本次最小提现金额单笔{{cash_info.minAmount| currency:"￥"}}</div>
-        <div>2、本次最大提现金额为单笔{{cash_info.maxAmount| currency:"￥"}}</div>
-        <div>3、默认使用红包抵扣手续费(不包括未投资提现手续费)，当前可用抵现红包{{cash_info.voucher| currency:"￥"}}</div>
-        <div>4、未投资提现手续费按未投资提现金额的{{parsePercentage(cash_info.feeRate)}}%收取</div>
-        <div>
-            优易投提现处理到账时间为：T(工作日)+1,最终到账时间以收款行的入账时间为准！
-        </div>
-    </div>
-    <div class="section">
-        <button type="submit" class="btn btn-lg btn-warning block full-width" ng-disabled="cashForm.$invalid">马上提现</button>
-    </div>
-</form>
+</div>

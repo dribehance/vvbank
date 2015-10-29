@@ -91,8 +91,8 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 url: config.url + "/v1/service/account",
                 method: "get",
                 params: angular.extend({}, config.common_params, {
-                    "telephone":telephone,
-                    "username":username
+                    "telephone": telephone,
+                    "username": username
                 })
             }).then(function(data) {
                 return data.data;
@@ -122,7 +122,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 return data.data;
             })
         },
-        getSmscode: function(telephone,verify, smstype) {
+        getSmscode: function(telephone, verify, smstype) {
             return $http({
                 url: config.url + "/v1/service/sendVerifyCode",
                 method: "POST",
@@ -144,6 +144,29 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
             }).then(function(data) {
                 return data.data;
             })
+        },
+        getCashSmscode: function(mobile) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/v1/service/code/sendCode",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "mobile": mobile,
+                    "sendType": 2
+                })
+            }).then(function(data) {
+                return data.data;
+            });
         },
         token: function() {
             return $http({
@@ -234,10 +257,64 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 })
             }
         },
-        charge: function() {
-
+        queryChargeInfo: function() {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/v1/service/securityCard",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token")
+                })
+            }).then(function(data) {
+                return data.data;
+            });
         },
-        queryCashInfo: function () {
+        charge: function(charge) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/v1/service/recharge",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "bankName": charge.bankName,
+                    "bankCode": charge.bankCode,
+                    "money": charge.money
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        thirdpartCharge: function(pay_params) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: "https://yintong.com.cn/llpayh5/payment.htm",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, {
+                    req_data: angular.toJson(pay_params)
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        queryCashInfo: function() {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/v1/service/withdraw",
@@ -271,18 +348,38 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
                     return str.join("&");
                 },
-                params: angular.extend({}, config.common_params, {
+                data: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
+                    "pwd": cash.pwd,
+                    "code": cash.code,
                     "withdrawMoney": cash.withdrawMoney,
                     "antiWithdrawMoney": cash.antiWithdrawMoney,
-                    "voucher": $rootScope.voucher,
-                    "fee1": cash.fee1,
+                    "voucher": cash.voucher,
+                    "fee": cash.fee,
                     "fee2": cash.fee2,
                     "bankAccountID": cash.bankAccountID,
                 })
             }).then(function(data) {
                 return data.data;
             })
+        },
+        queryCashConfirmInfo: function(input) {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/v1/service/checkwithdraw",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token"),
+                    "withdrawMoneyHidden": input.withdrawMoneyHidden,
+                    "antiWithdrawMoneyHidden": input.antiWithdrawMoneyHidden,
+                    "fee": input.fee,
+                    "fee2": input.fee2,
+                    "voucher": input.voucher,
+                    "selectID": input.selectID
+                })
+            }).then(function(data) {
+                return data.data;
+            });
         },
         updateSignPassword: function(password) {
             return $http({
@@ -328,7 +425,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 return data.data;
             })
         },
-        bindTelephone: function(telephone,smscode) {
+        bindTelephone: function(telephone, smscode) {
             return $http({
                 url: config.url + "/v1/service/validateTelephone",
                 method: "POST",
@@ -344,7 +441,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 data: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "smscode": smscode,
-                    "telephone":telephone,
+                    "telephone": telephone,
                     "signcode": $rootScope.signcode,
                 })
             }).then(function(data) {

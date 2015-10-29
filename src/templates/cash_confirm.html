@@ -1,0 +1,58 @@
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<!-- <div ui-content-for="title">提现确认</div>
+<div ui-content-for="navbarAction"></div>
+<div ui-content-for="backAction">
+	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+</div> -->
+<div class="scrollable">
+	<div class="scrollable-content">
+		<form name="cashForm" ng-submit="ajaxForm()">
+            <div class="section">温馨提示：提现后，资金将直接进入您的银行账户，无法撤回或退款，请谨慎操作！</div>
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-75">开户名：</span>
+                    <div class="text-grey">{{cash_confirm_info.accountName|limitTo:1}}**</div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-75">收款银行</span>
+                    <div class="text-grey">{{cash_confirm_info.bankNo}}</div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-75">提现金额</span>
+                    <div class="text-grey">{{cash_confirm_info.withdrawMoney | currency:"￥"}} 抵现红包：{{cash_confirm_info.voucher | currency:"￥"}}</div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-75 section section-wide">交易密码</span>
+                    <input type="password" class="form-control block full-width rectangle" name="password" ng-model="input.password" required placeholder="请输入交易密码">
+                </div>
+            </div>
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-75">绑定手机：</span>
+                    <div class="text-grey">{{cash_confirm_info.showBoundCellphone}}</div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-75 section section-wide">验证码</span>
+                    <input type="text" class="form-control block full-width rectangle" name="smscode" ng-model="input.smscode" required placeholder="请输入验证码">
+                </div>
+            </div>
+            <div class="section">
+                <button type="button" class="btn btn-danger full-width" ng-click="getSmscode()" ng-disabled="callbackTimer.counting">
+                    <timer id="vvcountdown" interval="1000" countdown="150" auto-start='false' ng-show="callbackTimer.counting" finish-callback="callbackTimer.finish()">{{countdown + 1}}</timer>
+                    获取验证码
+                </button>
+            </div>
+            <div class="section">
+                <button type="submit" class="btn btn-primary" ng-disabled="cashForm.$invalid">确认</button>
+            </div>
+        </form>
+	</div>
+</div>
