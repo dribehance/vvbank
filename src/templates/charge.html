@@ -18,17 +18,10 @@
     <div class="section">
         <div class="semi-auto semi-left-98">
             <span class="semi-fixed-left semi-width-98 btn section-wide text-left">充值金额</span>
-            <input type="text" class="form-control block full-width rectangle" name="money" ng-model="input.money" ng-pattern="/^[0-9]+$/" required placeholder="请输入金额">
+            <input type="text" class="form-control block full-width rectangle" name="money" ng-model="input.money" required placeholder="请输入金额">
         </div>
     </div>
     <div class="vv-divide"></div>
-    <!-- <div class="vv-divide vv-5"></div>
-    <div class="vv-divide vv-5"></div>
-    <div class="section">
-        <label for="agreement" class="block text-grey" style="font-weight:100">
-            <input type="checkbox" id="agreement" name="agreement" ng-model="input.agreement" required>我已经阅读并同意<a class="text-primary">《用户服务协议》</a>
-        </label>
-    </div> -->
     <div class="section">
         <button type="submit" class="btn btn-primary block full-width" ng-disabled="!chargeForm.$valid">{{btn_text}}</button>
     </div>

@@ -14,6 +14,10 @@ var chargeController = function($scope, $location, userServices, errorServices, 
         }
     });
     $scope.ajaxForm = function() {
+        if (parseFloat($scope.input.money) == NaN) {
+            errorServices.autoHide("金额不正确")
+            return;
+        }
         toastServices.show();
         userServices.charge({
             "bankName": $scope.input.bank.bankName,

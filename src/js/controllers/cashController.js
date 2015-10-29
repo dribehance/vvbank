@@ -16,7 +16,7 @@ var cashController = function($scope, $rootScope, $location, $filter, userServic
                 return bank;
             })
             $scope.input.bank = $scope.banks[0];
-            $scope.btn_text = "马上充值";
+            $scope.btn_text = "申请提现";
         } else {
             errorServices.autoHide(data.message);
         }
