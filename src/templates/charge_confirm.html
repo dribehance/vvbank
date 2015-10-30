@@ -6,7 +6,7 @@
 </div> -->
 <div class="scrollable">
 	<div class="scrollable-content">
-		<form action="https://yintong.com.cn/llpayh5/payment.htm" method="post" id="payForm">
+		<form action="https://yintong.com.cn/llpayh5/authpay.htm" method="post" id="payForm">
 			<input type="hidden" name="req_data" value="{{req_data}}">
 			<div class="section">
 				当前余额：{{charge_balance | currency:"￥"}}
@@ -14,9 +14,9 @@
 			<div class="section">
 				充值金额：{{charge_money | currency:"￥"}}
 			</div>
-			<div class="section">
+			<!-- <div class="section">
 				充值银行：{{charge_bankname}}
-			</div>
+			</div> -->
 			<div class="section">
 				<button type="submit" class="btn btn-primary full-width">去网上银行充值</button>
 			</div>

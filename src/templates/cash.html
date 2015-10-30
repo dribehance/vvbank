@@ -20,10 +20,10 @@
             <div class="section">
                 <div class="semi-auto semi-left-98">
                     <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">提现金额</span>
-                    <input type="number" class="form-control block full-width rectangle" name="money" ng-model="input.money" min="{{cash_info.minAmount}}" max="{{cash_info.maxAmount}}" required placeholder="请输入金额，最低{{cash_info.minAmount}}元">
+                    <input type="number" class="form-control block full-width rectangle" name="money" ng-model="input.money" min="{{cash_info.minAmount}}" max="{{cash_info.maxAmount}}" required placeholder="请输入金额">
                     <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$dirty && cashForm.money.$error.required">金额必填</div>
                     <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.min">提现金额最少为{{cash_info.minAmount}}元</div>
-                    <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.max">提现金额最大为{{cash_info.maxAmount}}元</div>
+                    <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.max">提现金额最大为{{cash_info.maxWithdraw}}元</div>
                     <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.number">金额为整数</div>
                 </div>
             </div>
@@ -35,18 +35,19 @@
             <div class="section">
                 实际到账金额: <span class="text-orange">{{queryActuralMoney() | currency:"￥"}}</span>
             </div>
-            <div class="section text-center">
+            <div class="section text-center" ng-if="cash_info.respcode == '0000'">
                 <button type="submit" class="btn btn-primary" ng-disabled="cashForm.$invalid">{{btn_text}}</button>
+            </div>
+            <div class="section text-center text-danger" ng-if="cash_info.respcode != '0000'">
+                {{btn_text}}
             </div>
             <div class="section">
                 <p>提醒：</p>
-                <div>1、本次最小提现金额单笔{{cash_info.minAmount| currency:"￥"}}</div>
-                <div>2、本次最大提现金额为单笔{{cash_info.maxAmount| currency:"￥"}}</div>
-                <div>3、默认使用红包抵扣手续费(不包括未投资提现手续费)，当前可用抵现红包{{cash_info.voucher| currency:"￥"}}</div>
-                <div>4、未投资提现手续费按未投资提现金额的{{parsePercentage(cash_info.feeRate)}}%收取</div>
-                <div>
-                    优易投提现处理到账时间为：T(工作日)+1,最终到账时间以收款行的入账时间为准！
-                </div>
+                <div>1. 单笔提现金额范围为{{cash_info.minAmount|currency:"￥"}}-{{cash_info.maxAmount|currency:"￥"}}</div>
+                <div>2. 用户申请提现，易宝支付每笔收取2元手续费，系统优先使用优易投抵现红包进行抵扣；</div>
+                <div>3. 充值15天内（含15天）的提现属于“紧急提现”，收取提现金额的0.3%手续费， 另付提现手续费2元/笔，15天后提现不收取手续费；</div>
+                <div>4.涉及个人所得税的，由理财人自行申报。</div>
+                <div>5.优易投提现处理到账时间为：T（工作日）+1，最终到账时间须以收款行的入账处理时间为准；</div>
             </div>
         </form>
     </div>

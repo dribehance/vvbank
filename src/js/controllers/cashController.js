@@ -10,6 +10,7 @@ var cashController = function($scope, $rootScope, $location, $filter, userServic
         $scope.btn_text = data.message;
         if (data.respcode == config.request.SUCCESS) {
             $scope.cash_info = data;
+            $scope.cash_info.maxWithdraw = $scope.cash_info.maxAmount > $scope.cash_info.balance?$scope.cash_info.balance:$scope.cash_info.maxAmount;
             $scope.banks = data.result;
             $scope.banks = $scope.banks.map(function(bank) {
                 bank.bankInfo = decodeURIComponent(bank.bankInfo);

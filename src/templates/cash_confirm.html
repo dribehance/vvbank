@@ -10,14 +10,14 @@
             <div class="section">温馨提示：提现后，资金将直接进入您的银行账户，无法撤回或退款，请谨慎操作！</div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
-                    <span class="semi-fixed-left semi-width-75">开户名：</span>
+                    <span class="semi-fixed-left semi-width-75">开户名</span>
                     <div class="text-grey">{{cash_confirm_info.accountName|limitTo:1}}**</div>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-75">收款银行</span>
-                    <div class="text-grey">{{cash_confirm_info.bankNo}}</div>
+                    <div class="text-grey">{{cash_confirm_info.bankInfo+cash_confirm_info.bankNo}}</div>
                 </div>
             </div>
             <div class="section">
@@ -34,7 +34,7 @@
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
-                    <span class="semi-fixed-left semi-width-75">绑定手机：</span>
+                    <span class="semi-fixed-left semi-width-75">绑定手机</span>
                     <div class="text-grey">{{cash_confirm_info.showBoundCellphone}}</div>
                 </div>
             </div>

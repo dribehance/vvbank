@@ -56,7 +56,6 @@ var cashConfirmController = function($scope, $rootScope,$location, $timeout, $ro
             "bankAccountID": $routeParams.selectID,
         }).then(function(data) {
             toastServices.hide()
-            console.log(data)
             if (data.respcode == config.request.SUCCESS) {
                 errorServices.autoHide(data.message);
                 $timeout(function() {

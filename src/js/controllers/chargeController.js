@@ -6,23 +6,26 @@ var chargeController = function($scope, $location, userServices, errorServices, 
         toastServices.hide()
         $scope.btn_text = data.message;
         if (data.respcode == config.request.SUCCESS) {
-            $scope.charge_info = data.result;
-            $scope.input.bank = $scope.charge_info[0];
+            // $scope.charge_info = data.result;
+            // $scope.input.bank = $scope.charge_info[0];
             $scope.btn_text = "充值";
         } else {
             errorServices.autoHide(data.message);
         }
     });
     $scope.ajaxForm = function() {
-        if (parseFloat($scope.input.money) == NaN) {
+        if (!parseFloat($scope.input.money)) {
             errorServices.autoHide("金额不正确")
             return;
         }
+        if (parseFloat($scope.input.money) <0) {
+            errorServices.autoHide("充值金额必须大于0");
+        }
         toastServices.show();
         userServices.charge({
-            "bankName": $scope.input.bank.bankName,
+            // "bankName": $scope.input.bank.bankName,
             "money": $scope.input.money,
-            "bankCode": $scope.input.bank.bankCode
+            // "bankCode": $scope.input.bank.bankCode
         }).then(function(data) {
             toastServices.hide()
             if (data.respcode == config.request.SUCCESS) {
@@ -31,7 +34,7 @@ var chargeController = function($scope, $location, userServices, errorServices, 
                     "req_data": angular.toJson(data.payParams),
                     "charge_balance":data.balance,
                     "charge_money":data.money,
-                    "charge_bankname":data.bankName,
+                    // "charge_bankname":data.bankName,
                 });
             } else {
 

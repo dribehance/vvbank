@@ -3,6 +3,5 @@ var chargeConfirmController = function($scope,$routeParams, errorServices, toast
 	$scope.req_data = $routeParams.req_data;
 	$scope.charge_money = $routeParams.charge_money;
 	$scope.charge_balance = $routeParams.charge_balance;
-	$scope.charge_bankname = $routeParams.charge_bankname;
-	console.log($scope.charge_money)
+	// $scope.charge_bankname = $routeParams.charge_bankname;
 }
