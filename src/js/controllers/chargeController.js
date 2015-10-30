@@ -14,13 +14,6 @@ var chargeController = function($scope, $location, userServices, errorServices, 
         }
     });
     $scope.ajaxForm = function() {
-        if (!parseFloat($scope.input.money)) {
-            errorServices.autoHide("金额不正确")
-            return;
-        }
-        if (parseFloat($scope.input.money) <0) {
-            errorServices.autoHide("充值金额必须大于0");
-        }
         toastServices.show();
         userServices.charge({
             // "bankName": $scope.input.bank.bankName,

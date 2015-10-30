@@ -18,12 +18,12 @@
     <div class="section">
         <div class="semi-auto semi-left-98">
             <span class="semi-fixed-left semi-width-98 btn section-wide text-left">充值金额</span>
-            <input type="text" class="form-control block full-width rectangle" name="money" ng-model="input.money" required placeholder="请输入金额">
+            <input type="number" class="form-control block full-width rectangle" name="money" ng-model="input.money" min="1" ng-pattern="/[0-9]$/" required placeholder="请输入金额">
         </div>
     </div>
     <div class="vv-divide"></div>
     <div class="section">
-        <button type="submit" class="btn btn-primary block full-width" ng-disabled="!chargeForm.$valid">{{btn_text}}</button>
+        <button type="submit" class="btn btn-primary block full-width" ng-disabled="chargeForm.$invalid">{{btn_text}}</button>
     </div>
     <div class="section text-danger">充值金额经投资方可自由提现，未投资金额提现单日限1万元。</div>
 </form>
