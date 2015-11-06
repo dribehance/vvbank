@@ -26,8 +26,9 @@ var chargeController = function($scope, $location, userServices, errorServices, 
         toastServices.hide()
         if (data.respcode == config.request.SUCCESS) {
             $scope.banks = data.result;
-            $scope.banks.push($scope.other_bank);
+            // $scope.banks.push($scope.other_bank);
             $scope.banks = $scope.banks.map(function(bank) {
+                // bank.label = bank.bank_name + " " + bank.card_no;
                 bank.label = bank.bank_name + " " + bank.card_no;
                 return bank;
             })
@@ -43,8 +44,8 @@ var chargeController = function($scope, $location, userServices, errorServices, 
             "bank_name": $scope.input.bank.bank_name,
             "bank_code": $scope.input.bank.bank_code,
             "card_no": $scope.input.bank.card_no,
-            "no_agree": $scope.input.bank.no_agree,
-            "type": $scope.input.bank.card_no == "other" ? "N" : "Y",
+            // "no_agree": $scope.input.bank.no_agree,
+            // "type": $scope.input.bank.card_no == "other" ? "N" : "Y",
         }).then(function(data) {
             toastServices.hide()
             if (data.respcode == config.request.SUCCESS) {

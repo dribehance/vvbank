@@ -16,7 +16,8 @@ var cashController = function($scope, $rootScope, $location, $filter, userServic
                 bank.bankInfo = decodeURIComponent(bank.bankInfo);
                 var bank_start_no = $filter("limitTo")(bank.bankNo,4);
                 bank_end_no = $filter("limitTo")(bank.bankNo,-4);
-                bank.bankInfo = bank.bankInfo+ bank_start_no + "********"+bank_end_no;
+                // bank.label = bank.bankInfo+ bank_start_no + "********"+bank_end_no;
+                bank.label = bank.bankInfo + bank_end_no;
                 return bank;
             })
             $scope.input.bank = $scope.banks[0];

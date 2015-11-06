@@ -10,13 +10,19 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <form name="cashForm" ng-submit="ajaxForm(cashForm)">
-            <div class="section">
+            <!-- <div class="section">
                 <div class="semi-auto semi-left-98">
                     <span class="semi-fixed-left semi-width-98 btn text-left section-wide">选择银行卡</span>
                     <select class="sex block full-width form-control rectangle" ng-model="input.bank" ng-options="b as b.bankInfo for b in banks" required></select>
                 </div>
+            </div> -->
+            <div class="section">
+                <div class="semi-auto semi-left-98">
+                    <span class="semi-fixed-left semi-width-98 text-left">银行卡</span>
+                    <div class="">{{input.bank.label}}</div>
+                </div>
             </div>
-            <!-- <div class="vv-divide"></div> -->
+            <div class="vv-divide"></div>
             <div class="section">
                 <div class="semi-auto semi-left-98">
                     <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">提现金额</span>
