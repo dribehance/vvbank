@@ -7,23 +7,8 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <!-- dynamic -->
-        <!-- <wrap-owlcarousel class="owl-carousel" data-options="{autoPlay: 5000, stopOnHover: true,  
-        slideSpeed : 300, paginationSpeed : 400, singleItem : true}" style="overflow:hidden">
-            <a>
-                <img ng-src="{{ emall_item.imageOne }}" alt="" class="block full-width">
-            </a>
-            <a>
-                <img ng-src="{{ emall_item.imageTwo }}" alt="" class="block full-width">
-            </a>
-            <a>
-                <img ng-src="{{ emall_item.imageThree }}" alt="" class="block full-width">
-            </a>
-            <a>
-                <img ng-src="{{ emall_item.imageFour }}" alt="" class="block full-width">
-            </a>
-        </wrap-owlcarousel> -->
-        <banner data-options="{}" data-rate="580/300">
-            <div class="image-holder" ng-repeat="b in input.banners" on-repeat-done>
+        <banner data-options="{}" data-rate="4/2.5">
+            <div class="image-holder" ng-repeat="b in input.banners track by $index" on-repeat-done>
                 <img ng-src="{{b}}" err-src="{{staticImageUrl+'images/banner_1.png'}}" class="block full-width" alt="">
             </div>
         </banner>
@@ -33,7 +18,7 @@
         </div>
         <div class="section">
             <div class="btn-group justified">
-                <span class="btn rectangle text-white" ng-class="{'bg-grey':emall_item.goodsNumber ==0,'btn-primary':emall_item.goodsNumber >0}" ng-click="try()">
+                <span class="btn rectangle text-white" ng-class="{'bg-grey':(emall_item.goodsNumber ==0 || emall_item.luckPrice == '0'),'btn-primary':(emall_item.goodsNumber >0 && emall_item.luckPrice != '0')}" ng-click="try()">
                     {{emall_item.luckPrice | currency:"" }}e圆试手气
                 </span>
                 <span class="btn">

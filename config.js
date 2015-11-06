@@ -33,7 +33,7 @@ module.exports = function(config) {
   config.vendor.js.push('./bower_components/momentjs/moment.js');
   config.vendor.js.push('./bower_components/d3/d3.min.js');
   config.vendor.js.push('./bower_components/pie-chart/dist/pie-chart.min.js');
-  config.vendor.js.push('./bower_components/OwlCarousel/owl-carousel/owl.carousel.min.js');
+  config.vendor.js.push('./bower_components/OwlCarousel/owl-carousel/owl.carousel.js');
   config.vendor.js.push('./bower_components/angular-local-storage/dist/angular-local-storage.min.js');
   config.vendor.js.push('./bower_components/angular-qrcode/qrcode.js');
   config.vendor.js.push('./bower_components/angular-qrcode/angular-qrcode.js');

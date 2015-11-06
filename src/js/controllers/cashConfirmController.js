@@ -1,24 +1,24 @@
 // by dribehance <dribehance.kksdapp.com>
-var cashConfirmController = function($scope, $rootScope,$location, $timeout, $routeParams, userServices, errorServices, toastServices, localStorageService, config) {
+var cashConfirmController = function($scope, $rootScope, $location, $timeout, $routeParams, userServices, errorServices, toastServices, localStorageService, config) {
     // get confirm info
     $scope.input = {};
     toastServices.show();
     userServices.queryCashConfirmInfo({
-            "withdrawMoneyHidden": $routeParams.withdrawMoneyHidden,
-            "antiWithdrawMoneyHidden": $routeParams.antiWithdrawMoneyHidden,
-            "fee": $routeParams.fee,
-            "fee2": $routeParams.fee2,
-            "voucher": $routeParams.voucher,
-            "selectID": $routeParams.selectID,
-        }).then(function(data) {
-            toastServices.hide()
-            if (data.respcode == config.request.SUCCESS) {
-                $scope.cash_confirm_info = data;
-            } else {
-                errorServices.autoHide(data.message);
-            }
-        })
-        // counting
+        "withdrawMoneyHidden": $routeParams.withdrawMoneyHidden,
+        "antiWithdrawMoneyHidden": $routeParams.antiWithdrawMoneyHidden,
+        "fee": $routeParams.fee,
+        "fee2": $routeParams.fee2,
+        "voucher": $routeParams.voucher,
+        "selectID": $routeParams.selectID,
+    }).then(function(data) {
+        toastServices.hide()
+        if (data.respcode == config.request.SUCCESS) {
+            $scope.cash_confirm_info = data;
+        } else {
+            errorServices.autoHide(data.message);
+        }
+    });
+    // counting
     $scope.callbackTimer = {};
     $scope.callbackTimer.counting = 0;
     $scope.callbackTimer.finish = function() {

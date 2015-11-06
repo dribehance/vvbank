@@ -43,6 +43,7 @@ var hotelController = function($scope, $rootScope, $location, $routeParams, $fil
         SharedState.turnOn("password_panel");
     }
     $scope.try = function() {
+        if ($scope.emall_item.luckPrice == '0') return; 
         toastServices.show();
         mallServices.tryLucky({
             goods_id: $scope.emall_item.goodsId,

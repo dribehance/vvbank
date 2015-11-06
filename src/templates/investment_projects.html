@@ -25,7 +25,7 @@
         </div> -->
         <div class="section">
             <div class="row">
-                <div class="col-xs-4 text-center" ng-repeat="channel in channels" ng-click="queryProjectByCode(channel)">
+                <div class="col-xs-3 text-center" ng-repeat="channel in channels track by $index" ng-if="$index<4" ng-click="queryProjectByCode(channel)">
                     <img ng-src="{{ staticImageUrl +'images/project_'+ $index +'.png'}}" alt="">
                     <div>{{channel.name}}</div>
                 </div>

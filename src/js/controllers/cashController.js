@@ -8,12 +8,15 @@ var cashController = function($scope, $rootScope, $location, $filter, userServic
         toastServices.hide()
             // if(data.respcode == "1") {
         $scope.btn_text = data.message;
+        $scope.cash_info = data;
         if (data.respcode == config.request.SUCCESS) {
-            $scope.cash_info = data;
             //$scope.cash_info.maxWithdraw = $scope.cash_info.maxAmount > $scope.cash_info.balance?$scope.cash_info.balance:$scope.cash_info.maxAmount;
             $scope.banks = data.result;
             $scope.banks = $scope.banks.map(function(bank) {
                 bank.bankInfo = decodeURIComponent(bank.bankInfo);
+                var bank_start_no = $filter("limitTo")(bank.bankNo,4);
+                bank_end_no = $filter("limitTo")(bank.bankNo,-4);
+                bank.bankInfo = bank.bankInfo+ bank_start_no + "********"+bank_end_no;
                 return bank;
             })
             $scope.input.bank = $scope.banks[0];
@@ -22,7 +25,8 @@ var cashController = function($scope, $rootScope, $location, $filter, userServic
             errorServices.autoHide(data.message);
         }
     })
-    $scope.ajaxForm = function() {
+    $scope.ajaxForm = function(form) {
+        if (form.$invalid) return;
         $location.path("cash_confirm").search({
             "withdrawMoneyHidden": $scope.queryActuralMoney(),
             "antiWithdrawMoneyHidden": parseFloat($filter("currency")(($scope.cash_info.fee2 / $scope.cash_info.feeRate),"")),

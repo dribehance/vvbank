@@ -269,6 +269,18 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 return data.data;
             });
         },
+        queryChargeBankInfo: function() {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/v1/service/userbankcard",
+                method: "GET",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token")
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
         charge: function(charge) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
@@ -285,9 +297,12 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 },
                 data: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "bankName": charge.bankName,
-                    "bankCode": charge.bankCode,
-                    "money": charge.money
+                    "bank_name": charge.bank_name,
+                    "bank_code": charge.bank_code,
+                    "card_no": charge.card_no,
+                    "money": charge.money,
+                    "no_agree": charge.no_agree,
+                    "type": charge.type,
                 })
             }).then(function(data) {
                 return data.data;

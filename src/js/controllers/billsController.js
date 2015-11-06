@@ -1,4 +1,4 @@
-var billsController = function($scope, myServices,toastServices, parserServices, pushToRefreshServices, errorServices, config) {
+var billsController = function($scope,$filter, myServices,toastServices, parserServices, pushToRefreshServices, errorServices, config) {
     $scope.bills = [];
     $scope.page = {
         number:1,
@@ -28,4 +28,11 @@ var billsController = function($scope, myServices,toastServices, parserServices,
     
     }
     $scope.loadMore();
+    $scope.parseMoney = function (money) {
+        var temp = $filter("currency")(money,"￥");
+        if (temp) {
+            return temp;
+        }
+        return money;
+    } 
 }

@@ -19,7 +19,8 @@
     <div class="scrollable-content">
         <div class="hotels">
             <a ng-href="#/eyuan_mall/hotels/{{item.goodsId}}" class="hotel block bg-white-grey" ng-repeat="item in emall_items">
-                <imageview data-rate="580/300" src="item.logo"></imageview>
+                <!-- <imageview data-rate="580/300" src="item.logo"></imageview> -->
+                <img ng-src="{{item.logo}}" class="block full-width" err-src="../images/banner_1.png" alt="">
                 <div class="intro">
                     <div class="text-ellipsis title">{{item.goodsName}}</div>
                     <!-- <div class="summary">

@@ -33,4 +33,3 @@ angular.module("VVBank").directive('banner', function($rootScope) {
         }
     };
 });
-r

@@ -8,13 +8,13 @@
     <span></span>
 </div>
 <form name="chargeForm" ng-submit="ajaxForm(this)">
-    <!-- <div class="section">
+    <div class="section">
         <div class="semi-auto semi-left-98">
             <span class="semi-fixed-left semi-width-98 btn text-left section-wide">选择银行卡</span>
-            <select class="sex block full-width form-control rectangle" ng-model="input.bank" ng-options="b as b.bankName for b in charge_info" required></select>
+            <select class="sex block full-width form-control rectangle" ng-model="input.bank" ng-options="b as b.label for b in banks" required></select>
         </div>
     </div>
-    <div class="vv-divide"></div> -->
+    <div class="vv-divide"></div>
     <div class="section">
         <div class="semi-auto semi-left-98">
             <span class="semi-fixed-left semi-width-98 btn section-wide text-left">充值金额</span>
@@ -22,8 +22,11 @@
         </div>
     </div>
     <div class="vv-divide"></div>
-    <div class="section">
-        <button type="submit" class="btn btn-primary block full-width" ng-disabled="chargeForm.$invalid">{{btn_text}}</button>
+    <div class="section text-center" ng-if="charge_info.respcode == '0000'">
+        <button type="submit" class="btn btn-primary" ng-disabled="chargeForm.$invalid">{{btn_text}}</button>
+    </div>
+    <div class="section text-center text-danger" ng-if="charge_info.respcode != '0000'">
+        {{btn_text}}
     </div>
     <div class="section text-danger">充值金额经投资方可自由提现，未投资金额提现单日限1万元。</div>
 </form>

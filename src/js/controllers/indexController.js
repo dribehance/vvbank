@@ -14,12 +14,6 @@ var indexController = function($scope,$rootScope, $timeout, toastServices, local
     // banner
     bannerServices.get().then(function(data) {
         $scope.banners = parserServices.parseBanner(data.result);
-        $timeout(function() {
-            $("#banner").owlCarousel({
-                autoPlay: 3000,
-                singleItem: true
-            });
-        }, 0);
     });
     // d3 chart data
     $scope.gauge_options = {
