@@ -1,5 +1,5 @@
 // by dribehance <dribehance.kksdapp.com>
-var chargeController = function($scope, $location, userServices, errorServices, toastServices, localStorageService, config) {
+var chargeController = function($scope,$filter, $location, userServices, errorServices, toastServices, localStorageService, config) {
     $scope.input = {};
     $scope.other_bank = {
         bank_name: "其他银行",
@@ -13,30 +13,33 @@ var chargeController = function($scope, $location, userServices, errorServices, 
         toastServices.hide();
         $scope.charge_info = data;
         $scope.btn_text = data.message;
-        if (data.respcode == config.request.SUCCESS) {
-            // $scope.charge_info = data.result;
-            // $scope.input.bank = $scope.charge_info[0];
+        if (data.respcode == config.request.SUCCESS && data.type =="1") {
+            $scope.charge_bank = data.resultBank;
+            $scope.input.bank = $scope.charge_bank[0];
+            console.log($scope.input.bank)
+            var end_card_no = $filter("limitTo")($scope.input.bank.card_no,-4)
+            $scope.input.bank.label = $scope.input.bank.bank_name + " "+end_card_no;
             $scope.btn_text = "充值";
         } else {
             errorServices.autoHide(data.message);
         }
     });
     // query bank info;
-    userServices.queryChargeBankInfo().then(function(data) {
-        toastServices.hide()
-        if (data.respcode == config.request.SUCCESS) {
-            $scope.banks = data.result;
-            // $scope.banks.push($scope.other_bank);
-            $scope.banks = $scope.banks.map(function(bank) {
-                // bank.label = bank.bank_name + " " + bank.card_no;
-                bank.label = bank.bank_name + " " + bank.card_no;
-                return bank;
-            })
-            $scope.input.bank = $scope.banks[0]
-        } else {
-            errorServices.autoHide(data.message);
-        }
-    })
+    // userServices.queryChargeBankInfo().then(function(data) {
+    //     toastServices.hide()
+    //     if (data.respcode == config.request.SUCCESS) {
+    //         $scope.banks = data.result;
+    //         // $scope.banks.push($scope.other_bank);
+    //         $scope.banks = $scope.banks.map(function(bank) {
+    //             // bank.label = bank.bank_name + " " + bank.card_no;
+    //             bank.label = bank.bank_name + " " + bank.card_no;
+    //             return bank;
+    //         })
+    //         $scope.input.bank = $scope.banks[0]
+    //     } else {
+    //         errorServices.autoHide(data.message);
+    //     }
+    // })
     $scope.ajaxForm = function() {
         toastServices.show();
         userServices.charge({
