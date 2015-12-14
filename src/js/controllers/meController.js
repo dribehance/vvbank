@@ -33,5 +33,5 @@ var meController = function($scope, $rootScope, $location, localStorageService, 
                 errorServices.autoHide(data.message)
             }
         })
-    }
+    };
 }

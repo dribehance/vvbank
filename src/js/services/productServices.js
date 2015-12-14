@@ -1,5 +1,6 @@
 angular.module("VVBank").factory("productServices", function($rootScope, $http, localStorageService, config) {
     return {
+        //产品详情
         queryById: function(id) {
             return $http({
                 url: config.url + "/v1/service/product/" + id,
@@ -9,6 +10,7 @@ angular.module("VVBank").factory("productServices", function($rootScope, $http, 
                 return data.data;
             })
         },
+        //
         queryFiles: function(productID) {
             return $http({
                 url: config.url + "/v1/service/attachment/" + productID,
@@ -18,6 +20,7 @@ angular.module("VVBank").factory("productServices", function($rootScope, $http, 
                 return data.data;
             })
         },
+        //投资
         buy: function(entity) {
             return $http({
                 url: config.url + "/v1/service/investment",

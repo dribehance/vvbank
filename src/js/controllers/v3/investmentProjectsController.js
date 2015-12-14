@@ -1,8 +1,12 @@
-var investmentProjectsController = function($scope, $rootScope, $timeout, toastServices, localStorageService, errorServices, licaiServices, bannerServices, parserServices, config) {
+var investmentProjectsController = function($scope, $rootScope, $timeout, toastServices, localStorageService, cfServices, errorServices, licaiServices, bannerServices, parserServices, config) {
     $rootScope.page_title = "投资项目";
     $scope.is_login = false;
+    $scope.iconUrl = "";
+    $scope.logonUsername = "";
     if (localStorageService.get("token")) {
         $scope.is_login = true;
+        $scope.logonUsername = localStorageService.get("logonUsername");
+        $scope.iconUrl = localStorageService.get("iconUrl");
     }
     // 直投项目
     $scope.project = {
@@ -56,7 +60,7 @@ var investmentProjectsController = function($scope, $rootScope, $timeout, toastS
         // reset products
         $scope.products = [];
         $scope.no_more = false;
-        $scope.loadMore();
+        $scope.loadMore(); 
     }
     $scope.loadMore = function() {
         if ($scope.no_more) {

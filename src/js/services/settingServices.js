@@ -30,6 +30,7 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                 return data.data;
             })
         },
+        //查询银行卡信息
         queryBanks: function() {
             return $http({
                 url: config.url + "/v1/service/bankinfo",
@@ -41,6 +42,7 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                 return data.data;
             })
         },
+        //获取银行信息
         queryBanksExample:function() {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
@@ -62,6 +64,7 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                 return data.data;
             });
         },
+        //获取省份信息
         queryProvinces:function(){
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
@@ -83,6 +86,7 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                 return data.data;
             });
         },
+        //获取市信息
         queryCityByProvinceId:function(id){
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
@@ -105,6 +109,7 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                 return data.data;
             });
         },
+        //修改查询银行卡信息
         updateBank: function(bank) {
             return $http({
                 url: config.url + "/v1/service/bankinfo",
@@ -123,6 +128,7 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                 return data.data;
             })
         },
+        //删除查询银行卡信息
         deleteBank: function(bank) {
             return $http({
                 url: config.url + "/v1/service/bankinfo",
@@ -135,6 +141,7 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                 return data.data;
             })
         },
+        //添加查询银行卡信息
         createBank: function(bank) {
             return $http({
                 url: config.url + "/v1/service/bankinfo",
@@ -162,6 +169,7 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                 return data.data;
             })
         },
+        //
         invite: function() {
             return $http({
                 url: config.url + "/v1/service/user/userinfo",

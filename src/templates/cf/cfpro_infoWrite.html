@@ -1,0 +1,60 @@
+	<div class="scrollable">
+		<div class="scrollable-content">
+			
+			<div class="order_progress ELE">
+   <ul>
+        <li class="selected">
+            <h4><img src="images/orderProgress01_on.png"></h4>
+            <p>订单填写</p>
+        </li>
+        <li class="arrow"><img src="images/cf_arrow.png"></li>
+        
+        <li>
+            <h4><img src="images/orderProgress03.png"></h4>
+            <p>支付</p>
+        </li>
+        
+        <li class="arrow"><img src="images/cf_arrow.png"></li>
+        
+        <li>
+            <h4><img src="images/orderProgress04.png"></h4>
+            <p>完成</p>
+        </li>
+    </ul>
+</div>
+
+<div class="orderWrite">
+	<p class="para01">{{funding.title}}</p>
+    <dl>
+    	<dt>投资金额：</dt>
+        <dd>{{funding.money}}</dd>
+    </dl>
+     <dl>
+    	<dt>期限 ：</dt>
+        <dd>{{funding.period}}天</dd>
+    </dl>
+     <dl>
+    	<dt>年化收益：</dt>
+        <dd>{{funding.rate}}% </dd>
+    </dl>
+     <dl ng-show="{{funding.addRate != ''}}">
+    	<dt>附加收益：</dt>
+        <dd>{{funding.addRate}}</dd>
+    </dl>
+     <dl>
+    	<dt>详细说明：</dt>
+        <dd>
+        	{{funding.content}}
+        </dd>
+    </dl>
+     <dl>
+       <dt>本金收益返还时间：</dt> <dd>成功投资后{{funding.rewardDays}}日内。</dd>
+    </dl>
+</div>
+<div class="nextStep">
+	<a ng-click="nextStep()" class="nextbtn">下一步</a>
+</div>
+
+
+		</div>
+	</div>

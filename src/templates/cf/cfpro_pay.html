@@ -1,0 +1,68 @@
+
+<div class="bg-white scrollable-content">
+    <div class="order_progress ELE">
+       <ul>
+            <li>
+                <h4><img src="images/orderProgress01.png"></h4>
+                <p>信息填写</p>
+            </li>
+
+            <li class="arrow"><img src="images/cf_arrow.png"></li>
+
+            <li>
+                <h4><img src="images/orderProgress02.png"></h4>
+                <p>信息确认</p>
+            </li>
+
+            <li class="arrow"><img src="images/cf_arrow.png"></li>
+
+            <li class="selected">
+                <h4><img src="images/orderProgress03_on.png"></h4>
+                <p>支付</p>
+            </li>
+
+            <li class="arrow"><img src="images/cf_arrow.png"></li>
+
+            <li>
+                <h4><img src="images/orderProgress04.png"></h4>
+                <p>完成</p>
+            </li>
+        </ul>
+    </div>
+    <form action="https://yintong.com.cn/llpayh5/authpay.htm" method="post" id="payForm">
+    <input type="hidden" name="req_data" value="{{pay}}">
+    <div class="orderWrite confirm">
+        <h4>柏龙商业城一期A201项目</h4>
+        <dl>
+            <dt>发起人：</dt>
+            <dd>{{orderInfo.publishName}}</dd>
+        </dl>
+         <dl>
+            <dt>订单号：</dt>
+            <dd>{{orderInfo.orderNo}}</dd>
+        </dl>
+         <dl>
+            <dt>应付金额：</dt>
+            <dd><span class="orange">￥{{orderInfo.supportAmount}}</span></dd>
+        </dl>
+         <!-- <dl>
+            <dt>账户余额：</dt>
+            <dd><span class="orange">￥100</span></dd>
+        </dl> -->
+        <!-- <dl>
+            <dt>网银支付：</dt>
+            <dd><span class="orange">￥10</span></dd>
+        </dl> -->
+        <dl>
+            <dd class="textL">请您在<span class="orange">24小时</span>内付清款项，否则订单会被自动取消。</dd>
+        </dl>
+
+
+    </div>
+    <div class="nextStep">
+        <!-- <a href="javascript:;" class="nextbtn">去网银支付</a> -->
+        <button type="submit" class="btn btn-primary full-width">去网上银行充值</button>
+    </div>
+    </form>
+</div>
+

@@ -1,4 +1,4 @@
-var signupController = function($rootScope, $interval, $routeParams, $window, $scope, $location, userServices, errorServices, platformServices, SharedState, config, toastServices, localStorageService, signatureServices) {
+var signupController = function($rootScope, $interval, $routeParams, $window, $timeout,$scope, $location, userServices, errorServices, platformServices, SharedState, config, toastServices, localStorageService, signatureServices) {
     $rootScope.page_title = "优易投";
     $scope.input = {
         telephone: "",
@@ -72,7 +72,7 @@ var signupController = function($rootScope, $interval, $routeParams, $window, $s
             if (data.respcode == config.request.SUCCESS) {
                 localStorageService.set("token", data.result.token);
                 platformServices.notify();
-                // $window.location.href = data.result.wapUrl;
+                $window.location.href = data.result.wapUrl;
                 $location.path("/index").replace();
             } else {
                 errorServices.autoHide(data.message);

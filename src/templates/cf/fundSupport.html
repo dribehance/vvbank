@@ -1,0 +1,50 @@
+    <!-- <div ui-content-for="title">
+    <span><b>优选项目 快乐投资</b></span>
+</div>
+
+<div ui-content-for="backAction"></div>
+<div ui-content-for="navbarAction">
+    <a ng-href="#/me" class="btn"><i class="vv vv-35 vv-me-top"></i></a>
+</div> -->
+<div class="scrollable">
+    <div class="scrollable-content">
+        <div class="pro_banner">
+            <img ng-src="{{funding.imageUrl}}"> 
+            <nav>
+                <a ng-click="attention(funding)"><i></i>{{funding.attentions}}({{funding.attention}})</a>
+                <a ng-click="praise(funding)"><i></i>赞({{funding.praise}})</a>
+            </nav>
+         </div>
+         <div ng-repeat="support in fundSupports">  
+         <form name="supportForm" ng-submit="ajaxForm(support.id)">    
+            <div class="hb_details">
+                <p class="clearfix f24">
+                <span class="orange">{{support.period}}天</span>投资<span class="orange">{{support.rate}}%</span>年化收益
+                </p>
+                <p>
+                    <input type="number" class="full-width textBox" name="money" ng-model="input.amount[support.id]" min="100" required placeholder="100" ng-pattern="/[0-9]$/"/>
+                </p>
+                <p>
+                    <button type="submit" class="btn btn-primary" ng-disabled="supportForm.$invalid">立即投资</button>
+                </p>
+                <p>无限额</p>
+                <p ng-show="{{support.addPeriod != ''}}">
+                    附加收益 : {{support.addPeriod}}
+                </p>
+                <p class="gray9">
+                    {{support.rewardDetail}}  
+                </p>
+                <ul class="clearfix">
+                    <li><img ng-show="{{support.rewardOne != null}}" ng-src="{{support.rewardOne}}"></li>
+                    <li><img ng-show="{{support.rewardTwo != null}}" ng-src="{{support.rewardTwo}}"></li>
+                    <li><img ng-show="{{support.rewardThree != null}}" ng-src="{{support.rewardThree}}"></li>
+                    <li><img ng-show="{{support.rewardFour != null}}" ng-src="{{support.rewardFour}}"></li>
+                    <li><img ng-show="{{support.rewardFive != null}}" ng-src="{{support.rewardFive}}"></li>
+                </ul>
+                <p>本金收益返还时间：<span class="gray6">成功投资后{{support.rewardDays}}日内。</span></p>
+                <p class="line"></p>
+            </div> 
+        </form> 
+        </div>
+    </div>
+</div>

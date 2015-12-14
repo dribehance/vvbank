@@ -1,6 +1,7 @@
 // by dribehance <dribehance.kksdapp.com>
 angular.module("VVBank").factory("shoppingCartServices", function($http, $rootScope,localStorageService, config) {
     return {
+        //购物车
         query: function() {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
@@ -13,6 +14,7 @@ angular.module("VVBank").factory("shoppingCartServices", function($http, $rootSc
                 return data.data;
             });
         },
+        //添加购物车
         add: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
@@ -27,6 +29,7 @@ angular.module("VVBank").factory("shoppingCartServices", function($http, $rootSc
                 return data.data;
             });
         },
+        //修改购物车
         modify: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
@@ -42,6 +45,7 @@ angular.module("VVBank").factory("shoppingCartServices", function($http, $rootSc
                 return data.data;
             });
         },
+        //删除商品
         remove: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
@@ -64,6 +68,7 @@ angular.module("VVBank").factory("shoppingCartServices", function($http, $rootSc
                 return data.data;
             });
         },
+        //订单列表
         queryOrders: function(input) {
         	return $http({
         		// by dribehance <dribehance.kksdapp.com>
@@ -76,6 +81,7 @@ angular.module("VVBank").factory("shoppingCartServices", function($http, $rootSc
         	    return data.data;
         	});
         },
+        //订单详情
         queryOrderById: function (input) {
         	return $http({
         		// by dribehance <dribehance.kksdapp.com>

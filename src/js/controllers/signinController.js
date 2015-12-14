@@ -10,14 +10,15 @@ var signinController = function($scope, $rootScope,$routeParams, $location, user
             toastServices.hide();
             if (data.respcode == config.request.SUCCESS) {
                 localStorageService.set("token", data.result.token);
+                localStorageService.set("logonUsername", data.result.logonUsername);
+                localStorageService.set("iconUrl", data.result.iconUrl);
                 platformServices.notify();
-                var path = $routeParams.from;
-                if (path) {
-                    $location.path(path).replace();
-                }
-                else {
-                    $location.path("/me").replace();
-                }
+                    var path = $routeParams.from;
+                    if (path) {
+                        $location.path(path).replace();
+                    }else {
+                        $location.path("/me").replace();
+                    }
             } else {
                 errorServices.autoHide(data.message);
             }

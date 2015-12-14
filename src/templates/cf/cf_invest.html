@@ -1,0 +1,38 @@
+<div class="scrollable">
+    <div class="scrollable-content">
+<form name="cashForm" ng-submit="ajaxForm(supportOne.id)">
+    	<div class="pro_banner">
+            <img ng-src="{{supportOne.small}}"> 
+            <nav>
+                <a ng-click="attention(supportOne)"><i></i><span>{{supportOne.attentions}}({{supportOne.attention}})</span></a>
+                <a ng-click="praise(supportOne)"><i></i><span>赞({{supportOne.praise}})</span></a>
+            </nav>
+        </div>
+
+        <div class="hb_details">
+	       <p class="clearfix f24">
+    	       <span class="orange">{{supportOne.period}}天</span>投资<span class="orange">{{supportOne.rate}}%</span>年化收益
+            </p>
+            <p>
+    	       <input type="number" class="full-width textBox" name="money" ng-model="input.supportAmount[supportOne.id]" min="100" required placeholder="100" ng-pattern="/[0-9]$/"/>
+            </p>
+            <p>
+    	       <button type="submit" class="btn btn-primary" ng-disabled="cashForm.$invalid">立即投资</button>
+            </p>
+            <p>无限额</p>
+            <p class="gray9">
+    	       {{supportOne.detail}}  
+            </p>
+            <ul class="clearfix">
+                <li><img ng-show="{{supportOne.rewardOne != null}}" ng-src="{{supportOne.rewardOne}}"></li>
+                <li><img ng-show="{{supportOne.rewardTwo != null}}" ng-src="{{supportOne.rewardTwo}}"></li>
+                <li><img ng-show="{{supportOne.rewardThree != null}}" ng-src="{{supportOne.rewardThree}}"></li>
+                <li><img ng-show="{{supportOne.rewardFour != null}}" ng-src="{{supportOne.rewardFour}}"></li>
+                <li><img ng-show="{{supportOne.rewardFive != null}}" ng-src="{{supportOne.rewardFive}}"></li>
+            </ul>
+            <p>本金收益返还时间：<span class="gray6">成功投资后{{supportOne.rewardDays}}日内。</span></p>
+            <p class="line"></p>
+        </div>
+    </form>
+    </div>
+</div>

@@ -45,6 +45,143 @@ var _m_user = function() {
         }
         return _m_user;
     }
+
+
+        var _m_fund = function(){
+            var _m_fund = {
+                id : "",
+                big : "",
+                small : "",
+                fundsName : "",
+                endDayCount :  "0",
+                status : "0",
+                fundStatus : "",
+                supportCount : "0",
+                appliedTotalAmount : "0",
+                totalAmount : "0",
+            }
+            return _m_fund;
+        }
+
+        var _m_uzb_fund = function(){
+            var  _m_uzb_fund = {
+                id :"",
+                fundsName :"",
+                status :"",
+                fundStatus :"",
+                small :"",
+                speed :"",
+                periodMin :"",
+                periodMax :"",
+                rateMin :"",
+                rateMax :"",
+                reward : "",
+            }
+            return _m_uzb_fund;
+        }
+
+        var _m_support = function(){
+            var _m_support = {
+                id : "",
+                fundId : "",
+                rewardType : "",
+                supportAmount : "0",
+                extractOr : "",
+                rewardtitle : "",
+                rewardDetail : "",
+                supportCount : "0",
+                fee : "",
+                rewardDays : "0",
+                count : "0",
+                rewardOne : "",
+                rewardTwo : "",
+                rewardThree : "",
+                rewardFour : "",
+                rewardFive : "",
+            }
+            return _m_support;
+        }
+
+        var _m_sustain = function(){
+            var _m_sustain = {
+                id :"",
+                fundId :"",
+                period :"",
+                rate :"",
+                supportCount : "",
+                rewardtitle :"",
+                rewardDetail :"",
+                rewardDays :"",
+                rewardOne :"",
+                rewardTwo :"",
+                rewardThree :"",
+                rewardFour :"",
+                rewardFive :"",
+            }
+            return _m_sustain;
+        }
+            
+
+        var _m_support_list = function(){
+            var _m_support_list = {
+                logon : "",
+            }
+            return _m_support_list;
+        }
+
+        var _m_topicList = function(){
+            var _m_topicList = {
+                id : "",
+                topicUser : "",
+                topicContent : "",
+                answerTime : "",
+                replies : "",
+            }
+            return _m_topicList;
+        }
+
+        var _m_fund_deatil = function(){
+            var _m_fund_deatil = {
+                id : "",
+                logo : "",
+                subTitle : "",
+                name : "",
+                order : "",
+                detail : "",
+            }
+            return _m_fund_deatil;
+        }
+
+        var _m_reward_banner = function(){
+            var _m_reward_banner = {
+                id : "",
+                fundId : "",
+                period : "",
+                rate : "",
+                addPeriod : "",
+            }
+            return _m_reward_banner;
+        }
+
+        var _m_uzb_support = function(){
+            var _m_uzb_support = {
+                id :"",
+                fundId :"",
+                rewardtitle :"",
+                rewardDetail :"",
+                rewardDays :"",
+                rate :"",
+                period :"",
+                addPeriod :"",
+                rewardOne :"",
+                rewardTwo :"",
+                rewardThree :"",
+                rewardFour :"",
+                rewardFive :"",
+            }
+            return _m_uzb_support;
+        }
+
     // product -----------------
 var _m_product = function() {
     // title: 产品标题
@@ -91,7 +228,9 @@ var _m_product = function() {
         endtime:"",
         transaction:"",
         detail:"",
-        delta:""
+        delta:"",
+        emoney:"0",
+        projectChannelType:""
     }
     return product;
 }
@@ -110,7 +249,8 @@ var _m_banner = function() {
             order: "0",
             name: "1",
             path: "#",
-            url: "#"
+            url: "#",
+            id : "0"
         }
     }
     // bills ------------------
@@ -123,6 +263,22 @@ var _m_bill = function() {
             "status":""
         }
     }
+
+var _m_bailAccount = function(){
+    return {
+        "netAsset": "",    //账户总额
+        "incomeAmount":"",    //总收益
+        "usableAmount":"",   //可用余额
+        "totalAmount":"",    //待收本金
+        "frozenAmount":"", //冻结金额
+        "interestAmount":"",   //待收收益
+        "emoney" : "",  //e圆总额
+        "totalTokens": "",    //红包总额
+        "coin": "",  //新人尊享金  可用余额
+        "frozenCoin": "" //新人尊享金  冻结金额
+    }
+}
+
     // eyuan ------------------
 var _m_eyuan = function() {
     // date eyuan获取日期

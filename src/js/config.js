@@ -1,6 +1,8 @@
 angular.module("VVBank").constant("config", {
-    url: "http://youyitou.f3322.net:8022/ws",
-    // url: "http://172.16.4.76:9000/proxy/youyitou.f3322.net:8022/ws",
+    url: "http://localhost:9000/proxy/youyitou.f3322.net:8022/ws",
+    // url: "http://192.168.16.2:8081/proxy/192.168.16.2:8080/ws",
+    //url : "http://192.168.16.98:9000/proxy/youyitou.f3322.net:8022/ws",
+    //url: "http://192.168.16.2:8081/proxy/192.168.16.2:8080/ws",
     appid: "mobile_h5",
     version: "1.01",
     smstype: {
@@ -10,13 +12,13 @@ angular.module("VVBank").constant("config", {
         "ACTIVE_ACCOUNT": 4,
         "SYNC_PASSWOARD": 5,
         "RESET_PASSWORD": 6,
-        "BIND_TELEPHONE":7
+        "BIND_TELEPHONE": 7
     },
     request: {
         "SUCCESS": "0000",
         "EXIST": "1",
         "UNEXIST": "0",
-        "TOKEN_INVALID":"0403"
+        "TOKEN_INVALID": "0403"
     },
     common_params: {
         appid: "mobile_h5",
@@ -70,7 +72,7 @@ angular.module("VVBank").constant("config", {
     // 收入
     incomes: ["5000以内", "5000-10000元", "10000-20000元", "20000-50000元", "50000以上"],
     // 行业
-    industries:["互联网金融","IT互联网科技","制造业","政府机关"],
+    industries: ["互联网金融", "IT互联网科技", "制造业", "政府机关"],
     // 婚否
     is_marry: {
         "1": "已婚",
@@ -110,8 +112,8 @@ angular.module("VVBank").constant("config", {
         "nbcb": "宁波银行",
         "tccb": "天津银行"
     },
-    bill_status:{
-        "-1":"支出",
-        "1":"收入"
+    bill_status: {
+        "-1": "支出",
+        "1": "收入"
     }
 });

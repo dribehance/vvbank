@@ -73,6 +73,7 @@ angular.module("VVBank").factory("mallServices", function($http, $rootScope, loc
                 return data.data;
             });
         },
+        //结算页面
         queryPaymentInfo: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
@@ -88,6 +89,7 @@ angular.module("VVBank").factory("mallServices", function($http, $rootScope, loc
                 return data.data;
             });
         },
+        //结算
         payment: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
@@ -107,7 +109,7 @@ angular.module("VVBank").factory("mallServices", function($http, $rootScope, loc
                 return data.data;
             });
         },
-        // 结算;
+        // 立即结算;
         buy: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
@@ -167,6 +169,7 @@ angular.module("VVBank").factory("mallServices", function($http, $rootScope, loc
                 return data.data;
             });
         },
+        //查询序列号
         querySerialCode: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
@@ -180,6 +183,7 @@ angular.module("VVBank").factory("mallServices", function($http, $rootScope, loc
                 return data.data;
             });
         },
+        //使用序列号
         useSerialCode: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
@@ -194,6 +198,7 @@ angular.module("VVBank").factory("mallServices", function($http, $rootScope, loc
                 return data.data;
             });
         },
+        //我的推广    二维码链接
         queryQrcode: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>

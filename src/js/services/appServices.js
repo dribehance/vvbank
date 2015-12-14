@@ -69,8 +69,8 @@ angular.module("VVBank").factory("appServices", function($rootScope, $location, 
             // each time startup the app fetch the user info
             $rootScope.user = {};
             // static image url handle
-            if ($location.$$host == "localhost" || $location.$$host == "172.16.4.76") {
-                $rootScope.staticImageUrl = "/";
+            if ($location.$$host == "localhost" || $location.$$host == "192.168.16.2") {
+                $rootScope.staticImageUrl = "../";
             } else {
                 $rootScope.staticImageUrl = "/resources/app/";
             }

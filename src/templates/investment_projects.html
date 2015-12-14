@@ -7,94 +7,106 @@
 </div> -->
 <div class="scrollable">
     <div class="scrollable-content">
-        <div class="navbar navbar-app" style="margin-bottom:0;background-color:white">
+        <!-- <div class="navbar navbar-app" style="margin-bottom:0;background-color:white">
             <div class="navbar-brand navbar-brand-center text-black"><span><b>优选项目 快乐投资</b></span></div>
             <div class="btn-group pull-left"></div>
-            <!-- <div class="btn-group pull-right"><a ng-href="#/me" class="btn"><i class="vv vv-35 vv-me-top"></i></a></div> -->
-        </div>
-        <!-- <wrap-owlcarousel class="owl-carousel" data-options="{autoPlay: 5000, stopOnHover: true,  
-        slideSpeed : 300, paginationSpeed : 400, singleItem : true}" style="overflow:hidden">
-            <a href="{{ banner.path }}" ng-repeat="banner in banners" on-repeat-done>
-                <img ng-src="{{ banner.path }}" alt="" class="block full-width">
-            </a>
-        </wrap-owlcarousel> -->
-        <!-- <div class="owl-carousel banner" id="banner">
-            <a href="{{ banner.path }}" ng-repeat="banner in banners">
-                <img ng-src="{{ banner.path }}" alt="" class="block full-width">
-            </a>
         </div> -->
-        <div class="section">
-            <div class="row">
-                <div class="col-xs-3 text-center" ng-repeat="channel in channels track by $index" ng-if="$index<4" ng-click="queryProjectByCode(channel)">
-                    <img ng-src="{{ staticImageUrl +'images/project_'+ $index +'.png'}}" alt="">
-                    <div>{{channel.name}}</div>
-                </div>
-                <!-- <div class="col-xs-4 text-center" ng-click="queryProjectByCode('shenzhen')">
-                    <img ng-src="{{ staticImageUrl +'images/project_2.png'}}" alt="">
-                    <div>红本抵押</div>
-                </div>
-                <div class="col-xs-4 text-center" ng-click="queryProjectByCode('chongqing')">
-                    <img ng-src="{{ staticImageUrl +'images/project_3.png'}}" alt="">
-                    <div>车辆抵押</div>
-                </div> -->
+        <banner data-options="{}" data-rate="320/70">
+            <div class="image-holder" ng-repeat="b in banners" on-repeat-done>
+                <img ng-src="{{b.path}}" class="block full-width" alt="">
             </div>
-        </div>
-        <div class="vv-divide vv-10"></div>
-        <div class="section">
-            <b class="text-large">{{project.name}}</b>
-        </div>
-        <div class="vv-divide vv-1"></div>
-        <div ng-repeat="product in products">
-            <a ng-href="#/products/{{product.id}}" class="section section-condenced block text-grey">
-                <h5 class="text-large">{{ product.title }}</h5>
-                <div class="semi-auto semi-left-165 semi-right-50">
-                    <div class="semi-fixed-left semi-width-140" style="margin:0">
-                        <div class="text-ellipsis">
+        </banner>
+
+    <div class="content">
+    <div class="cf_nav">
+        <ul class="clearfix">
+            <li class="cur"><a id="fundList" ng-click="queryCrowdFundsAndProject(1)">优租宝</a></li>
+            <li><a id="stableList" ng-click="queryCrowdFundsAndProject(0)">优贷宝</a></li>
+        </ul>
+        <span class="line"></span>
+    </div>
+
+    <div class="chipsList" ng-repeat="fund in crowdFunds" ng-show="type == 1">
+    <a ng-click="queryDetails(fund)" class="swipeArea">
+    <section class="chips_tent">
+       <h3><span>{{fund.fundsName}}</span></h3>
+       <p><img ng-src="{{fund.small}}" alt="" /></p>
+       <span class="icon"><b>{{fund.fundStatus}}</b></span>
+    </section>
+    </a>
+    <section class="chips_infos">
+        <ul class="clearfix">
+            <li>
+                <p class="Bold f22">期限</p>
+                <p class="red f36">30-120<span class="f24">天</span></p> 
+                <!--<p class="f16">（人）</p>-->
+                <i class="icon"></i>
+            </li>
+          <li>
+                <p class="Bold f22">年化收益率</p>
+                <p class="red f36">
+                    11<i class="f24">%</i>-14<i class="f24">%</i> 
+                </p>
+                <!--<p class="f16">（元）</p>-->
+            <i class="icon"></i>
+            </li>
+          <li>
+                <p class="Bold f22">募集进度</p>
+                <p class="red f36">10<i class="f24">%</i></p>
+               <!-- <p class="f16">（天）</p>-->
+
+          </li>
+        </ul>
+    </section>
+    <div class="investList innerList" ng-show="fund.reward.length > 0">
+    <ul class="f14" ng-repeat="reward in fund.reward">
+        <li>
+            <span>{{reward.period}}天</span>
+            <span class="orange">{{reward.rate}}%</span>
+            <span class="f14">{{reward.addPeriod}}</span>
+            <span><a ng-href="#/crowdFund/support/one/{{reward.rewardId}}" class="touziBtn f14">立即投资</a></span>
+        </li>
+    </ul>
+</div>
+</div>
+
+
+    <div class="projectList" ng-repeat="product in products" ng-show="type == 0"  on-repeat-done>
+        <a ng-href="#/products/{{product.id}}">
+            <dl class="clearfix">
+                <dt>
+                    <p class="para01">{{product.title}}</p>
+                    <p class="para02">
+                        <span class="f18 blue">
                             <span class="text-very-big text-primary">{{ product.percentage | currency:"" }}%</span>
                             <span class="text-orange" ng-show="product.addition !=0">{{"+"+product.addition +"%"}}</span>
+                        </span>
+                        <span class="f20 month"><b>{{ product.duration}} {{ product.unit }} </b></span>
+                    </p>
+                    <p class="para03">
+                        <span>{{ product.projectChannelType }}</span>
+                        <span ng-show="product.emoney != 0">赠送{{product.emoney}}e圆</span>
+                    </p>
+                </dt>
+                <dd>
+                    <div class="fd_progress">
+                        <div class="circle circle01">
+                            <canvas class="canvasObj" width="118" height="118"></canvas>
+                            <em class="canvasCover"></em>
+                            <b type="text">{{product.progress+"%"}}</b> 
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-5 text-left section-wide text-ellipsis">
-                            <div>期限</div>
-                            <div class="text-black"><b>{{ product.duration}} {{ product.unit }} </b>
-                            </div>
-                        </div>
-                        <div class="col-xs-7 text-left section-wide text-ellipsis">
-                            <div>借款总额</div>
-                            <div class="text-black"><b>{{parseUnit(product.total)}}万</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="semi-fixed-right text-center semi-width-60" style="right: -12px; top: -11px;height:60px;">
-                        <pie-chart data="[{label: '',value: parseProgress(product.progress),suffix: '%',color: '#007cd2'}]" options="gauge_options" style="position:relative;z-index:1"></pie-chart>
-                        <div class="pie-chart-bg"></div>
-                    </div>
-                </div>
-            </a>
-            <div class="vv-divide vv-1 bg-light-grey"></div>
-        </div>
+                </dd>
+            </dl>
+        </a>
+    <div class="vv-divide vv-1 bg-light-grey"></div>
+    </div>
+
+
+</div>
+
         <div class="vv-divide vv-5 bg-light-grey"></div>
         <a ng-click="loadMore()" class="section btn block full-width text-large text-grey">{{load_more_message}}</a>
-        <div class="vv-divide vv-5 bg-light-grey"></div>
-        <div class="section bg-light-grey">
-            <!-- <div class="semi-auto semi-left-50 semi-right-50">
-                <div class="semi-fixed-left semi-width-50 text-center text-primary" ng-hide="is_login">
-                    <a ng-href="#/signIn" class="btn btn-primary bg-light-grey text-primary">登录</a>
-                </div>
-                <div class="semi-fixed-right semi-width-50 text-center text-primary" ng-hide="is_login">
-                    <a ng-href="#/signUp" class="btn btn-primary bg-light-grey text-primary">注册</a>
-                </div>
-                <div class="btn-group btn section-wide justified strip" style="line-height:12px;padding:9px 0 text-grey">
-                    <a class="text-grey section-wide">关于我们</a>
-                    <a href="tel:4006-388-399" class="text-grey section-wide">联系我们</a>
-                    <a class="text-grey section-wide">投资列表</a>
-                </div>
-            </div> -->
-            <div class="vv-divide vv-5 bg-light-grey"></div>
-            <div class="text-center text-grey">粤ICP备14018439号</div>
-            <div class="vv-divide vv-5 bg-light-grey"></div>
-            <div class="text-center text-grey">深圳前海优易投互联网金融服务有限公司</div>
-        </div>
+
     </div>
 </div>

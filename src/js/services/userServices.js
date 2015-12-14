@@ -29,8 +29,17 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
         login: function(username, password) {
             return $http({
                 url: config.url + "/v1/service/account/in",
-                method: "GET",
-                params: angular.extend({}, config.common_params, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
                     "username": username,
                     "password": password
                 })

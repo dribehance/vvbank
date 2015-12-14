@@ -1,0 +1,54 @@
+<div class="scrollable">
+    <div class="scrollable-content">
+
+    	<div class="order_progress ELE">
+   <ul>
+        <li>
+            <h4><img src="images/orderProgress01.png"></h4>
+            <p>订单填写</p>
+        </li>
+        <li class="arrow"><img src="images/cf_arrow.png"></li>
+        
+        <li>
+            <h4><img src="images/orderProgress03.png"></h4>
+            <p>支付</p>
+        </li>
+        
+        <li class="arrow"><img src="images/cf_arrow.png"></li>
+        
+        <li class="selected">
+            <h4><img src="images/orderProgress04_on.png"></h4>
+            <p>完成</p>
+        </li>
+    </ul>
+</div>
+
+<div class="orderWrite confirm">
+	<p class="para01"><i class="payIcon"></i><span class="orange">支付完成</span></p>
+    <dl>
+    	<dt>投资金额：</dt>   
+        <dd><span class="orange">￥{{rewardPay.money}}</span></dd>
+    </dl>
+     <dl>
+    	<dt>投资期限：</dt>    
+        <dd><span class="orange">{{rewardPay.period}}天</span></dd>
+    </dl>
+    <dl>
+    	<dt>年化收益：</dt>
+        <dd class="text-left"><span class="orange">{{rewardPay.rate}}%</span></dd>
+    </dl>
+    <dl class="pwdArea">
+    	<dt>附加收益：</dt>
+        <dd class="text-left"> <span class="orange">{{rewardPay.addPeriod}}</span></dd>
+    </dl>
+    <dl>
+    	<dt style="width:41%" class="text-left">本金收益返还时间: </dt>
+        <dd class="text-left gray9"> 成功投资后{{rewardPay.rewardDays}}日内</dd>
+    </dl>
+	
+    <a class="recordBtn mt36" href="javascript:;">查看投资记录</a>
+
+	</div>
+
+    </div>
+</div>

@@ -9,6 +9,7 @@ angular.module("VVBank", [
     "LocalStorageModule",
     "n3-pie-chart",
     "monospaced.qrcode"
+    // "ngTouch"
 ])
 .config(function($routeProvider,$httpProvider,localStorageServiceProvider) {
     $routeProvider
@@ -20,7 +21,8 @@ angular.module("VVBank", [
         .when("/investment_projects", {
             templateUrl: "investment_projects.html",
             reloadOnSearch: false,
-            controller: investmentProjectsController
+            // controller: investmentProjectsController
+            controller : crowdFundListController
         })
         .when("/licai", {
             templateUrl: "licai.html",
@@ -30,7 +32,7 @@ angular.module("VVBank", [
         .when("/licai/:exchangeCode", {
             templateUrl: "products.html",
             reloadOnSearch: false,
-            controller: productsController,
+            controller: productsController
         })
         .when("/me", {
             templateUrl: "me.html",
@@ -393,10 +395,76 @@ angular.module("VVBank", [
         .when("/orders_offline/:order_id", {
             templateUrl: "order_offline.html",
             reloadOnSearch: false,
-            controller: orderOfflineController,
+            controller: orderOfflineController
             // resolve: {
             //     factory:loginInterceptor
             // }
+        })
+        .when("/bails-account", {
+            templateUrl : "me/bails-account.html",
+            reloadOnSearch: false,
+            controller: orderOfflineController
+        })
+        .when("/crowdFund/details",{
+            templateUrl : "cf/fundDetails.html",
+            reloadOnSearch : false,
+            controller : cfController
+        })
+        .when("/crowdFund/detailsMore",{
+            templateUrl : "cf/fundDetails_more.html",
+            reloadOnSearch : false,
+            controller : detailsMoreController,
+        })
+        .when("/crowdFund/fundSupport/:cfId", {
+            templateUrl : "cf/fundSupport.html",
+            reloadOnSearch : false,
+            controller : fundSupportController,
+        })
+        .when("/crowdFund/order/infoWrite/:cfId/:amount",{ 
+            templateUrl : "cf/cfpro_infoWrite.html",
+            reloadOnSearch : false,
+            controller : orderInfoWriteController,
+            resolve: {
+                factory:loginInterceptor
+            }
+        })
+        .when("/crowdFund/order/confirm",{
+            templateUrl : "cf/cfpro_confirm.html",
+            reloadOnSearch : false,
+            controller : orderConfirmController
+        })
+        .when("/crowdFund/order/pay",{
+            templateUrl : "cf/cfpro_pay.html",
+            reloadOnSearch : false,
+            controller : orderConfirmController
+        })
+        .when("/crowdFund/topic/:cfId",{
+            templateUrl : "cf/cf_topicList.html",
+            reloadOnSearch : false,
+            controller : topicController
+        })
+        .when("/crowdFund/topicSubmit/:cfId/:aId/:type",{
+            templateUrl : "cf/cf_topicSubmit.html",
+            reloadOnSearch : false,
+            controller : topicSubmitController,
+            resolve : {
+                factory:loginInterceptor
+            }
+        })
+        .when("/crowdFund/crowdFundDetails/:cfId",{
+            templateUrl : "cf/cf_topicSubmit.html",
+            reloadOnSearch : false,
+            controller : crowdFundDetailsController,
+        })
+        .when("/crowdFund/pay/success",{
+            templateUrl : "cf/cf_pay_suc.html",
+            reloadOnSearch : false,
+            controller : cfPayController
+        })
+        .when("/crowdFund/support/one/:rewardId",{
+            templateUrl : "cf/cf_invest.html",
+            reloadOnSearch : false,
+            controller : cfInvestController
         })
         .otherwise({
             redirectTo: "/index"

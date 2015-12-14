@@ -22,6 +22,7 @@
             <div class="btn-group justified bg-primary">
                 <a ng-href="#/eyuan_mall?category_id={{category.id}}" class="btn text-white section-wide bg-transparent" ng-class="{'active':category.id == current_category_id}" ng-repeat="category in categories" ng-if="$index <4">
                     <span class="tag">{{category.categoryName | limitTo:4}}<i class="triangle"></i></span>
+                    <!-- <span class="tag">{{category.categoryName}}<i class="triangle"></i></span> -->
                 </a>
                 <a ng-href="#/eyuan_mall/shopping_cart" class="btn text-white">
                     <span class="tag"><i class="vv vv-20 vv-shopping-cart"></i><i class="triangle"></i></span>

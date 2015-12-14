@@ -5,6 +5,8 @@ var investmentController = function($scope,toastServices, errorServices, myServi
         page_size:1,
         message:"点击加载更多"
     }
+
+
     $scope.loadMore = function() {
         if ($scope.no_more) {
             return;

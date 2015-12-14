@@ -1,0 +1,127 @@
+
+<div class="scrollable">
+    <div class="scrollable-content">
+    	<div class="pro_banner">
+		    <img ng-src="{{fundingMore.logoSmall}}"> 
+    		<nav>
+        		<a ng-click="attention(fundingMore)"><i></i><span>{{fundingMore.attentions}}({{fundingMore.attention}})</span></a>
+		        <a ng-click="praise(fundingMore)"><i></i><span>赞({{fundingMore.praise}})</span></a>
+    		</nav>
+		</div>
+		<div class="project_text ELE">
+			<h3>{{fundingMore.title}}</h3>
+    		<p>{{fundingMore.detail}}</p>
+		</div>
+		<p class="globalLine"></p>
+		<div class="videoArea">
+			<div class="title f24 orange">以下视频请在WIFI网络环境下观看</div>
+		    <div class="video">
+		    <!-- ng-src="{{fundingMore.videoUrl}}" -->
+		    <!-- <a ng-href="{{fundingMore.videoUrl}}"></a> -->
+		    <!-- <embed ng-src="{{fundingMore.videoUrl}}" quality="high" align="middle" allowscriptaccess="always" allowfullscreen="true" mode="transparent" type="application/x-shockwave-flash"></embed> -->
+
+		    	<!-- <embed ng-src="{{interpolatedValue}}"> -->
+		    	<embed src="https://cloud.video.taobao.com/play/u/2381682267/p/1/e/1/t/7/fv/102/31252496.swf">
+    		</div>
+		</div>
+		<div ng-repeat="detail in detailMore">
+			<div class="details_tit f24">
+				<i class="icon"><img ng-src="{{detail.logo}}"></i>
+				<strong>{{detail.name}}</strong>
+			</div>
+			<div class="details_tent f24" ng-show="detail.detail">
+				<div ng-bind-html="trustAsHtml(detail.detail)"></div>
+			</div>
+		</div>
+
+		<!-- <div class="details_tit f24">
+			<i class="icon"><img src="images/cf_details_02.png"></i>
+    		<strong>项目详情</strong>
+		</div>
+		<div class="details_tent f24">
+			<img src="temp/project_zhanweiPic.png"> 
+    		<ul class="gray6">
+    			<li>
+	        		<span class="Bold">项目所在楼层</span>
+    		        <span>2层/共8层</span>
+        		</li>
+        		<li>
+        			<span class="Bold">项目面积</span>
+		            <span>200平方米</span>
+        		</li>
+		        <li>
+        			<span class="Bold">周边物业均价</span>
+		            <span>￥60,000.00每平方米</span>
+        		</li>
+        		<li>
+        			<span class="Bold">商业城人流量</span>
+            		<span>月均100万</span>
+        		</li>
+    		</ul> 
+		</div> -->
+
+		<!-- <div class="details_tit f24">
+			<i class="icon"><img src="images/cf_details_02_a.png"></i>
+    		<strong>我们为什么需要众筹？</strong>
+		</div>
+		<div class="details_tent f24">
+			<p><i class="mar0 icon"><img src="images/modify_01.png"></i> <span class="text">我们有丰富的经验和足够的能力做成这件事</span></p>
+    		<p><i class="mar0 icon"><img src="images/modify_02.png"></i> <span class="text">我们需要您帮助我们做更大的项目</span></p>
+    		<p><i class="mar0 icon"><img src="images/modify_03.png"></i> <span class="text">我们需要与您共享项目完成后的收益，因为
+			双方都能获得超额的利润。</span></p>
+		</div> -->
+
+		<!-- <div class="details_tit f24">
+			<i class="icon"><img src="images/cf_details_02.png"></i>
+    		<strong>项目进度</strong>
+		</div>
+		<div class="progressRate f24" ng-repeat="">
+			<strong class="orange mar10">2015.02</strong>
+    		<p>项目勘察，评估项目规模，项目周边商业环境以及预期增长空间</p>
+		</div> -->
+
+		<!-- <div class="details_tit f24">
+			<i class="icon"><img src="images/cf_details_02.png"></i>
+    		<strong>承诺与回报</strong>
+		</div>
+		<div ng-repeat="support in rewardMore">
+			<div class="hb_details">
+				<p class="clearfix f28">
+    				<span class="orange">支持￥{{support.supportAmount}}</span><a class="fr blue" ng-href="#/crowdFund/order/infoWrite/{{support.id}}">去支持</a>
+    			</p>
+		    	<p class="gray6">
+	    			{{support.rewardDetail}}
+	    		</p>
+    			<ul class="clearfix">
+    				<li><img ng-show="{{support.rewardOne != null}}" ng-src="{{support.rewardOne}}"></li>
+                    <li><img ng-show="{{support.rewardTwo != null}}" ng-src="{{support.rewardTwo}}"></li>
+                    <li><img ng-show="{{support.rewardThree != null}}" ng-src="{{support.rewardThree}}"></li>
+                    <li><img ng-show="{{support.rewardFour != null}}" ng-src="{{support.rewardFour}}"></li>
+                    <li><img ng-show="{{support.rewardFive != null}}" ng-src="{{support.rewardFive}}"></li>
+	    		</ul>
+    			<p>运送费用：{{support.fee}}</p>
+    			<p>回报预计发送时间：<span class="gray6">项目成功后{{support.rewardDays}}日内</span></p>
+    			<p class="gray9">限额{{support.supportCount}}名，剩余{{support.count}}名</p>
+	    		<p class="line"></p>
+			</div>
+		</div>
+		<div class="viewMore" style="margin-bottom:10px;">
+			<a ng-href="#/crowdFund/fundSupport/{{fundingMore.id}}" class="blue">查看更多支持</a>
+		</div> -->
+
+		<!-- <div class="details_tit f24">
+			<i class="icon"><img src="images/cf_details_02.png"></i>
+    		<strong>常见问题</strong>
+		</div>
+		<div class="FQA_box f24" ng-repeat="">
+			<dl>
+    			<dt><img src="images/modify_04.png"></dt>
+        		<dd>
+        			<p class="gray6 Normal">注册账户时，提示邮箱已被注册，该怎么办？</p>
+            		<p class="gray9">请确认您及家人朋友是否曾经使用该邮箱地址在优易投进行注册。如果您确实用该邮箱注册过，您可以通过邮箱找回密码的方式，获得该账户的登录密码。 </p>
+		        </dd>
+    		</dl>
+		</div> -->
+
+    </div>
+</div>

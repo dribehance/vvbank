@@ -1,7 +1,7 @@
 angular.module("VVBank").factory("licaiServices", function($rootScope, $http, config) {
     return {
+        //理财产品首页项目
         query: function() {
-
             return $http({
                 url: config.url + "/v1/service/products",
                 method: "GET",
@@ -11,6 +11,7 @@ angular.module("VVBank").factory("licaiServices", function($rootScope, $http, co
                 return data.data;
             })
         },
+        //
         loadMore: function() {
             return $http({
                 url: config.url + "",
@@ -20,6 +21,7 @@ angular.module("VVBank").factory("licaiServices", function($rootScope, $http, co
                 return data.data;
             })
         },
+        //首页项目
         recommand: function(page) {
             return $http({
                 url: config.url + "/v1/service/homepage/products",
@@ -32,6 +34,7 @@ angular.module("VVBank").factory("licaiServices", function($rootScope, $http, co
                 return data.data;
             })
         },
+        //根据项目类型获取项目产品
         queryByExchange:function(exchangeCode,page) {
             return $http({
                 url:config.url +"/v1/service/products/"+exchangeCode,
@@ -43,6 +46,7 @@ angular.module("VVBank").factory("licaiServices", function($rootScope, $http, co
                 return data.data;
             })
         },
+        //获取产品类型
         queryExchange:function() {
             return $http({
                 url:config.url +"/v1/service/productType",

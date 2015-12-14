@@ -1,0 +1,75 @@
+<div class="scrollable">
+    <div class="scrollable-content">
+
+<div class="project_text ELE">
+	<h3>{{funding.title}}</h3>
+    <p>{{funding.detail}}</p>
+</div>
+<div class="topicLine"></div>
+<!-- <div class="proTopic">
+	<dl>
+    	<dt><a href="#"><img src="temp/HeadPortrait_01.png"></a></dt>
+        <dd>
+        	<p>
+            	<span class="gray3">何文武</span> <span class="gray9">发表于2分钟前</span><a href="#" class="blue fr f28">参与话题</a>
+            </p>
+            <p class="gray6">好大的一家苏宁连锁店，上周末过去人山人海，
+各种活动层出不穷。</p>
+            <p class="gray6">沿街的商铺基本上已经售完，只剩里面的商铺，
+离地铁非常近，交通很方便。</p>
+            <p class="gray6">看样子项目很靠谱，就目前的人流量来说，苏
+宁的荷包一定会鼓起来。</p>
+			<div class="commentBox">
+            	<ul>
+                	<li>
+                    	<i class="pic"><img src="temp/HeadPortrait_01.png"></i>
+                        <p style="width:450px;">KH152352322 : 哪个地铁口出了？</p>
+                    </li>
+                    <li>
+                    	<i class="pic"><img src="temp/HeadPortrait_02.png"></i>
+                        <p> angelababy 回复 KH152352322 : 在前面这个D出口走出来</p>
+                    </li>
+                    <li>
+                    	<i class="pic"><img src="temp/HeadPortrait_01.png"></i>
+                        <p> HK123 : 人确实很多，挤都挤不进去。</p>
+                    </li>
+                    <li>
+                    	<i class="pic"><img src="temp/HeadPortrait_02.png"></i>
+                        <p> angelababy 回复 HK123 : 往死里挤，挤挤更健康！死了我埋，放心吧。</p>
+                    </li>
+                </ul>
+                <a href="#" class="gray6 fr">点击显示更多回复</a>
+            </div>
+        </dd>
+    </dl>
+    <div class="line"></div>
+</div> -->
+<div class="proTopic" ng-repeat="topic in topicList">
+            <dl>
+                <dt><a href="#"><img src="../default-avatar.png"></a></dt>
+                <dd>
+                    <p>
+                        <span class="gray3">{{topic.topicUser}}</span> <span class="gray9">发表于{{topic.answerTime}}</span><a href="#" class="blue fr f28">参与话题</a>
+                    </p>
+                    <p class="gray6">{{topic.topicContent}}</p>
+                    <div class="commentBox">
+                        <ul ng-repeat="replies in topic.replies">
+                            <li>
+                                <i class="pic"><img src="../default-avatar.png"></i>
+                                <p style="width:450px;">{{replies.replyName}} : {{replies.replyContent}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </dd>
+            </dl>
+            <p>
+                <a href="javascript:;"class="gray9">评论（{{topic.replies.length}}）</a>
+                <a href="javascript:;"class="gray9">回复</a>
+            </p>
+        </div>
+<div class="nextStep">
+	<a ng-href="#/crowdFund/crowdFundDetails/{{funding.id}}" class="nextbtn orangeBtn">去发布</a>
+</div>
+
+    </div>
+</div>

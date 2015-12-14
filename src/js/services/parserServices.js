@@ -24,6 +24,19 @@ angular.module("VVBank").factory("parserServices", function(config) {
         }
         return 3;
     }
+
+    var parsetwodecimal =function(data){
+        if(data){
+            var dataArr = data.toString().split(".");
+            if(dataArr.length > 1){
+                if(dataArr[1].length >2){
+                    data = data.toFixed(2);
+                }
+            }
+        }
+        return data;
+    }
+
     return {
         // product parser
         parseProduct: function(data) {
@@ -37,11 +50,11 @@ angular.module("VVBank").factory("parserServices", function(config) {
             product.max = data.maxInvestAmount || "0";
             product.percentage = data.annualRate || "0";
             product.addition = data.addRate || "0";
-            product.progress = parseFloat(data.totalInvestAmount || "0") / data.amount * 100;
+            product.progress = parsetwodecimal(parseFloat(data.totalInvestAmount || "0") / data.amount * 100);
             product.safety = safety_parser(data.safety);
             product.total = data.amount || "";
             product.already = data.totalInvestAmount || "0";
-            product.remain = parseFloat(data.amount) - (parseFloat(data.totalInvestAmount) || "0");
+            product.remain = parsetwodecimal(parseFloat(data.amount) - (parseFloat(data.totalInvestAmount) || "0"));
             product.tag = data.status;
             product.faqiren = data.initiator || "";
             product.dealer = data.underwriter || "";
@@ -53,6 +66,8 @@ angular.module("VVBank").factory("parserServices", function(config) {
             product.transaction = data.investPersonCount || "0";
             product.detail = data.detail;
             product.delta = data.incrementAmount || "5";
+            product.emoney = data.emoney || "0";
+            product.projectChannelType = data.projectChannelType || "";
             return product;
         },
         parseProducts: function(data) {
@@ -63,6 +78,200 @@ angular.module("VVBank").factory("parserServices", function(config) {
             }
             return products;
         },
+
+        parseCrowdFund : function(data){
+            var fund = new _m_fund();
+            fund.id = data.id;
+            fund.big = data.big || "";
+            fund.small = data.small || "";
+            fund.fundsName = data.fundsName;
+            fund.endDayCount = data.endDayCount || "0";
+            fund.status = data.status;
+            fund.fundStatus = data.fundStatus;
+            fund.supportCount = data.supportCount || "0";
+            fund.appliedTotalAmount = data.appliedTotalAmount || "0";
+            fund.totalAmount = data.totalAmount || "0";
+            return fund;
+        },
+
+        parseCrowdFunds : function(data){
+            var crowdFunds = [];
+            for (var i = 0; i < data.length; i++){
+                var fund = this.parseCrowdFund(data[i]);
+                crowdFunds.push(fund);
+            }
+            return crowdFunds;
+        },
+
+        parseUZBCrowdFund : function(data){
+            var fund = new _m_uzb_fund();
+            fund.id = data.id;
+            fund.fundsName = data.fundsName;
+            fund.status = data.status;
+            fund.fundStatus = data.fundStatus;
+            fund.small = data.small;
+            fund.speed = data.speed;
+            fund.periodMin = data.periodMin;
+            fund.periodMax = data.periodMax;
+            fund.rateMin = data.rateMin;
+            fund.rateMax = data.rateMax;
+            fund.reward = data.reward;
+            return fund;
+        },
+
+        parseUZBCrowdFunds : function(data){
+            var crowdFunds = [];
+            for (var i = 0; i < data.length; i++) {
+                var fund = this.parseUZBCrowdFund(data[i]);
+                crowdFunds.push(fund);
+            }
+            return crowdFunds;
+        },
+
+        parseFundSupport : function(data){
+            var support = new _m_support();
+            support.id = data.rewardId;
+            support.fundId = data.fundingId;
+            support.rewardType = data.rewardType;
+            support.supportAmount = data.supportAmount || "0";
+            support.extractOr = data.extractOr;
+            support.rewardtitle = data.rewardtitle || "";
+            support.rewardDetail = data.rewardDetail || "";
+            support.supportCount = data.supportCount || "0";
+            support.fee = data.fee;
+            support.rewardDays = data.rewardDays || "0";
+            support.count = data.count || "0";
+            support.rewardOne = data.rewardOne;
+            support.rewardTwo = data.rewardTwo;
+            support.rewardThree = data.rewardThree;
+            support.rewardFour = data.rewardFour;
+            support.rewardFive = data.rewardFive;
+            return support;
+        },
+
+        parseFundSupports : function(data){
+            var fundSupports = [];
+            for (var i = 0; i < data.length; i++) {
+                var support = this.parseFundSupport(data[i]);
+                fundSupports.push(support);
+            }
+            return fundSupports;
+        },
+
+        parseUZBFundSupport : function(data){
+            var support = new _m_uzb_support();
+            support.id = data.rewardId;
+            support.fundId = data.fundingId;
+            support.rewardtitle = data.rewardtitle;
+            support.rewardDetail = data.rewardDetail;
+            support.rewardDays = data.rewardDays;
+            support.rate = data.rate;
+            support.period = data.period;
+            support.addPeriod = data.addPeriod;
+            support.rewardOne = data.rewardOne;
+            support.rewardTwo = data.rewardTwo;
+            support.rewardThree = data.rewardThree;
+            support.rewardFour = data.rewardFour;
+            support.rewardFive = data.rewardFive;
+            return support;
+        },
+
+        parseUZBFundSupports : function(data){
+            var fundSupports = [];
+            for(var i = 0; i < data.length; i++){
+                var support = this.parseUZBFundSupport(data[i]);
+                fundSupports.push(support);
+            }
+            return fundSupports;
+        },
+
+        parseRewardBanner : function(data){
+            var reward = new _m_reward_banner();
+            reward.id = data.rewardId;
+            reward.fundId = data.fundId;
+            reward.period = data.period;
+            reward.rate = data.rate;
+            reward.addPeriod = data.addPeriod;
+            return reward;
+        },
+
+
+        parseRewardBanners : function(data){
+            var rewards = [];
+            for (var i = 0; i < data.length; i++) {
+                var reward = this.parseRewardBanner(data[i]);
+                rewards.push(reward);
+            }
+            return rewards;
+        },
+
+        parseFundSustain : function(data){
+            var sustain = new _m_sustain();
+            sustain.id = data.rewardId;
+            sustain.fundId = data.fundId;
+            sustain.period = data.period;
+            sustain.rate = data.rate;
+            sustain.supportCount = data.supportCount;
+            sustain.rewardtitle = data.rewardtitle;
+            sustain.rewardDetail = data.rewardDetail;
+            sustain.rewardDays = data.rewardDays;
+            sustain.rewardOne = data.rewardOne;
+            sustain.rewardTwo = data.rewardTwo;
+            sustain.rewardThree = data.rewardThree;
+            sustain.rewardFour = data.rewardFour;
+            sustain.rewardFive = data.rewardFive;
+            return sustain;
+        },
+
+        parseFundSustains : function(data){
+            var sustains = [];
+            for(var i = 0; i < data.length; i++){
+                var sustain = this.parseFundSustain(data[i]);
+                sustains.push(sustain);
+            }
+            return sustains;
+        },
+
+        parseTopicList : function(data){
+            var topicList = new _m_topicList();
+            topicList.id = data.id;
+            topicList.topicUser = data.topicUser;
+            topicList.topicContent = data.topicContent;
+            topicList.answerTime = data.answerTime;
+            topicList.replies = data.replies;
+            return topicList; 
+        },
+
+        parseTopicLists : function(data){
+            var topic = [];
+            for(var i = 0; i < data.length; i++){
+                var topics = this.parseTopicList(data[i]);
+                topic.push(topics);
+            }
+            return topic;
+        },
+
+
+        parseFundDetail : function(data){
+            var detail = new _m_fund_deatil();
+            detail.id = data.detailId;
+            detail.logo = data.logo;
+            detail.subTitle = data.subTitle;
+            detail.detail = data.detail;
+            detail.name = data.name;
+            detail.order = data.order;
+            return detail;
+        },
+
+        parseFundDetails : function(data){
+            var details = [];
+            for(var i = 0; i < data.length; i++){
+                var detai = this.parseFundDetail(data[i]);
+                details.push(detai);
+            }
+            return details;
+        },
+
         // recommand parse
         parseRecommendProduct: function(data) {
             var products = this.parseProducts(data);
@@ -109,6 +318,7 @@ angular.module("VVBank").factory("parserServices", function(config) {
                 banner.name = data[i].name;
                 banner.path = data[i].path;
                 banner.url = data[i].url;
+                banner.id = data[i].id;
                 banners.push(banner);
             }
             return banners;
@@ -300,6 +510,6 @@ angular.module("VVBank").factory("parserServices", function(config) {
                 messages.push(message);
             }
             return messages;
-        },
+        }
     }
 })

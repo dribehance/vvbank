@@ -1,0 +1,137 @@
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<!-- <div ui-content-for="title">提现确认</div>
+<div ui-content-for="navbarAction"></div>
+<div ui-content-for="backAction">
+    <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+</div> -->
+<div class="scrollable">
+    <div class="scrollable-content">
+
+    	<div class="pro_banner">
+            <img ng-src="{{funding.logoSmall}}"> 
+            <nav>
+                <a ng-click="attention(funding)"><i></i><span>{{funding.attentions}}({{funding.attention}})</span></a>
+                <a ng-click="praise(funding)"><i></i><span>赞({{funding.praise}})</span></a>
+            </nav>
+        </div>
+        <div class="project_text ELE">
+            <h3>{{funding.title}}</h3>
+            <p>{{funding.detail}}</p>
+        </div>
+        <div class="chips_infos">
+            <ul class="clearfix">
+                <li>
+                    <p class="Bold f22">众筹进度</p>
+                    <p class="red f36">125</p> 
+                    <p class="f16">（%）</p>
+                    <i class="icon"></i>
+                </li>
+                <li>
+                    <p class="Bold f22">共募集</p>
+                    <p class="red f36">1000 000</p>
+                    <p class="f16">（元）</p>
+                    <i class="icon"></i>
+                </li>
+                <li>
+                    <p class="Bold f22">剩余时间</p>
+                    <p class="red f36">10</p>
+                    <p class="f16">（天）</p>
+                </li>
+            </ul>
+        </div>
+        <div class="lookover_more">
+            <a ng-click="fundsDetailMore(funding)">查看更多项目详细信息</a>
+        </div>
+        <div class="zcNumber ELE">
+            <p>
+                <span class="orange">{{funding.appliedCount}}</span>人支持
+            </p>
+            <p>
+                <span>{{funding.support}}</span>
+            </p>
+            <div class="line"></div>
+        </div>  
+
+        <div class="proTopic">
+            <p class="f28">
+                <span class="orange f24">{{topicList.length}}</span>个话题
+                <a ng-href="#/crowdFund/topicSubmit/{{funding.id}}/topic/topic" class="blue fr f24">发布话题</a>
+            </p>
+        </div>
+        <div ng-repeat="topic in topicList">
+            <div class="proTopic">
+                <dl>
+                    <dt><a href="#"><img src="../images/default-avatar.png"></a></dt>
+                    <dd>
+                        <p>
+                            <span class="gray3">{{topic.topicUser}}</span> <span class="gray9">发表于{{topic.answerTime}}</span><a ng-href="#/crowdFund/topicSubmit/{{funding.id}}/{{topic.id}}/reply" class="blue fr f28">参与话题</a>
+                        </p>
+                        <p class="gray6">{{topic.topicContent}}</p>
+                        <p>
+                            <a href="javascript:;"class="gray9">评论({{topic.replies.length}})</a>
+                            <a ng-href="#/crowdFund/topicSubmit/{{funding.id}}/{{topic.id}}/reply" class="gray9">回复</a>
+                        </p>
+                        <div class="commentBox">
+                            <ul ng-repeat="replies in topic.replies">
+                                <li>
+                                    <i class="pic"><img src="../images/default-avatar.png"></i>
+                                    <p style="width:450px;">{{replies.replyName}} : {{replies.replyContent}}</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </dd>
+                </dl>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="lookover_more" style="border-bottom:1px solid #DDD;margin-top:-30px;" ng-show="topicList.length > 0">
+            <a ng-href="#/crowdFund/topic/{{funding.id}}" class="f24">查看更多话题</a>
+        </div>
+
+        <div ng-repeat="sustain in reward">     
+        <form name="cashForm" ng-submit="ajaxForm(sustain.id)">
+            <div class="hb_details">
+                <p class="clearfix f24">
+                    <span class="orange">{{sustain.period}}天</span>投资<span class="blue">{{sustain.rate}}%</span>年化收益
+                </p>
+                <p>
+                    <input type="number" class="full-width textBox" ng-model="input.supportAmount[sustain.id]" min="100" required placeholder="100" ng-pattern="/[0-9]$/" />
+                </p>
+                <p>
+                    <button type="submit" class="btn btn-primary" ng-disabled="cashForm.$invalid">立即投资</button>
+                </p>
+                <p>无限额</p>
+                <p class="gray6">
+                    {{sustain.rewardDetail}}
+                </p>
+                <ul class="clearfix">
+                    <li><img ng-show="{{sustain.rewardOne != null}}" ng-src="{{sustain.rewardOne}}"></li>
+                    <li><img ng-show="{{sustain.rewardTwo != null}}" ng-src="{{sustain.rewardTwo}}"></li>
+                    <li><img ng-show="{{sustain.rewardThree != null}}" ng-src="{{sustain.rewardThree}}"></li>
+                    <li><img ng-show="{{sustain.rewardFour != null}}" ng-src="{{sustain.rewardFour}}"></li>
+                    <li><img ng-show="{{sustain.rewardFive != null}}" ng-src="{{sustain.rewardFive}}"></li>
+                </ul>
+                <p>本金收益返还时间：<span class="gray6">成功投资后{{sustain.rewardDays}}日内。</span></p>
+                <p class="line"></p>
+            </div>
+        </form>
+        </div>
+
+        <!-- <div class="viewMore" style="margin-bottom:100px;">
+            <a href="#" class="blue">查看更多支持</a>
+        </div> -->
+
+         <div class="Cover" style="display:none;"></div>
+         <div class="supportBtn">
+            <div class="shareBox">
+                <span class="shareTo">分享到：</span>
+                <a ng-click="shareToAll('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey')" class="ny_share ny_share01"></a>
+                <a ng-click="shareToAll('http://v.t.sina.com.cn/share/share.php')" class="ny_share ny_share02"></a>
+                <a ng-click="shareToAll('http://v.t.qq.com/share/share.php')" class="ny_share ny_share03"></a>
+                <a href="javascript:;" class="ny_share ny_share04"></a>
+            </div>
+            <i><img src="../images/zhuanfa.png" ng-click="supportBtn()"></i>
+            <a ng-href="#/crowdFund/fundSupport/{{funding.id}}">支持</a>
+        </div>
+    </div>
+</div>

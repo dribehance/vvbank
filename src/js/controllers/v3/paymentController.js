@@ -25,7 +25,7 @@ var paymentController = function($scope, $rootScope,$location, $timeout, $routeP
         }
     });
     // pay;
-    $scope.pay = function() {
+    $scope.pay = function(cfId) { 
         if (!$scope.delivery.recipientName || $scope.delivery.recipientName.trim() == '' || !$scope.delivery.address || $scope.delivery.address.trim() == '' || $scope.delivery.address.trim() == "null" || !$scope.delivery.recipientPhone || $scope.delivery.recipientPhone.trim() == '') {
             errorServices.autoHide("请先完善收货信息")
             return;
@@ -73,12 +73,12 @@ var paymentController = function($scope, $rootScope,$location, $timeout, $routeP
         })
     };
     $scope.modifyAddress = function() {
-        SharedState.turnOn("address_panel");
-        // no address provide
-        if ($scope.delivery.provider.providerId == "") return;
-        $scope.input.username = $scope.delivery.recipientName;
-        $scope.input.telephone = $scope.delivery.recipientPhone;
-        $scope.input.address = $scope.delivery.address;
+            SharedState.turnOn("address_panel");
+            // no address provide
+            if ($scope.delivery.provider.providerId == "") return;
+            $scope.input.username = $scope.delivery.recipientName;
+            $scope.input.telephone = $scope.delivery.recipientPhone;
+            $scope.input.address = $scope.delivery.address;
         angular.forEach($scope.provinces,function(province) {
             if (province.provinceId == $scope.delivery.provider.providerId) {
                 $scope.input.province = province;

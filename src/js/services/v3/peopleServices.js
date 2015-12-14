@@ -1,6 +1,7 @@
 // by dribehance <dribehance.kksdapp.com>
 angular.module("VVBank").factory("peopleServices", function($http, $rootScope,localStorageService, config) {
     return {
+        //一级人脉
         query: function(input) {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
