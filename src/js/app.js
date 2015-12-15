@@ -466,6 +466,21 @@ angular.module("VVBank", [
             reloadOnSearch : false,
             controller : cfInvestController
         })
+        .when("/chou",{
+            templateUrl : "chou.html",
+            reloadOnSearch : false,
+            controller : chouController
+        })
+        .when("/account_center",{
+            templateUrl : "account_center.html",
+            reloadOnSearch : false,
+            controller : accountCenterController
+        })
+        .when("/eyuan_mall_center",{
+            templateUrl : "eyuan_mall_center.html",
+            reloadOnSearch : false,
+            controller : eyuanMallCenterController
+        })
         .otherwise({
             redirectTo: "/index"
         });

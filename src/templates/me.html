@@ -7,71 +7,95 @@
     </a>
 </div> -->
 <div class="scrollable">
-    <div class="scrollable-content">
+    <div class="scrollable-content bg-transparent">
         <div class="section me-info">
-        <div class="btn-group justified">
-            <span class="btn section-wide text-left">
-                <!-- <a ng-click="back()" class="vv vv-back vv-38"></a> -->
-            </span>
-            <span class="btn section-wide text-right">
-                <!-- <a ng-href="#/setting" class="vv vv-setting vv-38"></a> -->
+            <div class="text-right">
                 <a class="vv vv-qrcode vv-38" ng-click="queryQrcode()"></a>
-            </span>
-        </div>
-            <div class="semi-auto semi-left-75">
-                <span class="semi-fixed-left semi-width-75">
-					<img ng-src="{{ user.avatar || staticImageUrl +'images/default-avatar.png'}}" alt="">
-				</span>
-                <div class="section bg-primary">
-                    <p class="text-large"><b>{{ user.username || "..." }}</b>
-                    </p>
-                    <p class="text-ellipsis" style="font-size:14px">您的总收益：{{ user.earning | currency:"" }}元</p>
+            </div>
+            <img ng-src="{{ user.avatar || staticImageUrl +'images/default-avatar.png'}}" class="me-avatar pull-left" alt="">
+            <div class="section bg-primary" style="padding-top:6px">
+                <span class="vip">vip</span>
+                <div class="text-large"><b>{{ user.username || "..." }}</b>
                 </div>
+                <p class="text-ellipsis">您的总收益：<span class="text-yellow text-big">{{ user.earning | currency:"" }}</span>元</p>
             </div>
         </div>
-        <div class="btn-group justified bg-dark-blue text-white">
+        <div class="me-action">
             <a ng-href="#/charge" class="btn text-white">充值</a>
             <a ng-href="#/cash" class="btn text-white">提现</a>
-            <!-- <a class="btn text-white">充值</a>
-            <a class="btn text-white">提现</a> -->
         </div>
         <div class="row bg-white section section-wide">
             <div class="col-xs-6 section-wide text-center">
                 <span class="text-grey"><strong>总资产（元）</strong></span>
                 <div class="text-orange text-large text-ellipsis"><strong>{{user.total | currency:"￥"}}</strong></div>
-
             </div>
             <div class="col-xs-6 section-wide text-center">
                 <span class="text-grey"><strong>可用金额（元）</strong></span>
                 <div class="text-orange text-large text-ellipsis"><strong>{{ user.frozen | currency:"￥"}}</strong></div>
             </div>
         </div>
-        <div class="vv-divide"></div>
-        <div class="section section-wide section-sm">
-            <a ng-href="#/investment" class="block text-grey semi-auto semi-left-30 semi-right-50">
+        <div class="vv-divide vv-10"></div>
+        <!-- <div class="section section-wide section-sm">
+            <a ng-href="#/bails-account" class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
-        		<i class="vv vv-35 vv-investment"></i>
-        	</span>
-                <span class="btn">投资记录</span>
+                    <i class="vv vv-35 vv-me-1"></i>
+                </span>
+                <span class="btn">资金账户</span>
                 <span class="semi-fixed-right semi-width-50 text-center">
-        		<i class="vv vv-arrow-right vv-35"></i>
-        	</span>
+                    <i class="vv vv-arrow-right vv-35"></i>
+                </span>
             </a>
-        </div>
+        </div> -->
         <div class="vv-divide"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/bills" class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
-        		<i class="vv vv-35 vv-bill"></i>
-        	</span>
+                <i class="vv vv-35 vv-me-2"></i>
+            </span>
                 <span class="btn">资金明细</span>
                 <span class="semi-fixed-right semi-width-50 text-center">
-        		<i class="vv vv-arrow-right vv-35"></i>
-        	</span>
+                <i class="vv vv-arrow-right vv-35"></i>
+            </span>
             </a>
         </div>
         <div class="vv-divide"></div>
         <div class="section section-wide section-sm">
+            <a ng-href="#/investment" class="block text-grey semi-auto semi-left-30 semi-right-50">
+                <span class="semi-fixed-left semi-width-40 text-center">
+                <i class="vv vv-35 vv-me-3"></i>
+            </span>
+                <span class="btn">投资记录</span>
+                <span class="semi-fixed-right semi-width-50 text-center">
+                <i class="vv vv-arrow-right vv-35"></i>
+            </span>
+            </a>
+        </div>
+        <div class="vv-divide vv-5"></div>
+        <div class="section section-wide section-sm">
+            <a ng-href="#/chou" class="block text-grey semi-auto semi-left-30 semi-right-50">
+                <span class="semi-fixed-left semi-width-40 text-center">
+                <i class="vv vv-35 vv-me-4"></i>
+            </span>
+                <span class="btn">众筹</span>
+                <span class="semi-fixed-right semi-width-50 text-center">
+                <i class="vv vv-arrow-right vv-35"></i>
+            </span>
+            </a>
+        </div>
+        <div class="vv-divide"></div>
+        <div class="section section-wide section-sm">
+            <a ng-href="#/eyuan_mall_center" class="block text-grey semi-auto semi-left-30 semi-right-50">
+                <span class="semi-fixed-left semi-width-40 text-center">
+                <i class="vv vv-35 vv-me-5"></i>
+            </span>
+                <span class="btn">e圆商城</span>
+                <span class="semi-fixed-right semi-width-50 text-center">
+                <i class="vv vv-arrow-right vv-35"></i>
+            </span>
+            </a>
+        </div>
+        <!--<div class="vv-divide vv-5"></div>
+         <div class="section section-wide section-sm">
             <a ng-href="#/orders" class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
                 <i class="vv vv-35 vv-me-3"></i>
@@ -81,31 +105,8 @@
                 <i class="vv vv-arrow-right vv-35"></i>
             </span>
             </a>
-        </div>
-        <!-- <div class="vv-divide"></div>
-        <div class="section section-wide section-sm">
-            <a ng-href="#/bails-account" class="block text-grey semi-auto semi-left-30 semi-right-50">
-                <span class="semi-fixed-left semi-width-40 text-center">
-                    <i class="vv vv-35 vv-me-3"></i>
-                </span>
-                <span class="btn">资金账户</span>
-                <span class="semi-fixed-right semi-width-50 text-center">
-                    <i class="vv vv-arrow-right vv-35"></i>
-                </span>
-            </a>
         </div> -->
-        <!-- <div class="vv-divide vv-5"></div>
-        <div class="section section-wide section-sm">
-            <a ng-href="#/crowdFund" class="block text-grey semi-auto semi-left-30 semi-right-50">
-                <span class="semi-fixed-left semi-width-40 text-center">
-                <i class="vv vv-35 vv-me-11"></i>
-            </span>
-                <span class="btn">众筹</span>
-                <span class="semi-fixed-right semi-width-50 text-center">
-                <i class="vv vv-arrow-right vv-35"></i>
-            </span>
-            </a>
-        </div> -->
+        
         <!-- <div class="vv-divide vv-5"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/bills" class="block text-grey semi-auto semi-left-30 semi-right-50">
@@ -118,18 +119,7 @@
             </span>
             </a>
         </div> 
-        <div class="vv-divide vv-1"></div>
-        <div class="section section-wide section-sm">
-            <a class="block text-grey semi-auto semi-left-30 semi-right-50">
-                <span class="semi-fixed-left semi-width-40 text-center">
-                <i class="vv vv-35 vv-me-5"></i>
-            </span>
-                <span class="btn">安全认证</span>
-                <span class="semi-fixed-right semi-width-50 text-center">
-                <i class="vv vv-arrow-right vv-35"></i>
-            </span>
-            </a>
-        </div>
+        
         <div class="vv-divide vv-5"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/bank-cards" class="block text-grey semi-auto semi-left-30 semi-right-50">
@@ -142,19 +132,31 @@
             </span>
             </a>
         </div>-->
-        <div class="vv-divide vv-1"></div>
+        <div class="vv-divide vv-5"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/people" class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
-                <i class="vv vv-35 vv-me-7"></i>
+                <i class="vv vv-35 vv-me-6"></i>
             </span>
-                <span class="btn">人脉</span>
+                <span class="btn">人脉推广</span>
                 <span class="semi-fixed-right semi-width-50 text-center">
                 <i class="vv vv-arrow-right vv-35"></i>
             </span>
             </a>
         </div>
         <div class="vv-divide vv-1"></div>
+        <div class="section section-wide section-sm">
+            <a ng-href="#/account_center" class="block text-grey semi-auto semi-left-30 semi-right-50">
+                <span class="semi-fixed-left semi-width-40 text-center">
+                <i class="vv vv-35 vv-me-7"></i>
+            </span>
+                <span class="btn">账户安全</span>
+                <span class="semi-fixed-right semi-width-50 text-center">
+                <i class="vv vv-arrow-right vv-35"></i>
+            </span>
+            </a>
+        </div>
+        <!-- <div class="vv-divide vv-1"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/promote" class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
@@ -177,36 +179,49 @@
                 <i class="vv vv-arrow-right vv-35"></i>
             </span>
             </a>
-        </div>
-        <!-- <div class="vv-divide vv-1"></div>
+        </div> -->
+        <div class="vv-divide vv-1"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/account-setting" class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
-                <i class="vv vv-35 vv-me-10"></i>
+                <i class="vv vv-35 vv-me-8"></i>
             </span>
                 <span class="btn">个人资料</span>
                 <span class="semi-fixed-right semi-width-50 text-center">
                 <i class="vv vv-arrow-right vv-35"></i>
             </span>
             </a>
-        </div> -->
+        </div>
         <div class="vv-divide vv-5"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/messages" class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
-                <i class="vv vv-35 vv-me-11"></i>
+                <i class="vv vv-35 vv-me-9"></i>
+            </span>
+                <span class="btn">站内信</span>
+                <span class="badge">14</span>
+                <span class="semi-fixed-right semi-width-50 text-center">
+                <i class="vv vv-arrow-right vv-35"></i>
+            </span>
+            </a>
+        </div>
+        <!-- <div class="vv-divide vv-5"></div>
+        <div class="section section-wide section-sm">
+            <a ng-href="#/messages" class="block text-grey semi-auto semi-left-30 semi-right-50">
+                <span class="semi-fixed-left semi-width-40 text-center">
+                <i class="vv vv-35 vv-message"></i>
             </span>
                 <span class="btn">我的消息</span>
                 <span class="semi-fixed-right semi-width-50 text-center">
                 <i class="vv vv-arrow-right vv-35"></i>
             </span>
             </a>
-        </div>
-        <!-- <div class="vv-divide vv-1"></div>
+        </div> -->
+        <div class="vv-divide vv-1"></div>
         <div class="section section-wide section-sm">
             <a class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
-                <i class="vv vv-35 vv-me-12"></i>
+                <i class="vv vv-35 vv-me-10"></i>
             </span>
                 <span class="btn">活动</span>
                 <span class="semi-fixed-right semi-width-50 text-center">
@@ -214,18 +229,18 @@
             </span>
             </a>
         </div> 
-        <div class="vv-divide vv-1"></div>
+         <div class="vv-divide vv-1"></div>
         <div class="section section-wide section-sm">
             <a class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
-                <i class="vv vv-35 vv-me-13"></i>
+                <i class="vv vv-35 vv-me-11"></i>
             </span>
                 <span class="btn">关于优易投</span>
                 <span class="semi-fixed-right semi-width-50 text-center">
                 <i class="vv vv-arrow-right vv-35"></i>
             </span>
             </a>
-        </div>-->
+        </div>
         <div class="vv-divide vv-5"></div>
         <div class="section text-center">
             <a ng-click="logout()" class="btn btn-lg btn-primary block" style="margin:25px">退出</a>
@@ -234,50 +249,38 @@
         <div class="section section-wide section-sm">
             <a ng-href="#/activities" class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
-        		<i class="vv vv-35 vv-activity"></i>
-        	</span>
+                <i class="vv vv-35 vv-activity"></i>
+            </span>
                 <span class="btn">活动中心</span>
                 <span class="semi-fixed-right semi-width-50 text-center">
-        		<i class="vv vv-arrow-right vv-35"></i>
-        	</span>
+                <i class="vv vv-arrow-right vv-35"></i>
+            </span>
             </a>
         </div>
         <div class="vv-divide"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/eyuan" class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
-        		<i class="vv vv-35 vv-e"></i>
-        	</span>
+                <i class="vv vv-35 vv-e"></i>
+            </span>
                 <span class="btn">我的E圆</span>
                 <span class="semi-fixed-right semi-width-50 text-center">
-        		<i class="vv vv-arrow-right vv-35"></i>
-        	</span>
+                <i class="vv vv-arrow-right vv-35"></i>
+            </span>
             </a>
         </div> -->
         <!-- <div class="vv-divide"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/pocket" class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
-        		<i class="vv vv-35 vv-pocket"></i>
-        	</span>
+                <i class="vv vv-35 vv-pocket"></i>
+            </span>
                 <span class="btn">我的红包</span>
                 <span class="semi-fixed-right semi-width-50 text-center">
-        		<i class="vv vv-arrow-right vv-35"></i>
-        	</span>
+                <i class="vv vv-arrow-right vv-35"></i>
+            </span>
             </a>
-        </div> 
-        <div class="vv-divide"></div>
-        <div class="section section-wide section-sm">
-            <a ng-href="#/messages" class="block text-grey semi-auto semi-left-30 semi-right-50">
-                <span class="semi-fixed-left semi-width-40 text-center">
-        		<i class="vv vv-35 vv-message"></i>
-        	</span>
-                <span class="btn">我的消息</span>
-                <span class="semi-fixed-right semi-width-50 text-center">
-        		<i class="vv vv-arrow-right vv-35"></i>
-        	</span>
-            </a>
-        </div>-->
+        </div> -->
         <div class="vv-divide vv-5"></div>
         <div class="vv-divide vv-5"></div>
         <div class="vv-divide vv-5"></div>

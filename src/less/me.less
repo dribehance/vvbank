@@ -1,29 +1,57 @@
 .me-info {
-	padding: 6px 18px;
-	background-color: @blue;
-	color: @white;
-	min-height: 150px;
+    padding: 6px 18px;
+    background-color: @blue;
+    color: @white;
+    min-height: 150px;
+    overflow: hidden;
+    .me-avatar {
+    	display: inline-block;
+    	width: 75px;
+    	height: 75px;
+    	vertical-align: middle;
+    	margin-right: 15px;
+    }
 }
+
+.me-action {
+	overflow: hidden;
+	background-color: @orange;
+	color: white;
+	a {
+		display: block;
+		float: left;
+		width: 49%;
+		margin: 8px auto;
+		padding-top: 0;
+		padding-bottom: 0;
+		text-align: center;
+		border-radius: 0;
+		-webkit-border-radius:0;
+		font-weight: bold;
+	}
+	a:first-child {
+		border-right: 1px solid white;
+	}
+}
+
 .bank-item {
-	span.btn {
-		border:1px solid @white;
-	}
-	&.blue-stip {
-
-		.justified {
-			border:1px solid @lightBlue;
-			span:first-child {
-				border-right: 1px solid @lightBlue;
-			}
-		}
-	}
-	&.green-stip {
-
-		.justified {
-			border:1px solid @lightGreen;
-			span:first-child {
-				border-right: 1px solid @lightGreen;
-			}
-		}
-	}
+    span.btn {
+        border: 1px solid @white;
+    }
+    &.blue-stip {
+        .justified {
+            border: 1px solid @lightBlue;
+            span:first-child {
+                border-right: 1px solid @lightBlue;
+            }
+        }
+    }
+    &.green-stip {
+        .justified {
+            border: 1px solid @lightGreen;
+            span:first-child {
+                border-right: 1px solid @lightGreen;
+            }
+        }
+    }
 }
