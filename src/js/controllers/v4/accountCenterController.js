@@ -4,7 +4,7 @@ var accountCenterController = function($scope,myServices, errorServices, toastSe
 	myServices.account.query().then(function(data){
 		toastServices.hide()
 		if(data.respcode == config.request.SUCCESS) {
-			$scope.account = data;		
+			$scope.account = data.result;		
 		}
 		else {
 			errorServices.autoHide("服务器错误");

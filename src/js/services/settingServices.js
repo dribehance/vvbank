@@ -56,17 +56,17 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/v1/service/bank",
-                method: "GET",
-                // headers: {
-                //     'Content-Type': 'application/x-www-form-urlencoded'
-                // },
-                // transformRequest: function(obj) {
-                //     var str = [];
-                //     for (var p in obj)
-                //         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                //     return str.join("&");
-                // },
-                params: angular.extend({}, config.common_params, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token")
                 })
             }).then(function(data) {
@@ -118,6 +118,27 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                 return data.data;
             });
         },
+        querySystemUserinfoInBank:function(){
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/v1/service/viewBankInfoUser",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
+                    "token":localStorageService.get("token")
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
         //修改查询银行卡信息
         updateBank: function(bank) {
             return $http({
@@ -153,7 +174,7 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
         //添加查询银行卡信息
         createBank: function(bank) {
             return $http({
-                url: config.url + "/v1/service/bankinfo",
+                url: config.url + "/v1/service/addBankinfo",
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -167,12 +188,14 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                 data: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "cardno": bank.card_number,
-                    "bank": bank.name,
+                    "bank": bank.branch,//支行名称
                     "provinceId": bank.provinceId,
                     "cityId": bank.cityId,
                     "bankId": bank.bankId,
-                    "bankBranch": bank.branch,
-                    "realName":bank.realname
+                    // "bankBranch": bank.branch,
+                    "realName":bank.realname,
+                    "idCard":bank.identify,
+                    "code":bank.smscode
                 })
             }).then(function(data) {
                 return data.data;

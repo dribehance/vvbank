@@ -8,19 +8,31 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
-        <imageview src="'../images/banner_5.png'" data-rate="640/387"></imageview>
-        <div class="section">黄晓明 139******1236</div>
+        <div>
+            <imageview src="'../images/banner_5.png'" data-rate="640/387"></imageview>
+        </div>
+        <div class="section">{{userinfo.realname}} {{userinfo.phone}}</div>
         <form name="bankForm" ng-submit="ajaxForm(this)">
             <div class="section section-condensed">
                 <div class="vv-input-group input-group-lg full-width">
                     <span class="vv-input-group-addon"><i class="vv vv-27 vv-me-664"></i></span>
-                    <input type="text" class="form-control block full-width" name="identity" ng-model="input.identity" required placeholder="请输入身份证号码">
-                    <span class="vv-input-tip" ng-show="bankForm.identity.$dirty && bankForm.identity.$invalid">必填</span>
+                    <input type="text" class="form-control block full-width" name="identity" ng-model="bank.identity" indentification required placeholder="请输入身份证号码">
+                    <span class="vv-input-tip" ng-show="bankForm.identity.$dirty && bankForm.identity.$error.required">必填</span>
+                    <span class="vv-input-tip" ng-show="bankForm.identity.$dirty && bankForm.identity.$error.indentification">身份证号码格式不正确</span>
                 </div>
             </div>
             <div class="section section-condensed">
                 <div class="vv-input-group input-group-lg full-width">
-                    <span class="vv-input-group-addon"><i class="vv vv-27 vv-me-664"></i></span>
+                    <span class="vv-input-group-addon"><i class="vv vv-27 vv-me-614"></i></span>
+                    <div class="form-control block full-width" style="padding-left:40px;">
+                        <select class="form-control rectangle sex block full-width" name="bank.bankId" ng-model="selected_bank" style="border:none;position:relative;top:-5px" ng-options="selected_bank as selected_bank.bankName for selected_bank in banks" required></select>
+                    </div>
+                    <span class="vv-input-tip" ng-show="bankForm.city.$dirty && bankForm.city.$invalid">请选择城市</span>
+                </div>
+            </div>
+            <div class="section section-condensed">
+                <div class="vv-input-group input-group-lg full-width">
+                    <span class="vv-input-group-addon"><i class="vv vv-27 vv-me-611"></i></span>
                     <div class="form-control block full-width" style="padding-left:40px;">
                         <div class="btn-group justified">
                             <span class="section-wide">
@@ -31,7 +43,7 @@
                             </span>
                         </div>
                     </div>
-                    <span class="vv-input-tip" ng-show="bankForm.identity.$dirty && bankForm.identity.$invalid">必填</span>
+                    <span class="vv-input-tip" ng-show="bankForm.city.$dirty && bankForm.city.$invalid">请选择城市</span>
                 </div>
                 <!-- <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-75 btn text-left text-grey section-wide"><i class="vv vv-27 vv-me-664"></i></span>
@@ -47,24 +59,24 @@
             </div>
             <div class="section section-condensed">
                 <div class="vv-input-group input-group-lg full-width">
-                    <span class="vv-input-group-addon"><i class="vv vv-27 vv-me-338"></i></span>
-                    <input type="text" class="form-control block full-width" name="identity" ng-model="input.identity" required placeholder="请输入开户银行支行名称">
-                    <span class="vv-input-tip" ng-show="bankForm.identity.$dirty && bankForm.identity.$invalid">必填</span>
+                    <span class="vv-input-group-addon"><i class="vv vv-27 vv-me-612"></i></span>
+                    <input type="text" class="form-control block full-width" name="branch" ng-model="bank.branch" required placeholder="请输入开户银行支行名称">
+                    <span class="vv-input-tip" ng-show="bankForm.branch.$dirty && bankForm.branch.$invalid">必填</span>
                 </div>
             </div>
             <div class="section section-condensed">
                 <div class="vv-input-group input-group-lg full-width">
-                    <span class="vv-input-group-addon"><i class="vv vv-27 vv-me-338"></i></span>
-                    <input type="text" class="form-control block full-width" name="identity" ng-model="input.identity" required placeholder="请输入银行卡号">
-                    <span class="vv-input-tip" ng-show="bankForm.identity.$dirty && bankForm.identity.$invalid">必填</span>
+                    <span class="vv-input-group-addon"><i class="vv vv-27 vv-me-613"></i></span>
+                    <input type="text" class="form-control block full-width" name="card_number" ng-model="bank.card_number" required placeholder="请输入银行卡号">
+                    <span class="vv-input-tip" ng-show="bankForm.card_number.$dirty && bankForm.card_number.$invalid">必填</span>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-right-150">
                     <div class="vv-input-group input-group-lg full-width">
                         <span class="vv-input-group-addon"><i class="vv vv-27 vv-verifycode"></i></span>
-                        <input type="text" class="form-control text-big border-radius-large" ng-model="input.smscode" name="smscode" ng-pattern="/^[0-9]+$/" ng-minlength=6 ng-maxlength=6 required placeholder="短信验证码,6位">
-                        <span class="vv-input-tip" ng-show="signupForm.smscode.$dirty && signupForm.smscode.$invalid">验证码为6位</span>
+                        <input type="text" class="form-control text-big border-radius-large" ng-model="bank.smscode" name="smscode" ng-pattern="/^[0-9]+$/" ng-minlength=6 ng-maxlength=6 required placeholder="短信验证码,6位">
+                        <span class="vv-input-tip" ng-show="bankForm.smscode.$dirty && bankForm.smscode.$invalid">验证码为6位数字</span>
                     </div>
                     <div class="semi-fixed-right semi-width-150 input-group input-group-lg text-center">
                         <button type="button" class="btn btn-warning btn-lg" ng-click="getSmscode()" ng-disabled="callbackTimer.counting">
@@ -75,7 +87,7 @@
                 </div>
             </div>
             <div class="section">
-                <button type="submit" class="btn btn-lg btn-primary full-width">提交修改</button>
+                <button type="submit" class="btn btn-lg btn-primary full-width" ng-disabled="bankForm.$invalid">提交修改</button>
             </div>
         </form>
         <!-- <form name="bankForm" ng-submit="ajaxForm(this)">

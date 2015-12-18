@@ -73,7 +73,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
             }
             return false;
         },
-        queryAuthenInfo :function() {
+        queryAuthenInfo: function() {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/v1/service/checkReanName",
@@ -285,6 +285,68 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 }).then(function(data) {
                     return data.data;
                 })
+            },
+            all: function() {
+                return $http({
+                    // by dribehance <dribehance.kksdapp.com>
+                    url: config.url + "/v1/service/queryUserInfo",
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for (var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data: angular.extend({}, config.common_params, {
+                        "token": localStorageService.get("token")
+                    })
+                }).then(function(data) {
+                    return data.data;
+                });
+            },
+            update: function(input) {
+                return $http({
+                    // by dribehance <dribehance.kksdapp.com>
+                    url: config.url + "/v1/service/addUserInfo",
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for (var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data: angular.extend({}, config.common_params, {
+                        "token": localStorageService.get("tonek"),
+                        "sex": input.sex,
+                        "birthday": input.birthday,
+                        "orMarriage": input.orMarriage,
+                        "posterity": input.posterity,
+                        "orHouse": input.orHouse,
+                        "orMortgage": input.orMortgage,
+                        "education": input.education,
+                        "companyScale": input.companyScale,
+                        "occupation": input.occupation,
+                        "workYear": input.workYear,
+                        "income": input.income,
+                        "secondContract": input.secondContract,
+                        "secondContractPhone": input.secondContractPhone,
+                        "qq": input.qq,
+                        "contractname": input.contractname,
+                        "providerId": input.providerId,
+                        "cityId": input.cityId,
+                        "contractAddress": input.contractAddress,
+                        "contractPhone": input.contractPhone,
+                        "contractpostcode": input.contractpostcode
+                    })
+                }).then(function(data) {
+                    return data.data;
+                });
             }
         },
         queryChargeInfo: function() {
@@ -457,7 +519,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 return data.data;
             })
         },
-        queryTradePasswordInfo:function() {
+        queryTradePasswordInfo: function() {
             return $http({
                 // by dribehance <dribehance.kksdapp.com>
                 url: config.url + "/v1/service/securityPhone",
