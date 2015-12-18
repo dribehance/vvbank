@@ -102,17 +102,17 @@ angular.module("VVBank").factory("myServices", function($http, localStorageServi
             queryByYear: function(year) {
                 return $http({
                     url: config.url + "/v1/service/queryActivity",
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    transformRequest: function(obj) {
-                        var str = [];
-                        for (var p in obj)
-                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                        return str.join("&");
-                    },
-                    data: angular.extend({}, config.common_params, {
+                    method: "GET",
+                    // headers: {
+                    //     'Content-Type': 'application/x-www-form-urlencoded'
+                    // },
+                    // transformRequest: function(obj) {
+                    //     var str = [];
+                    //     for (var p in obj)
+                    //         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    //     return str.join("&");
+                    // },
+                    params: angular.extend({}, config.common_params, {
                         "token": localStorageService.get("token"),
                         "year": year || (new Date()).getFullYear()
                     })

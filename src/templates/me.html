@@ -199,7 +199,7 @@
                 <i class="vv vv-35 vv-me-9"></i>
             </span>
                 <span class="btn">站内信</span>
-                <span class="badge">14</span>
+                <span class="badge" ng-if="user.message_count>0">{{user.message_count}}</span>
                 <span class="semi-fixed-right semi-width-50 text-center">
                 <i class="vv vv-arrow-right vv-35"></i>
             </span>
@@ -230,7 +230,7 @@
             </a>
         </div> 
          <div class="vv-divide vv-1"></div>
-        <div class="section section-wide section-sm">
+        <!-- <div class="section section-wide section-sm">
             <a class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
                 <i class="vv vv-35 vv-me-11"></i>
@@ -240,7 +240,7 @@
                 <i class="vv vv-arrow-right vv-35"></i>
             </span>
             </a>
-        </div>
+        </div> -->
         <div class="vv-divide vv-5"></div>
         <div class="section text-center">
             <a ng-click="logout()" class="btn btn-lg btn-primary block" style="margin:25px">退出</a>

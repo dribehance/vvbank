@@ -1,85 +1,71 @@
-var accountInfoController = function($scope, $location, toastServices, errorServices, parserServices, userServices, settingServices, config) {
-    // bind _m_user to scope.user
-    // remote data
-    $scope.degrees = config.degrees;
-    $scope.scales = config.scales;
-    $scope.incomes = config.incomes;
-    $scope.industries = config.industries;
-    // safety
-    // userServices.info.safety().then(function(data){
-    // 	if (data.respcode == config.request.SUCCESS) {
-    // 		$scope.safety_info = parserServices.parseSafetyInfo(data.result);
-    // 	}
-    // })
-    // user input
-    // userServices.info.basic().then(function(data){
-    // 	if (data.respcode == config.request.SUCCESS) {
-    // 		$scope.user = parserServices.parseUser(data.result);
-    // 	}
-    // 	else {
-    // 		errorServices.autoHide(data.message);
-    // 	}
-    // })
-	$scope._or_marriage = {
-		"false":"未婚",
-		"true":"已婚"
-	}
-	$scope._posteritie = {
-		"NONE":"没有子女",
-		"ONE":"1个子女",
-		"TWO":"2个子女",
-		"THREE":"3个子女",
-		"MANY":"4个及以上"
-	}
-	$scope._or_house = {
-		"false":"有",
-		"true":"无"
-	}
-	$scope._or_mortgage = {
-		"false":"有",
-		"true":"无"
-	}
-	$scope.$watch("input.orMarriage",function(n,o){
-		console.log(n)
-	})
+var accountInfoController = function($scope, $rootScope, $filter, $location, toastServices, errorServices, settingServices, parserServices, userServices, settingServices, config) {
+    // query provinces
+    toastServices.show();
+    settingServices.queryProvinces().then(function(data) {
+        toastServices.hide();
+        if (data.respcode == config.request.SUCCESS) {
+            $scope.provinces = data.result;
+        } else {
+            errorServices.autoHide(data.message);
+        }
+    })
+    $scope.$watch("input.provinceId", function(n, o) {
+        if (n === undefined || o === undefined) {
+            return;
+        }
+        queryCity(n);
+    })
+    var queryCity = function(province_id) {
+        settingServices.queryCityByProvinceId(province_id).then(function(data) {
+            $scope.cities = data.result;
+        })
+    };
     $scope.input = {
-        "sex": "",
-        "birthday": "",
-        "orMarriage": "",
-        "posterity": "",
-        "orHouse": "",
-        "orMortgage": "",
-        "education": "",
-        "companyScale": "",
-        "occupation": "",
-        "workYear": "",
-        "income": "",
-        "secondContract": "",
-        "secondContractPhone": "",
+        "sex": "M",
+        "birthday": new Date(),
+        "or_marriage": "false",
+        "posterity": "NONE",
+        "or_house": "false",
+        "or_mortgage": "false",
+        "education": "PRIMARY_SCHOOL",
+        "company_scale": "小于50人",
+        "occupation": "OFFICIAL",
+        "work_year": "",
+        "income": "3000以下",
+        "second_contract": "",
+        "second_contract_phone": "",
         "qq": "",
-        "contractname": "",
-        "providerId": "",
-        "cityId": "",
-        "contractAddress": "",
-        "contractPhone": "",
-        "contractpostcode": ""
+        "recipientName": "",
+        "recipientPhone": "",
+        "provinceId": 44,
+        "providerName": "",
+        "providerCode": "",
+        "cityId": 4403,
+        "cityName": "",
+        "cityCode": "",
+        "address": "",
+        "postcode": "",
     }
     toastServices.show();
     userServices.info.all().then(function(data) {
         toastServices.hide()
         if (data.respcode == config.request.SUCCESS) {
-            // $scope.input = angular.extend({}, $scope.input, data.result);
+            $scope.input = angular.extend({}, $scope.input, data.result);
+            $scope.input.or_marriage = $scope.input.or_marriage.toString();
+            $scope.input.or_house = $scope.input.or_house.toString();
+            $scope.input.or_mortgage = $scope.input.or_mortgage.toString();
             console.log($scope.input)
         } else {
-            errorServices.autoHide("服务器错误");
+            errorServices.autoHide(data.message);
         }
     })
     $scope.ajaxForm = function(form) {
         // $scope.user =
-        settingServices.updateAccount($scope.user).then(function(data) {
+        userServices.info.update($scope.input).then(function(data) {
             console.log(data)
-            if (data.respcode == config.request.SUCCESS && data.result.status == 1) {
-                $location.path("/setting").replace();
+            if (data.respcode == config.request.SUCCESS) {
+                $rootScope.back();
+                // $location.path("/setting").replace();
             } else {
                 errorServices.autoHide(data.message)
             }

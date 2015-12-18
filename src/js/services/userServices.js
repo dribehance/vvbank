@@ -1,4 +1,4 @@
-angular.module("VVBank").factory("userServices", function($http, $rootScope, $q, $location, localStorageService, config) {
+angular.module("VVBank").factory("userServices", function($http, $rootScope,$filter, $q, $location, localStorageService, config) {
     return {
         register: function(telephone, password, username, referee, smscode) {
             return $http({
@@ -322,27 +322,27 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                         return str.join("&");
                     },
                     data: angular.extend({}, config.common_params, {
-                        "token": localStorageService.get("tonek"),
+                        "token": localStorageService.get("token"),
                         "sex": input.sex,
-                        "birthday": input.birthday,
-                        "orMarriage": input.orMarriage,
+                        "birthday": $filter("date")(input.birthday, "yyyy-MM-dd"),
+                        "orMarriage": input.or_marriage,
                         "posterity": input.posterity,
-                        "orHouse": input.orHouse,
-                        "orMortgage": input.orMortgage,
+                        "orHouse": input.or_house,
+                        "orMortgage": input.or_mortgage,
                         "education": input.education,
-                        "companyScale": input.companyScale,
+                        "companyScale": input.company_scale,
                         "occupation": input.occupation,
-                        "workYear": input.workYear,
+                        "workYear": input.work_year,
                         "income": input.income,
-                        "secondContract": input.secondContract,
-                        "secondContractPhone": input.secondContractPhone,
+                        "secondContract": input.second_contract,
+                        "secondContractPhone": input.second_contract_phone,
                         "qq": input.qq,
-                        "contractname": input.contractname,
-                        "providerId": input.providerId,
+                        "contractname": input.recipientName,
+                        "providerId": input.provinceId,
                         "cityId": input.cityId,
-                        "contractAddress": input.contractAddress,
-                        "contractPhone": input.contractPhone,
-                        "contractpostcode": input.contractpostcode
+                        "contractAddress": input.address,
+                        "contractPhone": input.recipientPhone,
+                        "contractpostcode": input.postcode
                     })
                 }).then(function(data) {
                     return data.data;

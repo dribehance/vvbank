@@ -13,16 +13,15 @@
             <div class="section">
                 <div class="semi-auto semi-left-75 text-big">
                     <span class="semi-fixed-left semi-width-750" style="font-weight:400">姓名</span>
-                    <div class="text-grey">{{ input.realname }}</div>
+                    <div class="text-grey">{{ input.realname || "..." }}</div>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 btn section-wide">性别</span>
-                    <select class="block form-control rectangle full-width" name="sex" ng-model="input.sex" value="{{user.sex}}">
-                        <option selected>男</option>
-                        <option>女</option>
-                        <option>未知</option>
+                    <select class="block form-control rectangle full-width" name="sex" ng-model="input.sex" value="{{input.sex}}">
+                        <option selected value="M">男</option>
+                        <option value="F">女</option>
                     </select>
                 </div>
             </div>
@@ -35,7 +34,7 @@
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 btn section-wide">婚否</span>
-                    <select class="block form-control rectangle full-width" name="orMarriage" ng-model="input.orMarriage" value="{{user.orMarriage}}">
+                    <select class="block form-control rectangle full-width" name="or_marriage" ng-model="input.or_marriage" value="{{input.or_marriage}}">
                         <option selected value="true">已婚</option>
                         <option value="false">未婚</option>
                     </select>
@@ -44,70 +43,127 @@
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 btn section-wide">子女状况</span>
-                    <select class="block form-control rectangle full-width" name="is_marry" ng-model="input.is_marry" value="{{user.is_marry}}">
-                        <option selected>已婚</option>
-                        <option>未婚</option>
+                    <select class="block form-control rectangle full-width" name="posterity" ng-model="input.posterity" value="{{input.posterity}}">
+                        <option selected value="NONE">没有子女</option>
+                        <option value="ONE">1个子女</option>
+                        <option value="TWO">2个子女</option>
+                        <option value="THREE">3个子女</option>
+                        <option value="MANY">3个及以上</option>
                     </select>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 btn section-wide">房产</span>
-                    <select class="block form-control rectangle full-width" name="is_marry" ng-model="input.is_marry" value="{{user.is_marry}}">
-                        <option selected>有</option>
-                        <option>无</option>
+                    <select class="block form-control rectangle full-width" name="or_house" ng-model="input.or_house" value="{{input.or_house}}">
+                        <option selected value="true">有</option>
+                        <option value="false">无</option>
                     </select>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 btn section-wide">房贷类型</span>
-                    <select class="block form-control rectangle full-width" name="is_marry" ng-model="input.is_marry" value="{{user.is_marry}}">
-                        <option selected>已婚</option>
-                        <option>未婚</option>
+                    <select class="block form-control rectangle full-width" name="or_mortgage" ng-model="input.or_mortgage" value="{{input.or_mortgage}}">
+                        <option selected value="true">有</option>
+                        <option value="false">无</option>
                     </select>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 btn section-wide">学历</span>
-                    <select class="block form-control rectangle full-width" name="degree" ng-model="input.degree" ng-options="d for d in degrees"></select>
+                    <select class="block form-control rectangle full-width" name="education" ng-model="input.education">
+                        <option selected value="PRIMARY_SCHOOL">小学及其以下</option>
+                        <option value="JUNIOR_HIGH_SCHOOL">初中</option>
+                        <option value="SENIOR_HIGH_SCHOOL">高中</option>
+                        <option value="JUNIOR_BACHELOR">大专</option>
+                        <option value="BACHELOR">本科</option>
+                        <option value="MASTER">硕士</option>
+                        <option value="DOCTOR">博士及博士后</option>
+                    </select>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 btn section-wide">公司规模</span>
-                    <select class="block form-control rectangle full-width" name="scale" ng-model="input.scale" ng-options="s for s in scales"></select>
+                    <select class="block form-control rectangle full-width" name="company_scale" ng-model="input.company_scale">
+                        <option value="小于50人">小于50人</option>
+                        <option value="50-150">50-150</option>
+                        <option value="150-500">150-500</option>
+                        <option value="500-1000">500-1000</option>
+                        <option value="1000-5000">1000-5000</option>
+                        <option value="5000-10000">5000-10000</option>
+                        <option value="10000以上">10000以上</option>
+                    </select>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 btn section-wide">职业</span>
-                    <select class="block form-control rectangle full-width" name="scale" ng-model="input.scale" ng-options="s for s in scales"></select>
+                    <select class="block form-control rectangle full-width" name="occupation" ng-model="input.occupation">
+                        <option value="OFFICIAL">公务员</option>
+                        <option value="LOWER_OFFICIAL">事业编制人员</option>
+                        <option value="TEACHER">教师</option>
+                        <option value="DOCTOR">医生</option>
+                        <option value="NURSE">护士</option>
+                        <option value="CIVIL_OFFICIAL">文职人员</option>
+                        <option value="BANK_CLERK">银行职员</option>
+                        <option value="MANAGER">公司管理人员</option>
+                        <option value="DESIGNER">设计师</option>
+                        <option value="ENGINEER">工程师</option>
+                        <option value="COACH">教练</option>
+                        <option value="TRAINER">培训师</option>
+                        <option value="STUDENT">学生</option>
+                        <option value="SOLDIER">军人</option>
+                        <option value="DRIVER">驾驶员</option>
+                        <option value="REPORTER">记者</option>
+                        <option value="POLICE">警察</option>
+                        <option value="URBAN_MANAGER">城管</option>
+                        <option value="PILOT">飞行员</option>
+                        <option value="AIRLINE_HOSTESS">空姐</option>
+                        <option value="CHIEF">乘务员</option>
+                        <option value="ACTOR">演员</option>
+                        <option value="SECURITY_GUARDS">保安</option>
+                        <option value="PERSONAL_BUSINESS">个体户</option>
+                        <option value="NONE_OF_ABOVE">其他</option>
+                    </select>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 text-left btn section-wide ">工作年限</span>
-                    <input type="text" class="form-control block full-width rectangle" name="job" ng-model="input.job" placeholder="请输入工作年限">
+                    <input type="text" class="form-control block full-width rectangle" name="work_year" ng-model="input.work_year" placeholder="请输入工作年限">
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
-                    <span class="semi-fixed-left semi-width-750 btn section-wide ">收入范围</span>
-                    <select class="block form-control rectangle full-width" name="income" ng-model="input.income" ng-options="i for i in incomes"></select>
+                    <span class="semi-fixed-left semi-width-750 btn section-wide">收入范围</span>
+                    <select class="block form-control rectangle full-width" name="income" ng-model="input.income">
+                        <option value="3000以下">3000以下</option>
+                        <option value="3000-5000">3000-5000</option>
+                        <option value="5000-8000">5000-8000</option>
+                        <option value="8000-10000">8000-10000</option>
+                        <option value="10000以上">10000以上</option>
+                    </select>
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 text-left btn section-wide ">紧急联系</span>
-                    <input type="text" class="form-control block full-width rectangle" name="job" ng-model="input.job" placeholder="请输入紧急联系人姓名">
+                    <input type="text" class="form-control block full-width rectangle" name="second_contract" ng-model="input.second_contract" placeholder="请输入紧急联系人姓名">
+                </div>
+            </div>
+            <div class="section">
+                <div class="semi-auto semi-left-75">
+                    <span class="semi-fixed-left semi-width-750 text-left btn section-wide ">紧急电话</span>
+                    <input type="text" class="form-control block full-width rectangle" name="second_contract" ng-model="input.second_contract_phone" placeholder="请输入紧急联系人电话">
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 text-left btn section-wide ">QQ</span>
-                    <input type="text" class="form-control block full-width rectangle" name="job" ng-model="input.job" placeholder="请输入QQ">
+                    <input type="text" class="form-control block full-width rectangle" name="qq" ng-model="input.qq" placeholder="请输入QQ">
                 </div>
             </div>
             <div class="section bg-light-grey text-big" style="font-weight:400">
@@ -116,7 +172,7 @@
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750 text-left btn section-wide ">收件人</span>
-                    <input type="text" class="form-control block full-width rectangle" name="job" ng-model="input.job" placeholder="请输入收件人姓名">
+                    <input type="text" class="form-control block full-width rectangle" name="recipientName" ng-model="input.recipientName" placeholder="请输入收件人姓名">
                 </div>
             </div>
             <div class="section">
@@ -124,10 +180,10 @@
                     <span class="semi-fixed-left semi-width-75 btn text-left text-grey section-wide">地址</span>
                     <div class="btn-group justified">
                         <span class="section-wide">
-                    <select class="form-control rectangle block full-width" name="province" ng-model="bank.provinceId" ng-options="p.provinceId as p.provinceName for p in provinces" required></select>
+                    <select class="form-control rectangle block full-width" name="province" ng-model="input.provinceId" ng-options="p.provinceId as p.provinceName for p in provinces" required></select>
                 </span>
                         <span class="section-wide">
-                    <select class="form-control rectangle block full-width" name="city" ng-model="bank.cityId" ng-options="c.cityId as c.cityName for c in cities" required></select>
+                    <select class="form-control rectangle block full-width" name="city" ng-model="input.cityId" ng-options="c.cityId as c.cityName for c in cities" required></select>
                 </span>
                     </div>
                 </div>
@@ -141,16 +197,16 @@
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750  btn section-wide text-left btn section-wide">邮政编码</span>
-                    <input type="text" class="form-control block full-width rectangle" name="school" ng-model="input.school" placeholder="请输入邮政编码">
+                    <input type="text" class="form-control block full-width rectangle" name="postcode" ng-model="input.postcode" placeholder="请输入邮政编码">
                 </div>
             </div>
             <div class="section">
                 <div class="semi-auto semi-left-75">
                     <span class="semi-fixed-left semi-width-750  btn section-wide text-left btn section-wide">电话</span>
-                    <input type="text" class="form-control block full-width rectangle" name="school" ng-model="input.school" placeholder="请输入收件人电话">
+                    <input type="text" class="form-control block full-width rectangle" name="recipientPhone" ng-model="input.recipientPhone" placeholder="请输入收件人电话">
                 </div>
             </div>
-            <button type="submit" class="btn btn-lg bg-green block full-width text-white rectangle" ng-disabled="!accountForm.$valid">保存</button>
+            <button type="submit" class="btn btn-lg bg-green block full-width text-white rectangle">保存</button>
         </form>
     </div>
 </div>
