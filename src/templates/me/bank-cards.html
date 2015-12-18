@@ -9,11 +9,22 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
-        <div ng-show="banks.length>0">
+        <div><imageview src="'../images/banner_5.png'" data-rate="640/387"></imageview></div>
+        <div class="section bank-item" ng-repeat="bank in banks">
+            <imageview src="'../images/bank_mockup.png'" data-rate="412/250"></imageview>
+            <div class="bank-info">
+                <img src="../images/me_7.png" class="bank-logo" alt=""> <span>{{bank.bank}}</span>
+                <div class="section section-wide bg-transparent">{{bank.cardNo}}</div>
+            </div>
+        </div>
+        <div class="section" ng-click="createBank()">
+            <imageview src="'../images/add_bank.png'" data-rate="412/250"></imageview>
+        </div>
+        <!-- <div>
             <div class="section">
                 已添加银行
             </div>
-            <div class="bank-item blue-stip" ng-repeat="bank in banks">
+            <div class="bank-item blue-stip">
                 <div class="section">
                     <div class="section bg-light-blue">
                         <span class="btn bg-light-blue text-white">{{ bank.name }}</span>
@@ -25,7 +36,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="text-center section" ng-show="banks.length==0">暂无银行卡</div>
+        </div> -->
+        <!-- <div class="text-center section" ng-show="banks.length==0">暂无银行卡</div> -->
     </div>
 </div>

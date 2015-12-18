@@ -1,6 +1,98 @@
 .vip {
-	display: inline-block;
-	padding: 0px 5px;
-	color: @orange;
-	background-color: @yellow;
+    display: inline-block;
+    padding: 0px 5px;
+    color: @orange;
+    background-color: @yellow;
+}
+
+.investment-record {
+    position: relative;
+    .status {
+        display: inline-block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -15px;
+        margin-top: -10px;
+        padding: 2px 8px;
+        text-align: center;
+        color: white;
+        border-radius: 20px;
+        -webkit-border-radius: 20px;
+        background-color: @brand-primary;
+        &.status-PENDING {
+            background-color: #0097ff;
+        }
+        &.status-APPLYING {
+            background-color: #ff9900;
+        }
+        &.status-FULL {
+            background-color: #7edbad;
+        }
+        &.status-PROGRESS {
+            background-color: #ffcd7e;
+        }
+        &.status-COMPLETE {
+            background-color: #abddff;
+        }
+        &.status-OVERDUE {
+            background-color: #fdafb3;
+        }
+    }
+}
+
+.warning-badge {
+    position: relative;
+    top: 6px;
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: @brand-warning;
+    color: white;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+}
+.identify-section {
+    position: relative;
+    .identify-status {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 109px;
+        height: 122px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-image: url("../images/authen_1.png");
+    }
+    .identify-meta {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 60px;
+        text-align: center;
+        font-size: 24px;
+        h3 {
+            font-size: 30px;
+        }
+    }
+}
+.activity-item {
+    position: relative;
+    .activity-footer {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        background-color: fade(white, 50%);
+        height: 40px;
+        line-height: 40px;
+        font-weight: bold;
+    }
+}
+#toTop {
+    display: none;
+}
+.activity-header {
+    a.active {
+        background-color: #1391E8;
+    }
 }

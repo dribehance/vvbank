@@ -8,8 +8,19 @@
     <span></span>
 </div>
 <div class="scrollable">
+    <div class="scrollable-header activity-header">
+        <div class="btn-group justified text-white bg-primary">
+            <a ng-href="#/activities?year={{activity_s.year}}" ng-class="{'active':current_year == activity_s.year}" ng-repeat="activity_s in activity_statistics" ng-if="$index<5" class="btn text-white">{{activity_s.year}} <b class="text-yellow">({{activity_s.count || "0"}})</b></a>
+        </div>
+    </div>
     <div class="scrollable-content">
-        <div class="section">
+        <div class="section activity-item" ng-repeat="activity in activities">
+            <div class="timestamp">{{activity.createTime}}</div>
+            <imageview src="activity.logo" data-rate="505/380"></imageview>
+            <div class="activity-footer text-center text-ellipsis">{{activity.title}}</div>
+        </div>
+        <div class="section" ng-if="activities.length == 0">暂无活动</div>
+        <!-- <div class="section">
             <div class="section section-condensed text-center">
                 <img ng-src="{{staticImageUrl + 'images/example_activity.png'}}" alt="" class="block full-width">
                 <div class="section" style="padding-bottom:0">
@@ -27,6 +38,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

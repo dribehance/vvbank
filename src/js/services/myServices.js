@@ -1,14 +1,44 @@
 angular.module("VVBank").factory("myServices", function($http, localStorageService, config) {
     return {
+        // 资金账户
+        accountMoney: function() {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/v1/service/accountMoney",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
+                    token: localStorageService.get("token")
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
         //投资记录
         investment: function(page) {
             return $http({
                 url: config.url + "/v1/service/invests",
-                method: "GET",
-                params: angular.extend({}, config.common_params, {
-                    "token": localStorageService.get("token"),
-                    "current": page
-                }),
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
+                    token: localStorageService.get("token")
+                })
             }).then(function(data) {
                 return data.data;
             })
@@ -17,39 +47,79 @@ angular.module("VVBank").factory("myServices", function($http, localStorageServi
         bills: function(page) {
             return $http({
                 url: config.url + "/v1/service/fundsdetail",
-                method: "GET",
-                params: angular.extend({}, config.common_params, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
-                    "current": page
+                    // "current": page
                 }),
             }).then(function(data) {
                 return data.data;
             })
         },
         //资金账户
-        bailAccount: function(page){
+        bailAccount: function(page) {
             return $http({
-                url : config.url + "/v1/service/accountMoney",
-                method : "POST",
-                params : angular.extend({}, config.common_params, {
-                    "token" : localStorageService.get("token")
+                url: config.url + "/v1/service/accountMoney",
+                method: "POST",
+                params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token")
                 }),
-            }).then(function(data){
+            }).then(function(data) {
                 return data.data;
             })
         },
         //
-        activities: function(page) {
-            return $http({
-                url: config.url + "/v1/service/fundsdetail",
-                method: "GET",
-                params: angular.extend({}, config.common_params, {
-                    "token": localStorageService.get("token"),
-                    "current": page
+        activities: {
+            queryStatistics: function() {
+                return $http({
+                    url: config.url + "/v1/service/queryActivityGroup",
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for (var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data: angular.extend({}, config.common_params, {
+                        "token": localStorageService.get("token")
+                    })
+                }).then(function(data) {
+                    return data.data;
                 })
-            }).then(function(data) {
-                return data.data;
-            })
+            },
+            queryByYear: function(year) {
+                return $http({
+                    url: config.url + "/v1/service/queryActivity",
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for (var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data: angular.extend({}, config.common_params, {
+                        "token": localStorageService.get("token"),
+                        "year": year || (new Date()).getFullYear()
+                    })
+                }).then(function(data) {
+                    return data.data;
+                })
+            }
         },
         eyuan: function(page) {
             return $http({
@@ -90,8 +160,8 @@ angular.module("VVBank").factory("myServices", function($http, localStorageServi
                     return data.data;
                 })
             },
-            read:function(messageid) {
-            	return $http({
+            read: function(messageid) {
+                return $http({
                     url: config.url + "/v1/service/message",
                     method: "POST",
                     data: angular.extend({}, config.common_params, {
@@ -101,6 +171,51 @@ angular.module("VVBank").factory("myServices", function($http, localStorageServi
                 }).then(function(data) {
                     return data.data;
                 })
+            },
+            view: function() {
+                return $http({
+                    // by dribehance <dribehance.kksdapp.com>
+                    url: config.url + "/v1/service/viewMessage",
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for (var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data: angular.extend({}, config.common_params, {
+                        "token": localStorageService.get("token")
+                    })
+                }).then(function(data) {
+                    return data.data;
+                });
+            }
+        },
+        // 账户安全
+        account: {
+            query: function() {
+                return $http({
+                    // by dribehance <dribehance.kksdapp.com>
+                    url: config.url + "/v1/service/securityCenter",
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for (var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data: angular.extend({}, config.common_params, {
+                        token: localStorageService.get("token")
+                    })
+                }).then(function(data) {
+                    return data.data;
+                });
             }
         }
     }

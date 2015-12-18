@@ -8,53 +8,29 @@
     <span></span>
 </div>
 <div class="scrollable">
-    <div class="scrollable-content" ui-scroll-bottom="loadMore()">
-        <div class="section section-condensed">
-            <div class="vv-table text-center">
-                <div class="vv-table-header">
-                    <div class="row" style="line-height:43px">
-                        <div class="col-xs-3 section-wide">
-                            <span class="text-ellipsis">时间 </span>
-                        </div>
-                        <div class="col-xs-3 section-wide">
-                            <span class="text-ellipsis">类别 </span>
-                        </div>
-                        <div class="col-xs-3 section-wide">
-                            <span class="text-ellipsis">交易金额(元) </span>
-                        </div>
-                        <div class="col-xs-3 section-wide">
-                            <span class="text-ellipsis">可用金额(元) </span>
-                        </div>
+    <div class="scrollable-content">
+        <div class="list-group" style="margin-bottom:0" ng-repeat="(key,value) in bills">
+            <div class="list-group-header section bg-white-grey">{{key}}</div>
+            <div class="list-group-item" ng-repeat="bill in value">
+                <i class="vv vv-27 vv-me-888 pull-left" style="margin-right:8px" ng-if="(bill.type == 'RECHARGING' || bill.type == 'TRANSFER_IN' || bill.type == 'UNFREEZING')"></i>
+                <i class="vv vv-27 vv-me-999 pull-left" style="margin-right:8px" ng-if="(bill.type == 'WITHDRAWAL' || bill.type == 'TRANSFER_OUT' || bill.type == 'FREEZING')"></i>
+                <i class="vv vv-27 pull-left" style="margin-right:8px" ng-if="!(bill.type == 'WITHDRAWAL' || bill.type == 'TRANSFER_OUT' || bill.type == 'FREEZING' || bill.type == 'RECHARGING' || bill.type == 'TRANSFER_IN' || bill.type == 'UNFREEZING')"></i>
+                <div class="item-right">
+                    <div class="clearfixed">
+                        <b>{{bill.fundType}}</b>
+                        <span class="pull-right">+{{bill.tradeAmount |currency:""}}
+                            <span ng-if="bill.status ==1">次</span>
+                            <span ng-if="bill.status !=1">元</span>
+                        </span>
                     </div>
-                </div>
-                <div class="vv-table-content">
-                    <div class="row" ng-repeat="bill in bills" style="margin-bottom:10px">
-                        <div class="col-xs-3 section-wide ">
-                            <span class="">{{ bill.date }}</span>
-                        </div>
-                        <div class="col-xs-3 section-wide ">
-                            <span class="">{{ bill.type }}</span>
-                        </div>
-                        <div class="col-xs-3 section-wide ">
-                            <span class="">{{parseMoney(bill.trade_money)}} </span>
-                        </div>
-                        <div class="col-xs-3 section-wide ">
-                            <span class="">{{ parseMoney(bill.money) }}</span>
-                        </div>
+                    <div class="clearfixed">
+                        {{parseTime(bill.time)}} 
+                        <span class="pull-right text-orange">{{bill.amount|currency:""}}元
+                        </span>
                     </div>
-                    <!-- push tip -->
-                    <!-- <div class="push" ui-state="push_state" ui-if="push_state" ui-default="true">
-                        <span class="text-center">{{pushmsg}}</span>
-                    </div> -->
-                    <!-- <div class="section text-center" ng-click="loadMore()">
-                        {{page.message}}
-                    </div> -->
                 </div>
             </div>
         </div>
-        <div class="vv-divide vv-5"></div>
-        <div class="section text-center" ng-click="loadMore()">
-            {{page.message}}
-        </div>
+        <div class="section text-center" ng-if="no_record">暂无明细</div>
     </div>
 </div>

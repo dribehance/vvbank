@@ -29,17 +29,17 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
         login: function(username, password) {
             return $http({
                 url: config.url + "/v1/service/account/in",
-                method: "GET",
-                // headers: {
-                //     'Content-Type': 'application/x-www-form-urlencoded'
-                // },
-                // transformRequest: function(obj) {
-                //     var str = [];
-                //     for (var p in obj)
-                //         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                //     return str.join("&");
-                // },
-                params: angular.extend({}, config.common_params, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
                     "username": username,
                     "password": password
                 })
@@ -73,10 +73,11 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
             }
             return false;
         },
-        authen: function(realname, identifyID) {
+        queryAuthenInfo :function() {
             return $http({
-                url: config.url + "/v1/service/realname",
-                method: "PUT",
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/v1/service/checkReanName",
+                method: "GET",
                 // headers: {
                 //     'Content-Type': 'application/x-www-form-urlencoded'
                 // },
@@ -87,8 +88,28 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 //     return str.join("&");
                 // },
                 params: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token")
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
+        authen: function(realname, identifyID) {
+            return $http({
+                url: config.url + "/v1/service/realname",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
                     "realname": realname,
-                    "idcode": identifyID,
+                    "idCard": identifyID,
                     "token": localStorageService.get("token")
                 })
             }).then(function(data) {
@@ -417,17 +438,17 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
         updateSignPassword: function(password) {
             return $http({
                 url: config.url + "/v1/service/loginpwd",
-                method: "PUT",
-                // headers: {
-                //     'Content-Type': 'application/x-www-form-urlencoded'
-                // },
-                // transformRequest: function(obj) {
-                //     var str = [];
-                //     for (var p in obj)
-                //         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                //     return str.join("&");
-                // },
-                params: angular.extend({}, config.common_params, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "oldpwd": password.o,
                     "newpwd": password.n
@@ -436,23 +457,45 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope, $q,
                 return data.data;
             })
         },
+        queryTradePasswordInfo:function() {
+            return $http({
+                // by dribehance <dribehance.kksdapp.com>
+                url: config.url + "/v1/service/securityPhone",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
+                    "token": localStorageService.get("token")
+                })
+            }).then(function(data) {
+                return data.data;
+            });
+        },
         updateTradePassword: function(password) {
             return $http({
-                url: config.url + "/v1/service/tradepwd",
-                method: "PUT",
-                // headers: {
-                //     'Content-Type': 'application/x-www-form-urlencoded'
-                // },
-                // transformRequest: function(obj) {
-                //     var str = [];
-                //     for (var p in obj)
-                //         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                //     return str.join("&");
-                // },
-                params: angular.extend({}, config.common_params, {
+                url: config.url + "/v1/service/tradepwdSetting",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
                     "token": localStorageService.get("token"),
                     "tradingPwd": password.n,
-                    "oldpassword": password.o
+                    "smscode": password.smscode,
+                    "idCard": password.idCard
                 })
             }).then(function(data) {
                 return data.data;

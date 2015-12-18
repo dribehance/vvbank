@@ -5,48 +5,103 @@
 	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div> -->
 <div class="scrollable">
-	<div class="scrollable-content">
-		<div class="btn-group justified">
-			<span class="btn btn-primary section-wide rectangle text-ellipsis">
+    <div class="scrollable-content bg-transparent">
+        <div class="section bg-transparent text-center">
+            <p>扫描您的二维码即可注册成为您的客户</p>
+            <!-- <imageview src="'../images/qrcode.png'" data-rate="1"></imageview> -->
+            <qrcode data="{{qrcode_url}}" version="10" size="274"></qrcode>
+            <p></p>
+            <p>{{qrcode_url}}</p>
+        </div>
+        <div class="section bg-transparent">
+            <p>姓名：{{realname}}</p>
+            <p>联系电话：{{telephone}}</p>
+        </div>
+        <div class="section bg-transparent text-center" ng-click="toTop()" ng-if="!isTop">
+        	<div><img src="../images/to_top.png" width="16px"></div>
+        	<span class="text-large">查看你的人脉详情</span>
+        </div>
+        <div id="toTop" style="min-height:568px;">
+            <div class="btn-group justified">
+                <span class="btn btn-primary section-wide rectangle text-ellipsis">
 				<p>佣金总收益(元)</p>
-				{{total_money}}
-			</span>
-			<span class="btn btn-primary rectangle text-ellipsis" ng-click="getLevel(1)">
+				<span class="text-yellow">{{total_money}}</span>
+                </span>
+                <span class="btn btn-primary rectangle text-ellipsis">
 				<p>一级人脉(位)</p>
-				{{people_level1}}
-			</span>
-			<span class="btn btn-primary section-wide rectangle text-ellipsis" ng-click="getLevel(2)">
+				<span class="text-yellow">{{people_level1}}</span>
+                </span>
+                <span class="btn btn-primary section-wide rectangle text-ellipsis">
 				<p>二级人脉(位)</p>
-				{{people_level2}}
-			</span>
-		</div>
-		<div class="section">
-			<div class="row text-center">
-				<div class="col-xs-4 text-ellipsis">
-					姓名
-				</div>
-				<div class="col-xs-4 text-ellipsis">
-					投资金额
-				</div>
-				<div class="col-xs-4 text-ellipsis">
-					佣金
-				</div>
-			</div>
-		</div>
-		<div class="section text-grey" ng-repeat="people in peoples track by $index">
-			<a ng-href="#/people_two/{{people.memberId}}" class="block row text-center text-grey">
-				<div class="col-xs-4 text-ellipsis">
-					{{people.memberRealName}}
-				</div>
-				<div class="col-xs-4 text-ellipsis">
-					{{people.appliedAmount}}
-				</div>
-				<div class="col-xs-4 text-ellipsis text-orange">
-					{{people.commissionRateTwo}}
-					<span class="pull-right">></span>
-				</div>
-			</a>
-		</div>
-		<div class="section text-center" ng-show="peoples.length== 0">暂无人脉数据</div>
-	</div>
+				<span class="text-yellow">{{people_level2}}</span>
+                </span>
+            </div>
+            <div class="section bg-light-grey">
+                <b>一级人脉</b>
+                <span class="pull-right">共计：<b class="text-orange">{{totalCommissionRate|currency:""}}元</b></span>
+            </div>
+            <div class="section">
+                <div class="row text-center">
+                    <div class="col-xs-4 text-ellipsis">
+                        姓名
+                    </div>
+                    <div class="col-xs-4 text-ellipsis">
+                        手机
+                    </div>
+                    <div class="col-xs-4 text-ellipsis">
+                        佣金
+                    </div>
+                </div>
+            </div>
+            <div class="section text-grey" ng-repeat="people in peoples track by $index">
+                <!-- ng-href="#/people_two/{{people.memberId}}" -->
+                <a class="block row text-center text-grey">
+                    <div class="col-xs-4 text-ellipsis">
+                        {{people.memberRealName}}
+                    </div>
+                    <div class="col-xs-4 text-ellipsis">
+                        {{people.cellPhone}}
+                    </div>
+                    <div class="col-xs-4 text-ellipsis text-orange">
+                        {{people.commissionRateTwo}}
+                        <span class="pull-right"></span>
+                    </div>
+                </a>
+            </div>
+            <div class="section text-center" ng-show="peoples.length== 0">暂无人脉数据</div>
+            <div class="section bg-light-grey">
+                <b>二级人脉</b>
+                <span class="pull-right">共计：<b class="text-orange">{{totalCommissionRateTwo|currency:""}}元</b></span>
+            </div>
+            <div class="section">
+                <div class="row text-center">
+                    <div class="col-xs-4 text-ellipsis">
+                        姓名
+                    </div>
+                    <div class="col-xs-4 text-ellipsis">
+                        手机
+                    </div>
+                    <div class="col-xs-4 text-ellipsis">
+                        佣金
+                    </div>
+                </div>
+            </div>
+            <div class="section text-grey" ng-repeat="people_level2 in peoples_level2 track by $index">
+                <!-- ng-href="#/people_level2_two/{{people_level2.memberId}}" -->
+                <a class="block row text-center text-grey">
+                    <div class="col-xs-4 text-ellipsis">
+                        {{people_level2.memberRealName}}
+                    </div>
+                    <div class="col-xs-4 text-ellipsis">
+                        {{people_level2.cellPhone}}
+                    </div>
+                    <div class="col-xs-4 text-ellipsis text-orange">
+                        {{people_level2.oneAppliedAmount}}
+                        <span class="pull-right"></span>
+                    </div>
+                </a>
+            </div>
+            <div class="section text-center" ng-show="peoples_level2.length== 0">暂无二级人脉数据</div>
+        </div>
+    </div>
 </div>

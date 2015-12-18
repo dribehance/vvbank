@@ -8,44 +8,21 @@
     <span></span>
 </div>
 <div class="scrollable">
-    <div class="scrollable-content" ui-scroll-bottom="loadMore()">
-        <div class="section section-condensed">
-            <div class="vv-table text-center">
-                <div class="vv-table-header">
-                    <div class="row" style="line-height:43px">
-                        <div class="col-xs-4">
-                            <span class="text-ellipsis">项目名称 </span>
-                        </div>
-                        <div class="col-xs-4">
-                            <span class="text-ellipsis">投资金额（元） </span>
-                        </div>
-                        <div class="col-xs-4">
-                            <span class="text-ellipsis">投资时间 </span>
-                        </div>
+    <div class="scrollable-content">
+        <div class="list-group" style="margin-bottom:0" ng-repeat="(key,value) in investments">
+            <div class="list-group-header section section bg-white-grey">{{key}}</div>
+            <div class="list-group-item investment-record" ng-repeat="investment in value">
+                <div class="item-right">
+                    <div class="clearfixed">
+                        <b>{{investment.productName|limitTo:12}}</b><span class="pull-right text-orange">{{investment.investAmount |currency:""}}元</span>
+                    </div>
+                    <div class="clearfixed">
+                        {{parseTime(investment.investTime)}} <span class="pull-right">预期收益{{investment.interestAmount|currency:""}}元</span>
                     </div>
                 </div>
-                <div class="vv-table-content">
-                    <div class="row" style="line-height:43px" ng-repeat="investment in investments">
-                        <div class="col-xs-4 text-ellipsis">
-                            <span class="text-ellipsis">{{investment.name}} </span>
-                        </div>
-                        <div class="col-xs-4 text-ellipsis">
-                            <span class="text-ellipsis">{{investment.money | currency:"￥"}} </span>
-                        </div>
-                        <div class="col-xs-4 text-ellipsis">
-                            <span class="text-ellipsis">{{investment.rate}}</span>
-                        </div>
-                    </div>
-                    <!-- push tip -->
-                    <!-- <div class="push" ui-state="push_state" ui-if="push_state" ui-default="true">
-                        <span class="text-center">{{pushmsg}}</span>
-                    </div> -->
-                </div>
+                <div class="status status-{{investment.status}}">{{investment.statusCN|limitTo:4}}</div>
             </div>
         </div>
-        <div class="vv-divide vv-5"></div>
-        <div class="section text-center" ng-click="loadMore()">
-            {{page.message}}
-        </div>
+        <div class="section text-center" ng-if="no_record">暂无记录</div>
     </div>
 </div>

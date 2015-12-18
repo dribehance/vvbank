@@ -9,6 +9,7 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
+        <imageview src="'../images/banner_4.png'" data-rate="640/387"></imageview>
         <form name="cashForm" ng-submit="ajaxForm(cashForm)">
             <!-- <div class="section">
                 <div class="semi-auto semi-left-98">
@@ -16,14 +17,46 @@
                     <select class="sex block full-width form-control rectangle" ng-model="input.bank" ng-options="b as b.bankInfo for b in banks" required></select>
                 </div>
             </div> -->
-            <div class="section">
+            <!-- <div class="section">
                 <div class="semi-auto semi-left-98">
                     <span class="semi-fixed-left semi-width-98 text-left">银行卡</span>
                     <div class="">{{input.bank.label || "无相关银行卡信息"}}</div>
                 </div>
             </div>
-            <div class="vv-divide"></div>
+            <div class="vv-divide"></div> -->
             <div class="section">
+                <div class="vv-input-group input-group-lg full-width" style="margin-top:19px;margin-bottom:0">
+                    <span class="vv-input-group-addon"><i class="vv vv-27 vv-me-338"></i></span>
+                    <input type="number" class="form-control block full-width" name="money" ng-model="input.money" min="{{cash_info.minAmount}}" max="{{cash_info.maxAmount}}" required placeholder="请输入金额">
+                    <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$dirty && cashForm.money.$error.required">金额必填</div>
+                    <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.min">提现金额最少为{{cash_info.minAmount}}元</div>
+                    <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.max">提现金额最大为{{cash_info.maxAmount}}元</div>
+                    <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.number">金额为整数</div>
+                </div>
+            </div>
+            <div class="section text-large" style="padding-left:24px;padding-bottom:0">
+                <i class="vv vv-27 vv-me-339"></i>
+                <span>{{input.bank.label || "无相关银行卡信息"}}</span>
+            </div>
+            <div class="section text-large" style="padding-left:24px;padding-bottom:0">
+                <i class="vv vv-27 vv-me-340"></i>
+                <span>手续费：<span class="text-orange">{{queryFee() | currency:"￥"}}</span></span>
+            </div>
+            <div class="section text-large" style="padding-left:24px;padding-bottom:0">
+                <i class="vv vv-27 vv-me-341"></i>
+                <span>实际到账金额：<span class="text-orange">{{queryActuralMoney() | currency:"￥"}}</span></span>
+            </div>
+            <div class="section">
+                <div class="btn-group justified">
+                    <span class="btn"><span class="btn btn-primary full-width" ng-click="back()">返回</span></span>
+                    <span class="btn" ng-if="cash_info.respcode == '0000'" ng-disabled="cashForm.$invalid"><button type="submit" class="btn btn-warning full-width">{{btn_text}}</button></span>
+                    <!-- <span class="btn btn-primary">返回</span>
+                <button type="submit" class="btn btn-warning" ng-if="cash_info.respcode == '0000'" ng-disabled="cashForm.$invalid">{{btn_text}}</button>
+                <span class="btn" ng-if="cash_info.respcode != '0000'">{{btn_text}}</span> -->
+                </div>
+                <div ng-if="cash_info.respcode != '0000'"><b>{{btn_text}}</b></div>
+            </div>
+            <!-- <div class="section">
                 <div class="semi-auto semi-left-98">
                     <span class="semi-fixed-left semi-width-98 btn text-left section-wide text-grey">提现金额</span>
                     <input type="number" class="form-control block full-width rectangle" name="money" ng-model="input.money" min="{{cash_info.minAmount}}" max="{{cash_info.maxAmount}}" required placeholder="请输入金额">
@@ -32,21 +65,21 @@
                     <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.max">提现金额最大为{{cash_info.maxAmount}}元</div>
                     <div class="text-orange text-right" style="position:absolute;right:0;top:-17px;color:#f70" ng-if="cashForm.money.$error.number">金额为整数</div>
                 </div>
-            </div>
-            <div class="vv-divide"></div>
+            </div> -->
+            <!-- <div class="vv-divide"></div>
             <div class="section">
                 手续费：
                 <span class="text-orange">{{queryFee() | currency:"￥"}}</span>
             </div>
             <div class="section">
                 实际到账金额: <span class="text-orange">{{queryActuralMoney() | currency:"￥"}}</span>
-            </div>
+            </div> 
             <div class="section text-center" ng-if="cash_info.respcode == '0000'">
                 <button type="submit" class="btn btn-primary" ng-disabled="cashForm.$invalid">{{btn_text}}</button>
             </div>
             <div class="section text-center text-danger" ng-if="cash_info.respcode != '0000'">
                 {{btn_text}}
-            </div>
+            </div>-->
             <div class="section">
                 <p>提醒：</p>
                 <div>1. 单笔提现金额范围为{{cash_info.minAmountY}}-{{cash_info.maxAmountY}}</div>

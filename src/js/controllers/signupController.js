@@ -72,8 +72,9 @@ var signupController = function($rootScope, $interval, $routeParams, $window, $t
             if (data.respcode == config.request.SUCCESS) {
                 localStorageService.set("token", data.result.token);
                 platformServices.notify();
-                $window.location.href = data.result.wapUrl;
-                $location.path("/index").replace();
+                SharedState.set({"signUpStep":3})
+                // $window.location.href = data.result.wapUrl;
+                // $location.path("/index").replace();
             } else {
                 errorServices.autoHide(data.message);
             }
@@ -81,8 +82,8 @@ var signupController = function($rootScope, $interval, $routeParams, $window, $t
     }
     $scope.getVerifycode = function() {
         userServices.getVerifycode({
-            width: 120,
-            height: 46
+            width: 100,
+            height: 22
         }).then(function(data) {
             if (data.respcode == config.request.SUCCESS) {
                 $scope.input.verifyimage = data.result.verifycode;
@@ -96,4 +97,7 @@ var signupController = function($rootScope, $interval, $routeParams, $window, $t
         $scope.getVerifycode();
         $interval.cancel(timer);
     }, 10);
+    $scope.jumpTo = function(path) {
+        $location.path(path).replace();
+    }
 }

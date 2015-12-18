@@ -1,5 +1,5 @@
 <div ui-content-for="backAction">
-    <a ng-click="back()" class="btn" >返回</a>
+    <a ng-click="back()" class="btn">返回</a>
 </div>
 <div ui-content-for="title">
     <span>登录</span>
@@ -9,7 +9,7 @@
     <div class="section bg-grey text-center text-white" style="padding:30px 20px;">
         <h2><b>您还没有登录</b></h2>
         <p>
-             朋友投资，你有佣金拿，朋友的朋友投资，你还有佣金拿！自己投资更有高额稳定收益，加入优易投，财富之旅即刻起航~
+            朋友投资，你有佣金拿，朋友的朋友投资，你还有佣金拿！自己投资更有高额稳定收益，加入优易投，财富之旅即刻起航~
         </p>
     </div>
     <div class="section">
@@ -17,24 +17,24 @@
         <a class="btn btn-lg btn-primary block full-width" ui-turn-on="signIn">立即登录</a>
     </div>
 </div>
-<form name="signinForm" ng-submit="ajaxSubmit(this)" class="section" ui-state="signIn" ui-default="0" ui-if="signIn"  style="height:100%;background-color:white">
-    <div class="text-center">
-        <img ng-src="{{staticImageUrl +'images/YYT_logo.png'}}" alt="">
+<form name="signinForm" ng-submit="ajaxSubmit(this)" ui-state="signIn" ui-default="0" ui-if="signIn" style="height:100%;background-color:white">
+    <imageview src="'../images/banner_6.png'" data-rate="640/200"></imageview>
+    <div class="section" style="margin-top:19px">
+        <div class="vv-input-group input-group-lg">
+            <span class="vv-input-group-addon"><i class="vv vv-20 vv-user"></i></span>
+            <input type="text" class="form-control text-big" name="username" ng-model="input.name" placeholder="请输入用户名" required>
+            <span class="vv-input-tip" ng-show="signinForm.username.$dirty && signinForm.username.$error.required">用户名为必填</span>
+        </div>
+        <div class="vv-input-group input-group-lg">
+            <span class="vv-input-group-addon"><i class="vv vv-20 vv-password"></i></span>
+            <input type="password" class="form-control text-big" name="password" ng-model="input.password" placeholder="请输入登录密码,6位以上" required ng-minlength=6>
+            <span class="vv-input-tip" ng-show="signinForm.password.$dirty && signinForm.password.$error.required || signinForm.password.$error.minlength">密码必填,不少于6位</span>
+        </div>
+        <p class="text-right text-primary"><a ng-href="#/forget">忘记密码</a></p>
+        <div class="section-wide">
+            <button type="submit" class="btn btn-lg text-large btn-primary block full-width" ng-disabled="signinForm.$invalid">立即登录</button>
+        </div>
+        <p></p>
+        <p class="text-center text-primary"><span class="text-grey">还没有账号？</span><a ng-href="#/signUp">免费注册</a></p>
     </div>
-    <div class="vv-input-group input-group-lg">
-        <span class="vv-input-group-addon"><i class="vv vv-20 vv-user"></i></span>
-        <input type="text" class="form-control text-big" name="username" ng-model="input.name" placeholder="请输入用户名" required>
-        <span class="vv-input-tip" ng-show="signinForm.username.$dirty && signinForm.username.$error.required">用户名为必填</span>
-    </div>
-    <div class="vv-input-group input-group-lg">
-        <span class="vv-input-group-addon"><i class="vv vv-20 vv-password"></i></span>
-        <input type="password" class="form-control text-big" name="password" ng-model="input.password" placeholder="请输入登录密码,6位以上" required ng-minlength=6>
-        <span class="vv-input-tip" ng-show="signinForm.password.$dirty && signinForm.password.$error.required || signinForm.password.$error.minlength">密码必填,不少于6位</span>
-    </div>
-    <p class="text-right text-primary hide"><a ng-href="#/forget">忘记密码</a></p>
-    <div class="section-wide">
-        <button type="submit" class="btn btn-lg text-large btn-primary block full-width" ng-disabled="signinForm.$invalid">立即登录</button>
-    </div>
-    <p></p>
-    <p class="text-center text-primary"><span class="text-grey">还没有账号？</span><a ng-href="#/signUp">免费注册</a></p>
 </form>

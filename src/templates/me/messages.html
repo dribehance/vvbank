@@ -8,8 +8,22 @@
     <span></span>
 </div>
 <div class="scrollable">
-    <div class="scrollable-content" ui-scroll-bottom="loadMore()">
-        <div class="message-item" ng-repeat="message in messages" ng-show="messages.length>0">
+    <div class="scrollable-content">
+        <div class="list-group" style="margin-bottom:0" ng-repeat="(key,value) in messages">
+            <div class="list-group-header section section bg-white-grey">{{key}}</div>
+            <div class="list-group-item investment-record" ng-repeat="message in value">
+                <div class="item-right">
+                    <p class="clearfixed">
+                        <b>{{message.title|limitTo:12}}</b><span class="pull-right text-orange">{{parseTime(message.time)}}</span>
+                    </p>
+                    <div class="clearfixed">
+                        {{message.content}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section text-center" ng-if="no_record">暂无记录</div>
+        <!-- <div class="message-item" ng-repeat="message in messages" ng-show="messages.length>0">
             <div class="section">
                 <div class="btn-group justified">
                     <span><img ng-src="{{staticImageUrl + 'images/message_1.png'}}" alt="" style="width:42;height:42px;margin-right:5px">{{ message.title }}</span>
@@ -23,6 +37,6 @@
         </div>
         <div class="section text-center" ng-click="loadMore()">
             {{page.message}}
-        </div>
+        </div> -->
     </div>
 </div>

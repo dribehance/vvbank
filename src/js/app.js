@@ -75,7 +75,7 @@ angular.module("VVBank", [
         })
         .when("/activities", {
             templateUrl: "me/activities.html",
-            reloadOnSearch: false,
+            reloadOnSearch: true,
             controller:activitiesController,
             resolve: {
                 factory:loginInterceptor
@@ -121,7 +121,7 @@ angular.module("VVBank", [
                 factory:loginInterceptor
             }
         })
-        .when("/bank-cards", {
+        .when("/bank_cards", {
             templateUrl: "me/bank-cards.html",
             reloadOnSearch: false,
             controller: bankCardsController,
@@ -129,7 +129,7 @@ angular.module("VVBank", [
                 factory:loginInterceptor
             }
         })
-        .when("/add-bank", {
+        .when("/add_bank", {
             templateUrl: "me/add-bank.html",
             reloadOnSearch: false,
             controller: addBankController,
@@ -169,7 +169,7 @@ angular.module("VVBank", [
             //     factory:loginInterceptor
             // }
         })
-        .when("/name-authen", {
+        .when("/name_authen", {
             templateUrl: "me/name-authen.html",
             reloadOnSearch: false,
             controller: nameAuthenController,
@@ -193,7 +193,7 @@ angular.module("VVBank", [
                 factory:loginInterceptor
             }
         })
-        .when("/update-trade-psd", {
+        .when("/update_trade_psd", {
             templateUrl: "me/update-trade-psd.html",
             reloadOnSearch: false,
             controller: updateTradePsdController,
@@ -480,6 +480,16 @@ angular.module("VVBank", [
             templateUrl : "eyuan_mall_center.html",
             reloadOnSearch : false,
             controller : eyuanMallCenterController
+        })
+        .when("/account_info",{
+            templateUrl : "account_info.html",
+            reloadOnSearch : false,
+            controller : accountInfoController
+        })
+        .when("/account_money",{
+            templateUrl : "account_money.html",
+            reloadOnSearch : false,
+            controller : accountMoneyController
         })
         .otherwise({
             redirectTo: "/index"

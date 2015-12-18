@@ -10,6 +10,10 @@ angular.module('VVBank').directive('indentification', function() {
         // create linking function and pass in our NgModelController as a 4th argument
         link: function(scope, element, attr, ctrl) {
             ctrl.$parsers.push(function(ngModelValue) {
+                if (ctrl.$isEmpty(ngModelValue)){
+                    ctrl.$setValidity('indentification', true);
+                    return ngModelValue;
+                }
                 if (getIdCardInfo(ngModelValue).isTrue) {
                     ctrl.$setValidity('indentification', true)
                 } else {

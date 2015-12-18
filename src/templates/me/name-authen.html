@@ -9,8 +9,38 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
-        <form ng-submit="ajaxForm(this)" name="authForm">
-            <div ui-state="authStep" ui-default="1" ui-if="authStep ==1">
+        <imageview src="'../images/banner_2.png'" data-rate="640/387"></imageview>
+        <div class="section identify-section" ui-state="authen_step" ui-default="1" ui-if="authen_step == '1'">
+            <imageview src="'../images/identify.png'" data-rate="510/326"></imageview>
+            <div class="identify-status"></div>
+            <div class="identify-meta">
+                <h3>{{realname}}</h3>
+                <span class="text-big">{{realnumber}}</span>
+            </div>
+        </div>
+        <form ng-submit="ajaxForm(this)" name="authForm" ui-if="authen_step == '2'">
+            <div class="section">
+                <div class="section"></div>
+                <div class="section-wide" ng-if="safety_info.signin_password.status != 0">
+                    <div class="vv-input-group input-group-lg full-width">
+                        <span class="vv-input-group-addon"><i class="vv vv-27 vv-me-663"></i></span>
+                        <input type="text" class="form-control border-radius-large" name="realname" ng-model="input.realname" required placeholder="请输入姓名">
+                        <span class="vv-input-tip" ng-show="authForm.realname.$dirty && authForm.realname.$invalid">姓名必填</span>
+                    </div>
+                </div>
+                <div class="section-wide">
+                    <div class="vv-input-group input-group-lg full-width">
+                        <span class="vv-input-group-addon"><i class="vv vv-27 vv-me-664"></i></span>
+                        <input type="password" class="form-control border-radius-large" name="identity" ng-model="input.identity" required indentification placeholder="请确认身份证号码">
+                        <span class="vv-input-tip" ng-show="authForm.identity.$dirty && authForm.identity.$error.required">身份证号码必填</span>
+                        <span class="vv-input-tip" ng-show="authForm.identity.$dirty && authForm.identity.$error.indentification">身份证号码格式不正确</span>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <button type="submit" class="btn btn-lg btn-primary full-width" ng-disabled="authForm.$invalid">认证</button>
+            </div>
+            <!-- <div ui-state="authStep" ui-default="1" ui-if="authStep ==1">
 
                 <div class="section">
                     <div class="section"></div>
@@ -34,7 +64,7 @@
                     <button type="submit"  class="btn btn-lg btn-primary block full-width rectangle" ng-disabled="!(authForm.realname.$valid && authForm.identifyID.$valid)">提交</button>
                 </div>
 
-            </div>
+            </div> -->
             <!-- <div ui-if="authStep == 2">
                 <div class="section"></div>
                 <div class="section">

@@ -1,0 +1,55 @@
+<!-- by dribehance <dribehance.kksdapp.com> -->
+<div ui-content-for="title">资金账户</div>
+<div ui-content-for="navbarAction"></div>
+<div ui-content-for="backAction">
+	<span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
+</div>
+<div class="scrollable">
+	<div class="scrollable-content bg-transparent">
+		<div class="row bg-primary section section-wide" style="padding:30px 2px">
+            <div class="col-xs-6 section-wide text-center">
+                <span class="text-white"><strong>总资产（元）</strong></span>
+                <div class="text-yellow text-large text-ellipsis"><strong>{{money.netAsset | currency:"￥"}}</strong></div>
+            </div>
+            <div class="col-xs-6 section-wide text-center">
+                <span class="text-white"><strong>总收益（元）</strong></span>
+                <div class="text-yellow text-large text-ellipsis"><strong>{{ money.incomeAmount | currency:"￥"}}</strong></div>
+            </div>
+        </div>
+		<div class="row bg-white section">
+            <div class="col-xs-6 section-wide">
+                <span class="text-grey"><strong>可用余额（元）</strong></span>
+                <div class="text-orange text-large text-ellipsis"><strong>{{money.usableAmount | currency:"￥"}}</strong></div>
+            </div>
+            <div class="col-xs-6 section-wide">
+                <span class="text-grey"><strong>待收本金（元）</strong></span>
+                <div class="text-orange text-large text-ellipsis"><strong>{{ money.totalAmount | currency:"￥"}}</strong></div>
+            </div>
+        </div>
+        <div class="vv-divide vv-10"></div>
+        <div class="row bg-white section">
+            <div class="col-xs-6 section-wide">
+                <span class="text-grey"><strong>e圆总额（e圆）</strong></span>
+                <div class="text-orange text-large text-ellipsis"><strong>{{money.emoney | currency:"￥"}}</strong></div>
+            </div>
+            <div class="col-xs-6 section-wide">
+                <span class="text-grey"><strong>红包总额（元）</strong></span>
+                <div class="text-orange text-large text-ellipsis"><strong>{{ money.totalTokens | currency:"￥"}}</strong></div>
+            </div>
+        </div>
+        <div class="vv-divide vv-10"></div>
+        <div class="section">
+        	<b>新人尊享金</b>
+        </div>
+        <div class="row bg-white section">
+            <div class="col-xs-6 section-wide">
+                <span class="text-grey"><strong>可用金额（元）</strong></span>
+                <div class="text-orange text-large text-ellipsis"><strong>{{money.coin | currency:"￥"}}</strong></div>
+            </div>
+            <div class="col-xs-6 section-wide">
+                <span class="text-grey"><strong>冻结金额（元）</strong></span>
+                <div class="text-orange text-large text-ellipsis"><strong>{{ money.frozenCoin | currency:"￥"}}</strong></div>
+            </div>
+        </div>
+	</div>
+</div>

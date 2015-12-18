@@ -8,34 +8,39 @@
 <div ui-content-for="navbarAction">
     <span></span>
 </div>
-<form name="updateForm" ng-submit="ajaxForm(this)">
-    <div class="section">
-        <div class="section"></div>
-        <div class="section-wide" ng-if="safety_info.signin_password.status != 0">
-            <div class="vv-input-group input-group-lg full-width no-addon">
-                <span class="vv-input-group-addon">旧密码</span>
-                <input type="password" class="form-control border-radius-large" name="old_password" ng-model="input.old_password" required ng-minlength=6 placeholder="请输入旧密码,6位以上">
-                <span class="vv-input-tip" ng-show="updateForm.old_password.$dirty && updateForm.old_password.$invalid">旧密码必填，且不少于6位</span>
+<div class="scrollable">
+    <div class="scrollable-content">
+        <imageview src="'../images/banner_2.png'" data-rate="640/387"></imageview>
+        <form name="updateForm" ng-submit="ajaxForm(this)">
+            <div class="section">
+                <div class="section"></div>
+                <div class="section-wide" ng-if="safety_info.signin_password.status != 0">
+                    <div class="vv-input-group input-group-lg full-width">
+                        <span class="vv-input-group-addon"><i class="vv vv-27 vv-password-old"></i></span>
+                        <input type="password" class="form-control border-radius-large" name="old_password" ng-model="input.old_password" required ng-minlength=6 placeholder="请输入旧密码,6位以上">
+                        <span class="vv-input-tip" ng-show="updateForm.old_password.$dirty && updateForm.old_password.$invalid">旧密码必填，且不少于6位</span>
+                    </div>
+                </div>
+                <a ng-href="#/forget" class="block text-right text-primary" style="margin-bottom:19px"><b>忘记登录密码？</b></a>
+                <div class="section-wide">
+                    <div class="vv-input-group input-group-lg full-width">
+                        <span class="vv-input-group-addon"><i class="vv vv-27 vv-password-new"></i></span>
+                        <input type="password" class="form-control border-radius-large" name="password" ng-model="input.password" required ng-minlength=6 placeholder="请输入新密码,6位以上">
+                        <span class="vv-input-tip" ng-show="updateForm.password.$dirty && updateForm.password.$invalid">密码必填，且不少于6位</span>
+                    </div>
+                </div>
+                <div class="section-wide">
+                    <div class="vv-input-group input-group-lg full-width">
+                        <span class="vv-input-group-addon"><i class="vv vv-27 vv-password-new"></i></span>
+                        <input type="password" class="form-control border-radius-large" name="password_1" ng-model="input.password_1" required ng-minlength=6 placeholder="请确认新密码,6位以上">
+                        <span class="vv-input-tip" ng-show="updateForm.password_1.$dirty && input.password != input.password_1">两次输入的密码必须一致</span>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="section-wide">
-            <div class="vv-input-group input-group-lg full-width no-addon">
-                <span class="vv-input-group-addon">新密码</span>
-                <input type="password" class="form-control border-radius-large" name="password" ng-model="input.password" required ng-minlength=6 placeholder="请输入新密码,6位以上">
-                <span class="vv-input-tip" ng-show="updateForm.password.$dirty && updateForm.password.$invalid">密码必填，且不少于6位</span>
+            <div class="vv-divide"></div>
+            <div class="section">
+                <button type="submit" class="btn btn-lg btn-primary block full-width" ng-disabled="(!(updateForm.password.$valid && input.password == input.password_1)) || updateForm.old_password.$invalid">提交修改</button>
             </div>
-        </div>
-        <div class="section-wide">
-            <div class="vv-input-group input-group-lg full-width no-addon">
-                <span class="vv-input-group-addon">确&nbsp;&nbsp;&nbsp;认</span>
-                <input type="password" class="form-control border-radius-large" name="password_1" ng-model="input.password_1" required ng-minlength=6 placeholder="请确认新密码,6位以上">
-                <span class="vv-input-tip" ng-show="updateForm.password_1.$dirty && input.password != input.password_1">两次输入的密码必须一致</span>
-            </div>
-        </div>
+        </form>
     </div>
-    </div>
-    <div class="vv-divide"></div>
-    <div class="section">
-        <button type="submit" class="btn btn-lg btn-primary block full-width" ng-disabled="(!(updateForm.password.$valid && input.password == input.password_1)) || updateForm.old_password.$invalid">完成设置</button>
-    </div>
-</form>
+</div>
