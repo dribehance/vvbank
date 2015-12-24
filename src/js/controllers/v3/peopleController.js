@@ -29,17 +29,14 @@ var peopleController = function($scope, $rootScope, $timeout, mallServices, peop
         }
     })
     $scope.isTop = false;
-    angular.element(".scrollable-content").bind("scroll", function(e) {
-        var scrollTop = angular.element(".scrollable-content").scrollTop();
+    $scope.toTop = function() {
+        angular.element("#toTop").show();
         $scope.to = angular.element("#toTop").offset().top - angular.element(".scrollable-content").offset().top + angular.element(".scrollable-content").scrollTop();
-        if (scrollTop > 20) {
-            $scope.$apply(function(){
-                $scope.isTop = true;
-            })
-            angular.element(".scrollable-content").unbind("scroll")
+        $scope.isTop = true;
+        $timeout(function(){
             angular.element(".scrollable-content").animate({
-                scrollTop: $scope.to
-            });
-        }
-    })
+                scrollTop:$scope.to
+            })
+        },100)
+    }
 }

@@ -9,15 +9,15 @@
         <div class="section bg-transparent text-center">
             <p>扫描您的二维码即可注册成为您的客户</p>
             <!-- <imageview src="'../images/qrcode.png'" data-rate="1"></imageview> -->
-            <qrcode data="{{qrcode_url}}" version="10" size="274"></qrcode>
+            <qrcode data="{{qrcode_url}}" version="10" size="205"></qrcode>
             <p></p>
-            <p style="width: 274px; margin: 10px auto; padding-right: 10%; text-align: center; word-wrap: break-word;" ng-bind-html="trustAsHtml(url)"></p>
+            <p style="width: 220px; margin: 10px auto;word-wrap: break-word;" ng-bind-html="trustAsHtml(url)"></p>
         </div>
-        <div class="section bg-transparent">
+        <div class="section bg-transparent section-wide" style="width: 220px; margin: 10px auto">
             <p>姓名：{{realname}}</p>
             <p>联系电话：{{telephone}}</p>
         </div>
-        <div class="section bg-transparent section-condensed text-center" ng-if="!isTop">
+        <div class="section bg-transparent section-condensed text-center" ng-if="!isTop" ng-click="toTop()">
         	<div><img ng-src="{{staticImageUrl + 'images/to_top.png'}}" width="13px"></div>
         	<span class="text-large">查看你的人脉详情</span>
         </div>

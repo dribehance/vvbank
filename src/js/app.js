@@ -4,6 +4,8 @@ angular.module("VVBank", [
     "mobile-angular-ui.core.capture",
     "mobile-angular-ui.core.activeLinks",
     "mobile-angular-ui.core.sharedState",
+    // "mobile-angular-ui.gestures",
+    // "mobile-angular-ui.gestures.touch",
     "flow",
     "timer",
     "LocalStorageModule",
