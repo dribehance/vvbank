@@ -11,7 +11,7 @@
                 <div class="item-status" ng-show="{{item.goodStatus != '-1'}}" ng-class="{'active':item.checked}" ng-click="toggle(item)"></div>
                 <div class="item-off" ng-show="{{item.goodStatus == '-1'}}">下架</div>
                 <div class="item-thumbnail">
-                    <imageview data-rate="1" src="item.logo" class="bg-light-grey"></imageview>
+                    <img data-rate="1" ng-src="{{item.logo}}" class="bg-light-grey">
                 </div>
                 <div class="item-title text-ellipsis">
                     {{item.goodsName}}

@@ -16,7 +16,7 @@
     <div class="scrollable-content">
         <div class="section activity-item" ng-repeat="activity in activities">
             <div class="timestamp">{{activity.createTime}}</div>
-            <imageview src="activity.logo" data-rate="505/380"></imageview>
+            <img ng-src="{{activity.logo}}" data-rate="505/380">
             <div class="activity-footer text-center text-ellipsis">{{activity.title}}</div>
         </div>
         <div class="section" ng-if="activities.length == 0">暂无活动</div>

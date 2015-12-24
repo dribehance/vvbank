@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="viewport" content="max-width=device-width,max-height=device-height,user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
     <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
     <link rel="stylesheet" href="css/app.min.css" />
     <!-- inject:js -->
@@ -18,17 +18,38 @@
 <body ng-cloak>
     <div class="app">
         <!-- Navbars -->
+        
         <div class="navbar navbar-app navbar-absolute-top">
             <div class="btn-group justified bg-primary">
                 <a ng-href="#/eyuan_mall?category_id={{category.id}}" class="btn text-white section-wide bg-transparent" ng-class="{'active':category.id == current_category_id}" ng-repeat="category in categories" ng-if="$index <4">
                     <span class="tag">{{category.categoryName | limitTo:4}}<i class="triangle"></i></span>
-                    <!-- <span class="tag">{{category.categoryName}}<i class="triangle"></i></span> -->
+                
                 </a>
-                <a ng-href="#/eyuan_mall/shopping_cart" class="btn text-white">
+                <a ng-href="#/eyuan_mall/shopping_cart" class="btn text-white shop-car">
                     <span class="tag"><i class="vv vv-20 vv-shopping-cart"></i><i class="triangle"></i></span>
                 </a>
             </div>
         </div>
+
+
+        <!-- <div class="eyuan-category full-width" ng-if="navbar.top">
+             <span class="text" ng-click="EmenuShow();"><i></i>所有分类</span>
+              <a ng-href="#/eyuan_mall/shopping_cart" class="btn text-white shop-car">
+                    <span class="tag"><i class="vv vv-20 vv-shopping-cart"></i><i class="triangle"></i></span>
+              </a>
+
+              <div class="eyuan-menu f16px"style="display:none;">
+                  <ul>
+                       <li ng-repeat="category in categories" ng-click="EmenuHide();">
+                          <a ng-href="#/eyuan_mall?category_id={{category.id}}"><i class="icon"><img src="../images/u58.png" width="24"></i>{{category.categoryName}}</a>
+                      </li>
+                  </ul>
+              </div>
+        </div> -->
+        <!-- <div class="Cover" style="display:none;"></div> -->
+
+
+
         <div class="navbar navbar-app navbar-absolute-bottom">
             <div class="btn-group justified">
                 <a ng-href="#/index" class="btn btn-navbar"><i class="vv vv-33 vv-index"></i><span class="block">精选</span></a>

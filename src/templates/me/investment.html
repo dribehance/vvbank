@@ -20,7 +20,7 @@
                         {{parseTime(investment.investTime)}} <span class="pull-right">预期收益{{investment.interestAmount|currency:""}}元</span>
                     </div>
                 </div>
-                <div class="status status-{{investment.status}}">{{investment.statusCN|limitTo:4}}</div>
+                <div class="status statis-textBtn status-{{investment.status}}">{{investment.statusCN|limitTo:4}}</div>
             </div>
         </div>
         <div class="section text-center" ng-if="no_record">暂无记录</div>

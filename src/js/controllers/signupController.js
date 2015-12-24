@@ -12,17 +12,17 @@ var signupController = function($rootScope, $interval, $routeParams, $window, $t
         $scope.input.username = n;
     });
     // counting
-    $scope.callbackTimer = {};
-    $scope.callbackTimer.counting = 0;
-    $scope.callbackTimer.finish = function() {
-        $scope.callbackTimer.counting = 0;
-        $scope.$apply();
-    }
-    $scope.callbackTimer.addSeconds = function(seconds) {
-        angular.element("#vvcountdown")[0].clear();
-        angular.element("#vvcountdown")[0].resume();
-        angular.element("#vvcountdown")[0].start();
-    }
+    // $scope.callbackTimer = {};
+    // $scope.callbackTimer.counting = 0;
+    // $scope.callbackTimer.finish = function() {
+    //     $scope.callbackTimer.counting = 0;
+    //     $scope.$apply();
+    // }
+    // $scope.callbackTimer.addSeconds = function(seconds) {
+    //     angular.element("#vvcountdown")[0].clear();
+    //     angular.element("#vvcountdown")[0].resume();
+    //     angular.element("#vvcountdown")[0].start();
+    // }
     $scope.nextStep = function() {
         toastServices.show();
 
@@ -61,8 +61,8 @@ var signupController = function($rootScope, $interval, $routeParams, $window, $t
                     errorServices.autoHide(data.message);
                 }
             })
-            $scope.callbackTimer.counting = 1;
-            $scope.callbackTimer.addSeconds(150);
+            // $scope.callbackTimer.counting = 1;
+            // $scope.callbackTimer.addSeconds(150);
         }
         // error handler
     $scope.errormsg = "";
@@ -71,10 +71,12 @@ var signupController = function($rootScope, $interval, $routeParams, $window, $t
         userServices.register($scope.input.telephone, $scope.input.password, $scope.input.username, $scope.input.referee, $scope.input.smscode).then(function(data) {
             if (data.respcode == config.request.SUCCESS) {
                 localStorageService.set("token", data.result.token);
+                localStorageService.set("logonUsername", data.result.logonUsername);
+                localStorageService.set("iconUrl", data.result.iconUrl);
                 platformServices.notify();
-                SharedState.set({"signUpStep":3})
-                // $window.location.href = data.result.wapUrl;
-                // $location.path("/index").replace();
+		SharedState.set({"signUpStep":3})
+                //$window.location.href = data.result.wapUrl;
+                $location.path("/index").replace();
             } else {
                 errorServices.autoHide(data.message);
             }
@@ -82,8 +84,8 @@ var signupController = function($rootScope, $interval, $routeParams, $window, $t
     }
     $scope.getVerifycode = function() {
         userServices.getVerifycode({
-            width: 100,
-            height: 22
+            width: 80,
+            height: 32
         }).then(function(data) {
             if (data.respcode == config.request.SUCCESS) {
                 $scope.input.verifyimage = data.result.verifycode;

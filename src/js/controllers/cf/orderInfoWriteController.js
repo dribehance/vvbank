@@ -17,6 +17,10 @@ var orderInfoWriteController = function($scope, $rootScope,$location, $route, $r
         }
     });
 
+    /*$scope.back = function(){
+        $location.path("/investment_projects").replace();
+    }*/
+
     //优租包订单下一步
     $scope.nextStep = function(){
         var params = {

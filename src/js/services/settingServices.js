@@ -31,7 +31,7 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
             })
         },
         //查询银行卡信息
-        queryBanks: function() {
+        queryBanks: function() { 
             return $http({
                 url: config.url + "/v1/service/bankinfo",
                 method: "POST",
@@ -194,7 +194,7 @@ angular.module("VVBank").factory("settingServices", function($http, localStorage
                     "bankId": bank.bankId,
                     // "bankBranch": bank.branch,
                     "realName":bank.realname,
-                    "idCard":bank.identify,
+                    "idCard":bank.identity,
                     "code":bank.smscode
                 })
             }).then(function(data) {

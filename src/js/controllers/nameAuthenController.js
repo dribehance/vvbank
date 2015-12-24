@@ -30,7 +30,7 @@ var nameAuthenController = function($scope, $rootScope, $routeParams, $timeout, 
             if (data.respcode == config.request.SUCCESS) {
                 $rootScope.back();
             } else {
-                errorServices.autoHide("认证失败")
+                errorServices.autoHide(data.message)
             }
         });
     }

@@ -405,9 +405,9 @@ angular.module("VVBank", [
             reloadOnSearch: false,
             controller: orderOfflineController
         })
-        .when("/crowdFund/details",{
+        .when("/crowdFund/detailsing/:cfId",{
             templateUrl : "cf/fundDetails.html",
-            reloadOnSearch : false,
+            reloadOnSearch : true,
             controller : cfController
         })
         .when("/crowdFund/detailsMore",{
@@ -451,6 +451,11 @@ angular.module("VVBank", [
                 factory:loginInterceptor
             }
         })
+        .when("/crowdFund/details/:cfId",{
+            templateUrl : "cf/fundDetails.html",
+            reloadOnSearch : false,
+            controller : crowdFundDetailsController
+        })
         .when("/crowdFund/crowdFundDetails/:cfId",{
             templateUrl : "cf/cf_topicSubmit.html",
             reloadOnSearch : false,
@@ -490,6 +495,11 @@ angular.module("VVBank", [
             templateUrl : "account_money.html",
             reloadOnSearch : false,
             controller : accountMoneyController
+        })
+        .when("/cf_confirm/:req_data",{
+            templateUrl : "cf/cf_confirm.html",
+            reloadOnSearch : false,
+            controller : cfConfirmController
         })
         .otherwise({
             redirectTo: "/index"

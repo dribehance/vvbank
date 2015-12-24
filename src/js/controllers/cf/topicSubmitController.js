@@ -16,10 +16,10 @@ var topicSubmitController = function($scope, $rootScope,$location, $route, $rout
             cfServices.topicSubmit(params).then(function(data) {
                 toastServices.hide()
                 if (data.respcode == config.request.SUCCESS) {
-                    errorServices.autoHide(data.message);
+                    errorServices.autoHide(data.message)
                     $timeout(function() {
                         $location.path("/crowdFund/crowdFundDetails/"+data.fundId).replace();
-                    }, 1000);
+                    }, 1000)
                 } else {
                     errorServices.autoHide(data.message);
                 }
@@ -34,10 +34,10 @@ var topicSubmitController = function($scope, $rootScope,$location, $route, $rout
             cfServices.replySubmit(answer).then(function(data) {
                 toastServices.hide()
                 if (data.respcode == config.request.SUCCESS) {
-                    errorServices.autoHide(data.message);
+                    errorServices.autoHide(data.message)
                     $timeout(function() {
                         $location.path("/crowdFund/crowdFundDetails/"+data.fundId).replace();
-                    }, 1000);
+                    }, 1000)
                 } else {
                     errorServices.autoHide(data.message);
                 }

@@ -6,32 +6,7 @@
 </div>
 <div class="scrollable">
 	<div class="scrollable-content bg-transparent">
-		<div class="vv-divide"></div>
-        <div class="section section-wide section-sm">
-            <a ng-href="#/update-signin-psd" class="block text-grey semi-auto semi-left-30 semi-right-50">
-                <span class="semi-fixed-left semi-width-40 text-center">
-                <i class="vv vv-35 vv-me-633"></i>
-            </span>
-                <span class="btn">修改登录密码</span>
-                <span class="semi-fixed-right semi-width-50 text-center">
-                <i class="vv vv-arrow-right vv-35"></i>
-            </span>
-            </a>
-        </div>
-        <div class="vv-divide"></div>
-        <div class="section section-wide section-sm">
-            <a ng-href="#/update_trade_psd?state={{account.tradepwd}}" class="block text-grey semi-auto semi-left-30 semi-right-50">
-                <span class="semi-fixed-left semi-width-40 text-center">
-                <i class="vv vv-35 vv-me-634"></i>
-            </span>
-                <span class="btn">交易密码</span>
-                <span class="warning-badge pull-right" ng-if="account.tradepwd =='-1'">未设置</span>
-                <span class="semi-fixed-right semi-width-50 text-center">
-                <i class="vv vv-arrow-right vv-35"></i>
-            </span>
-            </a>
-        </div>
-        <div class="vv-divide"></div>
+        <div class="vv-divide" style="background-color: #EEE; height: 3px;"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/name_authen?state={{account.IDCard}}" class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
@@ -44,7 +19,32 @@
             </span>
             </a>
         </div>
-        <div class="vv-divide"></div>
+        <div class="vv-divide" style="background-color: #EEE; height: 3px;"></div>
+        <div class="section section-wide section-sm">
+            <a ng-href="#/update-signin-psd" class="block text-grey semi-auto semi-left-30 semi-right-50">
+                <span class="semi-fixed-left semi-width-40 text-center">
+                <i class="vv vv-35 vv-me-633"></i>
+            </span>
+                <span class="btn">登录密码</span>
+                <span class="semi-fixed-right semi-width-50 text-center">
+                <i class="vv vv-arrow-right vv-35"></i>
+            </span>
+            </a>
+        </div>
+        <div class="vv-divide" style="background-color: #EEE; height: 3px;"></div>
+        <div class="section section-wide section-sm">
+            <a ng-href="#/update_trade_psd?state={{account.tradepwd}}" class="block text-grey semi-auto semi-left-30 semi-right-50">
+                <span class="semi-fixed-left semi-width-40 text-center">
+                <i class="vv vv-35 vv-me-634"></i>
+            </span>
+                <span class="btn">交易密码</span>
+                <span class="warning-badge pull-right" ng-if="account.tradepwd =='-1'">未设置</span>
+                <span class="semi-fixed-right semi-width-50 text-center">
+                <i class="vv vv-arrow-right vv-35"></i>
+            </span>
+            </a>
+        </div>
+        <div class="vv-divide" style="background-color: #EEE; height: 3px;"></div>
         <div class="section section-wide section-sm">
             <a ng-href="#/bank_cards?state={{account.IDcode}}" class="block text-grey semi-auto semi-left-30 semi-right-50">
                 <span class="semi-fixed-left semi-width-40 text-center">
@@ -57,5 +57,6 @@
             </span>
             </a>
         </div>
+        <div class="vv-divide" style="background-color: #EEE; height: 3px;"></div>
 	</div>
 </div> 

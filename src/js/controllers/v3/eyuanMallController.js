@@ -31,5 +31,6 @@ var eyuanMallController = function($scope,$rootScope,$routeParams, mallServices,
         })
 
     }
+   
     $scope.loadMore();
 }

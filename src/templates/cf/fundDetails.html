@@ -4,6 +4,12 @@
 <div ui-content-for="backAction">
     <span class="btn" ng-click="back()"><i class="fa fa-chevron-left"></i></span>
 </div> -->
+<!-- <div ui-content-for="backAction">
+    <a ng-click="back()" class="btn">返回</a>
+</div> -->
+<!-- <div ui-content-for="navbarAction">
+    <span></span>
+</div> -->
 <div class="scrollable">
     <div class="scrollable-content">
 
@@ -18,55 +24,80 @@
             <h3>{{funding.title}}</h3>
             <p>{{funding.detail}}</p>
         </div>
-        <div class="chips_infos">
+        <div class="clearfix">
+            <section class="chips_infos">
+                <ul class="clearfix">
+                    <li>
+                        <p class="Bold f12">期限</p>
+                        <p class="red f18">{{funding.min}}-{{funding.max}}<span class="f24">天</span></p> 
+                        <!--<p class="f16">（人）</p>-->
+                        <i class="icon"></i>
+                    </li>
+                    <li>
+                        <p class="Bold f12">年化收益率</p>
+                        <p class="red f18">
+                            {{funding.rateMin}}<i class="f24">%</i>-{{funding.rateMax}}<i class="f24">%</i> 
+                        </p>
+                    <!--<p class="f16">（元）</p>-->
+                    <i class="icon"></i>
+                    </li>
+                    <li>
+                        <p class="Bold f12">募集进度</p>
+                        <p class="red f18">{{funding.schedule}}<i class="f24">%</i></p>
+                    <!-- <p class="f16">（天）</p>-->
+                    </li>
+                </ul>
+            </section>
+        </div>
+        <!-- <div class="chips_infos">
             <ul class="clearfix">
                 <li>
                     <p class="Bold f22">众筹进度</p>
-                    <p class="red f36">125</p> 
-                    <p class="f16">（%）</p>
+                    <p class="red f36">{{funding.schedule}}</p>
+                    <p class="f16">(%)</p>
                     <i class="icon"></i>
                 </li>
                 <li>
                     <p class="Bold f22">共募集</p>
-                    <p class="red f36">1000 000</p>
-                    <p class="f16">（元）</p>
+                    <p class="red f36">{{funding.totalAmount}}</p>
+                    <p class="f16">(元)</p>
                     <i class="icon"></i>
                 </li>
                 <li>
                     <p class="Bold f22">剩余时间</p>
-                    <p class="red f36">10</p>
-                    <p class="f16">（天）</p>
+                    <p class="red f36">{{funding.endDayCount}}</p>
+                    <p class="f16">(天)</p>
                 </li>
             </ul>
-        </div>
-        <div class="lookover_more">
+        </div> -->
+        <div class="lookover_more" style="border-bottom:1px solid #b2d7f1;">
             <a ng-click="fundsDetailMore(funding)">查看更多项目详细信息</a>
         </div>
-        <div class="zcNumber ELE">
-            <p>
-                <span class="orange">{{funding.appliedCount}}</span>人支持
+        <!-- <div class="zcNumber ELE">
+            <p class="f14">
+                <span class="orange">{{funding.appliedCount}}</span>人投资
             </p>
             <p>
                 <span>{{funding.support}}</span>
             </p>
             <div class="line"></div>
-        </div>  
+        </div>   -->
 
-        <div class="proTopic">
-            <p class="f28">
-                <span class="orange f24">{{topicList.length}}</span>个话题
-                <a ng-href="#/crowdFund/topicSubmit/{{funding.id}}/topic/topic" class="blue fr f24">发布话题</a>
+        <!-- <div class="proTopic">
+            <p class="f14">
+                <span class="orange f14">{{topicNum}}</span>个话题
+                <a ng-href="#/crowdFund/topicSubmit/{{funding.id}}/topic/topic" class="blue fr f14">发布话题</a>
             </p>
         </div>
         <div ng-repeat="topic in topicList">
             <div class="proTopic">
                 <dl>
-                    <dt><a href="#"><img src="../images/default-avatar.png"></a></dt>
+                    <dt><img src="/images/default-avatar.png"></dt>
                     <dd>
                         <p>
-                            <span class="gray3">{{topic.topicUser}}</span> <span class="gray9">发表于{{topic.answerTime}}</span><a ng-href="#/crowdFund/topicSubmit/{{funding.id}}/{{topic.id}}/reply" class="blue fr f28">参与话题</a>
+                            <span class="gray3">{{topic.topicUser}}</span> <span class="gray9">发表于{{topic.answerTime}}</span>
                         </p>
-                        <p class="gray6">{{topic.topicContent}}</p>
+                        <p class="gray6" style="padding-top:3%;">{{topic.topicContent}}</p>
                         <p>
                             <a href="javascript:;"class="gray9">评论({{topic.replies.length}})</a>
                             <a ng-href="#/crowdFund/topicSubmit/{{funding.id}}/{{topic.id}}/reply" class="gray9">回复</a>
@@ -74,7 +105,7 @@
                         <div class="commentBox">
                             <ul ng-repeat="replies in topic.replies">
                                 <li>
-                                    <i class="pic"><img src="../images/default-avatar.png"></i>
+                                    <i class="pic"><img src="/images/default-avatar.png"></i>
                                     <p style="width:450px;">{{replies.replyName}} : {{replies.replyContent}}</p>
                                 </li>
                             </ul>
@@ -84,21 +115,24 @@
                 <div class="line"></div>
             </div>
         </div>
-        <div class="lookover_more" style="border-bottom:1px solid #DDD;margin-top:-30px;" ng-show="topicList.length > 0">
+        <div class="lookover_more" style="border-bottom:1px solid #DDD;margin-top:0%;" ng-show="topicList.length > 0">
             <a ng-href="#/crowdFund/topic/{{funding.id}}" class="f24">查看更多话题</a>
         </div>
 
-        <div ng-repeat="sustain in reward">     
-        <form name="cashForm" ng-submit="ajaxForm(sustain.id)">
-            <div class="hb_details">
-                <p class="clearfix f24">
-                    <span class="orange">{{sustain.period}}天</span>投资<span class="blue">{{sustain.rate}}%</span>年化收益
+        <div class="line"></div> -->
+
+        <div ng-repeat="sustain in reward" style="margin-top:5%;">     
+        <form name="cashForm{{$index}}" ng-submit="ajaxForm(sustain.id)">
+            <div class="hb_details" style="margin-bottom: 2%; margin-top: 2%;">
+                <p class="clearfix f14">
+                    <span class="orange">{{sustain.period}}天</span>投资<span style="float: right;"><b class="orange">{{sustain.rate}}%</b>年化收益</span>
                 </p>
                 <p>
-                    <input type="number" class="full-width textBox" ng-model="input.supportAmount[sustain.id]" min="100" required placeholder="100" ng-pattern="/[0-9]$/" />
+                    <input type="text"  name="amount{{$index}}" class="full-width textBox" ng-model="input.supportAmount[sustain.id]" min="100"  required  placeholder="100" ng-pattern="/^[1-9]\d*$/"/>
+                    <span class="vv-input-tip" ng-show="cashForm{{$index}}.amount{{$index}}.$dirty && cashForm{{$index}}.amount{{$index}}.$invalid" style="position:absolute;margin-top: -10px;color:#f70">金额必须输入正整数</span>
                 </p>
-                <p>
-                    <button type="submit" class="btn btn-primary" ng-disabled="cashForm.$invalid">立即投资</button>
+                <p style="margin-bottom:10px;">
+                    <button  type="submit" style="width: 100%;" class="btn btn-primary btn-primary1" ng-disabled="cashForm{{$index}}.$invalid">立即投资</button>
                 </p>
                 <p>无限额</p>
                 <p class="gray6">
@@ -111,27 +145,29 @@
                     <li><img ng-show="{{sustain.rewardFour != null}}" ng-src="{{sustain.rewardFour}}"></li>
                     <li><img ng-show="{{sustain.rewardFive != null}}" ng-src="{{sustain.rewardFive}}"></li>
                 </ul>
-                <p>本金收益返还时间：<span class="gray6">成功投资后{{sustain.rewardDays}}日内。</span></p>
+                <p>本金收益返还时间：<span class="gray6">投资到期后2日内。</span></p>
                 <p class="line"></p>
             </div>
         </form>
         </div>
-
+        <div style="margin-bottom: 20%;"></div>
         <!-- <div class="viewMore" style="margin-bottom:100px;">
             <a href="#" class="blue">查看更多支持</a>
         </div> -->
 
          <div class="Cover" style="display:none;"></div>
-         <div class="supportBtn">
+         
+    </div>
+</div>
+
+<!-- <div class="supportBtn justified">
             <div class="shareBox">
                 <span class="shareTo">分享到：</span>
                 <a ng-click="shareToAll('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey')" class="ny_share ny_share01"></a>
                 <a ng-click="shareToAll('http://v.t.sina.com.cn/share/share.php')" class="ny_share ny_share02"></a>
-                <a ng-click="shareToAll('http://v.t.qq.com/share/share.php')" class="ny_share ny_share03"></a>
-                <a href="javascript:;" class="ny_share ny_share04"></a>
-            </div>
-            <i><img src="../images/zhuanfa.png" ng-click="supportBtn()"></i>
-            <a ng-href="#/crowdFund/fundSupport/{{funding.id}}">支持</a>
-        </div>
-    </div>
-</div>
+                <a ng-click="shareToAll('http://v.t.qq.com/share/share.php')" class="ny_share ny_share03"></a> -->
+                <!-- <a href="javascript:;" class="ny_share ny_share04"></a> -->
+            <!-- </div>
+            <i ng-click="supportBtn()"><img ng-src="{{staticImageUrl + 'images/zhuanfa.png'}}">分享</i> -->
+            <!--<a ng-href="#/crowdFund/fundSupport/{{funding.id}}">投资</a>-->
+ <!-- </div> -->

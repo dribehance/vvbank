@@ -11,11 +11,11 @@
             <div class="navbar-brand navbar-brand-center text-black"><span><b>优选项目 快乐投资</b></span></div>
             <div class="btn-group pull-left"></div>
         </div> -->
-        <banner data-options="{}" data-rate="320/70">
+      <!--   <banner data-options="{}" data-rate="320/70">
             <div class="image-holder" ng-repeat="b in banners" on-repeat-done>
-                <img ng-src="{{b.path}}" class="block full-width" alt="">
+                <img ng-src="{{b.path}}" class="block full-width" alt="" ng-click="back(b)">
             </div>
-        </banner>
+        </banner> -->
 
     <div class="content">
     <div class="cf_nav">
@@ -27,86 +27,72 @@
     </div>
 
     <div class="chipsList" ng-repeat="fund in crowdFunds" ng-show="type == 1">
-    <a ng-click="queryDetails(fund)" class="swipeArea">
-    <section class="chips_tent">
-       <h3><span>{{fund.fundsName}}</span></h3>
-       <p><img ng-src="{{fund.small}}" alt="" /></p>
-       <span class="icon"><b>{{fund.fundStatus}}</b></span>
-    </section>
-    </a>
-    <section class="chips_infos">
-        <ul class="clearfix">
-            <li>
-                <p class="Bold f22">期限</p>
-                <p class="red f36">30-120<span class="f24">天</span></p> 
-                <!--<p class="f16">（人）</p>-->
-                <i class="icon"></i>
-            </li>
-          <li>
-                <p class="Bold f22">年化收益率</p>
-                <p class="red f36">
-                    11<i class="f24">%</i>-14<i class="f24">%</i> 
-                </p>
-                <!--<p class="f16">（元）</p>-->
-            <i class="icon"></i>
-            </li>
-          <li>
-                <p class="Bold f22">募集进度</p>
-                <p class="red f36">10<i class="f24">%</i></p>
-               <!-- <p class="f16">（天）</p>-->
-
-          </li>
-        </ul>
-    </section>
-    <div class="investList innerList" ng-show="fund.reward.length > 0">
-    <ul class="f14" ng-repeat="reward in fund.reward">
-        <li>
-            <span>{{reward.period}}天</span>
-            <span class="orange">{{reward.rate}}%</span>
-            <span class="f14">{{reward.addPeriod}}</span>
-            <span><a ng-href="#/crowdFund/support/one/{{reward.rewardId}}" class="touziBtn f14">立即投资</a></span>
-        </li>
-    </ul>
-</div>
-</div>
+        <!-- <a ng-click="queryDetails(fund)" class="swipeArea"> -->
+        <a ng-href="#/crowdFund/detailsing/{{fund.id}}" alt="" class="swipeArea">
+            <section class="chips_tent">
+                <h3><span>{{fund.fundsName}}</span></h3>
+                <p><img ng-src="{{fund.small}}" alt="" /></p>
+                <span class="icon"><b>{{fund.fundStatus}}</b></span>
+            </section>
+        </a>
+        <div class="investList innerList" ng-show="fund.reward.length > 0">
+		    <ul class="f12">
+			    <li class="gray9">
+					<span>期限                   </span>
+					<span>年化收益率</span>
+					<span> 附加收益</span>
+					<span></span>
+			    </li>
+			    <li ng-repeat="reward in fund.reward">
+				    <span class="orange f16">{{reward.period}}天</span>
+    				<span class="orange f16">{{reward.rate}}%</span>
+	       			<span class="f12">{{reward.addPeriod}}</span>
+			     	<span>
+					   <a ng-if="fund.fundStatus == '募集中'" ng-href="#/crowdFund/support/one/{{reward.rewardId}}" class="touziBtn f12">立即投资</a>
+					   <span ng-if="fund.fundStatus  != '募集中'" class="touziBtn f14 gray">立即投资</span>
+				    </span>
+			    </li>
+    		</ul>
+	    </div>
+    </div>
 
 
-    <div class="projectList" ng-repeat="product in products" ng-show="type == 0"  on-repeat-done>
+    <div class="projectList" ng-repeat="product in products" ng-show="type == 0"  on-repeat-done  ng-class='{ele01:$index==0}'>
         <a ng-href="#/products/{{product.id}}">
             <dl class="clearfix">
                 <dt>
                     <p class="para01">{{product.title}}</p>
                     <p class="para02">
-                        <span class="f18 blue">
-                            <span class="text-very-big text-primary">{{ product.percentage | currency:"" }}%</span>
+                        <span class="f12 blue textBlock01">
+                            <span class="f22 text-orange">{{ product.percentage | currency:"" }}%</span>
                             <span class="text-orange" ng-show="product.addition !=0">{{"+"+product.addition +"%"}}</span>
                         </span>
-                        <span class="f20 month"><b>{{ product.duration}} {{ product.unit }} </b></span>
+                        <span class="month"><b>{{ product.duration}} {{ product.unit }} </b></span>
                     </p>
                     <p class="para03">
                         <span>{{ product.projectChannelType }}</span>
-                        <span ng-show="product.emoney != 0">赠送{{product.emoney}}e圆</span>
+                        <span ng-show="product.emoney != 0"><!-- 赠送{{product.emoney}}e圆 -->赠送e圆</span>
                     </p>
                 </dt>
                 <dd>
-                    <div class="fd_progress">
+                    <div class="fd_progress" ng-show="product.progress != 100">
                         <div class="circle circle01">
                             <canvas class="canvasObj" width="118" height="118"></canvas>
                             <em class="canvasCover"></em>
                             <b type="text">{{product.progress+"%"}}</b> 
                         </div>
                     </div>
+                    <div ng-show="product.progress == 100" class="fd_progress">
+                        <div class="circle circle03">完成</div>
+                    </div>
                 </dd>
             </dl>
         </a>
     <div class="vv-divide vv-1 bg-light-grey"></div>
     </div>
-
-
 </div>
 
-        <div class="vv-divide vv-5 bg-light-grey"></div>
-        <a ng-click="loadMore()" class="section btn block full-width text-large text-grey">{{load_more_message}}</a>
-
-    </div>
+        <!-- <div class="vv-divide vv-5 bg-light-grey" ng-show="type == 0"></div>
+            <a ng-click="loadMore()" class="section btn block full-width text-large text-grey">{{load_more_message}}</a> -->
+        </div>
 </div>

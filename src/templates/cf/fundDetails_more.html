@@ -1,4 +1,6 @@
-
+<div ui-content-for="backAction">
+    <a ng-click="back()" class="btn">返回</a>
+</div>
 <div class="scrollable">
     <div class="scrollable-content">
     	<div class="pro_banner">
@@ -11,25 +13,31 @@
 		<div class="project_text ELE">
 			<h3>{{fundingMore.title}}</h3>
     		<p>{{fundingMore.detail}}</p>
-		</div>
-		<p class="globalLine"></p>
-		<div class="videoArea">
-			<div class="title f24 orange">以下视频请在WIFI网络环境下观看</div>
-		    <div class="video">
-		    <!-- ng-src="{{fundingMore.videoUrl}}" -->
-		    <!-- <a ng-href="{{fundingMore.videoUrl}}"></a> -->
-		    <!-- <embed ng-src="{{fundingMore.videoUrl}}" quality="high" align="middle" allowscriptaccess="always" allowfullscreen="true" mode="transparent" type="application/x-shockwave-flash"></embed> -->
 
-		    	<!-- <embed ng-src="{{interpolatedValue}}"> -->
-		    	<embed src="https://cloud.video.taobao.com/play/u/2381682267/p/1/e/1/t/7/fv/102/31252496.swf">
-    		</div>
+    		<!-- <div class="semi-auto semi-left-60 semi-right-60" style="padding:3% 0;">
+                    <span class="semi-fixed-left semi-width-60">当前进度：</span>
+                    <div class="progress rectangle">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 36.43%;">
+                            <span class="sr-only ng-binding">36.43Complete</span>
+                        </div>
+                    </div>
+                    <span class="semi-fixed-right semi-width-60 text-center gothambook ng-binding">36.43%</span>
+       		 </div> -->
 		</div>
+		
+
+		<p class="globalLine"></p>
+		<!-- <div class="videoArea">
+			<div class="title f24 orange">以下视频请在WIFI网络环境下观看</div>
+		    <div class="video" ng-bind-html="trustAsHtml(fundingMore.videoUrl)">
+    		</div>
+		</div> -->
 		<div ng-repeat="detail in detailMore">
-			<div class="details_tit f24">
+			<div class="details_tit f14">
 				<i class="icon"><img ng-src="{{detail.logo}}"></i>
 				<strong>{{detail.name}}</strong>
 			</div>
-			<div class="details_tent f24" ng-show="detail.detail">
+			<div class="details_tent f12" ng-show="detail.detail">
 				<div ng-bind-html="trustAsHtml(detail.detail)"></div>
 			</div>
 		</div>

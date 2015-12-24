@@ -51,6 +51,7 @@
     border-radius: 20px;
     -webkit-border-radius: 20px;
 }
+
 .identify-section {
     position: relative;
     .identify-status {
@@ -75,6 +76,7 @@
         }
     }
 }
+
 .activity-item {
     position: relative;
     .activity-footer {
@@ -88,11 +90,46 @@
         font-weight: bold;
     }
 }
+
 #toTop {
-    display: none;
+    // display: none;
 }
+
 .activity-header {
     a.active {
         background-color: #1391E8;
     }
+}
+
+form[name="bankForm"],
+form[name="accountForm"] {
+    select {
+        position: relative;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        // line-height: 14px;
+    }
+    input[type="date"] {
+        display: block;
+        appearance:none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+    .form-control {
+        line-height: 14px !important;
+    }
+}
+
+input[type="password"] {
+    appearance: none;
+    -webkit-appearance: none;
+}
+qrcode canvas {
+    border: 5px solid white;
+}
+imageview img {
+    vertical-align: top;
 }

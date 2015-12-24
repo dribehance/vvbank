@@ -22,6 +22,8 @@ var cashController = function($scope, $rootScope, $location, $filter, userServic
             })
             $scope.input.bank = $scope.banks[0];
             $scope.btn_text = "申请提现";
+        }else if(data.respcode == '0415' || data.respcode == '0423'){
+
         } else {
             errorServices.autoHide(data.message);
         }

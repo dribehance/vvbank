@@ -17,15 +17,14 @@
             <i class="icon icon01" ng-if="!is_login"></i>
             <i class="icon" style="float: left; margin-left: 3%;" ng-if="is_login">
                 <a ng-href="#/me">
-                    <img ng-src="{{iconUrl}}" alt="" class="block full-width" ng-if="iconUrl != '1'">
-                    <img src="../images/user_icon.png" alt="" class="block full-width" ng-if="iconUrl == '1'">
-
+                    <img ng-src="{{iconUrl || staticImageUrl +'images/default-avatar.png'}}" alt="" class="block full-width" ng-if="icon != '1'">
+                    <img ng-src="{{staticImageUrl + 'images/user_icon.png'}}" alt="" class="block full-width" ng-if="icon == '1'">
                 </a>
             </i>
-            <span class="fl f24 logname"  ng-if="is_login">&nbsp;&nbsp;{{logonUsername}}&nbsp;&nbsp;<a ng-click="logout();">安全退出</a></span>
-            <a ng-click="openDialog()"><i class="icon icon02"></i></a>
+            <span class="fl f24 logname"  ng-if="is_login">&nbsp;&nbsp;{{logonUsername}}&nbsp;&nbsp;<!--<a ng-click="logout();">安全退出</a>--></span>
+            <a ng-click="openDialog()"><i class="icon icon02" alt="客服热线"></i></a>
             <nav ng-if="!is_login">
-                <a href="#/signIn">登录</a><a href="#/signUp" class="login">免费注册</a>
+                <a ng-href="#/signIn">登录</a><a ng-href="#/signUp" class="login">免费注册</a>
             </nav>
         </header>
         
@@ -33,7 +32,9 @@
           <!--   <a ng-href="#/crowdFund/details/{{crowdFund.id}}"> -->
            <!-- <a ng-href="#/crowdFund/fundSupport/{{crowdFund.id}}"> -->
             <section class="chips_tent">
-                <h3><a ng-click="queryDetails(crowdFund)"><span>{{crowdFund.title}}</span></a></h3>
+                <h3><!-- <a ng-click="queryDetails(crowdFund)"><span>{{crowdFund.title}}</span></a> -->
+                <a ng-href="#/crowdFund/detailsing/{{crowdFund.id}}" alt=""><span>{{crowdFund.title}}</span></a>
+                </h3>
                 <p><img ng-src="{{crowdFund.imageUrl}}" class="block full-width" alt="" ng-click="swipeLeft()"></p>
                 <span class="icon"><b>{{crowdFund.status}}</b></span>
             </section>
@@ -41,29 +42,29 @@
             <section class="chips_infos">
                 <ul class="clearfix">
                     <li>
-                        <p class="Bold f22">期限</p>
-                        <p class="red f36">{{crowdFund.periodMin}}-{{crowdFund.periodMax}}<span class="f24">天</span></p> 
+                        <p class="Bold f12">期限</p>
+                        <p class="red f18">{{crowdFund.periodMin}}-{{crowdFund.periodMax}}<span class="f24">天</span></p>
                         <!--<p class="f16">（人）</p>-->
                         <i class="icon"></i>
                     </li>
                     <li>
-                        <p class="Bold f22">年化收益率</p>
-                        <p class="red f36">
-                            {{crowdFund.rateMin}}<i class="f24">%</i>-{{crowdFund.rateMax}}<i class="f24">%</i> 
+                        <p class="Bold f12">年化收益率</p>
+                        <p class="red f18">
+                            {{crowdFund.rateMin}}<i class="f24">%</i>-{{crowdFund.rateMax}}<i class="f24">%</i>
                         </p>
                     <!--<p class="f16">（元）</p>-->
                     <i class="icon"></i>
                     </li>
                     <li>
-                        <p class="Bold f22">募集进度</p>
-                        <p class="red f36">{{crowdFund.speed}}<i class="f24">%</i></p>
+                        <p class="Bold f12">募集进度</p>
+                        <p class="red f18">{{crowdFund.speed}}<i class="f24">%</i></p>
                     <!-- <p class="f16">（天）</p>-->
                     </li>
                 </ul>
             </section>
         </div>
         <div class="fd_title">
-           固定收益
+           <span class="blue">优贷宝</span>
         </div>
         <div class="myCustom" id="myCustom">
             <div class="projectList" ng-repeat="product in products"  on-repeat-done>
@@ -72,53 +73,67 @@
                         <dt>
                             <p class="para01">{{product.title}}</p>
                             <p class="para02">
-                                <span class="f18 blue">
-                                    <span class="text-very-big text-primary">{{ product.percentage | currency:"" }}%</span>
+                                <span class="f12 blue textBlock01">
+                                    <span class="f22 text-orange">{{ product.percentage | currency:"" }}%</span>
                                     <span class="text-orange" ng-show="product.addition !=0">{{"+"+product.addition +"%"}}</span>
                                 </span>
-                                <span class="f20 month"><b>{{ product.duration}} {{ product.unit }} </b></span>
+                                <span class="month"> <b>
+                                      {{ product.duration}} {{ product.unit }} 
+                                </b> </span>
                             </p>
                             <p class="para03">
                                 <span>{{ product.projectChannelType }}</span>
-                                <span ng-show="product.emoney != 0">赠送{{product.emoney}}e圆</span>
+                                <span ng-show="product.emoney != 0"><!-- 每万元赠送{{product.emoney}}e圆 -->赠送e圆</span>
                             </p>
                         </dt>
                         <dd>
-                            <div class="fd_progress">
+                             <div class="fd_progress" ng-show="product.progress != 100">
                                 <div class="circle circle01">
-				                  <canvas class="canvasObj" width="118" height="118"></canvas>
+                                    <canvas class="canvasObj" width="118" height="118"></canvas>
                                     <em class="canvasCover"></em>
                                     <b type="text">{{product.progress+"%"}}</b> 
                                 </div>
+                             </div>
+                             <div ng-show="product.progress == 100" class="fd_progress">
+                                <div class="circle circle03">完成</div>
                             </div>
+
                         </dd>
+
                     </dl>
                 </a>
-                <div class="vv-divide vv-1 bg-light-grey"></div>
+                
             </div>
         </div>
-        <div class="Cover" style="display:none;"></div>
-        <div class="customer Dialog" style="display:none;">
-            <div>
-                <p class="gray6 f30">客服热线</p>
-                <p><i class="icon mar10"><img src="../images/telIcon.png"></i><span class="f36"><a href="tel:4006388399">4006-388-399</a></span></p>
+        <div ui-content-for="modals">
+            <div class="modal" ui-if="custTomerTel_panel" ui-state='custTomerTel_panel'>
+                <div class="modal-backdrop in" ui-turn-off="custTomerTel_panel"></div>
+                <div class="modal-dialog customer">
+                 <div class="modal-content">
+                    <div>
+                        <p class="gray6 f30">客服热线</p>
+                        <p><i class="icon mar10"><img ng-src="{{staticImageUrl + 'images/telIcon.png'}}"></i><span class="f36"><a href="tel:4006388399">4006-388-399</a></span></p>
+                    </div>
+                    <a class="more" ui-turn-off="custTomerTel_panel"></a>
+                 </div>
+                </div>
             </div>
-            <span class="more" ng-click="closeDialog();"></span>
         </div>
+
         <div class="investList" style="left:100%;" ng-click="swipeRight();">
-            <ul class="f24">
-                <li class="f14" style="padding-left:5%;">
+            <ul class="f12">
+                <li class="" style="padding-left:5%;">
                     <span>期限                   </span>
                     <span>年化收益率</span>
                     <span> 附加收益</span>
                     <span></span>
                 </li>
-                <ul class="f14" ng-repeat="reward in rewardBanner">
+                <ul class="" ng-repeat="reward in rewardBanner">
                     <li>
-                        <span>{{reward.period}}天</span>
-                        <span class="yellow">{{reward.rate}}%</span>
-                        <span class="f14">{{reward.addPeriod}}</span>
-                        <span><a ng-href="#/crowdFund/support/one/{{reward.id}}" class="touziBtn f14">立即投资</a></span>
+                        <span class="yellow f16">{{reward.period}}天</span>
+                        <span class="yellow f16">{{reward.rate}}%</span>
+                        <span class="f10">{{reward.addPeriod}}</span>
+                        <span><a ng-href="#/crowdFund/support/one/{{reward.id}}" class="touziBtn f12">立即投资</a></span>
                     </li>
                 </ul>
             </ul>

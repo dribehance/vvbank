@@ -38,6 +38,7 @@ module.exports = function(config) {
   config.vendor.js.push('./bower_components/angular-qrcode/qrcode.js');
   config.vendor.js.push('./bower_components/angular-qrcode/angular-qrcode.js');
   config.vendor.js.push('./node_modules/china-identity-card/validate.js');
+  config.vendor.js.push('./bower_components/date-polyfill/date-polyfill.min.js');
   // config.vendor.js.push('./bower_components/mockjs/dist/mock-min.js');
   // config.vendor.js.push('./src/plugins/angular.carsousel.js');
   // config.vendor.js.push('.bower_components/lib/dist/lib.js');

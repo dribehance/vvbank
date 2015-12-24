@@ -41,17 +41,17 @@ var addBankController = function($scope, $rootScope, errorServices, toastService
         }
     });
     // counting
-    $scope.callbackTimer = {};
-    $scope.callbackTimer.counting = 0;
-    $scope.callbackTimer.finish = function() {
-        $scope.callbackTimer.counting = 0;
-        $scope.$apply();
-    }
-    $scope.callbackTimer.addSeconds = function(seconds) {
-        angular.element("#vvcountdown")[0].clear();
-        angular.element("#vvcountdown")[0].resume();
-        angular.element("#vvcountdown")[0].start();
-    }
+    // $scope.callbackTimer = {};
+    // $scope.callbackTimer.counting = 0;
+    // $scope.callbackTimer.finish = function() {
+    //     $scope.callbackTimer.counting = 0;
+    //     $scope.$apply();
+    // }
+    // $scope.callbackTimer.addSeconds = function(seconds) {
+    //     angular.element("#vvcountdown")[0].clear();
+    //     angular.element("#vvcountdown")[0].resume();
+    //     angular.element("#vvcountdown")[0].start();
+    // }
     $scope.getSmscode = function() {
         v4userServices.getSmscode({
             mobile: $scope.userinfo.cellPhone,
@@ -63,8 +63,8 @@ var addBankController = function($scope, $rootScope, errorServices, toastService
                 errorServices.autoHide(data.message);
             }
         })
-        $scope.callbackTimer.counting = 1;
-        $scope.callbackTimer.addSeconds(150);
+        // $scope.callbackTimer.counting = 1;
+        // $scope.callbackTimer.addSeconds(150);
     };
     // $scope.provinces = PROVINCES;
     // $scope.cities = CITIES;

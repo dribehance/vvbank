@@ -21,21 +21,25 @@ var peopleController = function($scope, $rootScope, $timeout, mallServices, peop
         toastServices.hide()
         if (data.respcode == config.request.SUCCESS) {
             $scope.qrcode_url = data.url;
+            $scope.url = data.qurl;
             $scope.realname = data.realName;
             $scope.telephone = data.phone;
         } else {
             errorServices.autoHide(data.message);
         }
     })
-    $scope.toTop = function() {
-        $scope.isTop = true;
-        $timeout(function() {
-            angular.element("#toTop").show();
-            var to = angular.element("#toTop").offset().top - angular.element(".scrollable-content").offset().top + angular.element(".scrollable-content").scrollTop();
-            // angular.element(".scrollable-content").scrollTop(to)
+    $scope.isTop = false;
+    angular.element(".scrollable-content").bind("scroll", function(e) {
+        var scrollTop = angular.element(".scrollable-content").scrollTop();
+        $scope.to = angular.element("#toTop").offset().top - angular.element(".scrollable-content").offset().top + angular.element(".scrollable-content").scrollTop();
+        if (scrollTop > 20) {
+            $scope.$apply(function(){
+                $scope.isTop = true;
+            })
+            angular.element(".scrollable-content").unbind("scroll")
             angular.element(".scrollable-content").animate({
-                scrollTop: to
+                scrollTop: $scope.to
             });
-        }, 100)
-    }
+        }
+    })
 }

@@ -1,8 +1,10 @@
 angular.module("VVBank").constant("config", {
-    url: "http://localhost:9000/proxy/youyitou.f3322.net:8022/ws",
+    // url: "http://youyitou.f3322.net:8022/ws",
     // url: "http://192.168.16.2:8081/proxy/192.168.16.2:8080/ws",
-    //url : "http://192.168.16.98:9000/proxy/youyitou.f3322.net:8022/ws",
-    //url: "http://192.168.16.2:8081/proxy/192.168.16.2:8080/ws",
+    url: "http://172.16.4.186:9000/proxy/youyitou.f3322.net:8022/ws",
+    // url: "http://192.168.16.2:8081/proxy/youyitou.f3322.net:8022/ws",
+    // url: "http://192.168.16.2:8081/proxy/192.168.16.2:8080/ws",
+    // url: "http://192.168.16.2:8081/proxy/192.168.16.2:8080/ws",
     appid: "mobile_h5",
     version: "1.01",
     smstype: {
@@ -12,7 +14,8 @@ angular.module("VVBank").constant("config", {
         "ACTIVE_ACCOUNT": 4,
         "SYNC_PASSWOARD": 5,
         "RESET_PASSWORD": 6,
-        "BIND_TELEPHONE": 7
+        "BIND_TELEPHONE": 7,
+        "MODIFY_LOGINPWD": 10
     },
     request: {
         "SUCCESS": "0000",

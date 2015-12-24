@@ -1,3 +1,5 @@
+
+
 angular.module("VVBank").factory("platformServices", function($rootScope, $window, $route, $location, localStorageService, config) {
     $window.connectWebViewJavascriptBridge = function(callback) {
         if ($window.WebViewJavascriptBridge) {
@@ -41,6 +43,11 @@ angular.module("VVBank").factory("platformServices", function($rootScope, $windo
                 // route change
             $rootScope.$on("$routeChangeSuccess", function() {
                 if ($location.$$path == "/me") {
+                    $rootScope.navbar.top = false;
+                } else {
+                    $rootScope.navbar.top = true;
+                }
+                if ($location.$$path == "/cf") {
                     $rootScope.navbar.top = false;
                 } else {
                     $rootScope.navbar.top = true;

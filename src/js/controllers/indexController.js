@@ -1,15 +1,13 @@
-var indexController = function($scope,$rootScope, $location, $timeout,toastServices, localStorageService, errorServices, licaiServices, bannerServices, cfServices, parserServices,userServices,platformServices, config) {
+var indexController = function($scope,$rootScope, $location, $timeout,toastServices, localStorageService, errorServices, licaiServices, bannerServices, cfServices, parserServices,userServices,platformServices, SharedState,config) {
     $rootScope.page_title = "优易投";
     $scope.is_login = false;
-    $scope.iconUrl = "1";
+    $scope.icon = "1";
     $scope.logonUsername = "";
     if (localStorageService.get("token")) {
         $scope.is_login = true;
         $scope.logonUsername = localStorageService.get("logonUsername");
         $scope.iconUrl = localStorageService.get("iconUrl");
-        if (!$scope.iconUrl || $scope.iconUrl == '') {
-            $scope.iconUrl = "1";
-        }
+        $scope.icon = 2;
     }
 
     $rootScope.topicList = [];
@@ -40,7 +38,7 @@ var indexController = function($scope,$rootScope, $location, $timeout,toastServi
     });
 
     //获取众筹详情
-    $scope.queryDetails = function(crowdFund){
+    /*$scope.queryDetails = function(crowdFund){
         toastServices.show();
         // $scope.load_more_message = "正在加载...";
         cfServices.queryDetails(crowdFund.id).then(function(data) {
@@ -52,6 +50,8 @@ var indexController = function($scope,$rootScope, $location, $timeout,toastServi
                 $rootScope.answer = data.answer;
                 //项目答疑
                 $rootScope.topicList = $rootScope.topicList.concat(parserServices.parseTopicLists(data.topicList));
+                //话题数量
+                $rootScope.topicNum = data.topicCount;
                 //项目支持列表
                 // $rootScope.reward = $rootScope.reward.concat(parserServices.parseFundSupports(data.reward));
                 $rootScope.reward = $rootScope.reward.concat(parserServices.parseFundSustains(data.reward));
@@ -62,7 +62,7 @@ var indexController = function($scope,$rootScope, $location, $timeout,toastServi
                 errorServices.autoHide(data.message);
             }
         })
-    }
+    }*/
 
 
     // d3 chart data
@@ -159,12 +159,12 @@ var color = ["#e4e4e4","#007cd2"];
             $scope.project.page++;
             
                
-        })
+        }) 
     }
     var loadRecommand = function() {
         toastServices.show();
         $scope.load_more_message = "正在加载...";
-        licaiServices.recommand($scope.project.page).then(function(data) {
+        licaiServices.recommand($scope.project.page, 4).then(function(data) {
             toastServices.hide();
             if (data.result.length > 0) {
                 $scope.load_more_message = "加载更多项目";
@@ -187,10 +187,7 @@ var color = ["#e4e4e4","#007cd2"];
     });
 
     $scope.openDialog =function(){
-        $(".Cover,.Dialog")	.show();
-    }
-    $scope.closeDialog = function(){
-        $(".Cover,.Dialog").hide();
+        SharedState.turnOn("custTomerTel_panel");
     }
 
     function listSlide(){
@@ -225,4 +222,15 @@ var color = ["#e4e4e4","#007cd2"];
             $(".investList").animate({left:"100%"});
         },0);
     }
+
+    $rootScope.EmenuShow = function(){
+            $(".Cover,.eyuan-menu").show();
+         
+    }
+
+    $rootScope.EmenuHide=function(){
+        $(".Cover,.eyuan-menu").hide();
+    }
+ 
+   
 }

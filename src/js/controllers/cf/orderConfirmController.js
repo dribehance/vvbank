@@ -7,9 +7,16 @@ var orderConfirmController = function($scope, $rootScope,$location, $route, $rou
         $scope.is_login = true;
     }  
 
-    $scope.nextStepPay = function(orderInfo){
+    /*$scope.back = function(){
+        $location.path("/investment_projects").replace();
+    }*/
+
+    $rootScope.nextStepPay = function(orderInfo){
         if (orderInfo.flag) {
-            toastServices.show();
+            errorServices.autoHide("账户余额不足请前往充值");
+            $location.path("/cf_confirm/"+$scope.input.req_data).replace();
+            
+            /*toastServices.show();
             cfServices.checkPwd($scope.input.password).then(function(data){
                 toastServices.hide();
                 if (data.respcode == config.request.SUCCESS) {
@@ -17,7 +24,7 @@ var orderConfirmController = function($scope, $rootScope,$location, $route, $rou
                 }else{
                     errorServices.autoHide(data.message);   
                 }
-            });
+            });*/
         }else{
             //优租包订单
             var params = {
@@ -68,6 +75,13 @@ var orderConfirmController = function($scope, $rootScope,$location, $route, $rou
     		}
     	});
     }*/
+
+    $scope.nextStepHide=function(){
+        $(".order_progress").css('marginTop','-81px');
+    }
+    $scope.nextStepShow=function(){
+        $(".order_progress").css('marginTop','0px');
+    }
 
 
 	

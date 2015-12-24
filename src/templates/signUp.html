@@ -6,7 +6,7 @@
 </div>
 <div ui-content-for="navbarAction"></div>
 <form name="signupForm" ng-submit="ajaxForm(this)" style="height:100%;background-color:white">
-    <imageview src="'../images/banner_6.png'" data-rate="640/200"></imageview>
+    <imageview src="staticImageUrl + 'images/banner_6.png'" data-rate="640/200"></imageview>
     <div class="section" ui-state="signUpStep" ui-default="1" ui-if="signUpStep == 1">
         <div class="text-center">
             <!-- <img ng-src="{{ staticImageUrl +'images/logo-big.png'}}" alt=""> -->
@@ -16,17 +16,17 @@
         <div class="section"></div>
         <div class="vv-input-group input-group-lg">
             <span class="vv-input-group-addon"><i class="vv vv-27 vv-phone"></i></span>
-            <input type="text" class="form-control" name="telephone" ng-model="input.telephone" required ng-pattern="/(^(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/" placeholder="请输入手机号">
+            <input type="text" class="form-control text-big" name="telephone" ng-model="input.telephone" required ng-pattern="/(^(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/" placeholder="请输入手机号">
             <span class="vv-input-tip" ng-show="signupForm.telephone.$dirty && signupForm.telephone.$invalid">请输入11位手机号码</span>
         </div>
-        <div class="semi-auto semi-right-150"  style="margin-bottom:37px;">
+        <div class="semi-auto semi-right-120"  style="margin-bottom:60px;">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-27 vv-verifycode"></i></span>
-                <input type="text" class="form-control border-radius-large" ng-model="input.verifycode" name="verifycode" required placeholder="验证码">
+                <input type="text" class="form-control border-radius-large text-big" ng-model="input.verifycode" name="verifycode" required placeholder="验证码">
                 <span class="vv-input-tip" ng-show="signupForm.verifycode.$dirty && signupForm.verifycode.$invalid">右图验证码</span>
             </div>
-            <div class="semi-fixed-right semi-width-150 input-group input-group-lg text-right">
-                <span class="btn bg-light-grey btn-lg" ng-click="getVerifycode()">
+            <div class="semi-fixed-right semi-width-120 input-group input-group-lg text-right">
+                <span class="btn bg-light-grey" ng-click="getVerifycode()">
                     <img ng-src="{{input.verifyimage}}">
                 </span>
                 <div class="section section-wide text-right text-primary" ng-click="getVerifycode()">看不清，换一张</div>
@@ -47,9 +47,9 @@
             <button type="button" class="btn btn-lg btn-primary block full-width" ng-click="nextStep()" ng-disabled="signupForm.$invalid">下一步</button>
         </div>
         <a ng-href="#/signIn" class="section text-primary text-center">已有账号，直接登录</a>
-        <div class="section section-wide">
-            <imageview src="'../images/banner_7.png'" data-rate="592/276"></imageview>
-        </div>
+        <!-- <div class="section section-wide">
+            <img ng-src="{{staticImageUrl + 'images/banner_7.png'}}" data-rate="592/276">
+        </div> -->
     </div>
     <div class="section" ui-if="signUpStep == 2">
         <div class="section"></div>
@@ -61,12 +61,12 @@
         <div class="semi-auto semi-right-150">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-27 vv-verifycode"></i></span>
-                <input type="text" class="form-control border-radius-large" ng-model="input.smscode" name="smscode" ng-pattern="/^[0-9]+$/" ng-minlength=6 ng-maxlength=6 required placeholder="短信验证码,6位">
-                <span class="vv-input-tip" ng-show="signupForm.smscode.$dirty && signupForm.smscode.$invalid">验证码为6位</span>
+                <input type="text" class="form-control border-radius-large text-big" ng-model="input.smscode" name="smscode" ng-pattern="/^[0-9]+$/" ng-minlength=6 ng-maxlength=6 required placeholder="短信验证码,6位">
+                <span class="vv-input-tip code-layout" ng-show="signupForm.smscode.$dirty && signupForm.smscode.$invalid">验证码为6位</span>
             </div>
             <div class="semi-fixed-right semi-width-150 input-group input-group-lg text-center">
-                <button type="button" class="btn btn-warning btn-lg" ng-click="getSmscode()" ng-disabled="callbackTimer.counting">
-                    <timer id="vvcountdown" interval="1000" countdown="150" auto-start='false' ng-show="callbackTimer.counting" finish-callback="callbackTimer.finish()">{{countdown + 1}}</timer>
+                <button type="button" class="btn btn-warning btn-lg sms-btn" ng-click="getSmscode()" style="width: 150px;" ng-disabled="callbackTimer.counting">
+                    <!-- <timer id="vvcountdown" interval="1000" countdown="150" auto-start='false' ng-show="callbackTimer.counting" finish-callback="callbackTimer.finish()">{{countdown + 1}}</timer> -->
                     获取验证码
                 </button>
             </div>
@@ -74,14 +74,14 @@
         <div class="section-wide">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-27 vv-password"></i></span>
-                <input type="text" class="form-control border-radius-large" name="password" ng-model="input.password" required ng-minlength=6 maxlength=16 placeholder="新密码 请输入新密码,6-16位">
+                <input type="password" class="form-control border-radius-large text-big" name="password" ng-model="input.password" required ng-minlength=6 maxlength=16 placeholder="新密码 请输入新密码,6-16位">
                 <span class="vv-input-tip" ng-show="signupForm.password.$dirty && signupForm.password.$invalid">6-16位字符(字母、数字、符号),区分大小写</span>
             </div>
         </div>
         <div class="section-wide">
             <div class="vv-input-group input-group-lg full-width">
                 <span class="vv-input-group-addon"><i class="vv vv-27 vv-user"></i></span>
-                <input type="text" class="form-control border-radius-large" name="referee" ng-model="input.referee" placeholder="推荐人 (可选)请输入推荐码或推荐人手机号">
+                <input type="text" class="form-control border-radius-large text-big" name="referee" ng-model="input.referee" placeholder="推荐人 (可选)请输入推荐码或推荐人手机号">
             </div>
         </div>
         <div class="section-wide">

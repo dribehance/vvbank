@@ -26,7 +26,7 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope,$fil
                 return data.data;
             });
         },
-        login: function(username, password) {
+        login: function(username, password, type) {
             return $http({
                 url: config.url + "/v1/service/account/in",
                 method: "POST",
@@ -41,7 +41,8 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope,$fil
                 },
                 data: angular.extend({}, config.common_params, {
                     "username": username,
-                    "password": password
+                    "password": password,
+                    "type": type
                 })
             }).then(function(data) {
                 return data.data;
@@ -170,6 +171,28 @@ angular.module("VVBank").factory("userServices", function($http, $rootScope,$fil
                     "code": $rootScope.signcode,
                     "sendType": smstype,
                     "verify": verify,
+                })
+            }).then(function(data) {
+                return data.data;
+            })
+        },
+        getSmscodePwd: function(telephone, verify) {
+            return $http({
+                url: config.url + "/v1/service/smscodeAndPwd",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: angular.extend({}, config.common_params, {
+                    "mobile": telephone,
+                    "code": $rootScope.signcode,
+                    "sendType": verify
                 })
             }).then(function(data) {
                 return data.data;

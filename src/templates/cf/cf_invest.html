@@ -1,3 +1,6 @@
+<div ui-content-for="backAction">
+    <a ng-click="back()" class="btn">返回</a>
+</div>
 <div class="scrollable">
     <div class="scrollable-content">
 <form name="cashForm" ng-submit="ajaxForm(supportOne.id)">
@@ -10,14 +13,16 @@
         </div>
 
         <div class="hb_details">
+            <p style="height:10px;"></p>
 	       <p class="clearfix f24">
-    	       <span class="orange">{{supportOne.period}}天</span>投资<span class="orange">{{supportOne.rate}}%</span>年化收益
+    	       <span class="orange">{{supportOne.period}}天</span>投资<span class="orange" style="float: right;">{{supportOne.rate}}%年化收益</span>
             </p>
             <p>
-    	       <input type="number" class="full-width textBox" name="money" ng-model="input.supportAmount[supportOne.id]" min="100" required placeholder="100" ng-pattern="/[0-9]$/"/>
+    	       <input type="text" class="full-width textBox" name="money" ng-model="input.supportAmount[supportOne.id]" min="100" required placeholder="100" ng-pattern="/^[1-9]\d*$/"/>
+               <span class="vv-input-tip" ng-show="cashForm.money.$dirty && cashForm.money.$invalid" style="display:block;color:#f70;margin-top: -6px;">金额必须输入正整数</span>
             </p>
             <p>
-    	       <button type="submit" class="btn btn-primary" ng-disabled="cashForm.$invalid">立即投资</button>
+    	       <button type="submit" style="width: 100%;" class="btn btn-primary btn-primary1" ng-disabled="cashForm.$invalid">立即投资</button>
             </p>
             <p>无限额</p>
             <p class="gray9">
@@ -30,8 +35,7 @@
                 <li><img ng-show="{{supportOne.rewardFour != null}}" ng-src="{{supportOne.rewardFour}}"></li>
                 <li><img ng-show="{{supportOne.rewardFive != null}}" ng-src="{{supportOne.rewardFive}}"></li>
             </ul>
-            <p>本金收益返还时间：<span class="gray6">成功投资后{{supportOne.rewardDays}}日内。</span></p>
-            <p class="line"></p>
+            <p>本金收益返还时间：<span class="gray6">投资到期后2日内。</span></p>
         </div>
     </form>
     </div>

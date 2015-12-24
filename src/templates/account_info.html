@@ -183,6 +183,7 @@
                     <select class="form-control rectangle block full-width" name="province" ng-model="input.provinceId" ng-options="p.provinceId as p.provinceName for p in provinces" required></select>
                 </span>
                         <span class="section-wide">
+                    <span class="vv-input-tip text-warning" ng-show="accountForm.city.$dirty && accountForm.city.$invalid">请选择城市</span>
                     <select class="form-control rectangle block full-width" name="city" ng-model="input.cityId" ng-options="c.cityId as c.cityName for c in cities" required></select>
                 </span>
                     </div>
@@ -206,7 +207,7 @@
                     <input type="text" class="form-control block full-width rectangle" name="recipientPhone" ng-model="input.recipientPhone" placeholder="请输入收件人电话">
                 </div>
             </div>
-            <button type="submit" class="btn btn-lg bg-green block full-width text-white rectangle">保存</button>
+            <button type="submit" class="btn btn-lg btn-primary block full-width text-white rectangle">保存</button>
         </form>
     </div>
 </div>

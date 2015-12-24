@@ -18,9 +18,8 @@ var crowdFundListController = function($scope, $rootScope,$location, $route, $ro
 
 
     //获取众筹详情
-    $scope.queryDetails = function(crowdFund){
+    /*$scope.queryDetails = function(crowdFund){
         toastServices.show();
-
         cfServices.queryDetails(crowdFund.id).then(function(data) {
             toastServices.hide();
             if (data.respcode == config.request.SUCCESS) {
@@ -28,18 +27,21 @@ var crowdFundListController = function($scope, $rootScope,$location, $route, $ro
                 $rootScope.funding = data.funding;
 
                 $rootScope.answer = data.answer;
+
+                //话题数量
+                $rootScope.topicNum = data.topicCount;
                 //项目答疑
                 $rootScope.topicList = $rootScope.topicList.concat(parserServices.parseTopicLists(data.topicList));
                 //项目支持列表
-                $rootScope.reward = $rootScope.reward.concat(parserServices.parseFundSupports(data.reward));
-
+                $rootScope.reward = $rootScope.reward.concat(parserServices.parseFundSustains(data.reward));
+                
                     $location.path("/crowdFund/details").replace();
                     
             } else {
                 errorServices.autoHide(data.message);
             }
         })
-    }
+    }*/
 
 
     // banner
@@ -52,6 +54,12 @@ var crowdFundListController = function($scope, $rootScope,$location, $route, $ro
             });
         }, 0);
     });
+
+    $scope.back = function(b){
+        if (b.id == 16) {
+            window.location.href = "http://192.168.16.2:8080/act/act-excsdLottery.do?token="+localStorageService.get("token");
+        }
+    }
 
 
     //绘制进度环
@@ -79,7 +87,6 @@ var crowdFundListController = function($scope, $rootScope,$location, $route, $ro
             drawCircle(i);
         }
     });
-
 
     $scope.queryCrowdFundsAndProject = function(code){
         if ($scope.crowd.code == code) {
@@ -147,7 +154,7 @@ var crowdFundListController = function($scope, $rootScope,$location, $route, $ro
         toastServices.show();
         $scope.load_more_message = "正在加载...";
         $scope.type = 0;
-        licaiServices.recommand($scope.crowd.page).then(function(data) {
+        licaiServices.recommand($scope.crowd.page, 8).then(function(data) {
             toastServices.hide();
             if (data.result.length > 0) {
                 $scope.load_more_message = "加载更多项目";

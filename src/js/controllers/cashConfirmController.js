@@ -19,28 +19,29 @@ var cashConfirmController = function($scope, $rootScope, $location, $timeout, $r
         }
     });
     // counting
-    $scope.callbackTimer = {};
-    $scope.callbackTimer.counting = 0;
-    $scope.callbackTimer.finish = function() {
-        $scope.callbackTimer.counting = 0;
-        $scope.$apply();
-    }
-    $scope.callbackTimer.addSeconds = function(seconds) {
-        angular.element("#vvcountdown")[0].clear();
-        angular.element("#vvcountdown")[0].resume();
-        angular.element("#vvcountdown")[0].start();
-    };
+    // $scope.callbackTimer = {};
+    // $scope.callbackTimer.counting = 0;
+    // $scope.callbackTimer.finish = function() {
+    //     $scope.callbackTimer.counting = 0;
+    //     $scope.$apply();
+    // }
+    // $scope.callbackTimer.addSeconds = function(seconds) {
+    //     angular.element("#vvcountdown")[0].clear();
+    //     angular.element("#vvcountdown")[0].resume();
+    //     angular.element("#vvcountdown")[0].start();
+    // };
     // get smscode
     $scope.getSmscode = function() {
         userServices.getCashSmscode($scope.cash_confirm_info.boundCellphone).then(function(data) {
-            if (data.result.status == 1 && data.respcode == config.request.SUCCESS) {
+            // if (data.result.status == 1 && data.respcode == config.request.SUCCESS) {
+            if (data.respcode == config.request.SUCCESS) {
                 errorServices.autoHide(data.message);
             } else {
                 errorServices.autoHide(data.message);
             }
         })
-        $scope.callbackTimer.counting = 1;
-        $scope.callbackTimer.addSeconds(150);
+        // $scope.callbackTimer.counting = 1;
+        // $scope.callbackTimer.addSeconds(150);
     };
     // ajaxform
     $scope.ajaxForm = function() {

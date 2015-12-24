@@ -8,7 +8,7 @@ var billsController = function($scope,$filter, myServices,toastServices, parserS
             if (angular.equals($scope.bills,{})) {
                 $scope.no_record = true;
             }
-        }
+        } 
         else {
             errorServices.autoHide("服务器错误");
         }

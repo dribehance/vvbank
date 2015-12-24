@@ -1,30 +1,33 @@
+<div ui-content-for="backAction">
+    <a ng-click="back()" class="btn">返回</a>
+</div>
 <div class="scrollable">
     <div class="scrollable-content">
 
     <div class="order_progress ELE">
    <ul>
         <li>
-            <h4><img src="images/orderProgress01.png"></h4>
+            <h4><img ng-src="{{staticImageUrl + 'images/orderProgress01.png'}}"></h4>
             <p>订单填写</p>
         </li>
-        <li class="arrow"><img src="images/cf_arrow.png"></li>
+        <li class="arrow"><img ng-src="{{staticImageUrl + 'images/cf_arrow.png'}}"></li>
         
         <li class="selected">
-            <h4><img src="images/orderProgress03_on.png"></h4>
+            <h4><img ng-src="{{staticImageUrl + 'images/orderProgress03_on.png'}}"></h4>
             <p>支付</p>
         </li>
         
-        <li class="arrow"><img src="images/cf_arrow.png"></li>
+        <li class="arrow"><img ng-src="{{staticImageUrl + 'images/cf_arrow.png'}}"></li>
         
         <li>
-            <h4><img src="images/orderProgress04.png"></h4>
+            <h4><img ng-src="{{staticImageUrl + 'images/orderProgress04.png'}}"></h4>
             <p>完成</p>
         </li>
     </ul>
 </div>
 
 <form name="payForm" ng-submit="nextStepPay(orderInfo)" method="POST" id="payForm">
-<input type="hidden" name="req_data" value="{{orderInfo.payMap}}">
+<input type="hidden" name="req_data" ng-model="input.req_data" value="{{orderInfo.payMap}}">
 <div class="orderWrite confirm">
 	<p class="para01"><span class="orange">在线支付</span></p>
     <dl>
@@ -35,23 +38,26 @@
     	<dt>账户余额：</dt>    
         <dd><span class="orange">￥{{orderInfo.balance}}</span></dd>
     </dl>
-    <dl>
+    <!-- <dl>
     	<dt>网银支付：</dt>
         <dd class="text-left"><span class="orange">￥{{orderInfo.surplus}}</span></dd>
-    </dl>
+    </dl> -->
     <dl class="pwdArea">
     	<dt>交易密码：</dt>
         <dd class="text-left">
-        	<input type="password" class="form-control block full-width" name="password" ng-model="input.password" ng-minlength=6 required placeholder="请输入交易密码,6位以上">
-            <span class="vv-input-tip" ng-show="payForm.password.$dirty && payForm.password.$error.required || payForm.password.$error.minlength" style="position:absolute;right:0;top:-17px;color:#f70">密码必填,不少于6位</span>
+        	<input type="password" class="form-control block full-width" name="password" ng-model="input.password" ng-minlength=6 ng-maxlength=16 required placeholder="请输入交易密码,6位以上" ng-focus="nextStepHide()" ng-blur="nextStepShow()">
+            <span class="vv-input-tip" ng-show="payForm.password.$dirty && payForm.password.$error.required || payForm.password.$error.minlength || payForm.password.$error.maxlength" style="position:absolute;right:0;top:-17px;color:#f70">密码必填,不少于6位,且不大于16位</span>
         </dd>
     </dl> 
 </div>
-<div class="section">
-        <button type="submit" class="btn btn-primary" ng-disabled="payForm.$invalid">下一步</button>
-    </div>
+<!-- <div class="section">
+        <button type="submit" class="btn btn-primary btn-primary1" style="width: 100%;" ng-disabled="payForm.$invalid">下一步</button>
+    </div> -->
+ <div class="nextStep" style="position:relative;">
+    <button type="submit" class="nextbtn" style="width: 100%;border: 0px;" ng-disabled="payForm.$invalid">下一步</button>
+</div>
 <!-- <div class="nextStep" ng-show="{{orderInfo.flag != true}}">
-    <a ng-click="nextStepPay(orderInfo.appliedId)" class="nextbtn" ng-disabled="buyForm.$invalid">下一步</a>
+    <a ng-click="nextStepPay(orderInfo.appliedId)" class="nextbtn" ng-disabled="buyForm.$invalid">下一步</a>  
 </div> -->
 <!-- <form  method="post" action="https://yintong.com.cn/llpayh5/authpay.htm" id="payForm" ng-show="{{orderInfo.flag}}">
 			<input type="hidden" name="req_data" value="{{orderInfo.payMap}}">

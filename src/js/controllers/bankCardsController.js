@@ -1,15 +1,19 @@
 var bankCardsController = function($scope, $routeParams, $location, $rootScope, $route, $window, errorServices, localStorageService, toastServices, parserServices, userServices, settingServices, config) {
-    if ($routeParams.state == '1') {
+    // if ($routeParams.state == '1') {
         toastServices.show();
         settingServices.queryBanks().then(function(data) {
             toastServices.hide();
+            $scope.bank_info = data;
+            // $scope.btn_text = data.message;
             if (data.respcode == config.request.SUCCESS) {
-                $scope.banks = data.result;
-            } else {
+                $scope.bank_info = data.result;
+            } else if (data.respcode == '0601' || data.respcode == '0602' || data.respcode == '0603' || data.respcode == config.request.SUCCESS) {
+
+            }else{
                 errorServices.autoHide(data.message)
             }
         })
-    }
+    // }
     $scope.deleteBank = function(bank) {
         toastServices.show();
         settingServices.deleteBank(bank).then(function(data) {

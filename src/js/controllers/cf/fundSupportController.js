@@ -44,7 +44,7 @@ var fundSupportController = function($scope, $rootScope,$location, $route, $rout
                 }
             })
         }else{
-            errorServices.autoHide("请先登陆再关注");
+            errorServices.autoHide("请先登录再关注");
             $timeout(function() {
                     $location.path("/me").replace();
             }, 1000);

@@ -9,16 +9,26 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content">
-        <div><imageview src="'../images/banner_5.png'" data-rate="640/387"></imageview></div>
-        <div class="section bank-item" ng-repeat="bank in banks">
-            <imageview src="'../images/bank_mockup.png'" data-rate="412/250"></imageview>
+        <!-- <div><img ng-src="{{staticImageUrl + 'images/banner_5.png'}}" data-rate="640/387"></div> -->
+        <div class="section bank-item" ng-repeat="bank in bank_info" ng-if="bank_info.respcode == config.request.SUCCESS">
+            <img ng-src="{{staticImageUrl + 'images/bank_mockup.png'}}" data-rate="412/250">
             <div class="bank-info">
-                <img src="../images/me_7.png" class="bank-logo" alt=""> <span>{{bank.bank}}</span>
+                <img ng-src="{{staticImageUrl + 'images/me_7.png'}}" class="bank-logo" alt=""> <span>{{bank.bank}}</span>
                 <div class="section section-wide bg-transparent">{{bank.cardNo}}</div>
             </div>
         </div>
-        <div class="section" ng-click="createBank()">
-            <imageview src="'../images/add_bank.png'" data-rate="412/250"></imageview>
+        <div class="section" ng-click="createBank()" ng-if="bank_info.respcode == config.request.SUCCESS && bank_info.length > 1">
+            <img ng-src="{{staticImageUrl + 'images/add_bank.png'}}" data-rate="412/250">
+        </div>
+        <div ng-if="bank_info.respcode != config.request.SUCCESS" class="f14">
+            <p style="padding-left:5%; padding-top:5px;"><span>为了保护账户安全你还有以下操作尚未完成:</span></p>
+            <p style="padding-left:5%;">
+                <a ng-if="bank_info.cardBIt != 1" ng-href="#/name_authen?state=-1" class="blue">身份认证</a>
+                <a ng-if="bank_info.tradeBIt != 1" ng-href="#/update_trade_psd?state=-1" class="blue">设置交易密码</a>
+            </p>
+        </div>
+        <div style="line-height:180%;" class="f14 textLink-layout">
+            
         </div>
         <!-- <div>
             <div class="section">

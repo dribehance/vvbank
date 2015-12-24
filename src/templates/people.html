@@ -11,14 +11,14 @@
             <!-- <imageview src="'../images/qrcode.png'" data-rate="1"></imageview> -->
             <qrcode data="{{qrcode_url}}" version="10" size="274"></qrcode>
             <p></p>
-            <p>{{qrcode_url}}</p>
+            <p style="width: 274px; margin: 10px auto; padding-right: 10%; text-align: center; word-wrap: break-word;" ng-bind-html="trustAsHtml(url)"></p>
         </div>
         <div class="section bg-transparent">
             <p>姓名：{{realname}}</p>
             <p>联系电话：{{telephone}}</p>
         </div>
-        <div class="section bg-transparent text-center" ng-click="toTop()" ng-if="!isTop">
-        	<div><img src="../images/to_top.png" width="16px"></div>
+        <div class="section bg-transparent section-condensed text-center" ng-if="!isTop">
+        	<div><img ng-src="{{staticImageUrl + 'images/to_top.png'}}" width="13px"></div>
         	<span class="text-large">查看你的人脉详情</span>
         </div>
         <div id="toTop" style="min-height:568px;">
@@ -59,7 +59,7 @@
                     <div class="col-xs-4 text-ellipsis">
                         {{people.memberRealName}}
                     </div>
-                    <div class="col-xs-4 text-ellipsis">
+                    <div class="col-xs-4">
                         {{people.cellPhone}}
                     </div>
                     <div class="col-xs-4 text-ellipsis text-orange">
@@ -92,7 +92,7 @@
                     <div class="col-xs-4 text-ellipsis">
                         {{people_level2.memberRealName}}
                     </div>
-                    <div class="col-xs-4 text-ellipsis">
+                    <div class="col-xs-4">
                         {{people_level2.cellPhone}}
                     </div>
                     <div class="col-xs-4 text-ellipsis text-orange">

@@ -10,4 +10,8 @@ var topicController = function($scope, $rootScope,$location, $route, $routeParam
             errorServices.autoHide(data.message);
         }
     });
+
+    /*$scope.back = function(){
+        $location.path("/crowdFund/crowdFundDetails/"+$routeParams.cfId).replace();
+    }*/
 }

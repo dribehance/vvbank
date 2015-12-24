@@ -20,7 +20,11 @@ var cfInvestController = function($scope, $rootScope,$location, $route, $routePa
    $scope.supportFindOne();
 
    $scope.ajaxForm = function(id){
-         $location.path("/crowdFund/order/infoWrite/"+id+"/"+$scope.input.supportAmount[id]).replace();
+        if ($scope.input.supportAmount[id] < 100) {
+            errorServices.autoHide("最小投资金额为100元");
+        }else{
+            $location.path("/crowdFund/order/infoWrite/"+id+"/"+$scope.input.supportAmount[id]).replace();
+        }
     }
 
 
@@ -30,15 +34,15 @@ var cfInvestController = function($scope, $rootScope,$location, $route, $routePa
         if ($scope.is_login) {
             cfServices.attention(funding.fundId).then(function(data) {
                 if (data.result.respcode == config.request.SUCCESS) {
-                    $scope.supportOne.supportCount = "";
-                    $scope.supportOne.supportCount = data.result.count;
+                    $scope.supportOne.attention = "";
+                    $scope.supportOne.attention = data.result.count;
                     $scope.supportOne.attentions = "已关注";
                 } else {
                     errorServices.autoHide(data.result.message);
                 }
             })
         }else{
-            errorServices.autoHide("请先登陆再关注");
+            errorServices.autoHide("请先登录再关注");
             $timeout(function() {
                     $location.path("/me").replace();
             }, 1000);

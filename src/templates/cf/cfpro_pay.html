@@ -1,30 +1,32 @@
-
+<div ui-content-for="backAction">
+    <a ng-click="back()" class="btn">返回</a>
+</div>
 <div class="bg-white scrollable-content">
     <div class="order_progress ELE">
        <ul>
             <li>
-                <h4><img src="images/orderProgress01.png"></h4>
+                <h4><img ng-src="{{staticImageUrl + 'images/orderProgress01.png'}}"></h4>
                 <p>信息填写</p>
             </li>
 
-            <li class="arrow"><img src="images/cf_arrow.png"></li>
+            <li class="arrow"><img ng-src="{{staticImageUrl + ‘images/cf_arrow.png'}}"></li>
 
             <li>
-                <h4><img src="images/orderProgress02.png"></h4>
+                <h4><img ng-src="{{staticImageUrl + 'images/orderProgress02.png'}}"></h4>
                 <p>信息确认</p>
             </li>
 
-            <li class="arrow"><img src="images/cf_arrow.png"></li>
+            <li class="arrow"><img ng-src="{{staticImageUrl + 'images/cf_arrow.png'}}"></li>
 
             <li class="selected">
-                <h4><img src="images/orderProgress03_on.png"></h4>
+                <h4><img ng-src="{{staticImageUrl + 'images/orderProgress03_on.png'}}"></h4>
                 <p>支付</p>
             </li>
 
-            <li class="arrow"><img src="images/cf_arrow.png"></li>
+            <li class="arrow"><img ng-src="{{staticImageUrl + 'images/cf_arrow.png'}}"></li>
 
             <li>
-                <h4><img src="images/orderProgress04.png"></h4>
+                <h4><img ng-src="{{staticImageUrl + 'images/orderProgress04.png'}}"></h4>
                 <p>完成</p>
             </li>
         </ul>
@@ -61,7 +63,7 @@
     </div>
     <div class="nextStep">
         <!-- <a href="javascript:;" class="nextbtn">去网银支付</a> -->
-        <button type="submit" class="btn btn-primary full-width">去网上银行充值</button>
+        <button style="width: 100%;" type="submit" class="btn btn-primary btn-primary1 full-width">去网上银行充值</button>
     </div>
     </form>
 </div>

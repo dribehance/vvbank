@@ -22,12 +22,13 @@ angular.module("VVBank").factory("licaiServices", function($rootScope, $http, co
             })
         },
         //首页项目
-        recommand: function(page) {
+        recommand: function(params, page) {
             return $http({
                 url: config.url + "/v1/service/homepage/products",
                 method: "GET",
                 params: angular.extend({}, config.common_params,{
-                    "current":page
+                    "current":params,
+                    "currentPage":page
                 }),
                 // cache: true
             }).then(function(data) {

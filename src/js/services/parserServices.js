@@ -161,12 +161,12 @@ angular.module("VVBank").factory("parserServices", function(config) {
         parseUZBFundSupport : function(data){
             var support = new _m_uzb_support();
             support.id = data.rewardId;
-            support.fundId = data.fundingId;
+            support.fundId = data.fundId;
+            support.period = data.period;
+            support.rate = data.rate;
             support.rewardtitle = data.rewardtitle;
             support.rewardDetail = data.rewardDetail;
             support.rewardDays = data.rewardDays;
-            support.rate = data.rate;
-            support.period = data.period;
             support.addPeriod = data.addPeriod;
             support.rewardOne = data.rewardOne;
             support.rewardTwo = data.rewardTwo;

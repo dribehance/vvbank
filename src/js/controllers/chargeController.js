@@ -20,6 +20,8 @@ var chargeController = function($scope,$filter, $location, userServices, errorSe
             var end_card_no = $filter("limitTo")($scope.input.bank.card_no,-4)
             $scope.input.bank.label = $scope.input.bank.bank_name + " "+end_card_no;
             $scope.btn_text = "充值";
+        }else if(data.respcode == '0423' || data.respcode == '0001'){
+
         } else {
             errorServices.autoHide(data.message);
         }

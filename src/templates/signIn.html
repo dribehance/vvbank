@@ -5,7 +5,7 @@
     <span>登录</span>
 </div>
 <div ui-content-for="navbarAction"></div>
-<div ui-if="!signIn" style="height:100%;background-color:white">
+<div ng-if="!signIn" style="height:100%;background-color:white">
     <div class="section bg-grey text-center text-white" style="padding:30px 20px;">
         <h2><b>您还没有登录</b></h2>
         <p>
@@ -14,11 +14,11 @@
     </div>
     <div class="section">
         <div class="section"></div>
-        <a class="btn btn-lg btn-primary block full-width" ui-turn-on="signIn">立即登录</a>
+        <a class="btn btn-lg btn-primary block full-width">立即登录</a>
     </div>
 </div>
-<form name="signinForm" ng-submit="ajaxSubmit(this)" ui-state="signIn" ui-default="0" ui-if="signIn" style="height:100%;background-color:white">
-    <imageview src="'../images/banner_6.png'" data-rate="640/200"></imageview>
+<form name="signinForm" ng-submit="ajaxSubmit(this)" ng-if="signIn" style="height:100%;background-color:white">
+    <imageview src="staticImageUrl + 'images/banner_6.png'" data-rate="640/200"></imageview>
     <div class="section" style="margin-top:19px">
         <div class="vv-input-group input-group-lg">
             <span class="vv-input-group-addon"><i class="vv vv-20 vv-user"></i></span>
@@ -27,8 +27,8 @@
         </div>
         <div class="vv-input-group input-group-lg">
             <span class="vv-input-group-addon"><i class="vv vv-20 vv-password"></i></span>
-            <input type="password" class="form-control text-big" name="password" ng-model="input.password" placeholder="请输入登录密码,6位以上" required ng-minlength=6>
-            <span class="vv-input-tip" ng-show="signinForm.password.$dirty && signinForm.password.$error.required || signinForm.password.$error.minlength">密码必填,不少于6位</span>
+            <input type="password" class="form-control text-big" name="password" ng-model="input.password" placeholder="请输入密码" required ng-minlength=6 ng-maxlength=16>
+            <span class="vv-input-tip" ng-show="signinForm.password.$dirty && signinForm.password.$error.required || signinForm.password.$error.minlength || signinForm.password.$error.maxlength">密码必填,不少于6位且不大于16位</span>
         </div>
         <p class="text-right text-primary"><a ng-href="#/forget">忘记密码</a></p>
         <div class="section-wide">

@@ -37,12 +37,12 @@
         <div class="vv-divide"></div>
         <div class="section">
             <div class="btn-group justified">
-                <div class="section section-condensed text-white" style="padding-left:0">
+                <div class="section section-condensed text-white" style="padding-left:0;display: table-cell;width: 50%;">
                     <a class="btn rectangle text-white full-width" ng-class="{'bg-grey':emall_item.goodsNumber ==0,'btn-primary':emall_item.goodsNumber >0}" ng-click="exchange()">
                         立即兑换
                     </a>
                 </div>
-                <div class="section section-condensed text-white" style="padding-right:0">
+                <div class="section section-condensed text-white" style="padding-right:0;display: table-cell;width: 50%;">
                     <button ng-click="addToCart()" class="btn rectangle full-width" ng-class="{'bg-grey':emall_item.goodsNumber ==0,'btn-warning':emall_item.goodsNumber >0}">
                         加入购物车
                     </button>

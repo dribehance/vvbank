@@ -9,8 +9,8 @@ var forgetController = function($scope, $rootScope, $location, $interval,v4userS
     // get verifycode
     $scope.getVerifycode = function() {
         userServices.getVerifycode({
-            width: 100,
-            height: 22
+            width: 80,
+            height: 32
         }).then(function(data) {
             if (data.respcode == config.request.SUCCESS) {
                 $scope.input.verifyimage = data.result.verifycode;
@@ -25,33 +25,34 @@ var forgetController = function($scope, $rootScope, $location, $interval,v4userS
         $interval.cancel(timer);
     }, 10);
     // counting
-    $scope.callbackTimer = {};
-    $scope.callbackTimer.counting = 0;
-    $scope.callbackTimer.finish = function() {
-        $scope.callbackTimer.counting = 0;
-        $scope.$apply();
-    }
-    $scope.callbackTimer.addSeconds = function(seconds) {
-        angular.element("#vvcountdown")[0].clear();
-        angular.element("#vvcountdown")[0].resume();
-        angular.element("#vvcountdown")[0].start();
-    }
+    // $scope.callbackTimer = {};
+    // $scope.callbackTimer.counting = 0;
+    // $scope.callbackTimer.finish = function() {
+    //     $scope.callbackTimer.counting = 0;
+    //     $scope.$apply();
+    // }
+    // $scope.callbackTimer.addSeconds = function(seconds) {
+    //     angular.element("#vvcountdown")[0].clear();
+    //     angular.element("#vvcountdown")[0].resume();
+    //     angular.element("#vvcountdown")[0].start();
+    // }
     $scope.getSmscode = function() {
-        userServices.getSmscode($scope.input.telephone, config.smstype.RESET_PASSWORD).then(function(data) {
-            if (data.result.status == 1 && data.respcode == config.request.SUCCESS) {
+        userServices.getSmscodePwd($scope.input.telephone, config.smstype.MODIFY_LOGINPWD).then(function(data) {
+            if (data.respcode == config.request.SUCCESS) {
                 errorServices.autoHide("验证码发送成功");
             } else {
                 errorServices.autoHide(data.message)
             }
         })
-        $scope.callbackTimer.counting = 1;
-        $scope.callbackTimer.addSeconds(150);
+        // $scope.callbackTimer.counting = 1;
+        // $scope.callbackTimer.addSeconds(150);
     }
     $scope.nextStep = function() {
         toastServices.show();
         v4userServices.validateVerifycode({
         	verifycode:$scope.input.verifycode
         }).then(function(data){
+            toastServices.hide();
         	if (data.respcode == config.request.SUCCESS) {
         		return data;
         	}
@@ -68,6 +69,7 @@ var forgetController = function($scope, $rootScope, $location, $interval,v4userS
         	v4userServices.queryForgetByTelephone({
         		phone:$scope.input.telephone
         	}).then(function(data){
+                toastServices.hide();
         		if (data.respcode == config.request.SUCCESS) {
         			SharedState.set("forgetStep", 2)
         		}
@@ -87,18 +89,24 @@ var forgetController = function($scope, $rootScope, $location, $interval,v4userS
     }
     $scope.ajaxForm = function(form) {
         toastServices.show();
+        if ($scope.input.password == $scope.input.password_1) {
         v4userServices.updateSigninPassword({
         	smscode:$scope.input.smscode,
         	pwd:$scope.input.password,
         	telephone:$scope.input.telephone
         }).then(function(data){
+            toastServices.hide();
         	if (data.respcode == config.request.SUCCESS) {
-                localStorageService.set("token", data.result.token);
-                $location.path("/signin").replace();
+                // localStorageService.set("token", data.result.token);
+                errorServices.autoHide("修改成功");
+                $location.path("/signIn").replace();
             } else {
                 errorServices.autoHide(data.message);
             }
         })
+    }else{
+        errorServices.autoHide("两次密码输入不一致");
+    }
         // userServices.forgetPassword($scope.input.telephone, $scope.input.smscode, $scope.input.password).then(function(data) {
         //     toastServices.hide();
         //     console.log(data)
